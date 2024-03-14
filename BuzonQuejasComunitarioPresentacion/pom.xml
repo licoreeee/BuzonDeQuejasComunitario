@@ -7,8 +7,8 @@
     <packaging>jar</packaging>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
         <exec.mainClass>buzonquejascomunitario.BuzonQuejasComunitario</exec.mainClass>
     </properties>
     <name>BuzonQuejasComunitarioPresentacion</name>
@@ -24,6 +24,11 @@
             <groupId>unknown.binary</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.netbeans.external</groupId>
+            <artifactId>AbsoluteLayout</artifactId>
+            <version>RELEASE210</version>
         </dependency>
     </dependencies>
 </project>
