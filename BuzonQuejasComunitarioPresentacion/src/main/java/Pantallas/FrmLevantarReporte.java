@@ -177,7 +177,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-<<<<<<< HEAD
+
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloActionPerformed
@@ -220,8 +220,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-=======
->>>>>>> 0c92f26f223e8addff597d5759499115921dc4fe
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
