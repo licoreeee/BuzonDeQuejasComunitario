@@ -40,6 +40,8 @@ public class FrmFolio extends javax.swing.JFrame {
         setTitle("Folio");
         setPreferredSize(new java.awt.Dimension(600, 400));
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
         jPanel2.setBackground(new java.awt.Color(0, 102, 51));
         jPanel2.setForeground(new java.awt.Color(0, 102, 51));
 
