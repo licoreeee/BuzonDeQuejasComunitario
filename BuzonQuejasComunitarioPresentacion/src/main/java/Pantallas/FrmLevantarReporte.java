@@ -28,6 +28,9 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        btnLevantarReporte = new javax.swing.JButton();
+        btnAvances = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         jlbLevantarReporte = new javax.swing.JLabel();
         jlbContexto = new javax.swing.JLabel();
         jlbTitulo = new javax.swing.JLabel();
@@ -38,23 +41,48 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         btnSiguiente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setToolTipText("Levantar reporte");
-        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
 
-        jPanel2.setBackground(new java.awt.Color(10, 50, 6));
-        jPanel2.setPreferredSize(new java.awt.Dimension(600, 80));
+        jPanel2.setBackground(new java.awt.Color(0, 102, 51));
+
+        btnLevantarReporte.setBackground(new java.awt.Color(0, 102, 51));
+        btnLevantarReporte.setForeground(new java.awt.Color(204, 204, 204));
+        btnLevantarReporte.setText("Levantar reporte");
+        btnLevantarReporte.setBorder(null);
+
+        btnAvances.setBackground(new java.awt.Color(0, 102, 51));
+        btnAvances.setForeground(new java.awt.Color(204, 204, 204));
+        btnAvances.setText("Avances");
+        btnAvances.setBorder(null);
+
+        btnHistorial.setBackground(new java.awt.Color(0, 102, 51));
+        btnHistorial.setForeground(new java.awt.Color(204, 204, 204));
+        btnHistorial.setText("Historial ");
+        btnHistorial.setBorder(null);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnLevantarReporte)
+                .addGap(18, 18, 18)
+                .addComponent(btnAvances)
+                .addGap(18, 18, 18)
+                .addComponent(btnHistorial)
+                .addGap(98, 98, 98))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 80, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(25, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAvances)
+                    .addComponent(btnLevantarReporte)
+                    .addComponent(btnHistorial))
+                .addGap(9, 9, 9))
         );
 
         jlbLevantarReporte.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -131,7 +159,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
                 .addComponent(jlbObligatorio)
                 .addGap(18, 18, 18)
                 .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,13 +170,12 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 404, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
 
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
@@ -191,9 +218,13 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
 //                new FrmLevantarReporte().setVisible(true);
 //            }
 //        });
-//  
+//    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvances;
+    private javax.swing.JButton btnHistorial;
+    private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
