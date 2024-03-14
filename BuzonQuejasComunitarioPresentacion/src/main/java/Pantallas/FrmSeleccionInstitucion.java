@@ -52,8 +52,8 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblLogoGobiernoMexico = new javax.swing.JLabel();
         lblDescripcion1 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         lblDescripcion2 = new javax.swing.JLabel();
         lblInformacionInstitucion = new javax.swing.JLabel();
         btnLevantarReporte = new javax.swing.JButton();
@@ -70,12 +70,12 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 360));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblLogoGobiernoMexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
-        jPanel1.add(lblLogoGobiernoMexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
+        lblDescripcion1.setForeground(new java.awt.Color(0, 0, 0));
         lblDescripcion1.setText("Seleccione entre las instituciones disponibles las cuales considere son las indicadas para darle ");
         jPanel1.add(lblDescripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 510, 20));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 60));
 
+        lblDescripcion2.setForeground(new java.awt.Color(0, 0, 0));
         lblDescripcion2.setText("seguimiento al reporte.");
         jPanel1.add(lblDescripcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 500, -1));
 
@@ -114,6 +114,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         jPanel1.add(cboSeleccionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 40));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Instituciones Correspondientes");
         jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 
@@ -176,13 +177,13 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cboSeleccionInstitucion;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblContenido;
     private javax.swing.JLabel lblDescripcion1;
     private javax.swing.JLabel lblDescripcion2;
     private javax.swing.JLabel lblHeader;
     private javax.swing.JLabel lblInformacionInstitucion;
-    private javax.swing.JLabel lblLogoGobiernoMexico;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
