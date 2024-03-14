@@ -15,6 +15,31 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
      */
     public FrmSeleccionInstitucion() {
         initComponents();
+        obtenerInformacionInstitucion();
+    }
+
+    public void obtenerInformacionInstitucion() {
+        String seleccionado = (String) cboSeleccionInstitucion.getSelectedItem();
+        switch (seleccionado) {
+            case "CFE":
+                lblInformacionInstitucion.setText("Comision Federal de electricidad, problemas relacionados con la electricidad");
+                break;
+            case "OOMAPAS":
+                lblInformacionInstitucion.setText("Organismo Operador Municipal de Agua Potable, Alcantarillado y Saneamiento, fugas de agua");
+                break;
+            case "Policia Municipal de Cajeme":
+                lblInformacionInstitucion.setText("Cuestiones de seguridad o atencion en alguna zona que lo requiera");
+                break;
+            case "Residuos Sólidos Urbanos":
+                lblInformacionInstitucion.setText("Cuestiones de desechos o basura en alguna zona que lo requiera");
+                break;
+            case "IMCYC":
+                lblInformacionInstitucion.setText("nstituto Mexicano del Cemento y del Concreto, en caso de baches o problemas similares");
+                break;
+            default:
+                lblInformacionInstitucion.setText("");
+        }
+
     }
 
     /**
@@ -30,6 +55,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblLogoGobiernoMexico = new javax.swing.JLabel();
         lblDescripcion1 = new javax.swing.JLabel();
         lblDescripcion2 = new javax.swing.JLabel();
+        lblInformacionInstitucion = new javax.swing.JLabel();
         btnLevantarReporte = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
@@ -55,6 +81,9 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblDescripcion2.setText("seguimiento al reporte.");
         jPanel1.add(lblDescripcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 500, -1));
 
+        lblInformacionInstitucion.setForeground(new java.awt.Color(0, 0, 0));
+        jPanel1.add(lblInformacionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 450, -1));
+
         btnLevantarReporte.setBackground(new java.awt.Color(10, 50, 6));
         btnLevantarReporte.setText("Levantar Reporte");
         jPanel1.add(btnLevantarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 130, -1));
@@ -67,6 +96,11 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         btnSiguiente.setForeground(new java.awt.Color(181, 18, 57));
         btnSiguiente.setText("Siguiente");
         btnSiguiente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(181, 18, 57), 3, true));
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 100, 40));
 
         btnHistorialAyuda.setBackground(new java.awt.Color(10, 50, 6));
@@ -113,6 +147,12 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cboSeleccionInstitucionActionPerformed
 
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        dispose();
+        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes();
+        seleccionIncidentes.setVisible(true);
+    }//GEN-LAST:event_btnSiguienteActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -122,22 +162,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
 //        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 //         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FrmSeleccionInstitucion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FrmSeleccionInstitucion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FrmSeleccionInstitucion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FrmSeleccionInstitucion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
+//
 //        //</editor-fold>
 //
 //        /* Create and display the form */
@@ -159,6 +184,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private javax.swing.JLabel lblDescripcion1;
     private javax.swing.JLabel lblDescripcion2;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblInformacionInstitucion;
     private javax.swing.JLabel lblLogoGobiernoMexico;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
