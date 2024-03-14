@@ -29,6 +29,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -41,6 +42,9 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CFE", "OOMAPAS", "Policia Municipal de Cajeme", "Residuos Sólidos Urbanos", "IMCYC" }));
         jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, 210, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\castr\\OneDrive\\Documentos\\GitHub\\BuzonDeQuejasComunitario\\BuzonQuejasComunitarioPresentacion\\Multimedia\\logo_gobierno_mexico.png")); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 180, 70));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,6 +101,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

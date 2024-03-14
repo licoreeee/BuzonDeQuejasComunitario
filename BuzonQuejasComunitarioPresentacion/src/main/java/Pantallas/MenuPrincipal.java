@@ -34,7 +34,6 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        logoGobiernoMexico.setIcon(new javax.swing.ImageIcon("C:\\Users\\hisam\\OneDrive\\Documents\\GitHub\\BuzonDeQuejasComunitario\\BuzonQuejasComunitarioPresentacion\\Multimedia\\logo_gobierno_mexico.png")); // NOI18N
         logoGobiernoMexico.setVerifyInputWhenFocusTarget(false);
         jPanel1.add(logoGobiernoMexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
