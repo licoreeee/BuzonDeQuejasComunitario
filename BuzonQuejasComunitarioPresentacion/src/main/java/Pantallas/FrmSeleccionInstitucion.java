@@ -30,7 +30,6 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         btnSiguiente = new javax.swing.JButton();
         cboSeleccionInstitucion = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         lblHeader = new javax.swing.JLabel();
         lblContenido = new javax.swing.JLabel();
 
@@ -46,15 +45,17 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 100, 40));
 
         cboSeleccionInstitucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CFE", "OOMAPAS", "Policia Municipal de Cajeme", "Residuos Sólidos Urbanos", "IMCYC" }));
+        cboSeleccionInstitucion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboSeleccionInstitucionActionPerformed(evt);
+            }
+        });
         jPanel1.add(cboSeleccionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 250, 40));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Instituciones Correspondientes");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
-
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\castr\\OneDrive\\Documentos\\GitHub\\BuzonDeQuejasComunitario\\BuzonQuejasComunitarioPresentacion\\Multimedia\\logo_gobierno_mexico.png")); // NOI18N
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 70));
 
         lblHeader.setBackground(new java.awt.Color(10, 50, 6));
         lblHeader.setOpaque(true);
@@ -80,6 +81,10 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void cboSeleccionInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeleccionInstitucionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboSeleccionInstitucionActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -119,7 +124,6 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cboSeleccionInstitucion;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblContenido;
