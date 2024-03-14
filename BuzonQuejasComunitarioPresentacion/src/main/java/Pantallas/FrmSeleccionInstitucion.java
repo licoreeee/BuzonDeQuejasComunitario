@@ -27,33 +27,42 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
         cboSeleccionInstitucion = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblHeader = new javax.swing.JLabel();
+        lblContenido = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 360));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("Siguiente");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 100, 40));
+        btnSiguiente.setBackground(new java.awt.Color(229, 229, 229));
+        btnSiguiente.setForeground(new java.awt.Color(181, 18, 57));
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(181, 18, 57), 3, true));
+        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 300, 100, 40));
 
         cboSeleccionInstitucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CFE", "OOMAPAS", "Policia Municipal de Cajeme", "Residuos Sólidos Urbanos", "IMCYC" }));
-        jPanel1.add(cboSeleccionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 150, 250, 40));
+        jPanel1.add(cboSeleccionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 250, 40));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel4.setText("Instituciones Correspondientes");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\castr\\OneDrive\\Documentos\\GitHub\\BuzonDeQuejasComunitario\\BuzonQuejasComunitarioPresentacion\\Multimedia\\logo_gobierno_mexico.png")); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 180, 70));
 
-        jLabel1.setBackground(new java.awt.Color(0, 102, 51));
-        jLabel1.setOpaque(true);
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 80));
+        lblHeader.setBackground(new java.awt.Color(10, 50, 6));
+        lblHeader.setOpaque(true);
+        jPanel1.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 80));
 
-        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel3.setOpaque(true);
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 280));
+        lblContenido.setBackground(new java.awt.Color(229, 229, 229));
+        lblContenido.setOpaque(true);
+        jPanel1.add(lblContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 280));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -108,11 +117,12 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cboSeleccionInstitucion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblContenido;
+    private javax.swing.JLabel lblHeader;
     // End of variables declaration//GEN-END:variables
 }
