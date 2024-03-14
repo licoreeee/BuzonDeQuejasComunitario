@@ -31,7 +31,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblIncidentes = new javax.swing.JTable();
         btnSiguiente = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -63,10 +63,10 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 120, 284, -1));
 
-        jTable1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 110, 110)));
-        jTable1.setFont(new java.awt.Font("Inter Medium", 0, 14)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(33, 33, 33));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblIncidentes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 110, 110)));
+        tblIncidentes.setFont(new java.awt.Font("Inter Medium", 0, 14)); // NOI18N
+        tblIncidentes.setForeground(new java.awt.Color(33, 33, 33));
+        tblIncidentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -74,12 +74,12 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
                 "Descripción", ""
             }
         ));
-        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jTable1.setGridColor(new java.awt.Color(110, 110, 110));
-        jTable1.setSelectionForeground(new java.awt.Color(33, 33, 33));
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jScrollPane1.setViewportView(jTable1);
+        tblIncidentes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tblIncidentes.setGridColor(new java.awt.Color(110, 110, 110));
+        tblIncidentes.setSelectionForeground(new java.awt.Color(33, 33, 33));
+        tblIncidentes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        tblIncidentes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(tblIncidentes);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 150, 573, 138));
 
@@ -94,6 +94,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setOpaque(true);
+        jLabel4.setPreferredSize(new java.awt.Dimension(600, 350));
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 600, 360));
 
         pack();
@@ -109,6 +110,6 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblIncidentes;
     // End of variables declaration//GEN-END:variables
 }
