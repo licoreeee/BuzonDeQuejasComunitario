@@ -47,11 +47,9 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblLogoGobiernoMexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
         jPanel1.add(lblLogoGobiernoMexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        lblDescripcion1.setForeground(new java.awt.Color(0, 0, 0));
         lblDescripcion1.setText("Seleccione entre las instituciones disponibles las cuales considere son las indicadas para darle ");
         jPanel1.add(lblDescripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 510, 20));
 
-        lblDescripcion2.setForeground(new java.awt.Color(0, 0, 0));
         lblDescripcion2.setText("seguimiento al reporte.");
         jPanel1.add(lblDescripcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 500, -1));
 
@@ -82,7 +80,6 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         jPanel1.add(cboSeleccionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 40));
 
         lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Instituciones Correspondientes");
         jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
 

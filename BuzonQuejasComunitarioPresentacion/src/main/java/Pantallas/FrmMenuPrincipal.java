@@ -28,6 +28,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         logoGobiernoMexico = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnLevantarReporteImg = new javax.swing.JButton();
@@ -37,16 +38,27 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel1.setBackground(new java.awt.Color(241, 241, 241));
         jPanel1.setMinimumSize(new java.awt.Dimension(600, 360));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jButton1.setForeground(new java.awt.Color(241, 241, 241));
+        jButton1.setText("Levantar Reporte");
+        jButton1.setOpaque(true);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 50, -1, -1));
+
         logoGobiernoMexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
         jPanel1.add(logoGobiernoMexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel2.setBackground(new java.awt.Color(0, 102, 51));
+        jLabel2.setBackground(new java.awt.Color(10, 50, 6));
         jLabel2.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel2.setText("Levantar reporte");
         jLabel2.setOpaque(true);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 80));
 
@@ -82,9 +94,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnLevantarReporteImgActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLevantarReporteImg;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
