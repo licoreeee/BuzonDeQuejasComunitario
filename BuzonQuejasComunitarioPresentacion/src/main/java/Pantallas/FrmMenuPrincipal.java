@@ -30,11 +30,16 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         logoGobiernoMexico = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnLevantarReporteImg = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(229, 229, 229));
+        jPanel1.setMinimumSize(new java.awt.Dimension(600, 360));
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 400));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         logoGobiernoMexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
@@ -45,24 +50,44 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jLabel2.setOpaque(true);
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 80));
 
+        btnLevantarReporteImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/LevantarReporte.png"))); // NOI18N
+        btnLevantarReporteImg.setBorder(null);
+        btnLevantarReporteImg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLevantarReporteImgActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLevantarReporteImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/programaParaElBienestarDeLaFamilia.png"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnLevantarReporteImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporteImgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLevantarReporteImgActionPerformed
+
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLevantarReporteImg;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel logoGobiernoMexico;
     // End of variables declaration//GEN-END:variables
