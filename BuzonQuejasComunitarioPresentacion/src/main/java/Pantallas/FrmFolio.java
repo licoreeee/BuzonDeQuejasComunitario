@@ -31,24 +31,28 @@ public class FrmFolio extends javax.swing.JFrame {
         btnLevantarReporte = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         lblMensaje = new javax.swing.JLabel();
-        lblFolio = new javax.swing.JLabel();
-        btnVolver = new javax.swing.JButton();
+        etqDinamicaFolio = new javax.swing.JLabel();
+        btnVolverMenuPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Folio");
-        setPreferredSize(new java.awt.Dimension(600, 400));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jPanel2.setBackground(new java.awt.Color(0, 102, 51));
+        jPanel2.setBackground(new java.awt.Color(10, 50, 6));
         jPanel2.setForeground(new java.awt.Color(0, 102, 51));
+        jPanel2.setPreferredSize(new java.awt.Dimension(290, 80));
 
         btnLevantarReporte.setBackground(new java.awt.Color(0, 102, 51));
-        btnLevantarReporte.setForeground(new java.awt.Color(204, 204, 204));
+        btnLevantarReporte.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnLevantarReporte.setForeground(new java.awt.Color(255, 255, 255));
         btnLevantarReporte.setText("Levantar reporte");
         btnLevantarReporte.setBorder(null);
+        btnLevantarReporte.setBorderPainted(false);
+        btnLevantarReporte.setContentAreaFilled(false);
         btnLevantarReporte.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLevantarReporteActionPerformed(evt);
@@ -56,9 +60,12 @@ public class FrmFolio extends javax.swing.JFrame {
         });
 
         btnAvances.setBackground(new java.awt.Color(0, 102, 51));
-        btnAvances.setForeground(new java.awt.Color(204, 204, 204));
+        btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAvances.setForeground(new java.awt.Color(255, 255, 255));
         btnAvances.setText("Avances");
         btnAvances.setBorder(null);
+        btnAvances.setBorderPainted(false);
+        btnAvances.setContentAreaFilled(false);
         btnAvances.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAvancesActionPerformed(evt);
@@ -66,74 +73,85 @@ public class FrmFolio extends javax.swing.JFrame {
         });
 
         btnHistorial.setBackground(new java.awt.Color(0, 102, 51));
-        btnHistorial.setForeground(new java.awt.Color(204, 204, 204));
+        btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnHistorial.setForeground(new java.awt.Color(255, 255, 255));
         btnHistorial.setText("Historial");
         btnHistorial.setBorder(null);
+        btnHistorial.setBorderPainted(false);
+        btnHistorial.setContentAreaFilled(false);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btnLevantarReporte)
                 .addGap(18, 18, 18)
                 .addComponent(btnAvances)
                 .addGap(18, 18, 18)
                 .addComponent(btnHistorial)
-                .addGap(51, 51, 51))
+                .addGap(40, 40, 40))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(30, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnLevantarReporte)
                     .addComponent(btnAvances)
                     .addComponent(btnHistorial))
-                .addGap(19, 19, 19))
+                .addContainerGap())
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 0, 0));
         jPanel3.setForeground(new java.awt.Color(255, 0, 0));
 
-        lblMensaje.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblMensaje.setFont(new java.awt.Font("Inter Medium", 0, 18)); // NOI18N
         lblMensaje.setForeground(new java.awt.Color(255, 255, 255));
-        lblMensaje.setText("Reporte levantado con éxito, su númerode folio es:");
+        lblMensaje.setText("Reporte levantado con éxito, su número de folio es:");
 
-        lblFolio.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblFolio.setForeground(new java.awt.Color(255, 255, 255));
-        lblFolio.setText("Folio");
+        etqDinamicaFolio.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        etqDinamicaFolio.setForeground(new java.awt.Color(255, 255, 255));
+        etqDinamicaFolio.setText("Folio");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(64, 64, 64)
-                .addComponent(lblMensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(76, Short.MAX_VALUE))
+                .addGap(54, 54, 54)
+                .addComponent(lblMensaje)
+                .addContainerGap(59, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblFolio)
-                .addGap(246, 246, 246))
+                .addComponent(etqDinamicaFolio)
+                .addGap(247, 247, 247))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addComponent(lblMensaje)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblFolio)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(etqDinamicaFolio)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        btnVolver.setForeground(new java.awt.Color(204, 0, 0));
-        btnVolver.setText("Volver a la página de inicio");
-        btnVolver.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 0), 3, true));
-        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+        btnVolverMenuPrincipal.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnVolverMenuPrincipal.setForeground(new java.awt.Color(204, 0, 0));
+        btnVolverMenuPrincipal.setText("Volver a la página de inicio");
+        btnVolverMenuPrincipal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnVolverMenuPrincipal.setContentAreaFilled(false);
+        btnVolverMenuPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnVolverActionPerformed(evt);
+                btnVolverMenuPrincipalActionPerformed(evt);
             }
         });
 
@@ -141,13 +159,16 @@ public class FrmFolio extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,8 +176,8 @@ public class FrmFolio extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 101, Short.MAX_VALUE)
-                .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
+                .addComponent(btnVolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -175,9 +196,9 @@ public class FrmFolio extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+    private void btnVolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuPrincipalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnVolverActionPerformed
+    }//GEN-LAST:event_btnVolverMenuPrincipalActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
         // TODO add your handling code here:
@@ -226,11 +247,12 @@ public class FrmFolio extends javax.swing.JFrame {
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte;
-    private javax.swing.JButton btnVolver;
+    private javax.swing.JButton btnVolverMenuPrincipal;
+    private javax.swing.JLabel etqDinamicaFolio;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblFolio;
     private javax.swing.JLabel lblMensaje;
     // End of variables declaration//GEN-END:variables
 }
