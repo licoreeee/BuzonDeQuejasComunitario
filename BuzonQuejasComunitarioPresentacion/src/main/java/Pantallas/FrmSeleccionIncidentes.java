@@ -27,6 +27,9 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private void initComponents() {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -39,29 +42,39 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
+        jLabel6.setText("jLabel6");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 60));
+
+        jLabel7.setBackground(new java.awt.Color(10, 50, 6));
+        jLabel7.setForeground(new java.awt.Color(0, 102, 51));
+        jLabel7.setOpaque(true);
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 80));
 
         jLabel1.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(33, 33, 33));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("Incidentes encargados por OOMAPAS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 59, 378, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 378, -1));
 
         jLabel2.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(110, 110, 110));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel2.setText("Seleccione entre los incidentes disponibles las cuales considere son las indicadas");
         jLabel2.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 96, 564, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 564, -1));
 
         jLabel3.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(110, 110, 110));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel3.setText("para darle seguimiento al reporte.");
         jLabel3.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 120, 284, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 284, -1));
 
         tblIncidentes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(110, 110, 110)));
         tblIncidentes.setFont(new java.awt.Font("Inter Medium", 0, 14)); // NOI18N
@@ -81,21 +94,23 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         tblIncidentes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblIncidentes);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 150, 573, 138));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 573, 170));
 
+        btnSiguiente.setBackground(new java.awt.Color(241, 241, 241));
         btnSiguiente.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(181, 18, 57));
         btnSiguiente.setText("Siguiente");
         btnSiguiente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
-        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(478, 306, 107, 33));
+        btnSiguiente.setContentAreaFilled(false);
+        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 353, 107, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/Paso 2.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 450, 40));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 450, 40));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
         jLabel4.setOpaque(true);
         jLabel4.setPreferredSize(new java.awt.Dimension(600, 350));
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -4, 600, 360));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -108,6 +123,9 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblIncidentes;

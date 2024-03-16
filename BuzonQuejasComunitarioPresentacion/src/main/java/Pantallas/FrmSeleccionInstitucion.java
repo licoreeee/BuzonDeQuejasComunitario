@@ -52,14 +52,15 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        lblDescripcion1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        lblDescripcion1 = new javax.swing.JLabel();
         lblDescripcion2 = new javax.swing.JLabel();
         lblInformacionInstitucion = new javax.swing.JLabel();
         btnLevantarReporte = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
-        btnHistorialAyuda = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         cboSeleccionInstitucion = new javax.swing.JComboBox<>();
         lblTitulo = new javax.swing.JLabel();
         lblHeader = new javax.swing.JLabel();
@@ -70,59 +71,77 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 360));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblDescripcion1.setForeground(new java.awt.Color(0, 0, 0));
-        lblDescripcion1.setText("Seleccione entre las instituciones disponibles las cuales considere son las indicadas para darle ");
-        jPanel1.add(lblDescripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 510, 20));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/Paso 1.jpg"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 450, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 60));
 
-        lblDescripcion2.setForeground(new java.awt.Color(0, 0, 0));
-        lblDescripcion2.setText("seguimiento al reporte.");
-        jPanel1.add(lblDescripcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 160, 500, -1));
+        lblDescripcion1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        lblDescripcion1.setForeground(new java.awt.Color(110, 110, 110));
+        lblDescripcion1.setText("Seleccione entre las instituciones disponibles las cuales considere son las indicadas para darle ");
+        jPanel1.add(lblDescripcion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 510, 20));
 
-        lblInformacionInstitucion.setForeground(new java.awt.Color(0, 0, 0));
+        lblDescripcion2.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        lblDescripcion2.setForeground(new java.awt.Color(110, 110, 110));
+        lblDescripcion2.setText("seguimiento al reporte.");
+        jPanel1.add(lblDescripcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 500, 20));
         jPanel1.add(lblInformacionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 450, -1));
 
-        btnLevantarReporte.setBackground(new java.awt.Color(10, 50, 6));
+        btnLevantarReporte.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnLevantarReporte.setForeground(new java.awt.Color(255, 255, 255));
         btnLevantarReporte.setText("Levantar Reporte");
+        btnLevantarReporte.setBorder(null);
+        btnLevantarReporte.setContentAreaFilled(false);
         jPanel1.add(btnLevantarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 130, -1));
 
-        btnAvances.setBackground(new java.awt.Color(10, 50, 6));
+        btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAvances.setForeground(new java.awt.Color(255, 255, 255));
         btnAvances.setText("Avances");
-        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 50, -1, -1));
+        btnAvances.setBorder(null);
+        btnAvances.setContentAreaFilled(false);
+        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
 
         btnSiguiente.setBackground(new java.awt.Color(229, 229, 229));
+        btnSiguiente.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(181, 18, 57));
         btnSiguiente.setText("Siguiente");
-        btnSiguiente.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(181, 18, 57), 3, true));
+        btnSiguiente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
+        btnSiguiente.setContentAreaFilled(false);
         btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 340, 100, 40));
+        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 110, 40));
 
-        btnHistorialAyuda.setBackground(new java.awt.Color(10, 50, 6));
-        btnHistorialAyuda.setText("Historial Ayudas");
-        jPanel1.add(btnHistorialAyuda, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 50, -1, -1));
+        btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorial.setText("Historial");
+        btnHistorial.setBorder(null);
+        btnHistorial.setContentAreaFilled(false);
+        jPanel1.add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
 
+        cboSeleccionInstitucion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        cboSeleccionInstitucion.setForeground(new java.awt.Color(33, 33, 33));
         cboSeleccionInstitucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CFE", "OOMAPAS", "Policia Municipal de Cajeme", "Residuos Sólidos Urbanos", "IMCYC" }));
         cboSeleccionInstitucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSeleccionInstitucionActionPerformed(evt);
             }
         });
-        jPanel1.add(cboSeleccionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 210, 250, 40));
+        jPanel1.add(cboSeleccionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 220, 250, 40));
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        lblTitulo.setText("Instituciones Correspondientes");
-        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, -1, -1));
+        lblTitulo.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(33, 33, 33));
+        lblTitulo.setText("Instituciones correspondientes");
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         lblHeader.setBackground(new java.awt.Color(10, 50, 6));
         lblHeader.setOpaque(true);
         jPanel1.add(lblHeader, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 80));
 
-        lblContenido.setBackground(new java.awt.Color(229, 229, 229));
+        lblContenido.setBackground(new java.awt.Color(255, 255, 255));
         lblContenido.setOpaque(true);
         jPanel1.add(lblContenido, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 320));
 
@@ -157,7 +176,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//        /* If Nimbus (btnHistoriala SE 6) is not available, stay with the default look and feel.
 //         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
 //         */
 //
@@ -173,11 +192,12 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
-    private javax.swing.JButton btnHistorialAyuda;
+    private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cboSeleccionInstitucion;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblContenido;
     private javax.swing.JLabel lblDescripcion1;
