@@ -28,6 +28,9 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jLabel6 = new javax.swing.JLabel();
+        btnLevantarReporte = new javax.swing.JButton();
+        btnAvances = new javax.swing.JButton();
+        btnHistorial = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
@@ -47,6 +50,27 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnLevantarReporte.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnLevantarReporte.setForeground(new java.awt.Color(255, 255, 255));
+        btnLevantarReporte.setText("Levantar Reporte");
+        btnLevantarReporte.setBorderPainted(false);
+        btnLevantarReporte.setContentAreaFilled(false);
+        getContentPane().add(btnLevantarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 50, -1, -1));
+
+        btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAvances.setForeground(new java.awt.Color(255, 255, 255));
+        btnAvances.setText("Avances");
+        btnAvances.setBorderPainted(false);
+        btnAvances.setContentAreaFilled(false);
+        getContentPane().add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
+
+        btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnHistorial.setForeground(new java.awt.Color(255, 255, 255));
+        btnHistorial.setText("Historial");
+        btnHistorial.setBorderPainted(false);
+        btnHistorial.setContentAreaFilled(false);
+        getContentPane().add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 60));
@@ -117,6 +141,9 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAvances;
+    private javax.swing.JButton btnHistorial;
+    private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

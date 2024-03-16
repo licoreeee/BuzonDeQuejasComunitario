@@ -93,14 +93,14 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         btnLevantarReporte.setText("Levantar Reporte");
         btnLevantarReporte.setBorder(null);
         btnLevantarReporte.setContentAreaFilled(false);
-        jPanel1.add(btnLevantarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, 130, -1));
+        jPanel1.add(btnLevantarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 130, -1));
 
         btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnAvances.setForeground(new java.awt.Color(255, 255, 255));
         btnAvances.setText("Avances");
         btnAvances.setBorder(null);
         btnAvances.setContentAreaFilled(false);
-        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
+        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
 
         btnSiguiente.setBackground(new java.awt.Color(229, 229, 229));
         btnSiguiente.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
