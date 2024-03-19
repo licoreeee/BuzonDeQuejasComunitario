@@ -17,7 +17,7 @@ public class Pruebas {
 //        FrmSeleccionInstitucion selecInstitucion = new FrmSeleccionInstitucion();
 //        selecInstitucion.setVisible(true);
         FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
-         menuPrincipal.setVisible(true);
+        menuPrincipal.setVisible(true);
     }
     
 }
