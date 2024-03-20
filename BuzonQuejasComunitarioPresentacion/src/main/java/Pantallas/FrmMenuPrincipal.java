@@ -15,7 +15,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
      */
     public FrmMenuPrincipal() {
         initComponents();
-        
+
     }
 
     /**
@@ -115,10 +115,9 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLevantarReporteImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporteImgActionPerformed
-      FrmLevantarReporte frmLevantarReporte = new FrmLevantarReporte();
-      dispose();
-      frmLevantarReporte.setVisible(true);
-      
+        FrmLevantarReporte frmLevantarReporte = new FrmLevantarReporte();
+        dispose();
+        frmLevantarReporte.setVisible(true);
     }//GEN-LAST:event_btnLevantarReporteImgActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed

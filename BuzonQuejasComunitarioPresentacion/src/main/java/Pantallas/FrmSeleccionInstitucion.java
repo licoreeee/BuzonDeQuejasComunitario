@@ -71,10 +71,10 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 360));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/Paso 1.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Paso 1.jpg"))); // NOI18N
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 450, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_gobierno_mexico.png"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 60));
 
         lblDescripcion1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
@@ -161,12 +161,12 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboSeleccionInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeleccionInstitucionActionPerformed
-        // TODO add your handling code here:
+        obtenerInformacionInstitucion();
     }//GEN-LAST:event_cboSeleccionInstitucionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        dispose();
         FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes();
+        dispose();
         seleccionIncidentes.setVisible(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 

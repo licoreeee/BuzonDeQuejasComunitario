@@ -15,7 +15,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
      */
     public FrmLevantarReporte() {
         initComponents();
-  
+
     }
 
     /**
@@ -218,9 +218,9 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_cmpDescripcionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-
-
-        // TODO add your handling code here:
+        FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
+        dispose();
+        seleccionInstitucion.setVisible(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnLevantarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporteActionPerformed
@@ -261,7 +261,6 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
