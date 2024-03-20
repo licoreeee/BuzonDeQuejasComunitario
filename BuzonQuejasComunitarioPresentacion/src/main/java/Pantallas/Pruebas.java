@@ -4,10 +4,7 @@
  */
 package Pantallas;
 
-/**
- *
- * @author castr
- */
+
 public class Pruebas {
 
     /**
