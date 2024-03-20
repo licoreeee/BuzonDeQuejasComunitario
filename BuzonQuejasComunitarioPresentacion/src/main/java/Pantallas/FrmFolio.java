@@ -81,7 +81,7 @@ public class FrmFolio extends javax.swing.JFrame {
         btnHistorial.setBorderPainted(false);
         btnHistorial.setContentAreaFilled(false);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_gobierno_mexico.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
