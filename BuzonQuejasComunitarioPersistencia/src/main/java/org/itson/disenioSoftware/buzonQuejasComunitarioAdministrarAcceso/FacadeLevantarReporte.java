@@ -52,7 +52,6 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
     public List<IncidenteDTO> listaIncidentes() {
-<<<<<<< HEAD
         List<InstitucionDTO> instituciones = new ArrayList<>();
         List<IncidenteDTO> incidentes = new ArrayList();
         
@@ -63,15 +62,11 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         instituciones.add(institucion);
         incidentes.add(incidente1);
         incidentes.add(incidente2);
-        
-=======
-        List<IncidenteDTO> incidentes = new ArrayList<>();
 
         IncidenteDTO incidente = new IncidenteDTO();
         incidente.setNombreIncidente("Fuga de aguas negras");
         incidente.setDescripcion("Fuga de aguas residuales, aguas servidas o aguas cloacales. ");
 
->>>>>>> 58fb449d95ee248f215c14618513e4c64ac5ca1c
         return incidentes;
         
 //        List<IncidenteDTO> incidentes = new ArrayList<>();

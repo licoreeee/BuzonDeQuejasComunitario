@@ -4,16 +4,13 @@
  */
 package Pantallas;
 
-<<<<<<< HEAD
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDominio.Incidente;
 import javax.swing.table.DefaultTableModel;
-=======
 import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
->>>>>>> 58fb449d95ee248f215c14618513e4c64ac5ca1c
 
 /**
  *
@@ -21,10 +18,10 @@ import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacade
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
-<<<<<<< HEAD
     DefaultTableModel modelo;
     ArrayList<Incidente> incidentes;
-    
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
     
     public FrmSeleccionIncidentes() {
         initComponents();
@@ -45,9 +42,6 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 //        pack();
 //        setVisible(true);
 //        
-=======
-    private IFacadeLevantarReporte fachadaLevantarReporte;
-    private ControlNavegacion controladores;
     
     /**
      * Creates new form FrSeleccionIncidentes
@@ -56,7 +50,6 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         initComponents();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
->>>>>>> 58fb449d95ee248f215c14618513e4c64ac5ca1c
     }
     
     /**
