@@ -17,10 +17,21 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
     public List<InstitucionDTO> listaInstituciones() {
-        List<InstitucionDTO> institucion = new ArrayList<>();
+        List<InstitucionDTO> instituciones = new ArrayList<>();
 
         InstitucionDTO institucion1 = new InstitucionDTO();
-        institucion1.setSiglas("");
+        institucion1.setSiglas("CFE");
+        institucion1.setFuncionInstitucion("Electricidad");
+        institucion1.setNombreInstitucion("Comision Federal de Electricidad");
+        instituciones.add(institucion1);
+
+        InstitucionDTO institucion2 = new InstitucionDTO();
+        institucion2.setSiglas("CFE");
+        institucion2.setFuncionInstitucion("Electricidad");
+        institucion2.setNombreInstitucion("Comision Federal de Electricidad");
+        instituciones.add(institucion2);
+
+        return instituciones;
 
     }
 
@@ -75,7 +86,6 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         domicilio3.setEspecificacionesExtra("Al lado del zoo");
         domicilios.add(domicilio3);
 
-        // Agregar más domicilios si es necesario...
         return domicilios;
 
     }
