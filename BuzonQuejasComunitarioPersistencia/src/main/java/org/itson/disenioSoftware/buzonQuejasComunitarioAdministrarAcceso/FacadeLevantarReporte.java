@@ -40,7 +40,7 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         List<IncidenteDTO> incidentes = new ArrayList<>();
 
         IncidenteDTO incidente1 = new IncidenteDTO();
-        incidente1.setInstitucion();
+        incidente1.setInstitucion(institucion);
     }
 
     @Override

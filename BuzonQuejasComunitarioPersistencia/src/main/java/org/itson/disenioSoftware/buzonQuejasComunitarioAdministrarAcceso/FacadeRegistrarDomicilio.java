@@ -14,9 +14,7 @@ public class FacadeRegistrarDomicilio implements IFacadeRegistrarDomicilio {
 
     @Override
     public DomicilioDTO registrarDomicilio() throws IllegalArgumentException {
-        if (domicilio == null || domicilio.getCalle() == null || domicilio.getColonia() == null
-                || domicilio.getNumeroCasa() == null || domicilio.getCodigoPostal() == null) {
-            throw new IllegalArgumentException("Los datos del domicilio son inválidos");
+      
         }
         return domicilio;
     }

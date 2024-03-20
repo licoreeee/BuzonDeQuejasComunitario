@@ -159,7 +159,7 @@ public class FrmFolio extends javax.swing.JFrame {
                 btnVolverMenuPrincipalActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolverMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 354, 216, 40));
+        jPanel1.add(btnVolverMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 216, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
