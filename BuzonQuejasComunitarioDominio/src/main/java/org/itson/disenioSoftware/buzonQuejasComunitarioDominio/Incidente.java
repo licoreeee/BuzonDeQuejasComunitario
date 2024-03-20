@@ -9,4 +9,47 @@ public class Incidente {
     private int idIncidente;
     private String nombreIncidente;
     private Institucion institucion;
+
+    public Incidente() {
+    }
+
+    public Incidente(String nombreIncidente, Institucion institucion, int idIncidente) {
+        this.nombreIncidente = nombreIncidente;
+        this.institucion = institucion;
+        this.idIncidente = idIncidente;
+    }
+
+    public int getIdIncidente() {
+        return idIncidente;
+    }
+
+    public void setIdIncidente(int idIncidente) {
+        this.idIncidente = idIncidente;
+    }
+
+    public String getNombreIncidente() {
+        return nombreIncidente;
+    }
+
+    public void setNombreIncidente(String nombreIncidente) {
+        this.nombreIncidente = nombreIncidente;
+    }
+
+    public Institucion getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
+    }
+
+    @Override
+    public String toString() {
+        return "Incidente{" + "idIncidente=" + idIncidente + ", nombreIncidente=" + nombreIncidente + ", institucion=" + institucion + '}';
+    }
+
+    
+
+    
+    
 }

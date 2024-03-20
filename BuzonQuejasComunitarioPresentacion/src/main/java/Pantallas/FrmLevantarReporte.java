@@ -41,13 +41,12 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         jlbObligatorio = new javax.swing.JLabel();
         btnSiguiente = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Levantar reporte");
-        setMinimumSize(new java.awt.Dimension(0, 0));
-        setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -126,7 +125,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
                 btnSiguienteActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 310, 104, 43));
+        jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 330, 104, 43));
 
         btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnAvances.setForeground(new java.awt.Color(255, 255, 255));
@@ -134,6 +133,9 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         btnAvances.setBorderPainted(false);
         btnAvances.setContentAreaFilled(false);
         jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 70, -1, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/levantarReporte.jpg"))); // NOI18N
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 400));
 
@@ -203,6 +205,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel jlbContexto;
