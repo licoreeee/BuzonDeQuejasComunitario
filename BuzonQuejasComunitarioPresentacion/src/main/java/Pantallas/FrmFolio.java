@@ -4,17 +4,25 @@
  */
 package Pantallas;
 
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+
 /**
  *
  * @author Usuario
  */
 public class FrmFolio extends javax.swing.JFrame {
 
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
+
     /**
      * Creates new form FrmFolio
      */
-    public FrmFolio() {
+    public FrmFolio(IFacadeLevantarReporte fachadaLevantarReporte) {
         initComponents();
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
+
     }
 
     /**
@@ -177,9 +185,8 @@ public class FrmFolio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuPrincipalActionPerformed
-        FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
+        controladores.mostrarMenuPrincipal();
         dispose();
-        menuPrincipal.setVisible(true);
     }//GEN-LAST:event_btnVolverMenuPrincipalActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed

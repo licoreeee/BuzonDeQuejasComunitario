@@ -4,18 +4,25 @@
  */
 package Pantallas;
 
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+
 /**
  *
  * @author Usuario
  */
 public class FrmLevantarReporte extends javax.swing.JFrame {
 
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
+
     /**
      * Creates new form FrmLevantarReporte
      */
-    public FrmLevantarReporte() {
+    public FrmLevantarReporte(IFacadeLevantarReporte fachadaLevantarReporte) {
         initComponents();
-  
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
+
     }
 
     /**
@@ -149,11 +156,8 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_cmpDescripcionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        FrmDireccion direccion = new FrmDireccion();
+        controladores.mostrarDireccion();
         dispose();
-        direccion.setVisible(true);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 //    /**
@@ -190,7 +194,6 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;

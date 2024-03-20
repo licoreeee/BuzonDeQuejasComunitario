@@ -4,12 +4,16 @@
  */
 package Pantallas;
 
+<<<<<<< HEAD
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDominio.Incidente;
 import javax.swing.table.DefaultTableModel;
+=======
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+>>>>>>> 58fb449d95ee248f215c14618513e4c64ac5ca1c
 
 /**
  *
@@ -17,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
+<<<<<<< HEAD
     DefaultTableModel modelo;
     ArrayList<Incidente> incidentes;
     
@@ -40,6 +45,18 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 //        pack();
 //        setVisible(true);
 //        
+=======
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
+    
+    /**
+     * Creates new form FrSeleccionIncidentes
+     */
+    public FrmSeleccionIncidentes(IFacadeLevantarReporte fachadaLevantarReporte) {
+        initComponents();
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
+>>>>>>> 58fb449d95ee248f215c14618513e4c64ac5ca1c
     }
     
     /**
@@ -167,12 +184,12 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        FrmLevantarReporte levantarReporte = new FrmLevantarReporte();
+        controladores.mostrarLevantarReporte();
         dispose();
-        levantarReporte.setVisible(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 

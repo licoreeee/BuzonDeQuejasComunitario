@@ -4,18 +4,25 @@
  */
 package Pantallas;
 
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+
 /**
  *
  * @author castr
  */
 public class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
+
     /**
      * Creates new form FrmSeleccionInstitucion
      */
-    public FrmSeleccionInstitucion() {
+    public FrmSeleccionInstitucion(IFacadeLevantarReporte fachadaLevantarReporte) {
         initComponents();
         obtenerInformacionInstitucion();
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
     }
 
     public void obtenerInformacionInstitucion() {
@@ -86,7 +93,9 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblDescripcion2.setForeground(new java.awt.Color(110, 110, 110));
         lblDescripcion2.setText("seguimiento al reporte.");
         jPanel1.add(lblDescripcion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 500, 20));
-        jPanel1.add(lblInformacionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, 450, -1));
+
+        lblInformacionInstitucion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(lblInformacionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 500, -1));
 
         btnLevantarReporte.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnLevantarReporte.setForeground(new java.awt.Color(255, 255, 255));
@@ -165,9 +174,8 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }//GEN-LAST:event_cboSeleccionInstitucionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes();
+        controladores.mostrarSeleccionIncidentes();
         dispose();
-        seleccionIncidentes.setVisible(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 //    /**

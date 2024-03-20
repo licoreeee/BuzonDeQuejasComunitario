@@ -4,17 +4,25 @@
  */
 package Pantallas;
 
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+
 /**
  *
  * @author victo
  */
 public class FrmDireccion extends javax.swing.JFrame {
 
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
+
     /**
      * Creates new form FrmDireccion
      */
-    public FrmDireccion() {
+    public FrmDireccion(IFacadeLevantarReporte fachadaLevantarReporte) {
         initComponents();
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
+
     }
 
     /**
@@ -239,12 +247,13 @@ public class FrmDireccion extends javax.swing.JFrame {
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 320));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void cmpCalleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpCalleActionPerformed
@@ -268,11 +277,8 @@ public class FrmDireccion extends javax.swing.JFrame {
     }//GEN-LAST:event_cmpColonia1ActionPerformed
 
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
-        FrmFolio folio = new FrmFolio();
+        controladores.mostrarFolio();
         dispose();
-        folio.setVisible(true);
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_btnTerminarActionPerformed
 
 //    /**
