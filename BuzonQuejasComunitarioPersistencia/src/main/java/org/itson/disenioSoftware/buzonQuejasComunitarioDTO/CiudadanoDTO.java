@@ -1,8 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
-package org.itson.disenioSoftware.buzonQuejasComunitarioDominio;
+/**
+ *
+ * @author castr
+ */
+public class CiudadanoDTO {
 
-
-public class Ciudadano {
     private String nombre;
     private String apellidom;
     private String apellidop;
@@ -10,10 +17,10 @@ public class Ciudadano {
     private int numerotelefono;
     private String correo;
 
-    public Ciudadano() {
+    public CiudadanoDTO() {
     }
 
-    public Ciudadano(String nombre, String apellidom, String apellidop, String curp, int numerotelefono, String correo) {
+    public CiudadanoDTO(String nombre, String apellidom, String apellidop, String curp, int numerotelefono, String correo) {
         this.nombre = nombre;
         this.apellidom = apellidom;
         this.apellidop = apellidop;
@@ -70,9 +77,4 @@ public class Ciudadano {
         this.correo = correo;
     }
 
-    @Override
-    public String toString() {
-        return "Ciudadano{" + "nombre=" + nombre + ", apellidom=" + apellidom + ", apellidop=" + apellidop + ", curp=" + curp + ", numerotelefono=" + numerotelefono + ", correo=" + correo + '}';
-    }
-    
 }

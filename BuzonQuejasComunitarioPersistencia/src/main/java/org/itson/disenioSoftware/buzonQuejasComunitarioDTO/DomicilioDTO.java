@@ -1,7 +1,15 @@
-package org.itson.disenioSoftware.buzonQuejasComunitarioDominio;
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
-public class Domicilio {
-
+/**
+ *
+ * @author castr
+ */
+public class DomicilioDTO {
+    
     private int idDomicilio;
     private String calle;
     private String colonia;
@@ -9,21 +17,15 @@ public class Domicilio {
     private String codigoPostal;
     private String especificacionesExtra;
 
-    public Domicilio(
-            String calle,
-            String colonia,
-            String numeroCasa,
-            String codigoPostal,
-            String especificacionesExtra
-    ) {
+    public DomicilioDTO() {
+    }
+
+    public DomicilioDTO(String calle, String colonia, String numeroCasa, String codigoPostal, String especificacionesExtra) {
         this.calle = calle;
         this.colonia = colonia;
         this.numeroCasa = numeroCasa;
         this.codigoPostal = codigoPostal;
         this.especificacionesExtra = especificacionesExtra;
-    }
-
-    public Domicilio() {
     }
 
     public int getIdDomicilio() {
@@ -73,10 +75,7 @@ public class Domicilio {
     public void setEspecificacionesExtra(String especificacionesExtra) {
         this.especificacionesExtra = especificacionesExtra;
     }
-
-    @Override
-    public String toString() {
-        return "Domicilio{" + "idDomicilio=" + idDomicilio + ", calle=" + calle + ", colonia=" + colonia + ", numeroCasa=" + numeroCasa + ", codigoPostal=" + codigoPostal + ", especificacionesExtra=" + especificacionesExtra + '}';
-    }
-
+    
+    
+    
 }
