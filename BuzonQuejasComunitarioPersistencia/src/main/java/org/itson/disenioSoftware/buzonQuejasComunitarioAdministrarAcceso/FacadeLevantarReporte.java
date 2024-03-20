@@ -11,14 +11,15 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
     public boolean levantarReporte() {
+        // Aquí iría la lógica para levantar el reporte
         return true;
-
     }
 
     @Override
     public List<InstitucionDTO> listaInstituciones() {
         List<InstitucionDTO> instituciones = new ArrayList<>();
 
+        // Creación de instituciones
         InstitucionDTO institucion1 = new InstitucionDTO();
         institucion1.setSiglas("CFE");
         institucion1.setFuncionInstitucion("Electricidad");
@@ -26,40 +27,39 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         instituciones.add(institucion1);
 
         InstitucionDTO institucion2 = new InstitucionDTO();
-        institucion2.setSiglas("CFE");
-        institucion2.setFuncionInstitucion("Electricidad");
-        institucion2.setNombreInstitucion("Comision Federal de Electricidad");
+        institucion2.setSiglas("IMSS");
+        institucion2.setFuncionInstitucion("Salud");
+        institucion2.setNombreInstitucion("Instituto Mexicano del Seguro Social");
         instituciones.add(institucion2);
 
         return instituciones;
-
     }
 
     @Override
     public List<IncidenteDTO> listaIncidentes() {
         List<IncidenteDTO> incidentes = new ArrayList<>();
 
-        IncidenteDTO incidente1 = new IncidenteDTO();
-        incidente1.setInstitucion(institucion);
+        // Aquí iría la lógica para obtener la lista de incidentes
+        // Se asume que ya existe una lista de incidentes disponible
+
+        return incidentes;
     }
 
     @Override
     public List<ReporteDTO> listaReportes() {
         List<ReporteDTO> reportes = new ArrayList<>();
 
-        // Reporte 1
-        ReporteDTO reporte1 = new ReporteDTO();
-        reporte1.setFolio(293482);
-        reporte1.setTitulo("Fuga de aguas residuales");
-        reporte1.setIncidente(incidente);
+        // Aquí iría la lógica para obtener la lista de reportes
+        // Se asume que ya existe una lista de reportes disponible
 
+        return reportes;
     }
 
     @Override
     public List<DomicilioDTO> listaDomicilios() {
         List<DomicilioDTO> domicilios = new ArrayList<>();
 
-        // Domicilio 1
+        // Creación de domicilios
         DomicilioDTO domicilio1 = new DomicilioDTO();
         domicilio1.setCalle("Calle A");
         domicilio1.setCodigoPostal("85000");
@@ -68,7 +68,6 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         domicilio1.setEspecificacionesExtra("Cerca de un parque");
         domicilios.add(domicilio1);
 
-        // Domicilio 2
         DomicilioDTO domicilio2 = new DomicilioDTO();
         domicilio2.setCalle("Calle B");
         domicilio2.setCodigoPostal("85001");
@@ -77,7 +76,6 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         domicilio2.setEspecificacionesExtra("Cerca de un hospital");
         domicilios.add(domicilio2);
 
-        // Domicilio 3
         DomicilioDTO domicilio3 = new DomicilioDTO();
         domicilio3.setCalle("Calle C");
         domicilio3.setCodigoPostal("85101");
@@ -87,17 +85,12 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         domicilios.add(domicilio3);
 
         return domicilios;
-
     }
 
     @Override
     public boolean validaReporte() {
+        // Aquí iría la lógica para validar el reporte
         return true;
-    }
-
-    @Override
-    public List<InstitucionDTO> listaInstituciones() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
