@@ -54,7 +54,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 btnAvancesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnHistorial.setForeground(new java.awt.Color(241, 241, 241));
@@ -76,7 +76,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 btnLevantarReporte2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLevantarReporte2, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 50, -1, -1));
+        jPanel1.add(btnLevantarReporte2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
 
         logoGobiernoMexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
         jPanel1.add(logoGobiernoMexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
