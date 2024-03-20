@@ -177,7 +177,9 @@ public class FrmFolio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverMenuPrincipalActionPerformed
-        // TODO add your handling code here:
+        FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
+        dispose();
+        menuPrincipal.setVisible(true);
     }//GEN-LAST:event_btnVolverMenuPrincipalActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed

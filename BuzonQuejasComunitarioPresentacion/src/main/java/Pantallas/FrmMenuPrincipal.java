@@ -9,11 +9,10 @@ package Pantallas;
  * @author victo
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
-
-    FrmLevantarReporte frmLevantarReporte = new FrmLevantarReporte();
+    
     public FrmMenuPrincipal() {
         initComponents();
-        
+
     }
 
     /**
@@ -116,9 +115,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLevantarReporteImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporteImgActionPerformed
-       dispose();
-      frmLevantarReporte.setVisible(true);
-      
+        FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
+        dispose();
+        seleccionInstitucion.setVisible(true);
+
     }//GEN-LAST:event_btnLevantarReporteImgActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
@@ -126,12 +126,14 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAvancesActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        
+
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnLevantarReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporte2ActionPerformed
-     dispose();
-      frmLevantarReporte.setVisible(true);
+       FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
+        dispose();
+        seleccionInstitucion.setVisible(true);
+
     }//GEN-LAST:event_btnLevantarReporte2ActionPerformed
 
 

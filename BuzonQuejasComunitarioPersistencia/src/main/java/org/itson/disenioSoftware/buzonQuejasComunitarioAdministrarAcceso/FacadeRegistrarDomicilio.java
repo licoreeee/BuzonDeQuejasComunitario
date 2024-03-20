@@ -1,12 +1,10 @@
-
 package org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso;
 
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.DomicilioDTO;
 
+public class FacadeRegistrarDomicilio implements IFacadeRegistrarDomicilio {
 
-public class FacadeRegistrarDomicilio implements IFacadeRegistrarDomicilio{
-
-  // Dependencia de DomicilioDTO inyectada desde fuera
+    // Dependencia de DomicilioDTO inyectada desde fuera
     private DomicilioDTO domicilio;
 
     // Constructor para inyección de dependencias
