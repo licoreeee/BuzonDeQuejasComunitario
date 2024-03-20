@@ -23,8 +23,15 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
     
-    public FrmSeleccionIncidentes() {
+    
+    /**
+     * Creates new form FrSeleccionIncidentes
+     * @param fachadaLevantarReporte
+     */
+    public FrmSeleccionIncidentes(IFacadeLevantarReporte fachadaLevantarReporte) {
         initComponents();
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
 //        modelo = new DefaultTableModel();
 //        modelo.addColumn("Nombre");
 //        
@@ -42,14 +49,8 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 //        pack();
 //        setVisible(true);
 //        
+
     
-    /**
-     * Creates new form FrSeleccionIncidentes
-     */
-    public FrmSeleccionIncidentes(IFacadeLevantarReporte fachadaLevantarReporte) {
-        initComponents();
-        this.fachadaLevantarReporte = fachadaLevantarReporte;
-        this.controladores = new ControlNavegacion();
     }
     
     /**
