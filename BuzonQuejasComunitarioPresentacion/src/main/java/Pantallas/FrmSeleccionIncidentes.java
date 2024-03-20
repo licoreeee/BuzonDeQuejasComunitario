@@ -72,7 +72,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         btnHistorial.setContentAreaFilled(false);
         getContentPane().add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/logo_gobierno_mexico.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_gobierno_mexico.png"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 60));
 
         jLabel7.setBackground(new java.awt.Color(10, 50, 6));
@@ -126,9 +126,14 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         btnSiguiente.setText("Siguiente");
         btnSiguiente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
         btnSiguiente.setContentAreaFilled(false);
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 353, 107, 40));
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Pantallas/multimedia/Paso 2.jpg"))); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Paso 2.jpg"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 450, 40));
 
         jLabel4.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,6 +143,12 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        FrmLevantarReporte levantarReporte = new FrmLevantarReporte();
+        dispose();
+        levantarReporte.setVisible(true);
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

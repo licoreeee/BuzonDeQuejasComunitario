@@ -47,7 +47,7 @@
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Pantallas/multimedia/Paso 1.jpg"/>
+              <Image iconType="3" name="/Paso 1.jpg"/>
             </Property>
           </Properties>
           <Constraints>
@@ -59,7 +59,7 @@
         <Component class="javax.swing.JLabel" name="jLabel1">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Pantallas/multimedia/logo_gobierno_mexico.png"/>
+              <Image iconType="3" name="/logo_gobierno_mexico.png"/>
             </Property>
           </Properties>
           <Constraints>
