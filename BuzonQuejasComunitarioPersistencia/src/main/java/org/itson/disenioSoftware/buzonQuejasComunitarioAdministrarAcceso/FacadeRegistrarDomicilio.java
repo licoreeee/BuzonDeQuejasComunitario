@@ -8,6 +8,6 @@ package org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso;
  *
  * @author hisam
  */
-public class FacadeAdministracion {
+public class FacadeRegistrarDomicilio {
     
 }
