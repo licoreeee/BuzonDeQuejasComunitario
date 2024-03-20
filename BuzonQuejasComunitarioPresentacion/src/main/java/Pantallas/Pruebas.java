@@ -6,18 +6,15 @@ package Pantallas;
 
 /**
  *
- * @author castr
+ * @author Integrantes:
  */
 public class Pruebas {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-//        FrmSeleccionInstitucion selecInstitucion = new FrmSeleccionInstitucion();
-//        selecInstitucion.setVisible(true);
+        
         FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
         menuPrincipal.setVisible(true);
-    }
     
+    }
+
 }
