@@ -2,6 +2,7 @@ package org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.CiudadanoDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.DomicilioDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.IncidenteDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.InstitucionDTO;
@@ -11,26 +12,45 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
     public boolean levantarReporte() {
-        // Aquí iría la lógica para levantar el reporte
-        return true;
+         List<DomicilioDTO> domicilios = listaDomicilios();
+    List<InstitucionDTO> instituciones = listaInstituciones();
+    
+    List<CiudadanoDTO> ciudadanos = listaCiudadanos();
+
+   
+   
+        DomicilioDTO domicilio = domicilios.get(0);
+        InstitucionDTO institucion = instituciones.get(0);
+        CiudadanoDTO ciudadano = ciudadanos.get(0);
+        
+        
+        ReporteDTO nuevoReporte = new ReporteDTO();
+        nuevoReporte.setFolio(1);
+        nuevoReporte.setTitulo("Corte de Luz");      
+        nuevoReporte.setDomicilio(domicilio);
+        nuevoReporte.setCiudadano(ciudadano);
+        nuevoReporte.setInstitucion(institucion);
+        
+        
+
+     return true;
+    
     }
 
     @Override
     public List<InstitucionDTO> listaInstituciones() {
         List<InstitucionDTO> instituciones = new ArrayList<>();
+        List<IncidenteDTO> incidentes = listaIncidentes();
+        IncidenteDTO incidente = incidentes.get(0);
+       
+       
 
-        // Creación de instituciones
-        InstitucionDTO institucion1 = new InstitucionDTO();
-        institucion1.setSiglas("CFE");
-        institucion1.setFuncionInstitucion("Electricidad");
-        institucion1.setNombreInstitucion("Comision Federal de Electricidad");
-        instituciones.add(institucion1);
-
-        InstitucionDTO institucion2 = new InstitucionDTO();
-        institucion2.setSiglas("IMSS");
-        institucion2.setFuncionInstitucion("Salud");
-        institucion2.setNombreInstitucion("Instituto Mexicano del Seguro Social");
-        instituciones.add(institucion2);
+        InstitucionDTO institucion = new InstitucionDTO();
+        institucion.setSiglas("IMSS");
+        institucion.setFuncionInstitucion("Salud");
+        institucion.setNombreInstitucion("Instituto Mexicano del Seguro Social");
+        institucion.setIncidentes(incidentes);
+        instituciones.add(institucion);
 
         return instituciones;
     }
@@ -38,28 +58,21 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
     @Override
     public List<IncidenteDTO> listaIncidentes() {
         List<IncidenteDTO> incidentes = new ArrayList<>();
+        
+        IncidenteDTO incidente = new IncidenteDTO();
+        incidente.setNombreIncidente("Fuga de aguas negras");
+        incidente.setDescripcion("Fuga de aguas residuales, aguas servidas o aguas cloacales. ");
 
-        // Aquí iría la lógica para obtener la lista de incidentes
-        // Se asume que ya existe una lista de incidentes disponible
-
+    
         return incidentes;
     }
-
-    @Override
-    public List<ReporteDTO> listaReportes() {
-        List<ReporteDTO> reportes = new ArrayList<>();
-
-        // Aquí iría la lógica para obtener la lista de reportes
-        // Se asume que ya existe una lista de reportes disponible
-
-        return reportes;
-    }
+ 
 
     @Override
     public List<DomicilioDTO> listaDomicilios() {
         List<DomicilioDTO> domicilios = new ArrayList<>();
 
-        // Creación de domicilios
+      
         DomicilioDTO domicilio1 = new DomicilioDTO();
         domicilio1.setCalle("Calle A");
         domicilio1.setCodigoPostal("85000");
@@ -91,6 +104,23 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
     public boolean validaReporte() {
         // Aquí iría la lógica para validar el reporte
         return true;
+    }
+
+    @Override
+    public List<CiudadanoDTO> listaCiudadanos() {       
+    List<CiudadanoDTO> ciudadanos = new ArrayList<>();
+    
+    CiudadanoDTO ciudadano = new CiudadanoDTO();
+    ciudadano.setNombre("Gael");
+    ciudadano.setApellidop("Castro");
+    ciudadano.setApellidom("Molina");
+    ciudadano.setCorreo("gael@gmail.com");
+    ciudadano.setCurp("CMG129");   
+    ciudadano.setNumerotelefono("6871699800");
+    ciudadanos.add(ciudadano);
+    
+    return ciudadanos;
+    
     }
 
 }

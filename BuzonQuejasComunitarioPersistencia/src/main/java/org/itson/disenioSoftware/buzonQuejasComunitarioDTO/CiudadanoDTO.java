@@ -8,7 +8,7 @@ public class CiudadanoDTO {
     private String apellidom;
     private String apellidop;
     private String curp;
-    private int numerotelefono;
+    private String numerotelefono;
     private String correo;
 
     public CiudadanoDTO() {
@@ -19,7 +19,7 @@ public class CiudadanoDTO {
             String apellidom, 
             String apellidop, 
             String curp, 
-            int numerotelefono, 
+            String numerotelefono, 
             String correo) {
         this.nombre = nombre;
         this.apellidom = apellidom;
@@ -61,11 +61,11 @@ public class CiudadanoDTO {
         this.curp = curp;
     }
 
-    public int getNumerotelefono() {
+    public String getNumerotelefono() {
         return numerotelefono;
     }
 
-    public void setNumerotelefono(int numerotelefono) {
+    public void setNumerotelefono(String numerotelefono) {
         this.numerotelefono = numerotelefono;
     }
 

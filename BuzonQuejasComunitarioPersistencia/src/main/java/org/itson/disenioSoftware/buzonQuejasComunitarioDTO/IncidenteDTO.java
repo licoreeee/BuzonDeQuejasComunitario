@@ -4,18 +4,17 @@ package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
 public class IncidenteDTO {
     private String nombreIncidente;
-    private InstitucionDTO institucion;
+    private String descripcion;
+   
 
     public IncidenteDTO() {
     }
 
-    public IncidenteDTO(
-            String nombreIncidente, 
-            InstitucionDTO institucion) {
+    public IncidenteDTO(String nombreIncidente, String descripcion) {
         this.nombreIncidente = nombreIncidente;
-        this.institucion = institucion;
+        this.descripcion = descripcion;
     }
-    
+
     public String getNombreIncidente() {
         return nombreIncidente;
     }
@@ -24,13 +23,17 @@ public class IncidenteDTO {
         this.nombreIncidente = nombreIncidente;
     }
 
-    public InstitucionDTO getInstitucion() {
-        return institucion;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setInstitucion(InstitucionDTO institucion) {
-        this.institucion = institucion;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+
+    
+
+  
     
     
 }

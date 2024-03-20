@@ -3,9 +3,12 @@ package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
 
 public class ReporteDTO {
-     private int folio;
+    private int folio;
     private String titulo;
-    private IncidenteDTO incidente;
+    private InstitucionDTO institucion;
+    private DomicilioDTO domicilio;
+    private CiudadanoDTO ciudadano;
+    
 
     public ReporteDTO() {
     }
@@ -13,10 +16,12 @@ public class ReporteDTO {
     public ReporteDTO(
             int folio, 
             String titulo, 
-            IncidenteDTO incidente) {
+            InstitucionDTO institucion,
+            DomicilioDTO domicilio) {
         this.folio = folio;
         this.titulo = titulo;
-        this.incidente = incidente;
+        this.institucion = institucion;
+        this.domicilio = domicilio;
     }
 
     
@@ -36,12 +41,30 @@ public class ReporteDTO {
         this.titulo = titulo;
     }
 
-    public IncidenteDTO getIncidente() {
-        return incidente;
+    public InstitucionDTO getInstitucion() {
+        return institucion;
     }
 
-    public void setIncidente(IncidenteDTO incidente) {
-        this.incidente = incidente;
+    public void setInstitucion(InstitucionDTO institucion) {
+        this.institucion = institucion;
+    }
+
+    public CiudadanoDTO getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(CiudadanoDTO ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    
+
+    public DomicilioDTO getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(DomicilioDTO domicilio) {
+        this.domicilio = domicilio;
     }
     
     
