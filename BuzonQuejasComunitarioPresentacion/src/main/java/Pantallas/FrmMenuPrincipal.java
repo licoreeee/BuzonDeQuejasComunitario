@@ -10,9 +10,7 @@ package Pantallas;
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form MenuPrincipal
-     */
+    FrmLevantarReporte frmLevantarReporte = new FrmLevantarReporte();
     public FrmMenuPrincipal() {
         initComponents();
         
@@ -34,10 +32,11 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         logoGobiernoMexico = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnLevantarReporteImg = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lblProgramaBienestar = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Menu Inicio");
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -94,10 +93,12 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnLevantarReporteImg, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, -1, -1));
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 300, -1, -1));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programaParaElBienestarDeLaFamilia.png"))); // NOI18N
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
+        lblProgramaBienestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programaParaElBienestarDeLaFamilia.png"))); // NOI18N
+        jPanel1.add(lblProgramaBienestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
+
+        jPanel2.setLayout(new java.awt.BorderLayout());
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 140));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -115,8 +116,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLevantarReporteImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporteImgActionPerformed
-      FrmLevantarReporte frmLevantarReporte = new FrmLevantarReporte();
-      dispose();
+       dispose();
       frmLevantarReporte.setVisible(true);
       
     }//GEN-LAST:event_btnLevantarReporteImgActionPerformed
@@ -126,11 +126,12 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAvancesActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnLevantarReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporte2ActionPerformed
-        // TODO add your handling code here:
+     dispose();
+      frmLevantarReporte.setVisible(true);
     }//GEN-LAST:event_btnLevantarReporte2ActionPerformed
 
 
@@ -139,10 +140,10 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte2;
     private javax.swing.JButton btnLevantarReporteImg;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblProgramaBienestar;
     private javax.swing.JLabel logoGobiernoMexico;
     // End of variables declaration//GEN-END:variables
 }

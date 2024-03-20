@@ -151,7 +151,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_cmpDescripcionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSiguienteActionPerformed
