@@ -126,6 +126,11 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         btnSiguiente.setText("Siguiente");
         btnSiguiente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
         btnSiguiente.setContentAreaFilled(false);
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSiguienteActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 353, 107, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Paso 2.jpg"))); // NOI18N
@@ -138,6 +143,12 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        FrmLevantarReporte levantarReporte = new FrmLevantarReporte();
+        dispose();
+        levantarReporte.setVisible(true);
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
