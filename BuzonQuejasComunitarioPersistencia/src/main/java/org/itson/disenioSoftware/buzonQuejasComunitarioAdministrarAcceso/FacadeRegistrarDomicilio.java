@@ -1,13 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso;
 
-/**
- *
- * @author hisam
- */
-public class FacadeRegistrarDomicilio {
-    
+import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.DomicilioDTO;
+
+
+public class FacadeRegistrarDomicilio implements IFacadeRegistrarDomicilio{
+
+  // Dependencia de DomicilioDTO inyectada desde fuera
+    private DomicilioDTO domicilio;
+
+    // Constructor para inyección de dependencias
+    public FacadeRegistrarDomicilio(DomicilioDTO domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    @Override
+    public DomicilioDTO registrarDomicilio() throws IllegalArgumentException {
+        if (domicilio == null || domicilio.getCalle() == null || domicilio.getColonia() == null
+                || domicilio.getNumeroCasa() == null || domicilio.getCodigoPostal() == null) {
+            throw new IllegalArgumentException("Los datos del domicilio son inválidos");
+        }
+        return domicilio;
+    }
 }

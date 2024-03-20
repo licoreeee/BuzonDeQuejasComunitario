@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
 
@@ -10,6 +7,19 @@ public class ReporteDTO {
     private String titulo;
     private IncidenteDTO incidente;
 
+    public ReporteDTO() {
+    }
+
+    public ReporteDTO(
+            int folio, 
+            String titulo, 
+            IncidenteDTO incidente) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.incidente = incidente;
+    }
+
+    
     public int getFolio() {
         return folio;
     }

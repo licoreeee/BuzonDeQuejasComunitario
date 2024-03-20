@@ -1,13 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
+
 package org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso;
 
-/**
- *
- * @author hisam
- */
+import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.DomicilioDTO;
+
+
 public interface IFacadeRegistrarDomicilio {
+    public DomicilioDTO registrarDomicilio()throws IllegalArgumentException;
     
 }

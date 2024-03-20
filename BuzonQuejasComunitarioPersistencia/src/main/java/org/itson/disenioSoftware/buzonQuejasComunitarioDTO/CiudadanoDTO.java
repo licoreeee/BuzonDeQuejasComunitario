@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
-/**
- *
- * @author castr
- */
+
 public class CiudadanoDTO {
 
     private String nombre;
@@ -20,7 +14,13 @@ public class CiudadanoDTO {
     public CiudadanoDTO() {
     }
 
-    public CiudadanoDTO(String nombre, String apellidom, String apellidop, String curp, int numerotelefono, String correo) {
+    public CiudadanoDTO(
+            String nombre, 
+            String apellidom, 
+            String apellidop, 
+            String curp, 
+            int numerotelefono, 
+            String correo) {
         this.nombre = nombre;
         this.apellidom = apellidom;
         this.apellidop = apellidop;

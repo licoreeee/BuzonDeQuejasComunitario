@@ -1,16 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
-/**
- *
- * @author castr
- */
+
 public class DomicilioDTO {
     
-    private int idDomicilio;
+
     private String calle;
     private String colonia;
     private String numeroCasa;
@@ -20,7 +14,12 @@ public class DomicilioDTO {
     public DomicilioDTO() {
     }
 
-    public DomicilioDTO(String calle, String colonia, String numeroCasa, String codigoPostal, String especificacionesExtra) {
+    public DomicilioDTO(
+            String calle, 
+            String colonia, 
+            String numeroCasa, 
+            String codigoPostal, 
+            String especificacionesExtra) {
         this.calle = calle;
         this.colonia = colonia;
         this.numeroCasa = numeroCasa;
@@ -28,13 +27,6 @@ public class DomicilioDTO {
         this.especificacionesExtra = especificacionesExtra;
     }
 
-    public int getIdDomicilio() {
-        return idDomicilio;
-    }
-
-    public void setIdDomicilio(int idDomicilio) {
-        this.idDomicilio = idDomicilio;
-    }
 
     public String getCalle() {
         return calle;

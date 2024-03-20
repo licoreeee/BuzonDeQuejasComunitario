@@ -3,18 +3,23 @@ package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
 
 public class InstitucionDTO {
-    private int idInstitucion;
+
     private String nombreInstitucion;
     private String funcionInstitucion;
     private String siglas;
 
-    public int getIdInstitucion() {
-        return idInstitucion;
+    public InstitucionDTO() {
     }
 
-    public void setIdInstitucion(int idInstitucion) {
-        this.idInstitucion = idInstitucion;
+    public InstitucionDTO(
+            String nombreInstitucion, 
+            String funcionInstitucion, 
+            String siglas) {
+        this.nombreInstitucion = nombreInstitucion;
+        this.funcionInstitucion = funcionInstitucion;
+        this.siglas = siglas;
     }
+    
 
     public String getNombreInstitucion() {
         return nombreInstitucion;

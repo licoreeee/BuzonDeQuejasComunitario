@@ -1,16 +1,36 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package org.itson.disenioSoftware.buzonQuejasComunitarioDTO;
 
-/**
- *
- * @author castr
- */
+
 public class IncidenteDTO {
-    private int idIncidente;
     private String nombreIncidente;
     private InstitucionDTO institucion;
+
+    public IncidenteDTO() {
+    }
+
+    public IncidenteDTO(
+            String nombreIncidente, 
+            InstitucionDTO institucion) {
+        this.nombreIncidente = nombreIncidente;
+        this.institucion = institucion;
+    }
+    
+    public String getNombreIncidente() {
+        return nombreIncidente;
+    }
+
+    public void setNombreIncidente(String nombreIncidente) {
+        this.nombreIncidente = nombreIncidente;
+    }
+
+    public InstitucionDTO getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(InstitucionDTO institucion) {
+        this.institucion = institucion;
+    }
+    
     
 }
