@@ -6,6 +6,7 @@ import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.DomicilioDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.IncidenteDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.InstitucionDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.ReporteDTO;
+import org.itson.disenioSoftware.buzonQuejasComunitarioDominio.Incidente;
 
 public interface IFacadeLevantarReporte {
 

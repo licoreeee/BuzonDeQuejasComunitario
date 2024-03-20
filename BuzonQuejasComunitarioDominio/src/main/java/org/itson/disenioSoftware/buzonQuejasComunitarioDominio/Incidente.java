@@ -13,10 +13,9 @@ public class Incidente {
     public Incidente() {
     }
 
-    public Incidente(String nombreIncidente, Institucion institucion, int idIncidente) {
+    public Incidente(String nombreIncidente, Institucion institucion) {
         this.nombreIncidente = nombreIncidente;
         this.institucion = institucion;
-        this.idIncidente = idIncidente;
     }
 
     public int getIdIncidente() {

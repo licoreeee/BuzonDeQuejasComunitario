@@ -7,6 +7,8 @@ import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.DomicilioDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.IncidenteDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.InstitucionDTO;
 import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.ReporteDTO;
+import org.itson.disenioSoftware.buzonQuejasComunitarioDominio.Incidente;
+import org.itson.disenioSoftware.buzonQuejasComunitarioDominio.Institucion;
 
 public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
@@ -57,14 +59,27 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
     public List<IncidenteDTO> listaIncidentes() {
-        List<IncidenteDTO> incidentes = new ArrayList<>();
+        List<InstitucionDTO> instituciones = new ArrayList<>();
+        List<IncidenteDTO> incidentes = new ArrayList();
         
-        IncidenteDTO incidente = new IncidenteDTO();
-        incidente.setNombreIncidente("Fuga de aguas negras");
-        incidente.setDescripcion("Fuga de aguas residuales, aguas servidas o aguas cloacales. ");
+        InstitucionDTO institucion=new InstitucionDTO("Jumapag","Agua","JMP",incidentes);
+        IncidenteDTO incidente1=new IncidenteDTO("Fuga","Fuga agua negra");
+        IncidenteDTO incidente2=new IncidenteDTO("Aguas negras","Muchas aguas negras en la calle");
 
-    
+        instituciones.add(institucion);
+        incidentes.add(incidente1);
+        incidentes.add(incidente2);
+        
         return incidentes;
+        
+//        List<IncidenteDTO> incidentes = new ArrayList<>();
+//        
+//        IncidenteDTO incidente = new IncidenteDTO();
+//        incidente.setNombreIncidente("Fuga de aguas negras");
+//        incidente.setDescripcion("Fuga de aguas residuales, aguas servidas o aguas cloacales. ");
+//
+//    
+//        return incidentes;
     }
  
 

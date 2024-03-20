@@ -4,19 +4,44 @@
  */
 package Pantallas;
 
+import java.util.ArrayList;
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import org.itson.disenioSoftware.buzonQuejasComunitarioDominio.Incidente;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author victo
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form FrSeleccionIncidentes
-     */
+    DefaultTableModel modelo;
+    ArrayList<Incidente> incidentes;
+    
+    
     public FrmSeleccionIncidentes() {
         initComponents();
+//        modelo = new DefaultTableModel();
+//        modelo.addColumn("Nombre");
+//        
+//        JTable tblIncidentes = new JTable(modelo);
+//        JScrollPane scrollPane = new JScrollPane(tblIncidentes);
+//        
+//        getContentPane().add(scrollPane);
+//        
+//        for (Incidente incidente : incidentes) {
+//            Object[] fila = {incidente.getNombreIncidente()};
+//            modelo.addRow(fila);
+//        }
+//        
+//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        pack();
+//        setVisible(true);
+//        
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -108,7 +133,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Descripción", ""
+                "Nombre", "Descripción", "Title 3"
             }
         ));
         tblIncidentes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
