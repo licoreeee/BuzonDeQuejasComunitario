@@ -4,14 +4,10 @@
  */
 package Pantallas;
 
-<<<<<<< HEAD
 /**
  *
  * @author Integrantes:
  */
-=======
-
->>>>>>> f12c5cb1ec1aa4a2d2875eae247fd1fb229c30e2
 public class Pruebas {
 
     public static void main(String[] args) {
