@@ -101,9 +101,12 @@
           </Constraints>
         </Component>
         <Component class="javax.swing.JLabel" name="lblInformacionInstitucion">
+          <Properties>
+            <Property name="horizontalAlignment" type="int" value="0"/>
+          </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="90" y="280" width="450" height="-1"/>
+              <AbsoluteConstraints x="50" y="290" width="500" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

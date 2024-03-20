@@ -4,15 +4,21 @@
  */
 package Pantallas;
 
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+
 /**
  *
  * @author victo
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
-    
-    public FrmMenuPrincipal() {
-        initComponents();
 
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
+
+    public FrmMenuPrincipal(IFacadeLevantarReporte fachadaLevantarReporte) {
+        initComponents();
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
     }
 
     /**
@@ -32,7 +38,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnLevantarReporteImg = new javax.swing.JButton();
         lblProgramaBienestar = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu Inicio");
@@ -96,9 +101,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         lblProgramaBienestar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/programaParaElBienestarDeLaFamilia.png"))); // NOI18N
         jPanel1.add(lblProgramaBienestar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 230, -1, -1));
 
-        jPanel2.setLayout(new java.awt.BorderLayout());
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 140));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -115,10 +117,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLevantarReporteImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporteImgActionPerformed
-        FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
+        controladores.mostrarSeleccionInstitucion();
         dispose();
-        seleccionInstitucion.setVisible(true);
-
     }//GEN-LAST:event_btnLevantarReporteImgActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
@@ -130,10 +130,8 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnLevantarReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporte2ActionPerformed
-       FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
+        controladores.mostrarSeleccionInstitucion();
         dispose();
-        seleccionInstitucion.setVisible(true);
-
     }//GEN-LAST:event_btnLevantarReporte2ActionPerformed
 
 
@@ -144,7 +142,6 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnLevantarReporteImg;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblProgramaBienestar;
     private javax.swing.JLabel logoGobiernoMexico;
     // End of variables declaration//GEN-END:variables

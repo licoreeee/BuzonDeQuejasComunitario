@@ -4,17 +4,24 @@
  */
 package Pantallas;
 
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+
 /**
  *
  * @author victo
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
+    private IFacadeLevantarReporte fachadaLevantarReporte;
+    private ControlNavegacion controladores;
+    
     /**
      * Creates new form FrSeleccionIncidentes
      */
-    public FrmSeleccionIncidentes() {
+    public FrmSeleccionIncidentes(IFacadeLevantarReporte fachadaLevantarReporte) {
         initComponents();
+        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.controladores = new ControlNavegacion();
     }
 
     /**
@@ -142,12 +149,12 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        FrmLevantarReporte levantarReporte = new FrmLevantarReporte();
+        controladores.mostrarLevantarReporte();
         dispose();
-        levantarReporte.setVisible(true);
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 

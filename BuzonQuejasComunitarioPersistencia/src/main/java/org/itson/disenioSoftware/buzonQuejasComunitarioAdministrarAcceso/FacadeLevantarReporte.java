@@ -12,29 +12,24 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
     public boolean levantarReporte() {
-         List<DomicilioDTO> domicilios = listaDomicilios();
-    List<InstitucionDTO> instituciones = listaInstituciones();
-    
-    List<CiudadanoDTO> ciudadanos = listaCiudadanos();
+        List<DomicilioDTO> domicilios = listaDomicilios();
+        List<InstitucionDTO> instituciones = listaInstituciones();
 
-   
-   
+        List<CiudadanoDTO> ciudadanos = listaCiudadanos();
+
         DomicilioDTO domicilio = domicilios.get(0);
         InstitucionDTO institucion = instituciones.get(0);
         CiudadanoDTO ciudadano = ciudadanos.get(0);
-        
-        
+
         ReporteDTO nuevoReporte = new ReporteDTO();
         nuevoReporte.setFolio(1);
-        nuevoReporte.setTitulo("Corte de Luz");      
+        nuevoReporte.setTitulo("Corte de Luz");
         nuevoReporte.setDomicilio(domicilio);
         nuevoReporte.setCiudadano(ciudadano);
         nuevoReporte.setInstitucion(institucion);
-        
-        
 
-     return true;
-    
+        return true;
+
     }
 
     @Override
@@ -42,8 +37,6 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
         List<InstitucionDTO> instituciones = new ArrayList<>();
         List<IncidenteDTO> incidentes = listaIncidentes();
         IncidenteDTO incidente = incidentes.get(0);
-       
-       
 
         InstitucionDTO institucion = new InstitucionDTO();
         institucion.setSiglas("IMSS");
@@ -58,21 +51,18 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
     @Override
     public List<IncidenteDTO> listaIncidentes() {
         List<IncidenteDTO> incidentes = new ArrayList<>();
-        
+
         IncidenteDTO incidente = new IncidenteDTO();
         incidente.setNombreIncidente("Fuga de aguas negras");
         incidente.setDescripcion("Fuga de aguas residuales, aguas servidas o aguas cloacales. ");
 
-    
         return incidentes;
     }
- 
 
     @Override
     public List<DomicilioDTO> listaDomicilios() {
         List<DomicilioDTO> domicilios = new ArrayList<>();
 
-      
         DomicilioDTO domicilio1 = new DomicilioDTO();
         domicilio1.setCalle("Calle A");
         domicilio1.setCodigoPostal("85000");
@@ -107,20 +97,20 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
     }
 
     @Override
-    public List<CiudadanoDTO> listaCiudadanos() {       
-    List<CiudadanoDTO> ciudadanos = new ArrayList<>();
-    
-    CiudadanoDTO ciudadano = new CiudadanoDTO();
-    ciudadano.setNombre("Gael");
-    ciudadano.setApellidop("Castro");
-    ciudadano.setApellidom("Molina");
-    ciudadano.setCorreo("gael@gmail.com");
-    ciudadano.setCurp("CMG129");   
-    ciudadano.setNumerotelefono("6871699800");
-    ciudadanos.add(ciudadano);
-    
-    return ciudadanos;
-    
+    public List<CiudadanoDTO> listaCiudadanos() {
+        List<CiudadanoDTO> ciudadanos = new ArrayList<>();
+
+        CiudadanoDTO ciudadano = new CiudadanoDTO();
+        ciudadano.setNombre("Gael");
+        ciudadano.setApellidop("Castro");
+        ciudadano.setApellidom("Molina");
+        ciudadano.setCorreo("gael@gmail.com");
+        ciudadano.setCurp("CMG129");
+        ciudadano.setNumerotelefono("6871699800");
+        ciudadanos.add(ciudadano);
+
+        return ciudadanos;
+
     }
 
 }

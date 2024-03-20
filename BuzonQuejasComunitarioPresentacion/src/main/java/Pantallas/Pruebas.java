@@ -4,6 +4,9 @@
  */
 package Pantallas;
 
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.FacadeLevantarReporte;
+import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+
 /**
  *
  * @author Integrantes:
@@ -11,10 +14,11 @@ package Pantallas;
 public class Pruebas {
 
     public static void main(String[] args) {
-        
-        FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
-        menuPrincipal.setVisible(true);
-    
+
+        IFacadeLevantarReporte fachadaLevantarReporte = new FacadeLevantarReporte();
+        ControlNavegacion controladores = new ControlNavegacion();
+
+        controladores.mostrarMenuPrincipal();
     }
 
 }

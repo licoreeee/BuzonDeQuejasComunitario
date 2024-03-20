@@ -10,10 +10,15 @@ import org.itson.disenioSoftware.buzonQuejasComunitarioDTO.ReporteDTO;
 public interface IFacadeLevantarReporte {
 
     public boolean levantarReporte();
-    public List<InstitucionDTO> listaInstituciones(); 
-    public List<IncidenteDTO> listaIncidentes();    
+
+    public List<InstitucionDTO> listaInstituciones();
+
+    public List<IncidenteDTO> listaIncidentes();
+
     public List<DomicilioDTO> listaDomicilios();
+
     public List<CiudadanoDTO> listaCiudadanos();
+
     public boolean validaReporte();
-    
+
 }
