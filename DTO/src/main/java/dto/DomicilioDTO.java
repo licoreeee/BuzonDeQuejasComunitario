@@ -1,8 +1,7 @@
 package dto;
 
 /**
- *
- * @author Dell
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class DomicilioDTO {
     

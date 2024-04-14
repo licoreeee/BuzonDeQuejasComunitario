@@ -3,8 +3,7 @@ package org.itson.diseño.buzonquejascomunitariopersistencia.entidades;
 import java.util.List;
 
 /**
- *
- * @author castr
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class Institucion {
 

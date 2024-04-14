@@ -1,8 +1,7 @@
 package org.itson.diseño.buzonquejascomunitariopersistencia.entidades;
 
 /**
- *
- * @author castr
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class Incidente {
 

@@ -3,6 +3,9 @@ package org.itson.diseño.buzonquejascomunitarionegocio;
 import dto.InstitucionDTO;
 import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Institucion;
 
+/**
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
+ */
 public class InstitucionBO implements IInstitucionBO {
 
     /**

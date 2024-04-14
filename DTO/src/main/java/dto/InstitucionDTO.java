@@ -3,8 +3,7 @@ package dto;
 import java.util.List;
 
 /**
- *
- * @author Dell
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class InstitucionDTO {
  

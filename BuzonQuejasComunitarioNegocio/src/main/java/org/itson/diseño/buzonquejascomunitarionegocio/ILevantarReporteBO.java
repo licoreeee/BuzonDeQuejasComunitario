@@ -5,8 +5,7 @@ import dto.ReporteDTO;
 import java.util.List;
 
 /**
- *
- * @author castr
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface ILevantarReporteBO {
     
