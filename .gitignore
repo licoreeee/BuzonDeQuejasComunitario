@@ -25,3 +25,5 @@ replay_pid*
 /BuzonQuejasComunitarioPresentacion/target/
 /BuzonQuejasComunitarioDominio/target/
 /BuzonQuejasComunitarioPersistencia/target/
+/DTO/target/
+/BuzonQuejasComunitarioNegocio/target/
