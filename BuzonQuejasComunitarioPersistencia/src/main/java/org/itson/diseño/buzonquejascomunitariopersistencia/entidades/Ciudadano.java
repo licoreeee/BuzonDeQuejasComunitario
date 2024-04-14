@@ -14,13 +14,13 @@ public class Ciudadano {
     private String apellidoP;
     private String apellidoM;
     private String curp;
-    private int numeroTelefono;
+    private String numeroTelefono;
     private String correo;
 
     public Ciudadano() {
     }
 
-    public Ciudadano(String nombre, String apellidoP, String apellidoM, String curp, int numeroTelefono, String correo) {
+    public Ciudadano(String nombre, String apellidoP, String apellidoM, String curp, String numeroTelefono, String correo) {
         this.nombre = nombre;
         this.apellidoP = apellidoP;
         this.apellidoM = apellidoM;
@@ -61,11 +61,11 @@ public class Ciudadano {
         this.curp = curp;
     }
 
-    public int getNumeroTelefono() {
+    public String getNumeroTelefono() {
         return numeroTelefono;
     }
 
-    public void setNumeroTelefono(int numeroTelefono) {
+    public void setNumeroTelefono(String numeroTelefono) {
         this.numeroTelefono = numeroTelefono;
     }
 

@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.itson.diseño.buzonquejascomunitariopersistencia.entidades;
+
+import java.util.List;
 
 /**
  *
@@ -13,6 +11,7 @@ public class Institucion {
     private String nombreInstitucion;
     private String funcionInstitucion;
     private String siglas;
+    private List<Incidente> incidentes;
 
     public Institucion() {
     }
@@ -47,4 +46,11 @@ public class Institucion {
         this.siglas = siglas;
     }
 
+    public List<Incidente> getIncidentes() {
+        return incidentes;
+    }
+
+    public void setIncidentes(List<Incidente> incidentes) {
+        this.incidentes = incidentes;
+    }
 }

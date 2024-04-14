@@ -9,6 +9,7 @@ public class ReporteDTO {
     private int folio;
     private String titulo;
     private IncidenteDTO incidente;
+    private DomicilioDTO domicilio;
 
     public ReporteDTO() {
     }
@@ -41,6 +42,14 @@ public class ReporteDTO {
 
     public void setIncidente(IncidenteDTO incidente) {
         this.incidente = incidente;
+    }
+
+    public DomicilioDTO getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(DomicilioDTO domicilio) {
+        this.domicilio = domicilio;
     }
 
 }

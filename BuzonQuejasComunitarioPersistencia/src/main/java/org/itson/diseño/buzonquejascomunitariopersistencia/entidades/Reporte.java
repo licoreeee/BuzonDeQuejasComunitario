@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.itson.diseño.buzonquejascomunitariopersistencia.entidades;
 
 /**
@@ -13,6 +9,8 @@ public class Reporte {
     private int folio;
     private String titulo;
     private Incidente incidente;
+    private Domicilio domicilio;
+    private Ciudadano ciudadano;
 
     public Reporte() {
     }
@@ -45,6 +43,22 @@ public class Reporte {
 
     public void setIncidente(Incidente incidente) {
         this.incidente = incidente;
+    }
+
+    public Domicilio getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(Domicilio domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public Ciudadano getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
     }
 
 }
