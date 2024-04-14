@@ -4,7 +4,9 @@
  */
 package Pantallas;
 
-import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
+
+
 
 /**
  *

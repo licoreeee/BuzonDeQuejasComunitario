@@ -4,13 +4,10 @@
  */
 package Pantallas;
 
-import java.util.ArrayList;
-import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import org.itson.disenioSoftware.buzonQuejasComunitarioDominio.Incidente;
+
 import javax.swing.table.DefaultTableModel;
-import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacadeLevantarReporte;
+import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
+
 
 /**
  *
@@ -19,7 +16,6 @@ import org.itson.disenioSoftware.buzonQuejasComunitarioAdministrarAcceso.IFacade
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
     DefaultTableModel modelo;
-    ArrayList<Incidente> incidentes;
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
     
