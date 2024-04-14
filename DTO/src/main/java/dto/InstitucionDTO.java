@@ -1,5 +1,7 @@
 package dto;
 
+import java.util.List;
+
 /**
  *
  * @author Dell
@@ -9,6 +11,7 @@ public class InstitucionDTO {
     private String nombreInstitucion;
     private String funcionInstitucion;
     private String siglas;
+    private List<IncidenteDTO> incidentes;
 
     public InstitucionDTO() {
     }
@@ -42,7 +45,13 @@ public class InstitucionDTO {
     public void setSiglas(String siglas) {
         this.siglas = siglas;
     }
-    
-    
-    
+
+    public List<IncidenteDTO> getIncidentes() {
+        return incidentes;
+    }
+
+    public void setIncidentes(List<IncidenteDTO> incidentes) {
+        this.incidentes = incidentes;
+    }
+
 }

@@ -8,6 +8,8 @@ public class DomicilioDTO {
     
     private String calle;
     private String colonia;
+    private String codigoPostal;
+    private String especificaciones;
 
     public DomicilioDTO() {
     }
@@ -32,5 +34,21 @@ public class DomicilioDTO {
     public void setColonia(String colonia) {
         this.colonia = colonia;
     }
-    
+
+    public String getCodigoPostal() {
+        return codigoPostal;
+    }
+
+    public void setCodigoPostal(String codigoPostal) {
+        this.codigoPostal = codigoPostal;
+    }
+
+    public String getEspecificaciones() {
+        return especificaciones;
+    }
+
+    public void setEspecificaciones(String especificaciones) {
+        this.especificaciones = especificaciones;
+    }
+
 }

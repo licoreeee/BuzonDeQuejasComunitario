@@ -10,6 +10,7 @@ public class ReporteDTO {
     private String titulo;
     private IncidenteDTO incidente;
     private DomicilioDTO domicilio;
+    private CiudadanoDTO ciudadano;
 
     public ReporteDTO() {
     }
@@ -52,4 +53,11 @@ public class ReporteDTO {
         this.domicilio = domicilio;
     }
 
+    public CiudadanoDTO getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(CiudadanoDTO ciudadano) {
+        this.ciudadano = ciudadano;
+    }
 }

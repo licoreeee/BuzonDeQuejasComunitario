@@ -7,14 +7,12 @@ package dto;
 public class IncidenteDTO {
     
     private String nombreIncidente;
-    private InstitucionDTO institucion;
 
     public IncidenteDTO() {
     }
     
-    public IncidenteDTO(String nombreIncidente, InstitucionDTO institucion) {
+    public IncidenteDTO(String nombreIncidente) {
         this.nombreIncidente = nombreIncidente;
-        this.institucion = institucion;
     }
 
     public String getNombreIncidente() {
@@ -23,14 +21,6 @@ public class IncidenteDTO {
 
     public void setNombreIncidente(String nombreIncidente) {
         this.nombreIncidente = nombreIncidente;
-    }
-
-    public InstitucionDTO getInstitucion() {
-        return institucion;
-    }
-
-    public void setInstitucion(InstitucionDTO institucion) {
-        this.institucion = institucion;
     }
 
 }
