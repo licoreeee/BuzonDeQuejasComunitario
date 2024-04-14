@@ -4,11 +4,12 @@ package dto;
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class ReporteDTO {
-    
+
     private int folio;
     private String titulo;
-    private String descripcion; 
+    private String descripcion;
     private IncidenteDTO incidente;
+    private InstitucionDTO institucion;
     private DomicilioDTO domicilio;
     private CiudadanoDTO ciudadano;
 
@@ -34,6 +35,10 @@ public class ReporteDTO {
         return titulo;
     }
 
+    public InstitucionDTO getInstitucion() {
+        return institucion;
+    }
+
     public IncidenteDTO getIncidente() {
         return incidente;
     }
@@ -46,9 +51,8 @@ public class ReporteDTO {
         return ciudadano;
     }
 
-
     public String getDescripcion() {
         return descripcion;
     }
-    
+
 }

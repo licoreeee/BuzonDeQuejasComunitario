@@ -14,6 +14,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
+    private String institucionSeleccionada;
 
     /**
      * Creates new form FrmSeleccionInstitucion
@@ -26,8 +27,8 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }
 
     public void obtenerInformacionInstitucion() {
-        String seleccionado = (String) cboSeleccionInstitucion.getSelectedItem();
-        switch (seleccionado) {
+        institucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
+        switch (institucionSeleccionada) {
             case "CFE":
                 lblInformacionInstitucion.setText("Comision Federal de electricidad, problemas relacionados con la electricidad");
                 break;
@@ -174,7 +175,7 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }//GEN-LAST:event_cboSeleccionInstitucionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        controladores.mostrarSeleccionIncidentes();
+        controladores.mostrarSeleccionIncidentes(institucionSeleccionada);
         dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 

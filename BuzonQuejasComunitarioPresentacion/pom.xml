@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <exec.mainClass>Pantallas.Pruebas</exec.mainClass>
+        <exec.mainClass>Pantallas.BuzonQuejasComunitario</exec.mainClass>
     </properties>
     <name>BuzonQuejasComunitarioPresentacion</name>
     <dependencies>
@@ -17,6 +17,11 @@
             <groupId>org.netbeans.external</groupId>
             <artifactId>AbsoluteLayout</artifactId>
             <version>RELEASE210</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mycompany</groupId>
+            <artifactId>DTO</artifactId>
+            <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.itson.bdavanzadas</groupId>

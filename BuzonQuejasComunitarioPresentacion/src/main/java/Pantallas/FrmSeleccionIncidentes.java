@@ -4,10 +4,12 @@
  */
 package Pantallas;
 
-
+import dto.IncidenteDTO;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
-
 
 /**
  *
@@ -15,19 +17,21 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
-    DefaultTableModel modelo;
+    DefaultTableModel modeloTabla = new DefaultTableModel();
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
-    
-    
+    private List<IncidenteDTO> incidentes;
+
     /**
      * Creates new form FrSeleccionIncidentes
+     *
      * @param fachadaLevantarReporte
      */
     public FrmSeleccionIncidentes(IFacadeLevantarReporte fachadaLevantarReporte) {
         initComponents();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
+        mostrarTabla(incidentes);
 //        modelo = new DefaultTableModel();
 //        modelo.addColumn("Nombre");
 //        
@@ -46,9 +50,33 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 //        setVisible(true);
 //        
 
-    
     }
-    
+
+    private void mostrarTabla(List<IncidenteDTO> incidentes) {
+        try {
+            DefaultTableModel modelo = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Hacer que todas las celdas sean no editables
+                }
+            };
+            modelo.addColumn("Nombre del Incidente");
+
+            for (IncidenteDTO incidente : incidentes) {
+                Object[] fila = {
+                    incidente.getNombreIncidente()
+                };
+
+                modelo.addRow(fila);
+            }
+
+            tblIncidentes.setModel(modelo);
+
+        } catch (Exception ex) {
+            Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No es posible el cargar la tabla de incidentes");
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

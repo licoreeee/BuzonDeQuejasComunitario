@@ -29,7 +29,7 @@ public class ControlNavegacion {
         seleccionInstitucion.setVisible(true);
     }
     
-    public void mostrarSeleccionIncidentes(){
+    public void mostrarSeleccionIncidentes(String institucionSeleccionada){
         FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(fachadaLevantarReporte);
         seleccionIncidentes.setVisible(true);
     }
