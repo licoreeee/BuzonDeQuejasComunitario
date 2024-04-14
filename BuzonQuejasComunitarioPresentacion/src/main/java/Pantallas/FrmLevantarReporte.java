@@ -9,8 +9,7 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 
 /**
- *
- * @author Usuario
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmLevantarReporte extends javax.swing.JFrame {
 

@@ -7,6 +7,7 @@ public class Reporte {
 
     private int folio;
     private String titulo;
+    private String descripcion;
     private Incidente incidente;
     private Domicilio domicilio;
     private Ciudadano ciudadano;
@@ -18,6 +19,11 @@ public class Reporte {
         this.folio = folio;
         this.titulo = titulo;
         this.incidente = incidente;
+    }
+
+    public Reporte(String titulo, String descripcion) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
     }
 
     public int getFolio() {
@@ -58,6 +64,14 @@ public class Reporte {
 
     public void setCiudadano(Ciudadano ciudadano) {
         this.ciudadano = ciudadano;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
 }
