@@ -12,11 +12,15 @@ public class DomicilioDTO {
 
     public DomicilioDTO() {
     }
-    
-    public DomicilioDTO(String calle, String colonia) {
+
+    public DomicilioDTO(String calle, String colonia, String codigoPostal, String especificaciones) {
         this.calle = calle;
         this.colonia = colonia;
+        this.codigoPostal = codigoPostal;
+        this.especificaciones = especificaciones;
     }
+    
+   
 
     public String getCalle() {
         return calle;
