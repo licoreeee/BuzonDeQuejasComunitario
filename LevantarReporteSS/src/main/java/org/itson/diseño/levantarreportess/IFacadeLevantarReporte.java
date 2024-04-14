@@ -12,13 +12,7 @@ import dto.ReporteDTO;
  */
 public interface IFacadeLevantarReporte {
 
-    public void seleccionarInstitucion();
-
-    public void seleccionarIncidente();
-
-    public void descripcionReporte();
-
-    public void ingresarDireccion();
-
-    public ReporteDTO levantarReporte();
+    public ReporteDTO levantarReporte(ReporteDTO reporteNuevo);
+    
+    
 }

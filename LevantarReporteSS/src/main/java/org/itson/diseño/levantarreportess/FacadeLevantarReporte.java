@@ -10,31 +10,13 @@ import dto.ReporteDTO;
  *
  * @author castr
  */
-public class FacadeLevantarReporte implements IFacadeLevantarReporte{
+public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
-    public void seleccionarInstitucion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+    public ReporteDTO levantarReporte(ReporteDTO reporteNuevo) {
 
-    @Override
-    public void seleccionarIncidente() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        return null;
 
-    @Override
-    public void descripcionReporte() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void ingresarDireccion() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public ReporteDTO levantarReporte() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
