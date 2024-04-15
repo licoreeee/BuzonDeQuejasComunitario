@@ -23,6 +23,7 @@ import org.itson.diseño.buzonquejascomunitarionegocio.ILevantarReporteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IReporteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IncidenteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.InstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.LevantarReporteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.ReporteBO;
 
 /**
@@ -32,12 +33,12 @@ import org.itson.diseño.buzonquejascomunitarionegocio.ReporteBO;
 class LevantarReporte {
 
     ILevantarReporteBO levantarReporteBO;
-    
-    protected LevantarReporte() {
 
+    protected LevantarReporte() {
+        this.levantarReporteBO = new LevantarReporteBO();
     }
 
-    protected List<InstitucionDTO> obtenerInstituciones(){
+    protected List<InstitucionDTO> obtenerInstituciones() {
         List<InstitucionDTO> instituciones = levantarReporteBO.cargarDatos();
         return instituciones;
     }

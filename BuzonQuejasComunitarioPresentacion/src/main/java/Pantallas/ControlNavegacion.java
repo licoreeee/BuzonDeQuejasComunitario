@@ -4,9 +4,6 @@
  */
 package Pantallas;
 
-import org.itson.diseño.levantarreportess.FacadeLevantarReporte;
-import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
-
 /**
  *
  * @author castr

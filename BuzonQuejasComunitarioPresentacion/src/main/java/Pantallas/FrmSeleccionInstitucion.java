@@ -16,39 +16,42 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
-    IFacadeLevantarReporte facadeLevantarReporte;
-    private ControlNavegacion controladores;
+    private IFacadeLevantarReporte facadeLevantarReporte;
+    private final ControlNavegacion controladores;
     private String institucionSeleccionada;
     private String funcionInstitucion;
     private String nombreInstitucion;
     private InstitucionDTO institucionDTO;
     private ReporteDTO reporteDTO;
 
-    List<InstitucionDTO> instituciones = facadeLevantarReporte.obtenerInstituciones();
-    
+    List<InstitucionDTO> instituciones; 
+
     /**
      * Creates new form FrmSeleccionInstitucion
+     *
      * @param facadeLevantarReporte
      */
-    public FrmSeleccionInstitucion( ) {
+    public FrmSeleccionInstitucion() {
         initComponents();
+        this.facadeLevantarReporte = new FacadeLevantarReporte();
+        instituciones = facadeLevantarReporte.obtenerInstituciones();
         obtenerInformacionInstitucion();
         this.controladores = new ControlNavegacion();
     }
 
-    public void obtenerInformacionInstitucion(){      
+    public void obtenerInformacionInstitucion() {
         instituciones.forEach(institucion -> {
             String institucionEnFormato = "";
             try {
                 institucionEnFormato = institucionDTO.getSiglas();
             } catch (Exception ex) {
-                
+
             }
             cboSeleccionInstitucion.addItem(institucionEnFormato);
         });
-        
+
     }
-    
+
 //    public void obtenerInformacionInstitucion() {
 //        institucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
 //
@@ -83,7 +86,6 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
 //        lblInformacionInstitucion.setText(nombreInstitucion + ", " + funcionInstitucion);
 //
 //    }
-
     public void institucionReporte(String siglas, String funcion, String nombre) {
         institucionDTO = new InstitucionDTO(
                 nombre,
