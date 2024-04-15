@@ -7,9 +7,7 @@ package Pantallas;
 import dto.InstitucionDTO;
 import dto.ReporteDTO;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+import org.itson.diseño.levantarreportess.FacadeLevantarReporte;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 /**
@@ -30,8 +28,9 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     
     /**
      * Creates new form FrmSeleccionInstitucion
+     * @param facadeLevantarReporte
      */
-    public FrmSeleccionInstitucion() {
+    public FrmSeleccionInstitucion( ) {
         initComponents();
         obtenerInformacionInstitucion();
         this.controladores = new ControlNavegacion();

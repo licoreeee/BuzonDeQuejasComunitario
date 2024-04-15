@@ -13,14 +13,13 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public class ControlNavegacion {
 
-    private IFacadeLevantarReporte fachadaLevantarReporte;
-
+   
     public ControlNavegacion() {
-        fachadaLevantarReporte = new FacadeLevantarReporte();
+     
     }
     
     public void mostrarMenuPrincipal() {
-        FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal(fachadaLevantarReporte);
+        FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
         menuPrincipal.setVisible(true);
     }
 
@@ -35,17 +34,17 @@ public class ControlNavegacion {
     }
     
     public void mostrarLevantarReporte(){
-        FrmLevantarReporte levantarReporte = new FrmLevantarReporte(fachadaLevantarReporte);
+        FrmLevantarReporte levantarReporte = new FrmLevantarReporte();
         levantarReporte.setVisible(true);
     }
     
     public void mostrarDireccion(){
-        FrmDireccion direccion = new FrmDireccion(fachadaLevantarReporte);
+        FrmDireccion direccion = new FrmDireccion();
         direccion.setVisible(true);
     }
 
     public void mostrarFolio(){
-        FrmFolio folio = new FrmFolio(fachadaLevantarReporte);
+        FrmFolio folio = new FrmFolio();
         folio.setVisible(true);
     }
     

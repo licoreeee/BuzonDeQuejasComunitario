@@ -19,7 +19,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     /**
      * Creates new form FrmLevantarReporte
      */
-    public FrmLevantarReporte(IFacadeLevantarReporte fachadaLevantarReporte) {
+    public FrmLevantarReporte() {
         initComponents();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();

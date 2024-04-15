@@ -20,7 +20,7 @@ public class FrmDireccion extends javax.swing.JFrame {
     /**
      * Creates new form FrmDireccion
      */
-    public FrmDireccion(IFacadeLevantarReporte fachadaLevantarReporte) {
+    public FrmDireccion( ) {
         initComponents();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();

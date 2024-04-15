@@ -17,7 +17,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
 
-    public FrmMenuPrincipal(IFacadeLevantarReporte fachadaLevantarReporte) {
+    public FrmMenuPrincipal( ) {
         initComponents();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();

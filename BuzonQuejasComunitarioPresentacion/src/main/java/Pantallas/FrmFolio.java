@@ -18,7 +18,7 @@ public class FrmFolio extends javax.swing.JFrame {
     /**
      * Creates new form FrmFolio
      */
-    public FrmFolio(IFacadeLevantarReporte fachadaLevantarReporte) {
+    public FrmFolio() {
         initComponents();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();

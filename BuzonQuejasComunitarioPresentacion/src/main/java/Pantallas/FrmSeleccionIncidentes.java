@@ -30,7 +30,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
      *
      * @param fachadaLevantarReporte
      */
-    public FrmSeleccionIncidentes() {
+    public FrmSeleccionIncidentes( ) {
         initComponents();
         this.controladores = new ControlNavegacion();
         mostrarTabla(incidentes);
