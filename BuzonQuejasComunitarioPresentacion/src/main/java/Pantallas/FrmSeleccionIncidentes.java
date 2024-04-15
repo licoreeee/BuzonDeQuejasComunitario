@@ -5,6 +5,7 @@
 package Pantallas;
 
 import dto.IncidenteDTO;
+import dto.InstitucionDTO;
 import dto.ReporteDTO;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -25,13 +26,15 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private ControlNavegacion controladores;
     private ReporteDTO reporteDTO;
     private List<IncidenteDTO> incidentes;
+    private InstitucionDTO institucion;
 
     /**
      * Creates new form FrmSeleccionIncidentes
      */
-    public FrmSeleccionIncidentes(String institucionSeleccionada) {
+    public FrmSeleccionIncidentes(InstitucionDTO institucion) {
         initComponents();
         this.controladores = new ControlNavegacion();
+        this.institucion = institucion;
         mostrarTabla(incidentes);
     }
 
@@ -40,30 +43,41 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     }
 
     private void mostrarTabla(List<IncidenteDTO> incidentes) {
-        try {
-            DefaultTableModel modelo = new DefaultTableModel() {
-                @Override
-                public boolean isCellEditable(int row, int column) {
-                    return false; // Hacer que todas las celdas sean no editables
-                }
-            };
-            modelo.addColumn("Nombre del Incidente");
-
-            // Verificar si la lista de incidentes no es nula y no está vacía
-            if (incidentes != null && !incidentes.isEmpty()) {
-                for (IncidenteDTO incidente : incidentes) {
-                    Object[] fila = {
-                        incidente.getNombreIncidente()
-                    };
-                    modelo.addRow(fila);
-                }
-            }
-
-            tblIncidentes.setModel(modelo);
-
-        } catch (Exception ex) {
-            Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No es posible cargar la tabla de incidentes", ex);
-        }
+        
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        modeloTabla.addColumn("Incidente");
+        Object[] datosTabla = new Object[1];
+        
+        institucion.getIncidentes().forEach(institucionObtenida -> {
+            datosTabla[0] = institucionObtenida.getNombreIncidente();
+            modeloTabla.addRow(datosTabla);
+        });
+        
+        tblIncidentes.setModel(modeloTabla);
+//        try {
+//            DefaultTableModel modelo = new DefaultTableModel() {
+//                @Override
+//                public boolean isCellEditable(int row, int column) {
+//                    return false; // Hacer que todas las celdas sean no editables
+//                }
+//            };
+//            modelo.addColumn("Nombre del Incidente");
+//
+//            // Verificar si la lista de incidentes no es nula y no está vacía
+//            if (incidentes != null && !incidentes.isEmpty()) {
+//                for (IncidenteDTO incidente : incidentes) {
+//                    Object[] fila = {
+//                        incidente.getNombreIncidente()
+//                    };
+//                    modelo.addRow(fila);
+//                }
+//            }
+//
+//            tblIncidentes.setModel(modelo);
+//
+//        } catch (Exception ex) {
+//            Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No es posible cargar la tabla de incidentes", ex);
+//        }
     }
 
     /**

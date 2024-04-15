@@ -4,6 +4,8 @@
  */
 package Pantallas;
 
+import dto.DomicilioDTO;
+import dto.ReporteDTO;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 
@@ -14,14 +16,18 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public class FrmDireccion extends javax.swing.JFrame {
 
+    private DomicilioDTO domicilio;
+    private ReporteDTO reporte;
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
 
     /**
      * Creates new form FrmDireccion
      */
-    public FrmDireccion( ) {
+    public FrmDireccion(ReporteDTO reporte) {
         initComponents();
+        this.reporte = reporte;
+        this.domicilio = domicilio;
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
 
@@ -52,8 +58,8 @@ public class FrmDireccion extends javax.swing.JFrame {
         cmpCalle = new javax.swing.JTextField();
         cmpNumeroExterior = new javax.swing.JTextField();
         cmpCP = new javax.swing.JTextField();
+        cmpDescripcionExtra = new javax.swing.JTextField();
         cmpColonia = new javax.swing.JTextField();
-        cmpColonia1 = new javax.swing.JTextField();
         btnTerminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -145,21 +151,21 @@ public class FrmDireccion extends javax.swing.JFrame {
             }
         });
 
+        cmpDescripcionExtra.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        cmpDescripcionExtra.setForeground(new java.awt.Color(33, 33, 33));
+        cmpDescripcionExtra.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cmpDescripcionExtra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmpDescripcionExtraActionPerformed(evt);
+            }
+        });
+
         cmpColonia.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         cmpColonia.setForeground(new java.awt.Color(33, 33, 33));
         cmpColonia.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         cmpColonia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmpColoniaActionPerformed(evt);
-            }
-        });
-
-        cmpColonia1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        cmpColonia1.setForeground(new java.awt.Color(33, 33, 33));
-        cmpColonia1.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        cmpColonia1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmpColonia1ActionPerformed(evt);
             }
         });
 
@@ -198,7 +204,7 @@ public class FrmDireccion extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(pnlFondoLayout.createSequentialGroup()
                         .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cmpColonia)
+                            .addComponent(cmpDescripcionExtra)
                             .addComponent(jlbContexto, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblDireccionReporte, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
@@ -213,7 +219,7 @@ public class FrmDireccion extends javax.swing.JFrame {
                                     .addComponent(jlbNumeroExterior)
                                     .addComponent(cmpNumeroExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
-                                .addComponent(cmpColonia1, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(cmpCP)))
                         .addContainerGap(17, Short.MAX_VALUE))))
@@ -240,11 +246,11 @@ public class FrmDireccion extends javax.swing.JFrame {
                 .addGap(8, 8, 8)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmpColonia1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlbDescripcionExtra)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cmpDescripcionExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,15 +276,28 @@ public class FrmDireccion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmpCPActionPerformed
 
+    private void cmpDescripcionExtraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpDescripcionExtraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmpDescripcionExtraActionPerformed
+
     private void cmpColoniaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpColoniaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmpColoniaActionPerformed
 
-    private void cmpColonia1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpColonia1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmpColonia1ActionPerformed
-
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
+        String calle = cmpCalle.getText();
+        String colonia = cmpColonia.getText();
+        String numExterior = cmpNumeroExterior.getText();
+        String cp = cmpCP.getText();
+        String descripcionExtra = cmpDescripcionExtra.getText();
+        
+        domicilio.setCalle(calle);
+        domicilio.setCodigoPostal(cp);
+        domicilio.setColonia(colonia);
+        domicilio.setEspecificaciones(descripcionExtra);
+        
+        reporte.setDomicilio(domicilio);
+        
         controladores.mostrarFolio();
         dispose();
     }//GEN-LAST:event_btnTerminarActionPerformed
@@ -326,7 +345,7 @@ public class FrmDireccion extends javax.swing.JFrame {
     private javax.swing.JTextField cmpCP;
     private javax.swing.JTextField cmpCalle;
     private javax.swing.JTextField cmpColonia;
-    private javax.swing.JTextField cmpColonia1;
+    private javax.swing.JTextField cmpDescripcionExtra;
     private javax.swing.JTextField cmpNumeroExterior;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jlbCP;

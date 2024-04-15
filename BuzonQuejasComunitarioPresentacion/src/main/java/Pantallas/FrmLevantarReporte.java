@@ -4,6 +4,7 @@
  */
 package Pantallas;
 
+import dto.ReporteDTO;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 
@@ -157,7 +158,14 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     }//GEN-LAST:event_cmpDescripcionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        controladores.mostrarDireccion();
+        String titulo = cmpTitulo.getText();
+        String descripcion = cmpDescripcion.getText();
+        
+        ReporteDTO reporte = new ReporteDTO();
+        reporte.setTitulo(titulo);
+        reporte.setDescripcion(descripcion);
+        
+        controladores.mostrarDireccion(reporte);
         dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 

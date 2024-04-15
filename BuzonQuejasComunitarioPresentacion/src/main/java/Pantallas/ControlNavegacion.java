@@ -4,6 +4,9 @@
  */
 package Pantallas;
 
+import dto.InstitucionDTO;
+import dto.ReporteDTO;
+
 /**
  *
  * @author castr
@@ -24,8 +27,8 @@ public class ControlNavegacion {
         seleccionInstitucion.setVisible(true);
     }
 
-    public void mostrarSeleccionIncidentes(String institucionSeleccionada) {
-        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(institucionSeleccionada);
+    public void mostrarSeleccionIncidentes(InstitucionDTO institucion) {
+        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(institucion);
         seleccionIncidentes.setVisible(true);
     }
 
@@ -34,8 +37,8 @@ public class ControlNavegacion {
         levantarReporte.setVisible(true);
     }
 
-    public void mostrarDireccion() {
-        FrmDireccion direccion = new FrmDireccion();
+    public void mostrarDireccion(ReporteDTO reporte) {
+        FrmDireccion direccion = new FrmDireccion(reporte);
         direccion.setVisible(true);
     }
 

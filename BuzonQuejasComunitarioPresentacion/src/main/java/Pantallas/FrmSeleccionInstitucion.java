@@ -206,7 +206,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         if (institucionDTO != null) {
 
             institucionReporte(institucionDTO.getSiglas(), institucionDTO.getFuncionInstitucion(), institucionDTO.getNombreInstitucion());
-            controladores.mostrarSeleccionIncidentes(institucionDTO.getSiglas());
+            controladores.mostrarSeleccionIncidentes(institucionDTO);
             dispose();
         } else {
             Logger.getLogger(FrmSeleccionInstitucion.class.getName()).log(Level.SEVERE, "No es posible cargar la tabla de incidentes");
