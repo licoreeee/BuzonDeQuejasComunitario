@@ -25,12 +25,12 @@ public class ControlNavegacion {
     }
 
     public void mostrarSeleccionInstitucion() {
-        FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion(fachadaLevantarReporte);
+        FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
         seleccionInstitucion.setVisible(true);
     }
     
     public void mostrarSeleccionIncidentes(String institucionSeleccionada){
-        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(fachadaLevantarReporte);
+        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes();
         seleccionIncidentes.setVisible(true);
     }
     

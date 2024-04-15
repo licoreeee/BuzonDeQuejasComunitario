@@ -32,7 +32,7 @@ class LevantarReporte {
 
     }
 
-    protected void seleccionarInsitucion(InstitucionDTO institucion) {
+    protected InstitucionDTO seleccionarInsitucion(InstitucionDTO institucion) {
         IInstitucionBO insitucionBO = new InstitucionBO();
         InstitucionDTO institucionDTO = new InstitucionDTO(
                 institucion.getNombreInstitucion(),
@@ -40,15 +40,17 @@ class LevantarReporte {
                 institucion.getSiglas()
         );
         insitucionBO.transporteDatos(institucionDTO);
+        return institucionDTO;
     }
 
-    protected void seleccionarIncidente(IncidenteDTO incidente) {
+    protected IncidenteDTO seleccionarIncidente(IncidenteDTO incidente) {
         IIncidenteBO incidenteBO = new IncidenteBO();
         IncidenteDTO incidenteDTO = new IncidenteDTO(incidente.getNombreIncidente());
         incidenteBO.transporteDatos(incidenteDTO);
+        return incidenteDTO;
     }
 
-    protected void ingresarDomicilio(DomicilioDTO domicilio) {
+    protected DomicilioDTO ingresarDomicilio(DomicilioDTO domicilio) {
         if (domicilio != null) {
             IDomicilioBO domicilioBO = new DomicilioBO();
             DomicilioDTO domicilioDTO = new DomicilioDTO(
@@ -58,12 +60,14 @@ class LevantarReporte {
                     domicilio.getEspecificaciones()
             );
             domicilioBO.transporteDatos(domicilioDTO);
+            return domicilioDTO;
         } else {
             Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto domicilio es nulo");
         }
+        return null;
     }
 
-    protected void ingresarCiudadano(CiudadanoDTO ciudadano) {
+    protected CiudadanoDTO ingresarCiudadano(CiudadanoDTO ciudadano) {
         if (ciudadano != null) {
             ICiudadanoBO ciudadanoBO = new CiudadanoBO();
             CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(
@@ -75,12 +79,14 @@ class LevantarReporte {
                     ciudadano.getCorreo()
             );
             ciudadanoBO.transporteDatos(ciudadanoDTO);
+            return ciudadanoDTO;
         } else {
             Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto ciudadano es nulo");
         }
+        return null;
     }
 
-    protected void generarReporte(ReporteDTO reporte) {
+    protected ReporteDTO generarReporte(ReporteDTO reporte) {
         if (reporte != null) {
             IReporteBO reporteBO = new ReporteBO();
             ReporteDTO reporteDTO = new ReporteDTO(
@@ -88,9 +94,22 @@ class LevantarReporte {
                     reporte.getDescripcion()
             );
             reporteBO.transporteDatos(reporteDTO);
+            return reporteDTO;
         } else {
             Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto reporte es nulo");
         }
+        return null;
+    }
+    
+    protected void levantarReporte(ReporteDTO reporte){
+        ReporteDTO reporteDTO = new ReporteDTO(
+                reporte.getFolio(), 
+                reporte.getTitulo(), 
+                reporte.getDescripcion(), 
+                seleccionarIncidente(reporte.getIncidente()), 
+                seleccionarInsitucion(reporte.getInstitucion()), 
+                ingresarDomicilio(reporte.getDomicilio()), 
+                ingresarCiudadano(reporte.getCiudadano()));
     }
 
 }

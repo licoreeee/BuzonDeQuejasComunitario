@@ -14,12 +14,12 @@ import java.util.logging.Logger;
  * @author castr
  */
 public class FacadeLevantarReporte implements IFacadeLevantarReporte {
-
+LevantarReporte levantarReporte = new LevantarReporte();
     @Override
     public ReporteDTO levantarReporte(ReporteDTO reporteNuevo) {
         if (reporteNuevo != null) {
 
-            LevantarReporte levantarReporte = new LevantarReporte();
+            
 
             levantarReporte.seleccionarInsitucion(reporteNuevo.getInstitucion());
             levantarReporte.seleccionarIncidente(reporteNuevo.getIncidente());
@@ -37,8 +37,8 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
     @Override
     public InstitucionDTO obtenerInstitucion(InstitucionDTO institucionSeleccionada) {
-
-        return null;
+        levantarReporte.seleccionarInsitucion(institucionSeleccionada);
+        return institucionSeleccionada;
 
     }
 

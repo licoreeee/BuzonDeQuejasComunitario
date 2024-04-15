@@ -4,50 +4,73 @@
  */
 package Pantallas;
 
-import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
+import dto.InstitucionDTO;
+import dto.ReporteDTO;
 
 /**
  *
  * @author castr
  */
-public class FrmSeleccionInstitucion extends javax.swing.JFrame {
+public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
-    private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
     private String institucionSeleccionada;
+    private String funcionInstitucion;
+    private String nombreInstitucion;
+    private InstitucionDTO institucionDTO;
+    private ReporteDTO reporteDTO;
 
     /**
      * Creates new form FrmSeleccionInstitucion
      */
-    public FrmSeleccionInstitucion(IFacadeLevantarReporte fachadaLevantarReporte) {
+    public FrmSeleccionInstitucion() {
         initComponents();
         obtenerInformacionInstitucion();
-        this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
     }
 
     public void obtenerInformacionInstitucion() {
         institucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
+
         switch (institucionSeleccionada) {
             case "CFE":
-                lblInformacionInstitucion.setText("Comision Federal de electricidad, problemas relacionados con la electricidad");
+                funcionInstitucion = "problemas relacionados con la electricidad";
+                nombreInstitucion = "Comision Federal de Electricidad";
+
                 break;
             case "OOMAPAS":
-                lblInformacionInstitucion.setText("Organismo Operador Municipal de Agua Potable, Alcantarillado y Saneamiento, fugas de agua");
+                funcionInstitucion = "Alcantarillado y Saneamiento, fugas de agua";
+                nombreInstitucion = "Organismo Operador Municipal de Agua Potable";
+
                 break;
             case "Policia Municipal de Cajeme":
-                lblInformacionInstitucion.setText("Cuestiones de seguridad o atencion en alguna zona que lo requiera");
+                funcionInstitucion = "Cuestiones de seguridad o atencion en alguna zona que lo requiera";
+                nombreInstitucion = "Policia Municipal de Cajeme";
+
                 break;
             case "Residuos Sólidos Urbanos":
-                lblInformacionInstitucion.setText("Cuestiones de desechos o basura en alguna zona que lo requiera");
+                funcionInstitucion = "Cuestiones de desechos o basura en alguna zona que lo requiera";
+                nombreInstitucion = "Residuos Sólidos Urbanos";
+
                 break;
             case "IMCYC":
-                lblInformacionInstitucion.setText("nstituto Mexicano del Cemento y del Concreto, en caso de baches o problemas similares");
+                funcionInstitucion = "en caso de baches o problemas similares";
+                nombreInstitucion = "Instituto Mexicano del Cemento y del Concreto";
                 break;
             default:
                 lblInformacionInstitucion.setText("");
         }
+        lblInformacionInstitucion.setText(nombreInstitucion + ", " + funcionInstitucion);
 
+    }
+
+    public void institucionReporte(String siglas, String funcion, String nombre) {
+        institucionDTO = new InstitucionDTO(
+                nombre,
+                funcion,
+                siglas
+        );
+        reporteDTO.setInstitucion(institucionDTO);
     }
 
     /**
@@ -175,6 +198,8 @@ public class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }//GEN-LAST:event_cboSeleccionInstitucionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
+        institucionReporte(institucionSeleccionada, funcionInstitucion, nombreInstitucion);
+        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(reporteDTO);
         controladores.mostrarSeleccionIncidentes(institucionSeleccionada);
         dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed

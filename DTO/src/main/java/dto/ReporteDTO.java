@@ -22,6 +22,16 @@ public class ReporteDTO {
         this.incidente = incidente;
     }
 
+    public ReporteDTO(int folio, String titulo, String descripcion, IncidenteDTO incidente, InstitucionDTO institucion, DomicilioDTO domicilio, CiudadanoDTO ciudadano) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.incidente = incidente;
+        this.institucion = institucion;
+        this.domicilio = domicilio;
+        this.ciudadano = ciudadano;
+    }
+
     public ReporteDTO(String titulo, String descripcion) {
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -31,28 +41,61 @@ public class ReporteDTO {
         return folio;
     }
 
+    public void setFolio(int folio) {
+        this.folio = folio;
+    }
+
     public String getTitulo() {
         return titulo;
     }
 
-    public InstitucionDTO getInstitucion() {
-        return institucion;
-    }
-
-    public IncidenteDTO getIncidente() {
-        return incidente;
-    }
-
-    public DomicilioDTO getDomicilio() {
-        return domicilio;
-    }
-
-    public CiudadanoDTO getCiudadano() {
-        return ciudadano;
+    public void setTitulo(String titulo) {
+        this.titulo = titulo;
     }
 
     public String getDescripcion() {
         return descripcion;
     }
 
-}
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public IncidenteDTO getIncidente() {
+        return incidente;
+    }
+
+    public void setIncidente(IncidenteDTO incidente) {
+        this.incidente = incidente;
+    }
+
+    public InstitucionDTO getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(InstitucionDTO institucion) {
+        this.institucion = institucion;
+    }
+
+    public DomicilioDTO getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(DomicilioDTO domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public CiudadanoDTO getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(CiudadanoDTO ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+   
+    }
+
+    
+
+

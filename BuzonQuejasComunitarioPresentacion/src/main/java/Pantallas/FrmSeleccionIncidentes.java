@@ -5,6 +5,8 @@
 package Pantallas;
 
 import dto.IncidenteDTO;
+import dto.ReporteDTO;
+import java.awt.HeadlessException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,6 +22,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     DefaultTableModel modeloTabla = new DefaultTableModel();
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
+    private ReporteDTO reporteDTO;
     private List<IncidenteDTO> incidentes;
 
     /**
@@ -27,29 +30,14 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
      *
      * @param fachadaLevantarReporte
      */
-    public FrmSeleccionIncidentes(IFacadeLevantarReporte fachadaLevantarReporte) {
+    public FrmSeleccionIncidentes() {
         initComponents();
-        this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
         mostrarTabla(incidentes);
-//        modelo = new DefaultTableModel();
-//        modelo.addColumn("Nombre");
-//        
-//        JTable tblIncidentes = new JTable(modelo);
-//        JScrollPane scrollPane = new JScrollPane(tblIncidentes);
-//        
-//        getContentPane().add(scrollPane);
-//        
-//        for (Incidente incidente : incidentes) {
-//            Object[] fila = {incidente.getNombreIncidente()};
-//            modelo.addRow(fila);
-//        }
-//        
-//        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        pack();
-//        setVisible(true);
-//        
+    }
 
+    public FrmSeleccionIncidentes(ReporteDTO reporteDTO) {
+        this.reporteDTO = reporteDTO;
     }
 
     private void mostrarTabla(List<IncidenteDTO> incidentes) {
