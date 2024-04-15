@@ -6,6 +6,11 @@ package Pantallas;
 
 import dto.InstitucionDTO;
 import dto.ReporteDTO;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 /**
  *
@@ -13,6 +18,7 @@ import dto.ReporteDTO;
  */
 public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
+    IFacadeLevantarReporte facadeLevantarReporte;
     private ControlNavegacion controladores;
     private String institucionSeleccionada;
     private String funcionInstitucion;
@@ -20,6 +26,8 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private InstitucionDTO institucionDTO;
     private ReporteDTO reporteDTO;
 
+    List<InstitucionDTO> instituciones = facadeLevantarReporte.obtenerInstituciones();
+    
     /**
      * Creates new form FrmSeleccionInstitucion
      */
@@ -29,7 +37,16 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         this.controladores = new ControlNavegacion();
     }
 
-    public void obtenerInformacionInstitucion(){
+    public void obtenerInformacionInstitucion(){      
+        instituciones.forEach(institucion -> {
+            String institucionEnFormato = "";
+            try {
+                institucionEnFormato = institucionDTO.getSiglas();
+            } catch (Exception ex) {
+                
+            }
+            cboSeleccionInstitucion.addItem(institucionEnFormato);
+        });
         
     }
     

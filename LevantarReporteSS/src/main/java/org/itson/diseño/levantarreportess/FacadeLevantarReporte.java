@@ -6,6 +6,7 @@ package org.itson.diseño.levantarreportess;
 
 import dto.InstitucionDTO;
 import dto.ReporteDTO;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -40,6 +41,12 @@ LevantarReporte levantarReporte = new LevantarReporte();
         levantarReporte.seleccionarInsitucion(institucionSeleccionada);
         return institucionSeleccionada;
 
+    }
+
+    @Override
+    public List<InstitucionDTO> obtenerInstituciones() {
+        List<InstitucionDTO> instituciones = levantarReporte.obtenerInstituciones();
+        return instituciones;
     }
 
 }
