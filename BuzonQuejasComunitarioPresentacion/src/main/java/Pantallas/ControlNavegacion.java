@@ -10,11 +10,10 @@ package Pantallas;
  */
 public class ControlNavegacion {
 
-   
     public ControlNavegacion() {
-     
+
     }
-    
+
     public void mostrarMenuPrincipal() {
         FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
         menuPrincipal.setVisible(true);
@@ -24,26 +23,25 @@ public class ControlNavegacion {
         FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
         seleccionInstitucion.setVisible(true);
     }
-    
-    public void mostrarSeleccionIncidentes(String institucionSeleccionada){
-        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes();
+
+    public void mostrarSeleccionIncidentes(String institucionSeleccionada) {
+        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(institucionSeleccionada);
         seleccionIncidentes.setVisible(true);
     }
-    
-    public void mostrarLevantarReporte(){
+
+    public void mostrarLevantarReporte() {
         FrmLevantarReporte levantarReporte = new FrmLevantarReporte();
         levantarReporte.setVisible(true);
     }
-    
-    public void mostrarDireccion(){
+
+    public void mostrarDireccion() {
         FrmDireccion direccion = new FrmDireccion();
         direccion.setVisible(true);
     }
 
-    public void mostrarFolio(){
+    public void mostrarFolio() {
         FrmFolio folio = new FrmFolio();
         folio.setVisible(true);
     }
-    
-    
+
 }

@@ -6,7 +6,11 @@ package Pantallas;
 
 import dto.InstitucionDTO;
 import dto.ReporteDTO;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.itson.diseño.levantarreportess.FacadeLevantarReporte;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
@@ -24,7 +28,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private InstitucionDTO institucionDTO;
     private ReporteDTO reporteDTO;
 
-    List<InstitucionDTO> instituciones; 
+    List<InstitucionDTO> instituciones;
 
     /**
      * Creates new form FrmSeleccionInstitucion
@@ -40,58 +44,31 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }
 
     public void obtenerInformacionInstitucion() {
+        Set<String> siglasUnicas = new HashSet<>(); // Usar un conjunto para evitar duplicados
         instituciones.forEach(institucion -> {
             String institucionEnFormato = "";
             try {
-                institucionEnFormato = institucionDTO.getSiglas();
+                institucionEnFormato = institucion.getSiglas();
             } catch (Exception ex) {
-
+                ex.printStackTrace();
             }
-            cboSeleccionInstitucion.addItem(institucionEnFormato);
+            // Agregar la sigla de la institución al conjunto para evitar duplicados
+            siglasUnicas.add(institucionEnFormato);
         });
 
+        // Agregar las siglas únicas al ComboBox
+        siglasUnicas.forEach(sigla -> cboSeleccionInstitucion.addItem(sigla));
     }
 
-//    public void obtenerInformacionInstitucion() {
-//        institucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
-//
-//        switch (institucionSeleccionada) {
-//            case "CFE":
-//                funcionInstitucion = "problemas relacionados con la electricidad";
-//                nombreInstitucion = "Comision Federal de Electricidad";
-//
-//                break;
-//            case "OOMAPAS":
-//                funcionInstitucion = "Alcantarillado y Saneamiento, fugas de agua";
-//                nombreInstitucion = "Organismo Operador Municipal de Agua Potable";
-//
-//                break;
-//            case "Policia Municipal de Cajeme":
-//                funcionInstitucion = "Cuestiones de seguridad o atencion en alguna zona que lo requiera";
-//                nombreInstitucion = "Policia Municipal de Cajeme";
-//
-//                break;
-//            case "Residuos Sólidos Urbanos":
-//                funcionInstitucion = "Cuestiones de desechos o basura en alguna zona que lo requiera";
-//                nombreInstitucion = "Residuos Sólidos Urbanos";
-//
-//                break;
-//            case "IMCYC":
-//                funcionInstitucion = "en caso de baches o problemas similares";
-//                nombreInstitucion = "Instituto Mexicano del Cemento y del Concreto";
-//                break;
-//            default:
-//                lblInformacionInstitucion.setText("");
-//        }
-//        lblInformacionInstitucion.setText(nombreInstitucion + ", " + funcionInstitucion);
-//
-//    }
     public void institucionReporte(String siglas, String funcion, String nombre) {
         institucionDTO = new InstitucionDTO(
                 nombre,
                 funcion,
                 siglas
         );
+        if (reporteDTO == null) {
+            reporteDTO = new ReporteDTO();
+        }
         reporteDTO.setInstitucion(institucionDTO);
     }
 
@@ -215,14 +192,25 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cboSeleccionInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeleccionInstitucionActionPerformed
-        obtenerInformacionInstitucion();
+        String siglasInstitucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
+
+        for (InstitucionDTO institucion : instituciones) {
+            if (institucion.getSiglas().equals(siglasInstitucionSeleccionada)) {
+                institucionDTO = institucion;
+                break;
+            }
+        }
     }//GEN-LAST:event_cboSeleccionInstitucionActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        institucionReporte(institucionSeleccionada, funcionInstitucion, nombreInstitucion);
-        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(reporteDTO);
-        controladores.mostrarSeleccionIncidentes(institucionSeleccionada);
-        dispose();
+        if (institucionDTO != null) {
+
+            institucionReporte(institucionDTO.getSiglas(), institucionDTO.getFuncionInstitucion(), institucionDTO.getNombreInstitucion());
+            controladores.mostrarSeleccionIncidentes(institucionDTO.getSiglas());
+            dispose();
+        } else {
+            Logger.getLogger(FrmSeleccionInstitucion.class.getName()).log(Level.SEVERE, "No es posible cargar la tabla de incidentes");
+        }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 //    /**

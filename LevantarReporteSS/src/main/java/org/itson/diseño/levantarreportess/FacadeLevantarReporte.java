@@ -6,7 +6,10 @@ package org.itson.diseño.levantarreportess;
 
 import dto.InstitucionDTO;
 import dto.ReporteDTO;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -15,12 +18,12 @@ import java.util.logging.Logger;
  * @author castr
  */
 public class FacadeLevantarReporte implements IFacadeLevantarReporte {
-LevantarReporte levantarReporte = new LevantarReporte();
+
+    LevantarReporte levantarReporte = new LevantarReporte();
+
     @Override
     public ReporteDTO levantarReporte(ReporteDTO reporteNuevo) {
         if (reporteNuevo != null) {
-
-            
 
             levantarReporte.seleccionarInsitucion(reporteNuevo.getInstitucion());
             levantarReporte.seleccionarIncidente(reporteNuevo.getIncidente());
@@ -46,7 +49,10 @@ LevantarReporte levantarReporte = new LevantarReporte();
     @Override
     public List<InstitucionDTO> obtenerInstituciones() {
         List<InstitucionDTO> instituciones = levantarReporte.obtenerInstituciones();
-        return instituciones;
+        Set<InstitucionDTO> institucionesUnicas = new HashSet<>(instituciones);
+        List<InstitucionDTO> listaInstitucionesUnicas = new ArrayList<>(institucionesUnicas);
+
+        return listaInstitucionesUnicas;
     }
 
 }

@@ -13,7 +13,6 @@ public class ObjetosInstitucion {
 
     List<Incidente> incidentesOOMAPAS = new ArrayList<>();
     List<Incidente> incidentesCFE = new ArrayList<>();
-    List<Incidente> incidentesCruzRoja = new ArrayList<>();
 
     public void agregarIncidentesOOMAPAS() {
         incidentesOOMAPAS.add(new Incidente("Fuga de aguas negras."));
@@ -26,25 +25,24 @@ public class ObjetosInstitucion {
         incidentesCFE.add(new Incidente("Se cayó un poste de luz."));
         incidentesCFE.add(new Incidente("Explotó un poste de luz."));
     }
-
     List<Institucion> instituciones = new ArrayList<>();
 
     public void agregarInstituciones() {
-        Institucion oomapas = new Institucion("Organismo Operador Municipal de Agua Potable, Alcantarillado y Saneamiento", "Se encarga del agua y el alcantarillado.", "OOMAPAS");
-        Institucion cfe = new Institucion("Comisión Federal de Electricidad", "Se encarga de la electricidad y postes de luz de la ciudad.", "CFE");
+        if (instituciones.isEmpty()) {
+            Institucion oomapas = new Institucion("Organismo Operador Municipal de Agua Potable, Alcantarillado y Saneamiento", "Se encarga del agua y el alcantarillado.", "OOMAPAS");
+            Institucion cfe = new Institucion("Comisión Federal de Electricidad", "Se encarga de la electricidad y postes de luz de la ciudad.", "CFE");
 
-        agregarIncidentesOOMAPAS();
-        oomapas.setIncidentes(incidentesOOMAPAS);
+            agregarIncidentesOOMAPAS();
+            oomapas.setIncidentes(incidentesOOMAPAS);
+            instituciones.add(oomapas);
 
-        agregarIncidentesCFE();
-        cfe.setIncidentes(incidentesCFE);
-
-        instituciones.add(oomapas);
-        instituciones.add(cfe);
+            agregarIncidentesCFE();
+            cfe.setIncidentes(incidentesCFE);
+            instituciones.add(cfe);
+        }
     }
 
     public List<Institucion> getInstituciones() {
         return instituciones;
     }
-
 }

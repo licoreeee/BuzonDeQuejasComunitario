@@ -7,6 +7,7 @@ package Pantallas;
 import dto.IncidenteDTO;
 import dto.ReporteDTO;
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,11 +27,9 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private List<IncidenteDTO> incidentes;
 
     /**
-     * Creates new form FrSeleccionIncidentes
-     *
-     * @param fachadaLevantarReporte
+     * Creates new form FrmSeleccionIncidentes
      */
-    public FrmSeleccionIncidentes( ) {
+    public FrmSeleccionIncidentes(String institucionSeleccionada) {
         initComponents();
         this.controladores = new ControlNavegacion();
         mostrarTabla(incidentes);
@@ -50,18 +49,20 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
             };
             modelo.addColumn("Nombre del Incidente");
 
-            for (IncidenteDTO incidente : incidentes) {
-                Object[] fila = {
-                    incidente.getNombreIncidente()
-                };
-
-                modelo.addRow(fila);
+            // Verificar si la lista de incidentes no es nula y no está vacía
+            if (incidentes != null && !incidentes.isEmpty()) {
+                for (IncidenteDTO incidente : incidentes) {
+                    Object[] fila = {
+                        incidente.getNombreIncidente()
+                    };
+                    modelo.addRow(fila);
+                }
             }
 
             tblIncidentes.setModel(modelo);
 
         } catch (Exception ex) {
-            Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No es posible el cargar la tabla de incidentes");
+            Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No es posible cargar la tabla de incidentes", ex);
         }
     }
 
