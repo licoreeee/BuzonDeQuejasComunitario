@@ -34,17 +34,6 @@ public class LevantarReporteBO implements ILevantarReporteBO {
     }
 
     @Override
-    public ReporteDTO validarReporte(ReporteDTO reporteIngresado) {
-        for (int i = 0; i < reportes.size(); i++) {
-            if (reportes.get(i).getCiudadano().getCURP().equalsIgnoreCase(reporteIngresado.getCiudadano().getCURP())) {
-                reportes.set(i, reporteIngresado);
-                return reportes.get(i);
-            }
-        }
-        return null;
-    }
-
-    @Override
     public List<ReporteDTO> mostrarReportes() {
         return reportes;
     }

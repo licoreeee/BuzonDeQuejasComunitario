@@ -6,7 +6,7 @@ import java.util.List;
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class InstitucionDTO {
- 
+
     private String nombreInstitucion;
     private String funcionInstitucion;
     private String siglas;
@@ -19,6 +19,13 @@ public class InstitucionDTO {
         this.nombreInstitucion = nombreInstitucion;
         this.funcionInstitucion = funcionInstitucion;
         this.siglas = siglas;
+    }
+
+    public InstitucionDTO(String nombreInstitucion, String funcionInstitucion, String siglas, List<IncidenteDTO> incidentes) {
+        this.nombreInstitucion = nombreInstitucion;
+        this.funcionInstitucion = funcionInstitucion;
+        this.siglas = siglas;
+        this.incidentes = incidentes;
     }
 
     public String getNombreInstitucion() {

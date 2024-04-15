@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
@@ -21,7 +22,6 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
-    DefaultTableModel modeloTabla = new DefaultTableModel();
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
     private ReporteDTO reporteDTO;
@@ -35,49 +35,50 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         initComponents();
         this.controladores = new ControlNavegacion();
         this.institucion = institucion;
-        mostrarTabla(incidentes);
+        mostrarTabla(institucion.getIncidentes());
     }
 
     public FrmSeleccionIncidentes(ReporteDTO reporteDTO) {
         this.reporteDTO = reporteDTO;
     }
 
+    DefaultTableModel modeloTabla = new DefaultTableModel() {
+        @Override
+        public boolean isCellEditable(int row, int column) {
+            return false; // Hacer que todas las celdas sean no editables
+        }
+    };
+
     private void mostrarTabla(List<IncidenteDTO> incidentes) {
-        
-        DefaultTableModel modeloTabla = new DefaultTableModel();
         modeloTabla.addColumn("Incidente");
         Object[] datosTabla = new Object[1];
-        
-        institucion.getIncidentes().forEach(institucionObtenida -> {
-            datosTabla[0] = institucionObtenida.getNombreIncidente();
-            modeloTabla.addRow(datosTabla);
-        });
-        
+
+        // Verificar si la lista de incidentes no es null antes de iterar sobre ella
+        if (incidentes != null) {
+            incidentes.forEach(institucionObtenida -> {
+                datosTabla[0] = institucionObtenida.getNombreIncidente();
+                modeloTabla.addRow(datosTabla);
+            });
+        }
+
         tblIncidentes.setModel(modeloTabla);
-//        try {
-//            DefaultTableModel modelo = new DefaultTableModel() {
-//                @Override
-//                public boolean isCellEditable(int row, int column) {
-//                    return false; // Hacer que todas las celdas sean no editables
-//                }
-//            };
-//            modelo.addColumn("Nombre del Incidente");
-//
-//            // Verificar si la lista de incidentes no es nula y no está vacía
-//            if (incidentes != null && !incidentes.isEmpty()) {
-//                for (IncidenteDTO incidente : incidentes) {
-//                    Object[] fila = {
-//                        incidente.getNombreIncidente()
-//                    };
-//                    modelo.addRow(fila);
-//                }
-//            }
-//
-//            tblIncidentes.setModel(modelo);
-//
-//        } catch (Exception ex) {
-//            Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No es posible cargar la tabla de incidentes", ex);
-//        }
+    }
+
+    private void obtenerDatosSeleccionados() {
+        int filaSeleccionada = tblIncidentes.getSelectedRow();
+
+        if (filaSeleccionada != -1) {
+            Object[] datosFila = new Object[tblIncidentes.getColumnCount()];
+
+            for (int i = 0; i < tblIncidentes.getColumnCount(); i++) {
+                datosFila[i] = tblIncidentes.getValueAt(filaSeleccionada, i);
+            }
+            IncidenteDTO incidenteDTO = new IncidenteDTO();
+            incidenteDTO.setNombreIncidente(datosFila[0].toString());
+        } else {
+            Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No se selecciono ningun elemento de la tabla");
+
+        }
     }
 
     /**
@@ -209,8 +210,13 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        controladores.mostrarLevantarReporte();
-        dispose();
+        if (tblIncidentes.getSelectedRow() != -1) {
+            obtenerDatosSeleccionados();
+            controladores.mostrarLevantarReporte();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "No hay un incidente seleccionado de la tabla");
+        }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 

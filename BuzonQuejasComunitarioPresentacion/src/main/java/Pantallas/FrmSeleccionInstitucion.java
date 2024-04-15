@@ -4,6 +4,7 @@
  */
 package Pantallas;
 
+import dto.IncidenteDTO;
 import dto.InstitucionDTO;
 import dto.ReporteDTO;
 import java.util.HashSet;
@@ -60,11 +61,12 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         siglasUnicas.forEach(sigla -> cboSeleccionInstitucion.addItem(sigla));
     }
 
-    public void institucionReporte(String siglas, String funcion, String nombre) {
+    public void institucionReporte(String siglas, String funcion, String nombre, List<IncidenteDTO> incidentes) {
         institucionDTO = new InstitucionDTO(
                 nombre,
                 funcion,
-                siglas
+                siglas,
+                incidentes
         );
         if (reporteDTO == null) {
             reporteDTO = new ReporteDTO();
@@ -205,7 +207,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         if (institucionDTO != null) {
 
-            institucionReporte(institucionDTO.getSiglas(), institucionDTO.getFuncionInstitucion(), institucionDTO.getNombreInstitucion());
+            institucionReporte(institucionDTO.getSiglas(), institucionDTO.getFuncionInstitucion(), institucionDTO.getNombreInstitucion(), institucionDTO.getIncidentes());
             controladores.mostrarSeleccionIncidentes(institucionDTO);
             dispose();
         } else {

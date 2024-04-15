@@ -8,8 +8,6 @@ import dto.DomicilioDTO;
 import dto.ReporteDTO;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
-
-
 /**
  *
  * @author victo
@@ -27,7 +25,7 @@ public class FrmDireccion extends javax.swing.JFrame {
     public FrmDireccion(ReporteDTO reporte) {
         initComponents();
         this.reporte = reporte;
-        this.domicilio = domicilio;
+        this.domicilio = new DomicilioDTO();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
 
@@ -290,14 +288,14 @@ public class FrmDireccion extends javax.swing.JFrame {
         String numExterior = cmpNumeroExterior.getText();
         String cp = cmpCP.getText();
         String descripcionExtra = cmpDescripcionExtra.getText();
-        
+
         domicilio.setCalle(calle);
         domicilio.setCodigoPostal(cp);
         domicilio.setColonia(colonia);
         domicilio.setEspecificaciones(descripcionExtra);
-        
+
         reporte.setDomicilio(domicilio);
-        
+
         controladores.mostrarFolio();
         dispose();
     }//GEN-LAST:event_btnTerminarActionPerformed
