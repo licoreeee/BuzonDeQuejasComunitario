@@ -1,6 +1,10 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import dto.IncidenteDTO;
 import dto.InstitucionDTO;
+import java.util.ArrayList;
+import java.util.List;
+import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Incidente;
 import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Institucion;
 
 /**
@@ -46,6 +50,22 @@ public class InstitucionBO implements IInstitucionBO {
         return institucion;
 
     }
-   
 
+    @Override
+    public InstitucionDTO conversionDatos(Institucion institucion) {
+        InstitucionDTO institucionConvertida = new InstitucionDTO(
+                institucion.getNombreInstitucion(),
+                institucion.getFuncionInstitucion(),
+                institucion.getSiglas());
+
+        List<IncidenteDTO> incidentesDTO = new ArrayList<>();
+        for (Incidente incidente : institucion.getIncidentes()) {
+            IncidenteDTO incidenteDTO = new IncidenteDTO(incidente.getNombreIncidente());
+            incidentesDTO.add(incidenteDTO);
+        }
+        institucionConvertida.setIncidentes(incidentesDTO);
+
+        return institucionConvertida;
+    }
+   
 }

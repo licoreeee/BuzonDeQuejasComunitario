@@ -29,40 +29,44 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         this.controladores = new ControlNavegacion();
     }
 
-    public void obtenerInformacionInstitucion() {
-        institucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
-
-        switch (institucionSeleccionada) {
-            case "CFE":
-                funcionInstitucion = "problemas relacionados con la electricidad";
-                nombreInstitucion = "Comision Federal de Electricidad";
-
-                break;
-            case "OOMAPAS":
-                funcionInstitucion = "Alcantarillado y Saneamiento, fugas de agua";
-                nombreInstitucion = "Organismo Operador Municipal de Agua Potable";
-
-                break;
-            case "Policia Municipal de Cajeme":
-                funcionInstitucion = "Cuestiones de seguridad o atencion en alguna zona que lo requiera";
-                nombreInstitucion = "Policia Municipal de Cajeme";
-
-                break;
-            case "Residuos Sólidos Urbanos":
-                funcionInstitucion = "Cuestiones de desechos o basura en alguna zona que lo requiera";
-                nombreInstitucion = "Residuos Sólidos Urbanos";
-
-                break;
-            case "IMCYC":
-                funcionInstitucion = "en caso de baches o problemas similares";
-                nombreInstitucion = "Instituto Mexicano del Cemento y del Concreto";
-                break;
-            default:
-                lblInformacionInstitucion.setText("");
-        }
-        lblInformacionInstitucion.setText(nombreInstitucion + ", " + funcionInstitucion);
-
+    public void obtenerInformacionInstitucion(){
+        
     }
+    
+//    public void obtenerInformacionInstitucion() {
+//        institucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
+//
+//        switch (institucionSeleccionada) {
+//            case "CFE":
+//                funcionInstitucion = "problemas relacionados con la electricidad";
+//                nombreInstitucion = "Comision Federal de Electricidad";
+//
+//                break;
+//            case "OOMAPAS":
+//                funcionInstitucion = "Alcantarillado y Saneamiento, fugas de agua";
+//                nombreInstitucion = "Organismo Operador Municipal de Agua Potable";
+//
+//                break;
+//            case "Policia Municipal de Cajeme":
+//                funcionInstitucion = "Cuestiones de seguridad o atencion en alguna zona que lo requiera";
+//                nombreInstitucion = "Policia Municipal de Cajeme";
+//
+//                break;
+//            case "Residuos Sólidos Urbanos":
+//                funcionInstitucion = "Cuestiones de desechos o basura en alguna zona que lo requiera";
+//                nombreInstitucion = "Residuos Sólidos Urbanos";
+//
+//                break;
+//            case "IMCYC":
+//                funcionInstitucion = "en caso de baches o problemas similares";
+//                nombreInstitucion = "Instituto Mexicano del Cemento y del Concreto";
+//                break;
+//            default:
+//                lblInformacionInstitucion.setText("");
+//        }
+//        lblInformacionInstitucion.setText(nombreInstitucion + ", " + funcionInstitucion);
+//
+//    }
 
     public void institucionReporte(String siglas, String funcion, String nombre) {
         institucionDTO = new InstitucionDTO(
@@ -157,7 +161,6 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
         cboSeleccionInstitucion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         cboSeleccionInstitucion.setForeground(new java.awt.Color(33, 33, 33));
-        cboSeleccionInstitucion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "CFE", "OOMAPAS", "Policia Municipal de Cajeme", "Residuos Sólidos Urbanos", "IMCYC" }));
         cboSeleccionInstitucion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboSeleccionInstitucionActionPerformed(evt);

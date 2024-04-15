@@ -32,4 +32,5 @@ public interface IInstitucionBO {
      */
     public Institucion conversorDatos(InstitucionDTO institucionSeleccionada);
 
+    public InstitucionDTO conversionDatos(Institucion institucion);
 }

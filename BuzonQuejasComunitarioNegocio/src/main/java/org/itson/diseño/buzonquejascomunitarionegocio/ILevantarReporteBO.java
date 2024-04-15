@@ -1,6 +1,7 @@
 
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import dto.InstitucionDTO;
 import dto.ReporteDTO;
 import java.util.List;
 
@@ -12,4 +13,6 @@ public interface ILevantarReporteBO {
     ReporteDTO validarReporte(ReporteDTO reporteIngresado);
     
     List<ReporteDTO> mostrarReportes();
+    
+    public List<InstitucionDTO> cargarDatos();
 }

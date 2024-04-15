@@ -9,6 +9,8 @@ import dto.DomicilioDTO;
 import dto.IncidenteDTO;
 import dto.InstitucionDTO;
 import dto.ReporteDTO;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.itson.diseño.buzonquejascomunitarionegocio.CiudadanoBO;
@@ -17,6 +19,7 @@ import org.itson.diseño.buzonquejascomunitarionegocio.ICiudadanoBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IDomicilioBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IIncidenteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IInstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ILevantarReporteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IReporteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IncidenteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.InstitucionBO;
@@ -28,10 +31,17 @@ import org.itson.diseño.buzonquejascomunitarionegocio.ReporteBO;
  */
 class LevantarReporte {
 
+    ILevantarReporteBO levantarReporteBO;
+    
     protected LevantarReporte() {
 
     }
 
+    protected List<InstitucionDTO> obtenerInstituciones(){
+        List<InstitucionDTO> instituciones = levantarReporteBO.cargarDatos();
+        return instituciones;
+    }
+    
     protected InstitucionDTO seleccionarInsitucion(InstitucionDTO institucion) {
         IInstitucionBO insitucionBO = new InstitucionBO();
         InstitucionDTO institucionDTO = new InstitucionDTO(

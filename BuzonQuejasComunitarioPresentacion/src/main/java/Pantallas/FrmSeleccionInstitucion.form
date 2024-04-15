@@ -209,13 +209,7 @@
               <Color blue="21" green="21" red="21" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="5">
-                <StringItem index="0" value="CFE"/>
-                <StringItem index="1" value="OOMAPAS"/>
-                <StringItem index="2" value="Policia Municipal de Cajeme"/>
-                <StringItem index="3" value="Residuos S&#xf3;lidos Urbanos"/>
-                <StringItem index="4" value="IMCYC"/>
-              </StringArray>
+              <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>

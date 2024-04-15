@@ -32,4 +32,5 @@ public interface IIncidenteBO {
      */
     public Incidente convertirDatos(IncidenteDTO incidenteDTO);
 
+    public IncidenteDTO conversionDatos(Incidente incidente);
 }

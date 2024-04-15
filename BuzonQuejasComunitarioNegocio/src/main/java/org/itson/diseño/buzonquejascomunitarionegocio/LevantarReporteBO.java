@@ -12,6 +12,8 @@ import dto.ReporteDTO;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import objetosMock.ObjetosInstitucion;
+import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Institucion;
 
 /**
  *
@@ -20,6 +22,8 @@ import java.util.List;
 public class LevantarReporteBO implements ILevantarReporteBO {
 
     List<ReporteDTO> reportes;
+    ObjetosInstitucion objetosInstitucion;
+    IInstitucionBO institucionBO;
 
     public LevantarReporteBO() {
         cargarDatos();
@@ -41,8 +45,23 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         return reportes;
     }
 
-    private void cargarDatos() {
-
+    @Override
+    public List<InstitucionDTO> cargarDatos() {
+        
+        objetosInstitucion.agregarIncidentesCFE();
+        objetosInstitucion.agregarIncidentesOOMAPAS();
+        objetosInstitucion.agregarInstituciones();
+        
+        List<Institucion> institucionesEntity = objetosInstitucion.getInstituciones();
+        
+        List<InstitucionDTO> institucionesDTO = new ArrayList<>();
+        for (Institucion institucion : institucionesEntity) {
+            InstitucionDTO institucionDTO = institucionBO.conversionDatos(institucion);
+            institucionesDTO.add(institucionDTO);
+        }
+        
+        return institucionesDTO;
+        
 //        reportes = new LinkedList<>();
 //        CiudadanoDTO ciudadano1 = new CiudadanoDTO("Gael Rafael", "Castro", "Molina", "CAMG040802HSRSLLA5", 6442267330L, "gc@gmail.com");
 //        CiudadanoDTO ciudadano2 = new CiudadanoDTO("Hisamy", "Cinco", "Cota", "CICH041019HSRSNAA2", 6871909800L, "hisamy5@gmail.com");

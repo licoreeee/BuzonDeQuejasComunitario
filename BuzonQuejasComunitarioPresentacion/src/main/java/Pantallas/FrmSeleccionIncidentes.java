@@ -156,7 +156,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Descripción", "Title 3"
+                "Incidentes"
             }
         ));
         tblIncidentes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));

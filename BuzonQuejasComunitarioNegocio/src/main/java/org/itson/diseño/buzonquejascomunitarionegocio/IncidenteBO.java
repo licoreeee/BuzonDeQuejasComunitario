@@ -42,4 +42,10 @@ public class IncidenteBO implements IIncidenteBO {
                 incidenteDTO.getNombreIncidente());
         return incidente;
     }
+    
+    @Override
+    public IncidenteDTO conversionDatos(Incidente incidente){
+        IncidenteDTO incidenteConvertido = new IncidenteDTO(incidente.getNombreIncidente());
+        return incidenteConvertido;
+    }
 }
