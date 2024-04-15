@@ -26,6 +26,8 @@ public class LevantarReporteBO implements ILevantarReporteBO {
     IInstitucionBO institucionBO;
 
     public LevantarReporteBO() {
+        institucionBO = new InstitucionBO();
+        objetosInstitucion = new ObjetosInstitucion();
         cargarDatos();
     }
 
@@ -47,21 +49,20 @@ public class LevantarReporteBO implements ILevantarReporteBO {
 
     @Override
     public List<InstitucionDTO> cargarDatos() {
-        
         objetosInstitucion.agregarIncidentesCFE();
         objetosInstitucion.agregarIncidentesOOMAPAS();
         objetosInstitucion.agregarInstituciones();
-        
+
         List<Institucion> institucionesEntity = objetosInstitucion.getInstituciones();
-        
+
         List<InstitucionDTO> institucionesDTO = new ArrayList<>();
         for (Institucion institucion : institucionesEntity) {
             InstitucionDTO institucionDTO = institucionBO.conversionDatos(institucion);
             institucionesDTO.add(institucionDTO);
         }
-        
+
         return institucionesDTO;
-        
+
 //        reportes = new LinkedList<>();
 //        CiudadanoDTO ciudadano1 = new CiudadanoDTO("Gael Rafael", "Castro", "Molina", "CAMG040802HSRSLLA5", 6442267330L, "gc@gmail.com");
 //        CiudadanoDTO ciudadano2 = new CiudadanoDTO("Hisamy", "Cinco", "Cota", "CICH041019HSRSNAA2", 6871909800L, "hisamy5@gmail.com");
@@ -98,7 +99,6 @@ public class LevantarReporteBO implements ILevantarReporteBO {
 //        reportes.add(reporte3);
 //        reportes.add(reporte4);
 //        reportes.add(reporte5);
-
     }
 
 }
