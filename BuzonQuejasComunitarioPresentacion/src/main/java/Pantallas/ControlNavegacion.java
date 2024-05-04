@@ -9,7 +9,7 @@ import dto.ReporteDTO;
 
 /**
  *
- * @author castr
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class ControlNavegacion {
 
@@ -45,6 +45,31 @@ public class ControlNavegacion {
     public void mostrarFolio() {
         FrmFolio folio = new FrmFolio();
         folio.setVisible(true);
+    }
+    
+    public void mostrarCodigoAdmin() {
+        FrmCodigoAdmin codigoAdmin = new FrmCodigoAdmin();
+        codigoAdmin.setVisible(true);
+    }
+    
+    public void mostrarInstitucionesRegistradas() {
+        FrmInstitucionesRegistradas institucionesRegistradas = new FrmInstitucionesRegistradas();
+        institucionesRegistradas.setVisible(true);
+    }
+    
+    public void mostrarInfoInstitucion() {
+        FrmInfoInstitucion infoInstitucion = new FrmInfoInstitucion();
+        infoInstitucion.setVisible(true);
+    }
+    
+    public void mostrarIncidentes() {
+        FrmIncidentes incidentes = new FrmIncidentes();
+        incidentes.setVisible(true);
+    }
+    
+    public void mostrarConfirmado() {
+        FrmConfirmado confirmado = new FrmConfirmado();
+        confirmado.setVisible(true);
     }
 
 }

@@ -10,7 +10,7 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 /**
  *
- * @author victo
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmMenuPrincipal extends javax.swing.JFrame {
 
@@ -35,6 +35,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         btnAvances = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
+        btnAdminAcceso = new javax.swing.JButton();
         btnLevantarReporte2 = new javax.swing.JButton();
         logoGobiernoMexico = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -59,7 +60,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 btnAvancesActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
+        jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 50, -1, -1));
 
         btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnHistorial.setForeground(new java.awt.Color(241, 241, 241));
@@ -70,7 +71,18 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 btnHistorialActionPerformed(evt);
             }
         });
-        jPanel1.add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
+        jPanel1.add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
+
+        btnAdminAcceso.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAdminAcceso.setForeground(new java.awt.Color(241, 241, 241));
+        btnAdminAcceso.setText("Admin");
+        btnAdminAcceso.setContentAreaFilled(false);
+        btnAdminAcceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAdminAccesoActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAdminAcceso, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, -1, -1));
 
         btnLevantarReporte2.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnLevantarReporte2.setForeground(new java.awt.Color(241, 241, 241));
@@ -81,7 +93,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
                 btnLevantarReporte2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnLevantarReporte2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
+        jPanel1.add(btnLevantarReporte2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 50, -1, -1));
 
         logoGobiernoMexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_gobierno_mexico.png"))); // NOI18N
         jPanel1.add(logoGobiernoMexico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -136,8 +148,15 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLevantarReporte2ActionPerformed
 
+    private void btnAdminAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminAccesoActionPerformed
+        controladores.mostrarCodigoAdmin();
+        dispose();
+
+    }//GEN-LAST:event_btnAdminAccesoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAdminAcceso;
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte2;
