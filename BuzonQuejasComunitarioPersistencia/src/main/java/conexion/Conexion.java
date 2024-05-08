@@ -1,4 +1,4 @@
-package persistencia;
+package conexion;
 
 import com.mongodb.ConnectionString;
 import com.mongodb.client.MongoClients;
