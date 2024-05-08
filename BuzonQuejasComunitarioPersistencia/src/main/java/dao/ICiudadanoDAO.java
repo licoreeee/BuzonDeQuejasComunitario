@@ -4,10 +4,14 @@
  */
 package dao;
 
+import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Ciudadano;
+
 /**
  *
  * @author Dell
  */
 public interface ICiudadanoDAO {
+    
+    Ciudadano agregarCiudadano() throws PersistenciaException;
     
 }
