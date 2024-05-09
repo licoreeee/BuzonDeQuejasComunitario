@@ -38,8 +38,8 @@ class LevantarReporte {
         this.levantarReporteBO = new LevantarReporteBO();
     }
 
-    protected List<InstitucionDTO> obtenerInstituciones() {
-        List<InstitucionDTO> instituciones = levantarReporteBO.cargarDatos();
+        protected List<InstitucionDTO> obtenerInstituciones() {
+            List<InstitucionDTO> instituciones = levantarReporteBO.cargarDatos();
         return instituciones;
     }
     
