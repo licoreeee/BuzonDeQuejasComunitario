@@ -4,6 +4,7 @@
  */
 package dao;
 
+import Excepciones.FindException;
 import entidades.Reporte;
 import java.util.Calendar;
 import Excepciones.PersistenciaException;
@@ -16,14 +17,14 @@ public interface IReportesDAO {
     
     Reporte agregarReporte() throws PersistenciaException;
     
-    Reporte obtenerReportePorTitulo(String titulo) throws PersistenciaException;
+    Reporte obtenerReportePorTitulo(String titulo) throws FindException;
     
-    Reporte obtenerReportePorInstitucion(String institucion) throws PersistenciaException;
+    Reporte obtenerReportePorInstitucion(String institucion) throws FindException;
     
-    Reporte obtenerReportePorIncidente(String incidente) throws PersistenciaException;
+    Reporte obtenerReportePorIncidente(String incidente) throws FindException;
     
-    Reporte obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws PersistenciaException;
+    Reporte obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException;
     
-    Reporte obtenerReportePorCoordendas(String coordendas) throws PersistenciaException;
+    Reporte obtenerReportePorCoordendas(String coordendas) throws FindException;
     
 }
