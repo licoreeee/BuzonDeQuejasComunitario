@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entidades;
 
 import org.bson.types.ObjectId;
@@ -17,7 +14,7 @@ public class Ciudadano {
     private String apellidoP;
     private String apellidoM;
     private String curp;
-    private String numeroTelefono;
+    private String telefono;
     private String correo;
 
     public ObjectId getId() {
@@ -60,12 +57,12 @@ public class Ciudadano {
         this.curp = curp;
     }
 
-    public String getNumeroTelefono() {
-        return numeroTelefono;
+    public String geTelefono() {
+        return telefono;
     }
 
-    public void setNumeroTelefono(String numeroTelefono) {
-        this.numeroTelefono = numeroTelefono;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     public String getCorreo() {

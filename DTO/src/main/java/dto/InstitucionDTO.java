@@ -10,22 +10,8 @@ public class InstitucionDTO {
     private String nombreInstitucion;
     private String funcionInstitucion;
     private String siglas;
-    private List<IncidenteDTO> incidentes;
 
     public InstitucionDTO() {
-    }
-
-    public InstitucionDTO(String nombreInstitucion, String funcionInstitucion, String siglas) {
-        this.nombreInstitucion = nombreInstitucion;
-        this.funcionInstitucion = funcionInstitucion;
-        this.siglas = siglas;
-    }
-
-    public InstitucionDTO(String nombreInstitucion, String funcionInstitucion, String siglas, List<IncidenteDTO> incidentes) {
-        this.nombreInstitucion = nombreInstitucion;
-        this.funcionInstitucion = funcionInstitucion;
-        this.siglas = siglas;
-        this.incidentes = incidentes;
     }
 
     public String getNombreInstitucion() {
@@ -52,12 +38,5 @@ public class InstitucionDTO {
         this.siglas = siglas;
     }
 
-    public List<IncidenteDTO> getIncidentes() {
-        return incidentes;
-    }
-
-    public void setIncidentes(List<IncidenteDTO> incidentes) {
-        this.incidentes = incidentes;
-    }
 
 }

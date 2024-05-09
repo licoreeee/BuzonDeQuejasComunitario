@@ -1,40 +1,19 @@
 package dto;
 
+import java.util.Calendar;
+
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class ReporteDTO {
 
+    private String id;
     private int folio;
     private String titulo;
     private String descripcion;
-    private IncidenteDTO incidente;
-    private InstitucionDTO institucion;
-    private DomicilioDTO domicilio;
-    private CiudadanoDTO ciudadano;
+    private Calendar fechaCreacion;
 
     public ReporteDTO() {
-    }
-
-    public ReporteDTO(int folio, String titulo, IncidenteDTO incidente) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.incidente = incidente;
-    }
-
-    public ReporteDTO(int folio, String titulo, String descripcion, IncidenteDTO incidente, InstitucionDTO institucion, DomicilioDTO domicilio, CiudadanoDTO ciudadano) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.incidente = incidente;
-        this.institucion = institucion;
-        this.domicilio = domicilio;
-        this.ciudadano = ciudadano;
-    }
-
-    public ReporteDTO(String titulo, String descripcion) {
-        this.titulo = titulo;
-        this.descripcion = descripcion;
     }
 
     public int getFolio() {
@@ -61,39 +40,22 @@ public class ReporteDTO {
         this.descripcion = descripcion;
     }
 
-    public IncidenteDTO getIncidente() {
-        return incidente;
+    public String getId() {
+        return id;
     }
 
-    public void setIncidente(IncidenteDTO incidente) {
-        this.incidente = incidente;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public InstitucionDTO getInstitucion() {
-        return institucion;
+    public Calendar getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setInstitucion(InstitucionDTO institucion) {
-        this.institucion = institucion;
+    public void setFechaCreacion(Calendar fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
-
-    public DomicilioDTO getDomicilio() {
-        return domicilio;
-    }
-
-    public void setDomicilio(DomicilioDTO domicilio) {
-        this.domicilio = domicilio;
-    }
-
-    public CiudadanoDTO getCiudadano() {
-        return ciudadano;
-    }
-
-    public void setCiudadano(CiudadanoDTO ciudadano) {
-        this.ciudadano = ciudadano;
-    }
-
-   
+    
     }
 
     
