@@ -1,8 +1,9 @@
 
 package dao;
 
+import Excepciones.PersistenciaException;
 import entidades.LogDeBusqueda;
-import persistenciaException.PersistenciaException;
+
 
 /**
  *
