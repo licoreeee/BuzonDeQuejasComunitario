@@ -16,8 +16,8 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class Conexion implements IConexion{
     
-    String cadenaConexion = "mongodb://127.0.0.1:27017";
-    String nombreBaseDatos = "BuzonQuejasComunitario";
+    private String cadenaConexion = "mongodb://127.0.0.1:27017";
+    private String nombreBaseDatos = "BuzonQuejasComunitario";
 
     @Override
     public MongoClient crearConexion() {
@@ -30,9 +30,8 @@ public class Conexion implements IConexion{
                 .build();
         MongoClient mongoClient = MongoClients.create(settings);
         MongoClient cliente = MongoClients.create(cadenaConexion);
-        MongoDatabase baseDatos = cliente.getDatabase(nombreBaseDatos);
         
-        return mongoClient;
+        return cliente;
     }
     
 }
