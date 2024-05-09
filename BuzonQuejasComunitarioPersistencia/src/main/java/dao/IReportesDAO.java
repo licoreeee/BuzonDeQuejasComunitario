@@ -6,7 +6,7 @@ package dao;
 
 import entidades.Reporte;
 import java.util.Calendar;
-import persistenciaException.PersistenciaException;
+import Excepciones.PersistenciaException;
 
 /**
  *

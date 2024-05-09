@@ -4,12 +4,17 @@
  */
 package PantallasAvance;
 
+import java.io.File;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+
 /**
  *
  * @author hisam
  */
 public class FrmCrearComentario extends javax.swing.JFrame {
-
+byte[] photo = null;
+String fileName = null;
     /**
      * Creates new form CrearComentario
      */
@@ -46,6 +51,9 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         lblComentario1 = new javax.swing.JLabel();
         btnContinuar1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        btnImagen = new javax.swing.JButton();
+        lblImagen = new javax.swing.JLabel();
+        lblSubirImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,7 +77,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         jlbContexto.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jlbContexto.setForeground(new java.awt.Color(110, 110, 110));
         jlbContexto.setText("Seleccione el reporte que le desea hacer modificaciones.");
-        pnlFondo.add(jlbContexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
+        pnlFondo.add(jlbContexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
         btnComentariosReporte.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnComentariosReporte.setForeground(new java.awt.Color(181, 18, 57));
@@ -90,7 +98,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         lblDireccionReporte1.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
         lblDireccionReporte1.setForeground(new java.awt.Color(33, 33, 33));
         lblDireccionReporte1.setText("Comentario");
-        pnlFondo.add(lblDireccionReporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
+        pnlFondo.add(lblDireccionReporte1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, -1));
 
         lblDescripcionReporte.setText("Representa un peligro sanitario.");
         pnlFondo.add(lblDescripcionReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 210, -1, -1));
@@ -114,7 +122,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         lblTituloComentario.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         lblTituloComentario.setForeground(new java.awt.Color(33, 33, 33));
         lblTituloComentario.setText("Título*:");
-        pnlFondo.add(lblTituloComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, -1, -1));
+        pnlFondo.add(lblTituloComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
 
         txtTitulo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(33, 33, 33));
@@ -124,7 +132,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
                 txtTituloActionPerformed(evt);
             }
         });
-        pnlFondo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 180, 280, -1));
+        pnlFondo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 280, -1));
 
         txtComentario.setColumns(20);
         txtComentario.setRows(5);
@@ -135,7 +143,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         lblComentario1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         lblComentario1.setForeground(new java.awt.Color(33, 33, 33));
         lblComentario1.setText("Comentario*:");
-        pnlFondo.add(lblComentario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, -1, -1));
+        pnlFondo.add(lblComentario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
 
         btnContinuar1.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnContinuar1.setForeground(new java.awt.Color(181, 18, 57));
@@ -152,6 +160,20 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel1.setText("*Campo obligatorio.");
         pnlFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+
+        btnImagen.setText("Subir Imagen");
+        btnImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImagenActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+
+        lblImagen.setText("jLabel2");
+        pnlFondo.add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+
+        lblSubirImagen.setText("jLabel2");
+        pnlFondo.add(lblSubirImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -179,11 +201,21 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnContinuar1ActionPerformed
 
+    private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
+        JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);
+        File file = chooser.getSelectedFile();
+        lblImagen.setIcon(new ImageIcon(file.toString()));
+        fileName = file.getAbsolutePath();
+        lblSubirImagen.setText(fileName);
+    }//GEN-LAST:event_btnImagenActionPerformed
+
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComentariosReporte;
     private javax.swing.JButton btnContinuar1;
+    private javax.swing.JButton btnImagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbContexto;
@@ -196,7 +228,9 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     private javax.swing.JLabel lblFolioReporte;
     private javax.swing.JLabel lblH2;
     private javax.swing.JLabel lblHeader;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblLogo;
+    private javax.swing.JLabel lblSubirImagen;
     private javax.swing.JLabel lblTituloComentario;
     private javax.swing.JLabel lblTituloReporte;
     private javax.swing.JPanel pnlFondo;

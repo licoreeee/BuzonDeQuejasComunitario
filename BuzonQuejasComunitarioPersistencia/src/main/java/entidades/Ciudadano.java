@@ -8,7 +8,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author Dell
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class Ciudadano {
 

@@ -6,7 +6,7 @@ package dao;
 
 
 import entidades.Ciudadano;
-import persistenciaException.PersistenciaException;
+import Excepciones.PersistenciaException;
 
 /**
  *

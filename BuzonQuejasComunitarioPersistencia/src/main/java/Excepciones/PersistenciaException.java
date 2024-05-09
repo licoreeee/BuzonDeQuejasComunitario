@@ -1,9 +1,9 @@
 
-package persistenciaException;
+package Excepciones;
 
 /**
  *
- * @author Dell
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class PersistenciaException extends Exception{
 
