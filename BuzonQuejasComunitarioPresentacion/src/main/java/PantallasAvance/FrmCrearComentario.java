@@ -5,6 +5,7 @@
 package PantallasAvance;
 
 import java.io.File;
+import java.io.*;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 
@@ -208,6 +209,18 @@ String fileName = null;
         lblImagen.setIcon(new ImageIcon(file.toString()));
         fileName = file.getAbsolutePath();
         lblSubirImagen.setText(fileName);
+        try{
+           File image = new  File(fileName);
+           FileInputStream fis = FileInputStream(image);
+           ByteArrayOutputStream baos = ByteArrayOutputStream();
+           byte[] buf =  new  byte[1024];
+            for(int readNum; (readNum=fis.read(buf))!= -1;){
+                bos
+            }
+           
+        }catch(Exception e){
+            
+        }
     }//GEN-LAST:event_btnImagenActionPerformed
 
     
