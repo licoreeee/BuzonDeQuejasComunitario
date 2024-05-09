@@ -2,6 +2,7 @@
 package entidades;
 
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -9,6 +10,7 @@ import java.util.List;
  */
 public class LogDeBusqueda {
     
+    private ObjectId id;
     private Ciudadano ciudadano;
     List<String> filtros;
 
