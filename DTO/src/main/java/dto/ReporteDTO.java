@@ -16,6 +16,15 @@ public class ReporteDTO {
     public ReporteDTO() {
     }
 
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    
+
     public int getFolio() {
         return folio;
     }

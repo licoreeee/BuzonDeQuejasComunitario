@@ -24,5 +24,5 @@ public interface IReporteBO {
      * Reporte.
      * @return El objeto Reporte resultante de la conversión.
      */
-    public Reporte convertirDatos(ReporteDTO reporteDTO);
+   Reporte convertirDatosDTO(ReporteDTO reporteDTO);
 }

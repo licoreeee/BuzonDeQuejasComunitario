@@ -20,9 +20,11 @@ public class ReporteBO implements IReporteBO{
     @Override
     public void transporteDatos(ReporteDTO reporteNuevo) {
         ReporteDTO reporteDTO = new ReporteDTO(
+                reporteNuevo.getFolio(),
                 reporteNuevo.getTitulo(),
-                reporteNuevo.getDescripcion());
-        convertirDatos(reporteDTO);
+                reporteNuevo.getDescripcion(),
+                reporteNuevo.getFechaCreacion());
+        convertirDatosDTO(reporteDTO);
     }
 
     /**
@@ -34,7 +36,7 @@ public class ReporteBO implements IReporteBO{
      * @return El objeto Reporte resultante de la conversión.
      */
     @Override
-    public Reporte convertirDatos(ReporteDTO reporteDTO) {
+    public Reporte convertirDatosDTO(ReporteDTO reporteDTO) {
         Reporte reporte = new Reporte(
                 reporteDTO.getTitulo(),
                 reporteDTO.getTitulo());
