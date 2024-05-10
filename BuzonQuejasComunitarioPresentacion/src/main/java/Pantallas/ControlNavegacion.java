@@ -4,6 +4,7 @@
  */
 package Pantallas;
 
+import PantallasAvance.FrmPortalInstituciones;
 import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 
@@ -21,7 +22,11 @@ public class ControlNavegacion {
         FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
         menuPrincipal.setVisible(true);
     }
-
+    
+    public void mostrarPortalInstituciones(){
+        FrmPortalInstituciones portalInstituciones = new FrmPortalInstituciones();
+        portalInstituciones.setVisible(true);
+    }
     public void mostrarSeleccionInstitucion() {
         FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
         seleccionInstitucion.setVisible(true);
