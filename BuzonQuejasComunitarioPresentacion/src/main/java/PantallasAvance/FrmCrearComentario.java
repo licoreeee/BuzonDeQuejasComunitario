@@ -1,26 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package PantallasAvance;
 
+import Excepciones.PersistenciaException;
+import dto.ComentarioDTO;
 import java.io.File;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
- * @author hisam
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmCrearComentario extends javax.swing.JFrame {
-byte[] photo = null;
-String fileName = null;
+
+    private ComentarioDTO comentarioDTO;
+    private final RegistrarAvance registrarAvance;
+    byte[] photo;
+    String fileName;
+
     /**
      * Creates new form CrearComentario
      */
     public FrmCrearComentario() {
         initComponents();
+        registrarAvance = new RegistrarAvance();
+        photo = null;
+        fileName = null;
     }
 
     /**
@@ -199,7 +208,24 @@ String fileName = null;
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnContinuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuar1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            comentarioDTO = new ComentarioDTO(
+                    txtTitulo.getText(),
+                    txtComentario.getText(),
+                    photo);
+            registrarAvance.registarComentario(comentarioDTO);
+        } catch (PersistenciaException e) {
+            Logger.getLogger(
+                    FrmCrearComentario.class.getName()).log(
+                    Level.SEVERE,
+                    null,
+                    e);
+            JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Error de persistencia",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnContinuar1ActionPerformed
 
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
@@ -209,21 +235,34 @@ String fileName = null;
         lblImagen.setIcon(new ImageIcon(file.toString()));
         fileName = file.getAbsolutePath();
         lblSubirImagen.setText(fileName);
-        try{
-           File image = new  File(fileName);
-           FileInputStream fis = FileInputStream(image);
-           ByteArrayOutputStream baos = ByteArrayOutputStream();
-           byte[] buf =  new  byte[1024];
-            for(int readNum; (readNum=fis.read(buf))!= -1;){
-                bos
+
+        File image = new File(fileName);
+        try (FileInputStream fis = new FileInputStream(image)) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                baos.write(buf, 0, readNum);
             }
-           
-        }catch(Exception e){
-            
+            photo = baos.toByteArray();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error al cargar la imágen",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error al leer el archivo",
+                    JOptionPane.ERROR_MESSAGE);
         }
+
+
     }//GEN-LAST:event_btnImagenActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComentariosReporte;
@@ -250,4 +289,5 @@ String fileName = null;
     private javax.swing.JTextArea txtComentario;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+
 }

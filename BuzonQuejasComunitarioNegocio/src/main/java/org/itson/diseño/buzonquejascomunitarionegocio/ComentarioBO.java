@@ -4,10 +4,16 @@
  */
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import Excepciones.PersistenciaException;
+import conexion.Conexion;
+import conexion.IConexion;
+import dao.ComentariosDAO;
 import dto.ComentarioDTO;
 import entidades.Comentario;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.Document;
+import org.bson.types.Binary;
 
 /**
  *
@@ -15,18 +21,26 @@ import java.util.List;
  */
 public class ComentarioBO implements IComentarioBO {
 
-    @Override
-    public void transporteDatos(ComentarioDTO comentarioDTO) {
-        convertirDatosDTO(comentarioDTO);
+    private final ComentariosDAO comentariosDAO;
+    final IConexion conexion;
+
+    public ComentarioBO() {
+        conexion = new Conexion();
+        comentariosDAO = new ComentariosDAO(conexion);
     }
 
     @Override
-    public Comentario convertirDatosDTO(ComentarioDTO comentarioDTO) {
+    public void transporteDatos(ComentarioDTO comentarioDTO) throws PersistenciaException {
+        byte[] photo = comentarioDTO.getPhoto();
+        Binary binaryPhoto = new Binary(photo);
+
         Comentario comentario = new Comentario(
                 comentarioDTO.getTitulo(),
                 comentarioDTO.getComentario(),
-                comentarioDTO.getPhoto());
-        return comentario;
+                binaryPhoto
+        );
+        comentariosDAO.agregarComentario(comentario);
+
     }
 
     @Override
@@ -40,10 +54,13 @@ public class ComentarioBO implements IComentarioBO {
         List<ComentarioDTO> comentariosDTO = new ArrayList<>();
 
         for (Comentario comentario : comentarios) {
+            byte[] photoBytes = comentario.getPhoto().getData();
+
             ComentarioDTO comentarioDTO = new ComentarioDTO(
                     comentario.getTitulo(),
                     comentario.getComentario(),
-                    comentario.getPhoto());
+                    photoBytes);
+            
             comentariosDTO.add(comentarioDTO);
         }
 

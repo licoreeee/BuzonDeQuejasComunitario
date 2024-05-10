@@ -5,6 +5,7 @@
 package entidades;
 
 import java.sql.Blob;
+import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
 /**
@@ -16,19 +17,19 @@ public class Comentario {
     private ObjectId _id;
     private String titulo;
     private String comentario;
-    private Blob photo;
+    private Binary photo;
 
     public Comentario() {
     }
 
-    public Comentario(ObjectId _id, String titulo, String comentario, Blob photo) {
+    public Comentario(ObjectId _id, String titulo, String comentario, Binary  photo) {
         this._id = _id;
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
     }
 
-    public Comentario(String titulo, String comentario, Blob photo) {
+    public Comentario(String titulo, String comentario, Binary photo) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
@@ -58,11 +59,11 @@ public class Comentario {
         this.comentario = comentario;
     }
 
-    public Blob getPhoto() {
+    public Binary  getPhoto() {
         return photo;
     }
 
-    public void setPhoto(Blob photo) {
+    public void setPhoto(Binary  photo) {
         this.photo = photo;
     }
     

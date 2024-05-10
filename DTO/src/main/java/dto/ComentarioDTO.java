@@ -14,9 +14,9 @@ public class ComentarioDTO {
 
     private String titulo;
     private String comentario;
-    private Blob photo;
+    private byte[] photo;
 
-    public ComentarioDTO(String titulo, String comentario, Blob photo) {
+    public ComentarioDTO(String titulo, String comentario,  byte[] photo) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
@@ -31,7 +31,7 @@ public class ComentarioDTO {
         return comentario;
     }
 
-    public Blob getPhoto() {
+    public  byte[] getPhoto() {
         return photo;
     }
     
