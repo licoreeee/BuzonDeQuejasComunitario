@@ -21,7 +21,7 @@ public class CiudadanosDAO implements ICiudadanosDAO{
     public CiudadanosDAO(IConexion conexion, MongoCollection<Ciudadano> coleccion) {
          this.conexion = conexion;
         MongoDatabase database = conexion.crearConexion();
-        this.collection = database.getCollection("Instituciones", Ciudadano.class);
+        this.collection = database.getCollection("Ciudadanos", Ciudadano.class);
     }
 
     @Override

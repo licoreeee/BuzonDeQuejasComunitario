@@ -4,7 +4,7 @@
  */
 package org.itson.diseño.levantarreportess;
 
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.util.List;
 
@@ -16,7 +16,7 @@ public interface IFacadeLevantarReporte {
 
     public ReporteDTO levantarReporte(ReporteDTO reporteNuevo);
     
-    public InstitucionDTO obtenerInstitucion(InstitucionDTO institucionSeleccionada);
+    public InstitucionNuevaDTO obtenerInstitucion(InstitucionNuevaDTO institucionSeleccionada);
 
-    public List<InstitucionDTO> obtenerInstituciones();
+    public List<InstitucionNuevaDTO> obtenerInstituciones();
 }

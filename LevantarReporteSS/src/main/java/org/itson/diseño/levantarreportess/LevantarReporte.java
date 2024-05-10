@@ -7,7 +7,7 @@ package org.itson.diseño.levantarreportess;
 import dto.CiudadanoDTO;
 import dto.DomicilioDTO;
 import dto.IncidenteDTO;
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.util.ArrayList;
 import java.util.List;
@@ -38,14 +38,14 @@ class LevantarReporte {
         this.levantarReporteBO = new LevantarReporteBO();
     }
 
-        protected List<InstitucionDTO> obtenerInstituciones() {
-            List<InstitucionDTO> instituciones = levantarReporteBO.cargarDatos();
+        protected List<InstitucionNuevaDTO> obtenerInstituciones() {
+            List<InstitucionNuevaDTO> instituciones = levantarReporteBO.cargarDatos();
         return instituciones;
     }
     
-    protected InstitucionDTO seleccionarInsitucion(InstitucionDTO institucion) {
+    protected InstitucionNuevaDTO seleccionarInsitucion(InstitucionNuevaDTO institucion) {
         IInstitucionBO insitucionBO = new InstitucionBO();
-        InstitucionDTO institucionDTO = new InstitucionDTO(
+        InstitucionNuevaDTO institucionDTO = new InstitucionNuevaDTO(
                 institucion.getNombreInstitucion(),
                 institucion.getFuncionInstitucion(),
                 institucion.getSiglas()

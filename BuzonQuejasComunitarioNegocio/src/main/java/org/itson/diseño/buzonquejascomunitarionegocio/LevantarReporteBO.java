@@ -7,7 +7,7 @@ package org.itson.diseño.buzonquejascomunitarionegocio;
 import dto.CiudadanoDTO;
 import dto.DomicilioDTO;
 import dto.IncidenteDTO;
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -39,7 +39,7 @@ public class LevantarReporteBO implements ILevantarReporteBO {
     }
 
     @Override
-    public List<InstitucionDTO> cargarDatos() {
+    public List<InstitucionNuevaDTO> cargarDatos() {
         objetosInstitucion.agregarInstituciones();
         List<Institucion> institucionesEntity = objetosInstitucion.getInstituciones();
 
@@ -49,9 +49,9 @@ public class LevantarReporteBO implements ILevantarReporteBO {
             throw new IllegalStateException("La lista de instituciones contiene duplicados.");
         }
 
-        List<InstitucionDTO> institucionesDTO = new ArrayList<>();
+        List<InstitucionNuevaDTO> institucionesDTO = new ArrayList<>();
         for (Institucion institucion : institucionesEntity) {
-            InstitucionDTO institucionDTO = institucionBO.conversionDatos(institucion);
+            InstitucionNuevaDTO institucionDTO = institucionBO.conversionDatos(institucion);
             institucionesDTO.add(institucionDTO);
         }
 

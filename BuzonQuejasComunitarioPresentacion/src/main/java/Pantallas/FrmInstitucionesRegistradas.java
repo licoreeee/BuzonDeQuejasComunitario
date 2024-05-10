@@ -5,7 +5,7 @@
 package Pantallas;
 
 import dto.IncidenteDTO;
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
