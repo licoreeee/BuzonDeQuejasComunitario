@@ -14,7 +14,7 @@ import Excepciones.PersistenciaException;
  */
 public interface ICiudadanosDAO {
     
-    Ciudadano agregarCiudadano() throws PersistenciaException;
+    Ciudadano agregarCiudadano(Ciudadano ciudadano) throws PersistenciaException;
     
     Ciudadano obtenerCiudadanoPorCURP(String curp) throws PersistenciaException;
 }

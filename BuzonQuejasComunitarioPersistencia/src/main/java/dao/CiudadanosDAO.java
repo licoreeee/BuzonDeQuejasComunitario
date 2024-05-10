@@ -2,9 +2,8 @@
 package dao;
 
 
-import entidades.Ciudadano;
 import Excepciones.PersistenciaException;
-import com.mongodb.client.MongoClient;
+import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import conexion.IConexion;
@@ -17,19 +16,22 @@ import entidades.Ciudadano;
 public class CiudadanosDAO implements ICiudadanosDAO{
     
     private IConexion conexion;
-    private MongoCollection<Ciudadano> coleccion;
+    private MongoCollection<Ciudadano> collection;
 
     public CiudadanosDAO(IConexion conexion, MongoCollection<Ciudadano> coleccion) {
-        this.conexion = conexion;
-        this.coleccion = coleccion;
+         this.conexion = conexion;
+        MongoDatabase database = conexion.crearConexion();
+        this.collection = database.getCollection("Instituciones", Ciudadano.class);
     }
 
     @Override
-    public Ciudadano agregarCiudadano() throws PersistenciaException {
-        MongoClient mc = this.conexion.crearConexion();
-        MongoDatabase baseDatos = mc.getDatabase("BuzonQuejasComunitario");
-        coleccion = baseDatos.getCollection("Ciudadanos", Ciudadano.class);
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Ciudadano agregarCiudadano(Ciudadano ciudadano) throws PersistenciaException {
+       try {
+            collection.insertOne(ciudadano);
+        } catch (MongoException e) {
+            throw new PersistenciaException("error al agregar al ciudadano");
+        }
+        return ciudadano;
     }
 
     @Override
@@ -37,4 +39,8 @@ public class CiudadanosDAO implements ICiudadanosDAO{
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
-}
+    }
+
+   
+    
+

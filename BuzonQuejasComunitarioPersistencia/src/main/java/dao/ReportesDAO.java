@@ -4,6 +4,7 @@
  */
 package dao;
 
+import Excepciones.FindException;
 import entidades.Reporte;
 import java.util.Calendar;
 import Excepciones.PersistenciaException;
@@ -20,28 +21,29 @@ public class ReportesDAO implements IReportesDAO{
     }
 
     @Override
-    public Reporte obtenerReportePorTitulo(String titulo) throws PersistenciaException {
+    public Reporte obtenerReportePorTitulo(String titulo) throws FindException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Reporte obtenerReportePorInstitucion(String institucion) throws PersistenciaException {
+    public Reporte obtenerReportePorInstitucion(String institucion) throws FindException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Reporte obtenerReportePorIncidente(String incidente) throws PersistenciaException {
+    public Reporte obtenerReportePorIncidente(String incidente) throws FindException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Reporte obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws PersistenciaException {
+    public Reporte obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override
-    public Reporte obtenerReportePorCoordendas(String coordendas) throws PersistenciaException {
+    public Reporte obtenerReportePorCoordendas(String coordendas) throws FindException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
+
     
 }
