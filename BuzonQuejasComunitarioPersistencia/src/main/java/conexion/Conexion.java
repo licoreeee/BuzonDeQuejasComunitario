@@ -12,7 +12,7 @@ import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
  *
- * @author Dell
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class Conexion implements IConexion{
     

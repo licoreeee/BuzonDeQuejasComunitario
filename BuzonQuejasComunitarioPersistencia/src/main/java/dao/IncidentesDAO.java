@@ -22,7 +22,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author hisam
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class IncidentesDAO implements IIncidentesDAO {
 
@@ -32,7 +32,7 @@ public class IncidentesDAO implements IIncidentesDAO {
     public IncidentesDAO(IConexion conexion) {
         this.conexion = conexion;
         MongoDatabase database = conexion.crearConexion();
-        this.collection = database.getCollection("incidentes", Incidentes.class);
+        this.collection = database.getCollection("Incidentes", Incidentes.class);
     }
 
     @Override

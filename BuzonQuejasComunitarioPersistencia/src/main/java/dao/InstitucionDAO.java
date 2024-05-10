@@ -16,7 +16,7 @@ import java.util.List;
 
 /**
  *
- * @author hisam
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class InstitucionDAO implements IInstitucionDAO {
 
@@ -26,7 +26,7 @@ public class InstitucionDAO implements IInstitucionDAO {
     public InstitucionDAO(IConexion conexion) {
         this.conexion = conexion;
         MongoDatabase database = conexion.crearConexion();
-        this.collection = database.getCollection("instituciones", Institucion.class);
+        this.collection = database.getCollection("Instituciones", Institucion.class);
     }
 
     /*

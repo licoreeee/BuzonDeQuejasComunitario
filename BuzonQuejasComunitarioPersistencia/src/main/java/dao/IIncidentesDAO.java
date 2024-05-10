@@ -11,7 +11,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author hisam
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface IIncidentesDAO {
     
