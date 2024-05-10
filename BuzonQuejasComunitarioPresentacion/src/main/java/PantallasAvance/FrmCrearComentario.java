@@ -1,26 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package PantallasAvance;
 
+import Excepciones.PersistenciaException;
+import dto.ComentarioDTO;
 import java.io.File;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
- * @author hisam
+ * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmCrearComentario extends javax.swing.JFrame {
-byte[] photo = null;
-String fileName = null;
+
+    private ComentarioDTO comentarioDTO;
+    private final RegistrarAvance registrarAvance;
+    byte[] photo;
+    String fileName;
+
     /**
      * Creates new form CrearComentario
      */
     public FrmCrearComentario() {
         initComponents();
+        registrarAvance = new RegistrarAvance();
+        photo = null;
+        fileName = null;
     }
 
     /**
@@ -55,6 +64,7 @@ String fileName = null;
         btnImagen = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
         lblSubirImagen = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -118,12 +128,12 @@ String fileName = null;
         lblComentario.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         lblComentario.setForeground(new java.awt.Color(33, 33, 33));
         lblComentario.setText("Imagen:");
-        pnlFondo.add(lblComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, -1, -1));
+        pnlFondo.add(lblComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
 
         lblTituloComentario.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         lblTituloComentario.setForeground(new java.awt.Color(33, 33, 33));
         lblTituloComentario.setText("Título*:");
-        pnlFondo.add(lblTituloComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 150, -1, -1));
+        pnlFondo.add(lblTituloComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 140, -1, -1));
 
         txtTitulo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         txtTitulo.setForeground(new java.awt.Color(33, 33, 33));
@@ -133,18 +143,18 @@ String fileName = null;
                 txtTituloActionPerformed(evt);
             }
         });
-        pnlFondo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 280, -1));
+        pnlFondo.add(txtTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 160, 280, -1));
 
         txtComentario.setColumns(20);
         txtComentario.setRows(5);
         jScrollPane1.setViewportView(txtComentario);
 
-        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 290, 50));
+        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 210, 290, 50));
 
         lblComentario1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         lblComentario1.setForeground(new java.awt.Color(33, 33, 33));
         lblComentario1.setText("Comentario*:");
-        pnlFondo.add(lblComentario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
+        pnlFondo.add(lblComentario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
 
         btnContinuar1.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnContinuar1.setForeground(new java.awt.Color(181, 18, 57));
@@ -159,8 +169,8 @@ String fileName = null;
         pnlFondo.add(btnContinuar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
-        jLabel1.setText("*Campo obligatorio.");
-        pnlFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
+        jLabel1.setText("formato jpg");
+        pnlFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
         btnImagen.setText("Subir Imagen");
         btnImagen.addActionListener(new java.awt.event.ActionListener() {
@@ -168,13 +178,17 @@ String fileName = null;
                 btnImagenActionPerformed(evt);
             }
         });
-        pnlFondo.add(btnImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 310, -1, -1));
+        pnlFondo.add(btnImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
 
         lblImagen.setText("jLabel2");
         pnlFondo.add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         lblSubirImagen.setText("jLabel2");
-        pnlFondo.add(lblSubirImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 310, -1, -1));
+        pnlFondo.add(lblSubirImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        jLabel2.setText("*Campo obligatorio.");
+        pnlFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -199,7 +213,24 @@ String fileName = null;
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnContinuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuar1ActionPerformed
-        // TODO add your handling code here:
+        try {
+            comentarioDTO = new ComentarioDTO(
+                    txtTitulo.getText(),
+                    txtComentario.getText(),
+                    photo);
+            registrarAvance.registarComentario(comentarioDTO);
+        } catch (PersistenciaException e) {
+            Logger.getLogger(
+                    FrmCrearComentario.class.getName()).log(
+                    Level.SEVERE,
+                    null,
+                    e);
+            JOptionPane.showMessageDialog(
+                    null,
+                    e.getMessage(),
+                    "Error de persistencia",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnContinuar1ActionPerformed
 
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
@@ -209,27 +240,41 @@ String fileName = null;
         lblImagen.setIcon(new ImageIcon(file.toString()));
         fileName = file.getAbsolutePath();
         lblSubirImagen.setText(fileName);
-        try{
-           File image = new  File(fileName);
-           FileInputStream fis = FileInputStream(image);
-           ByteArrayOutputStream baos = ByteArrayOutputStream();
-           byte[] buf =  new  byte[1024];
-            for(int readNum; (readNum=fis.read(buf))!= -1;){
-                bos
+
+        File image = new File(fileName);
+        try (FileInputStream fis = new FileInputStream(image)) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                baos.write(buf, 0, readNum);
             }
-           
-        }catch(Exception e){
-            
+            photo = baos.toByteArray();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error al cargar la imágen",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error al leer el archivo",
+                    JOptionPane.ERROR_MESSAGE);
         }
+
+
     }//GEN-LAST:event_btnImagenActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComentariosReporte;
     private javax.swing.JButton btnContinuar1;
     private javax.swing.JButton btnImagen;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbContexto;
     private javax.swing.JLabel lblComentario;
@@ -250,4 +295,5 @@ String fileName = null;
     private javax.swing.JTextArea txtComentario;
     private javax.swing.JTextField txtTitulo;
     // End of variables declaration//GEN-END:variables
+
 }
