@@ -42,4 +42,6 @@ public class ReporteBO implements IReporteBO{
                 reporteDTO.getTitulo());
         return reporte;
     }
+    
+    
 }
