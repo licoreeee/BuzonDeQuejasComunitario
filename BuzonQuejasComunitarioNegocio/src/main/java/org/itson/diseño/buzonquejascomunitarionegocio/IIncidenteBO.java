@@ -1,5 +1,8 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import Excepciones.FindException;
+import dto.IncidentesDTO;
+import java.util.List;
 import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Incidente;
 
 /**
@@ -7,6 +10,8 @@ import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Incidente;
  */
 public interface IIncidenteBO {
 
+    public List<IncidentesDTO> agregarIncidentes(List<IncidentesDTO> incidentesDTO) throws FindException;
+    
 //    /**
 //     * Este método transporta los datos de un objeto IncidenteDTO a través de
 //     * otro objeto IncidenteDTO. Crea un nuevo objeto IncidenteDTO con el mismo

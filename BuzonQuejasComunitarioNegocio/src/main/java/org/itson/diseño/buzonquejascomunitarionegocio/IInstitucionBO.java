@@ -1,13 +1,19 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import Excepciones.FindException;
 import dto.InstitucionNuevaDTO;
-import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Institucion;
+import dto.InstitucionRegistradaDTO;
+import java.util.List;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface IInstitucionBO {
+    
+    public InstitucionNuevaDTO agregarInstitucion(InstitucionNuevaDTO institucionNuevaDTO) throws FindException;
 
+    public List<InstitucionRegistradaDTO> consultarInstituciones() throws FindException;
+    
 //    /**
 //     * Transporta los datos de una InstitucionDTO a través de otro objeto
 //     * InstitucionDTO. Crea un nuevo objeto InstitucionDTO con los mismos

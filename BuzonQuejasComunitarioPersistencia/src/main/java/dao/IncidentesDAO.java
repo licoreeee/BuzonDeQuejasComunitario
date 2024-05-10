@@ -61,7 +61,7 @@ public class IncidentesDAO implements IIncidentesDAO {
             }
             return incidentesBusqueda;
         } catch (MongoException e) {
-            throw new FindException("error al obtener las instituciones");
+            throw new FindException("Error al obtener las instituciones");
         }
     }
     

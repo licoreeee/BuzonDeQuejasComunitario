@@ -10,6 +10,7 @@ package dto;
  */
 public class InstitucionRegistradaDTO {
     
+    private String id;
     private String nombre;
     private String siglas;
     private String descripcionAdicional;
@@ -17,10 +18,29 @@ public class InstitucionRegistradaDTO {
     public InstitucionRegistradaDTO() {
     }
 
+    public InstitucionRegistradaDTO(String id) {
+        this.id = id;
+    }
+    
+    public InstitucionRegistradaDTO(String id, String nombre, String siglas, String descripcionAdicional) {
+        this.id = id;
+        this.nombre = nombre;
+        this.siglas = siglas;
+        this.descripcionAdicional = descripcionAdicional;
+    }
+
     public InstitucionRegistradaDTO(String nombre, String siglas, String descripcionAdicional) {
         this.nombre = nombre;
         this.siglas = siglas;
         this.descripcionAdicional = descripcionAdicional;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -45,6 +65,11 @@ public class InstitucionRegistradaDTO {
 
     public void setDescripcionAdicional(String descripcionAdicional) {
         this.descripcionAdicional = descripcionAdicional;
+    }
+
+    @Override
+    public String toString() {
+        return "InstitucionRegistradaDTO{" + "id=" + id + ", nombre=" + nombre + ", siglas=" + siglas + ", descripcionAdicional=" + descripcionAdicional + '}';
     }
     
 }
