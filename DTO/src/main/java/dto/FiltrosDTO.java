@@ -13,7 +13,7 @@ import java.util.Calendar;
 public class FiltrosDTO {
     
     private String titulo;
-    private InstitucionDTO institucion;
+    private InstitucionRegistradaDTO institucion;
     private Calendar fechaInicio;
     private Calendar fechaFinal;
     private String coordenadaLat;
@@ -31,11 +31,11 @@ public class FiltrosDTO {
         this.titulo = titulo;
     }
 
-    public InstitucionDTO getInstitucion() {
+    public InstitucionRegistradaDTO getInstitucion() {
         return institucion;
     }
 
-    public void setInstitucion(InstitucionDTO institucion) {
+    public void setInstitucion(InstitucionRegistradaDTO institucion) {
         this.institucion = institucion;
     }
 

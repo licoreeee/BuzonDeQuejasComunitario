@@ -4,7 +4,7 @@
  */
 package Pantallas;
 
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 
 /**
@@ -27,7 +27,7 @@ public class ControlNavegacion {
         seleccionInstitucion.setVisible(true);
     }
 
-    public void mostrarSeleccionIncidentes(InstitucionDTO institucion) {
+    public void mostrarSeleccionIncidentes(InstitucionNuevaDTO institucion) {
         FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(institucion);
         seleccionIncidentes.setVisible(true);
     }

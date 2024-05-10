@@ -5,7 +5,7 @@
 package Pantallas;
 
 import dto.IncidenteDTO;
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -26,12 +26,12 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private ControlNavegacion controladores;
     private ReporteDTO reporteDTO;
     private List<IncidenteDTO> incidentes;
-    private InstitucionDTO institucion;
+    private InstitucionNuevaDTO institucion;
 
     /**
      * Creates new form FrmSeleccionIncidentes
      */
-    public FrmSeleccionIncidentes(InstitucionDTO institucion) {
+    public FrmSeleccionIncidentes(InstitucionNuevaDTO institucion) {
         initComponents();
         this.controladores = new ControlNavegacion();
         this.institucion = institucion;

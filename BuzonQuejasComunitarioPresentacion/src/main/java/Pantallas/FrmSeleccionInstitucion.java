@@ -5,7 +5,7 @@
 package Pantallas;
 
 import dto.IncidenteDTO;
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.util.HashSet;
 import java.util.List;
@@ -26,10 +26,10 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private String institucionSeleccionada;
     private String funcionInstitucion;
     private String nombreInstitucion;
-    private InstitucionDTO institucionDTO;
+    private InstitucionNuevaDTO institucionDTO;
     private ReporteDTO reporteDTO;
 
-    List<InstitucionDTO> instituciones;
+    List<InstitucionNuevaDTO> instituciones;
 
     /**
      * Creates new form FrmSeleccionInstitucion
@@ -62,7 +62,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }
 
     public void institucionReporte(String siglas, String funcion, String nombre, List<IncidenteDTO> incidentes) {
-        institucionDTO = new InstitucionDTO(
+        institucionDTO = new InstitucionNuevaDTO(
                 nombre,
                 funcion,
                 siglas,
@@ -196,7 +196,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private void cboSeleccionInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeleccionInstitucionActionPerformed
         String siglasInstitucionSeleccionada = (String) cboSeleccionInstitucion.getSelectedItem();
 
-        for (InstitucionDTO institucion : instituciones) {
+        for (InstitucionNuevaDTO institucion : instituciones) {
             if (institucion.getSiglas().equals(siglasInstitucionSeleccionada)) {
                 institucionDTO = institucion;
                 break;

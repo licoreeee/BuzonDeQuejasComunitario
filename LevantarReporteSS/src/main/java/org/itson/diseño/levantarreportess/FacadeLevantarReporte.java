@@ -4,7 +4,7 @@
  */
 package org.itson.diseño.levantarreportess;
 
-import dto.InstitucionDTO;
+import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -40,17 +40,17 @@ public class FacadeLevantarReporte implements IFacadeLevantarReporte {
     }
 
     @Override
-    public InstitucionDTO obtenerInstitucion(InstitucionDTO institucionSeleccionada) {
+    public InstitucionNuevaDTO obtenerInstitucion(InstitucionNuevaDTO institucionSeleccionada) {
         levantarReporte.seleccionarInsitucion(institucionSeleccionada);
         return institucionSeleccionada;
 
     }
 
     @Override
-    public List<InstitucionDTO> obtenerInstituciones() {
-        List<InstitucionDTO> instituciones = levantarReporte.obtenerInstituciones();
-        Set<InstitucionDTO> institucionesUnicas = new HashSet<>(instituciones);
-        List<InstitucionDTO> listaInstitucionesUnicas = new ArrayList<>(institucionesUnicas);
+    public List<InstitucionNuevaDTO> obtenerInstituciones() {
+        List<InstitucionNuevaDTO> instituciones = levantarReporte.obtenerInstituciones();
+        Set<InstitucionNuevaDTO> institucionesUnicas = new HashSet<>(instituciones);
+        List<InstitucionNuevaDTO> listaInstitucionesUnicas = new ArrayList<>(institucionesUnicas);
 
         return listaInstitucionesUnicas;
     }
