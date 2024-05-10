@@ -1,7 +1,7 @@
 
 package conexion;
 
-import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoDatabase;
 
 /**
  *
@@ -9,6 +9,6 @@ import com.mongodb.client.MongoClient;
  */
 public interface IConexion {
     
-    public MongoClient crearConexion();
+    public MongoDatabase crearConexion();
     
 }

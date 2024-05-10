@@ -20,8 +20,8 @@ public class Conexion implements IConexion{
     private String nombreBaseDatos = "BuzonQuejasComunitario";
 
     @Override
-    public MongoClient crearConexion() {
-        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+    public MongoDatabase crearConexion() {
+       CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
         MongoClientSettings settings = MongoClientSettings.builder()
@@ -29,9 +29,9 @@ public class Conexion implements IConexion{
                 .codecRegistry(pojoCodecRegistry)
                 .build();
         MongoClient mongoClient = MongoClients.create(settings);
-        MongoClient cliente = MongoClients.create(cadenaConexion);
+        MongoDatabase database = mongoClient.getDatabase(nombreBaseDatos);
         
-        return cliente;
+        return database;
     }
     
 }
