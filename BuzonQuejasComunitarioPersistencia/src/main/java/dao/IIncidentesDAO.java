@@ -4,6 +4,7 @@
  */
 package dao;
 
+import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import entidades.Incidentes;
 import java.util.List;
@@ -17,6 +18,6 @@ public interface IIncidentesDAO {
     
     public List<Incidentes> agregarIncidentes(List<Incidentes> incidentes) throws PersistenciaException;
     
-    public List<Incidentes> obtenerIncidentes(ObjectId institucionId) throws PersistenciaException;
+    public List<Incidentes> obtenerIncidentes(ObjectId institucionId) throws FindException;
     
 }
