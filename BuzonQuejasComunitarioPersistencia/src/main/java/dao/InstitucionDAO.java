@@ -37,7 +37,7 @@ public class InstitucionDAO implements IInstitucionDAO {
         try {
             collection.insertOne(institucion);
         } catch (MongoException e) {
-            throw new PersistenciaException("error al crear la institucion");
+            throw new PersistenciaException("Error al crear la institucion");
         }
         return institucion;
     }
@@ -56,7 +56,7 @@ public class InstitucionDAO implements IInstitucionDAO {
             }
             return instituciones;
         } catch (MongoException e) {
-            throw new PersistenciaException("error al obtemer las instituciones");
+            throw new PersistenciaException("Error al obtemer las instituciones");
         }
     }
 

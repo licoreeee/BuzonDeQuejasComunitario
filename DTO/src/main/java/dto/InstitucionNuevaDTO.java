@@ -1,7 +1,5 @@
 package dto;
 
-import java.util.List;
-
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
@@ -12,6 +10,11 @@ public class InstitucionNuevaDTO {
     private String descripcionAdicional;
 
     public InstitucionNuevaDTO() {
+    }
+
+    public InstitucionNuevaDTO(String nombre, String descripcionAdicional) {
+        this.nombre = nombre;
+        this.descripcionAdicional = descripcionAdicional;
     }
 
     public InstitucionNuevaDTO(String nombre, String siglas, String descripcionAdicional) {
@@ -44,4 +47,9 @@ public class InstitucionNuevaDTO {
         this.descripcionAdicional = descripcionAdicional;
     }
 
+    @Override
+    public String toString() {
+        return "InstitucionNuevaDTO{" + "nombre=" + nombre + ", siglas=" + siglas + ", descripcionAdicional=" + descripcionAdicional + '}';
+    }
+    
 }
