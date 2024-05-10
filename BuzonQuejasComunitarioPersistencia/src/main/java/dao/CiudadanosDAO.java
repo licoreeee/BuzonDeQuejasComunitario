@@ -15,7 +15,7 @@ import entidades.Ciudadano;
  */
 public class CiudadanosDAO implements ICiudadanosDAO{
     
-    private IConexion conexion;
+    private final IConexion conexion;
     private MongoCollection<Ciudadano> collection;
 
     public CiudadanosDAO(IConexion conexion, MongoCollection<Ciudadano> coleccion) {

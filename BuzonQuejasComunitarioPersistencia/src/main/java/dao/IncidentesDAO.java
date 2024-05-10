@@ -4,6 +4,7 @@
  */
 package dao;
 
+import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
@@ -46,7 +47,7 @@ public class IncidentesDAO implements IIncidentesDAO {
     }
 
     @Override
-    public List<Incidentes> obtenerIncidentes(ObjectId institucionId) throws PersistenciaException {
+    public List<Incidentes> obtenerIncidentes(ObjectId institucionId) throws FindException {
         try {
             List<Incidentes> incidentesBusqueda = new ArrayList<>();
             Bson filter = Filters.eq("institucionId", institucionId);
@@ -60,7 +61,7 @@ public class IncidentesDAO implements IIncidentesDAO {
             }
             return incidentesBusqueda;
         } catch (MongoException e) {
-            throw new PersistenciaException("error al obtener las instituciones");
+            throw new FindException("error al obtener las instituciones");
         }
     }
     
