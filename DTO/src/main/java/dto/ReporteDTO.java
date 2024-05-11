@@ -12,9 +12,7 @@ public class ReporteDTO {
     private String titulo;
     private String descripcion;
     private Calendar fechaCreacion;
-
-    public ReporteDTO() {
-    }
+    private byte[] photo;
 
     public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
         this.folio = folio;
@@ -23,8 +21,14 @@ public class ReporteDTO {
         this.fechaCreacion = fechaCreacion;
     }
 
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+    }
     
-
     public int getFolio() {
         return folio;
     }
@@ -64,6 +68,15 @@ public class ReporteDTO {
     public void setFechaCreacion(Calendar fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
+
+    public byte[] getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(byte[] photo) {
+        this.photo = photo;
+    }
+  
     
     }
 

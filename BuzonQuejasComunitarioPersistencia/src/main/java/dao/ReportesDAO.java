@@ -5,9 +5,13 @@
 package dao;
 
 import Excepciones.FindException;
-import entidades.Reporte;
 import java.util.Calendar;
 import Excepciones.PersistenciaException;
+import com.mongodb.MongoException;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+import conexion.IConexion;
+import entidades.Reporte;
 
 /**
  *
@@ -15,9 +19,23 @@ import Excepciones.PersistenciaException;
  */
 public class ReportesDAO implements IReportesDAO{
 
+    private final IConexion conexion;
+    private final MongoCollection<Reporte> collection;
+
+    public ReportesDAO(IConexion conexion) {
+        this.conexion = conexion;
+        MongoDatabase database = conexion.crearConexion();
+        this.collection = database.getCollection("Reporte", Reporte.class);
+    }
+    
     @Override
-    public Reporte agregarReporte() throws PersistenciaException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public Reporte agregarReporte(Reporte reporte) throws PersistenciaException {
+        try {
+            collection.insertOne(reporte);
+        } catch (MongoException e) {
+            throw new PersistenciaException("Error al agregar el reporte.");
+        }
+        return reporte;
     }
 
     @Override
