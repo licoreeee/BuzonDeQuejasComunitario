@@ -5,6 +5,7 @@
 package entidades;
 
 import java.util.Calendar;
+import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
 /**
@@ -18,7 +19,40 @@ public class Reporte {
     private String titulo;
     private String descripcion;
     private Calendar fechaCreacion;
+    private Binary photo;
 
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+    }
+
+    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo) {
+        this.id = id;
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+    }
+
+    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion) {
+        this.id = id;
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+    }
+    
     public ObjectId getId() {
         return id;
     }
@@ -58,6 +92,16 @@ public class Reporte {
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
+
+    public Binary getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Binary photo) {
+        this.photo = photo;
+    }
+    
+    
 
 }
 

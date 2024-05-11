@@ -1,6 +1,7 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import dto.ReporteDTO;
+import excepciones.NegociosException;
 import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Reporte;
 
 /**
@@ -8,14 +9,7 @@ import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Reporte;
  */
 public interface IReporteBO {
 
-    /**
-     * Transporta los datos de un objeto ReporteDTO a través de otro objeto
-     * ReporteDTO.
-     *
-     * @param reporteNuevo El objeto ReporteDTO del cual se transportarán los
-     * datos.
-     */
-    public void transporteDatos(ReporteDTO reporteNuevo);
+    ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
 
     /**
      * Convierte un objeto ReporteDTO en un objeto Reporte.
@@ -24,5 +18,5 @@ public interface IReporteBO {
      * Reporte.
      * @return El objeto Reporte resultante de la conversión.
      */
-   Reporte convertirDatosDTO(ReporteDTO reporteDTO);
+   Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException;
 }

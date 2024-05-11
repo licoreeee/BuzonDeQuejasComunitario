@@ -15,7 +15,7 @@ import Excepciones.PersistenciaException;
  */
 public interface IReportesDAO {
     
-    Reporte agregarReporte() throws PersistenciaException;
+    Reporte agregarReporte(Reporte reporte) throws PersistenciaException;
     
     Reporte obtenerReportePorTitulo(String titulo) throws FindException;
     
