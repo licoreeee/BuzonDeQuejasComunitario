@@ -10,13 +10,14 @@ import dto.InstitucionRegistradaDTO;
 import entidades.Institucion;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class InstitucionBO implements IInstitucionBO {
 
-    IConexion conexion;
+    private final IConexion conexion;
     private InstitucionDAO institucionDAO;
 
     public InstitucionBO() {
@@ -30,29 +31,31 @@ public class InstitucionBO implements IInstitucionBO {
         institucion.setNombre(institucionNuevaDTO.getNombre());
         institucion.setSiglas(institucionNuevaDTO.getSiglas());
         institucion.setDescripcionAdicional(institucionNuevaDTO.getDescripcionAdicional());
-        
-        try{
+
+        try {
             institucion = institucionDAO.agregarInstitucion(institucion);
-        } catch(PersistenciaException ex){
+        } catch (FindException ex) {
             throw new FindException("Error al intentar agregar la institucion" + ex.getMessage());
         }
         return institucionNuevaDTO;
     }
-    
+
     @Override
     public List<InstitucionRegistradaDTO> consultarInstituciones() throws FindException {
         List<InstitucionRegistradaDTO> institucionesConsultadas = new ArrayList<>();
         try {
             List<Institucion> institucionesObtenidas = institucionDAO.obtenerInstituciones();
             for (Institucion institucionesObtenida : institucionesObtenidas) {
+                String idString = institucionesObtenida.getId().toString();
                 InstitucionRegistradaDTO registroInstituciones = new InstitucionRegistradaDTO(
+                        idString,
                         institucionesObtenida.getNombre(),
                         institucionesObtenida.getSiglas(),
                         institucionesObtenida.getDescripcionAdicional()
                 );
                 institucionesConsultadas.add(registroInstituciones);
             }
-        } catch (PersistenciaException ex) {
+        } catch (FindException ex) {
             throw new FindException("Error durante la consulta de instituciones" + ex.getMessage());
         }
         return institucionesConsultadas;

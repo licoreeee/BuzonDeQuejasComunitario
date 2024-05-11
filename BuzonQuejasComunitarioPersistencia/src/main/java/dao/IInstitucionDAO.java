@@ -4,9 +4,11 @@
  */
 package dao;
 
+import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import entidades.Institucion;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -14,8 +16,10 @@ import java.util.List;
  */
 public interface IInstitucionDAO {
 
-    public Institucion agregarInstitucion(Institucion institucion) throws PersistenciaException;
+    public Institucion agregarInstitucion(Institucion institucion) throws FindException;
 
-    public List<Institucion> obtenerInstituciones() throws PersistenciaException;
+    public List<Institucion> obtenerInstituciones() throws FindException;
+    
+    public List<Institucion> obtenerInstitucionesPorId(ObjectId id) throws FindException;
 
 }

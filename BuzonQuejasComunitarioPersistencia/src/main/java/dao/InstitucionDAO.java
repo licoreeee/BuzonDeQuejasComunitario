@@ -4,7 +4,7 @@
  */
 package dao;
 
-import Excepciones.PersistenciaException;
+import Excepciones.FindException;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
@@ -13,6 +13,7 @@ import conexion.IConexion;
 import entidades.Institucion;
 import java.util.ArrayList;
 import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -33,17 +34,17 @@ public class InstitucionDAO implements IInstitucionDAO {
     *
      */
     @Override
-    public Institucion agregarInstitucion(Institucion institucion) throws PersistenciaException {
+    public Institucion agregarInstitucion(Institucion institucion) throws FindException {
         try {
             collection.insertOne(institucion);
         } catch (MongoException e) {
-            throw new PersistenciaException("Error al crear la institucion");
+            throw new FindException("Error al crear la institucion");
         }
         return institucion;
     }
 
     @Override
-    public List<Institucion> obtenerInstituciones() throws PersistenciaException {
+    public List<Institucion> obtenerInstituciones() throws FindException {
         try {
             List<Institucion> instituciones = new ArrayList<>();
             MongoCursor<Institucion> cursor = collection.find().iterator();
@@ -56,7 +57,25 @@ public class InstitucionDAO implements IInstitucionDAO {
             }
             return instituciones;
         } catch (MongoException e) {
-            throw new PersistenciaException("Error al obtemer las instituciones");
+            throw new FindException("Error al obtemer las instituciones");
+        }
+    }
+    
+    @Override
+    public List<Institucion> obtenerInstitucionesPorId(ObjectId id) throws FindException {
+        try {
+            List<Institucion> instituciones = new ArrayList<>();
+            MongoCursor<Institucion> cursor = collection.find().iterator();
+            try {
+                while (cursor.hasNext()) {
+                    instituciones.add(cursor.next());
+                }
+            } finally {
+                cursor.close();
+            }
+            return instituciones;
+        } catch (MongoException e) {
+            throw new FindException("Error al obtemer las instituciones");
         }
     }
 

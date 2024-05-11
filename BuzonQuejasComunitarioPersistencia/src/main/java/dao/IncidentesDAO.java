@@ -37,11 +37,11 @@ public class IncidentesDAO implements IIncidentesDAO {
     }
 
     @Override
-    public List<Incidentes> agregarIncidentes(List<Incidentes> incidentes) throws PersistenciaException {
+    public List<Incidentes> agregarIncidentes(List<Incidentes> incidentes) throws FindException {
         try {
             collection.insertMany(incidentes);
         } catch (MongoException e) {
-            throw new PersistenciaException("Error al agregar los incidentes");
+            throw new FindException("Error al agregar los incidentes");
         }
         return incidentes;
     }

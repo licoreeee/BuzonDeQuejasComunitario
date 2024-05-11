@@ -16,7 +16,7 @@ import org.bson.types.ObjectId;
  */
 public interface IIncidentesDAO {
     
-    public List<Incidentes> agregarIncidentes(List<Incidentes> incidentes) throws PersistenciaException;
+    public List<Incidentes> agregarIncidentes(List<Incidentes> incidentes) throws FindException;
     
     public List<Incidentes> obtenerIncidentes(ObjectId institucionId) throws FindException;
     

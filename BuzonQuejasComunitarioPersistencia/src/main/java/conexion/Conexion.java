@@ -16,8 +16,8 @@ import org.bson.codecs.pojo.PojoCodecProvider;
  */
 public class Conexion implements IConexion{
     
-    private String cadenaConexion = "mongodb://127.0.0.1:27017";
-    private String nombreBaseDatos = "BuzonQuejasComunitario";
+    private static String cadenaConexion = "mongodb://127.0.0.1:27017";
+    private static String nombreBaseDatos = "BuzonQuejasComunitario";
 
     @Override
     public MongoDatabase crearConexion() {

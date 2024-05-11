@@ -22,46 +22,53 @@ import java.util.logging.Logger;
  * @author castr
  */
 public class PruebasNegocio {
-    
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        IConexion conexion = new Conexion();
+        Conexion conexion = new Conexion();
         InstitucionBO institucionBO = new InstitucionBO();
         IncidenteBO incidenteBO = new IncidenteBO();
-        
+
 //        InstitucionNuevaDTO institucionDTO = new InstitucionNuevaDTO();
-//        institucionDTO.setNombre("Comision Federal y de Electricidad");
-//        institucionDTO.setSiglas("CFE");
-//        institucionDTO.setDescripcionAdicional("Responsable de la generación, transmisión, distribución y comercialización de energía eléctrica");
+//        institucionDTO.setNombre("Organismos Operadores de Agua Potable, Alcantarillado y Saneamiento");
+//        institucionDTO.setSiglas("OOMAPAS");
+//        institucionDTO.setDescripcionAdicional("garantizar el suministro de agua potable a los usuarios dentro de su jurisdicción");
 //
 //        try{
 //           institucionBO.agregarInstitucion(institucionDTO);
 //            System.out.println(institucionDTO.toString());
+//            System.out.println("Se creó la institucion correctamente");
 //        } catch (FindException ex){
 //            System.out.println("Error al agregar una institucion");
 //        }
-
 //        try{
 //            List<InstitucionRegistradaDTO> institucionesObtenidas = institucionBO.consultarInstituciones();
 //            System.out.println(institucionesObtenidas.toString());
 //        } catch (FindException ex){
 //            Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
-        List<IncidentesDTO> incidentesDTO = new ArrayList<>();
-        incidentesDTO.add(new IncidentesDTO("Acumulacion de basura", new InstitucionRegistradaDTO("663dd0de71f72647e3375ea7")));
-        incidentesDTO.add(new IncidentesDTO("Falta de limpieza en areas publicas", new InstitucionRegistradaDTO("663dd0de71f72647e3375ea7")));
-        incidentesDTO.add(new IncidentesDTO("Poco servicio de recoleccion de basura", new InstitucionRegistradaDTO("663dd0de71f72647e3375ea7")));
-
+//        List<IncidentesDTO> incidentesDTO = new ArrayList<>();
+//        incidentesDTO.add(new IncidentesDTO("Fuga de agua a presion", new InstitucionRegistradaDTO("663f155f8e48ac44dc69d070")));
+//        incidentesDTO.add(new IncidentesDTO("Aguas negras", new InstitucionRegistradaDTO("663f155f8e48ac44dc69d070")));
+//        incidentesDTO.add(new IncidentesDTO("Falta de servicio de agua", new InstitucionRegistradaDTO("663f155f8e48ac44dc69d070")));
+//
+//        try {
+//            incidentesDTO = incidenteBO.agregarIncidentes(incidentesDTO);
+//             System.out.println(incidentesDTO.toString());
+//             System.out.println("Los incidentes se crearon exitosamente!");
+//        } catch (FindException ex) {
+//            Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         try {
-            List<IncidentesDTO> incidentesEnProceso = incidenteBO.agregarIncidentes(incidentesDTO);
-             System.out.println(incidentesEnProceso.toString());
+            List<IncidentesDTO> incidentesObtenidos = incidenteBO.obtenerIncidentes("663f155f8e48ac44dc69d070");
+            System.out.println(incidentesObtenidos);
+            System.out.println("Se logro consultar los incidentes de la institucion ingresada");
         } catch (FindException ex) {
             Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
-    
+
 }

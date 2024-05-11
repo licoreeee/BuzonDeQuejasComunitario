@@ -2,6 +2,7 @@ package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
 import Excepciones.PersistenciaException;
+import conexion.Conexion;
 import conexion.IConexion;
 import dao.IncidentesDAO;
 import dto.IncidentesDTO;
@@ -18,11 +19,11 @@ import org.bson.types.ObjectId;
  */
 public class IncidenteBO implements IIncidenteBO {
 
-    IConexion conexion;
+    private final IConexion conexion;
     private IncidentesDAO incidentesDAO;
 
     public IncidenteBO() {
-        this.conexion = conexion;
+        conexion = new Conexion();
         this.incidentesDAO = new IncidentesDAO(conexion);
     }
 
@@ -49,11 +50,37 @@ public class IncidenteBO implements IIncidenteBO {
                 incidentesEnProceso.add(dto);
             }
             return incidentesEnProceso;
-        } catch (PersistenciaException ex) {
+        } catch (FindException ex) {
             Logger.getLogger(IncidenteBO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
     }
+
+    @Override
+    public List<IncidentesDTO> obtenerIncidentes(String idString) throws FindException {
+        List<IncidentesDTO> incidentesEnProceso = new ArrayList<>();
+        try {
+            ObjectId institucionId = new ObjectId(idString);
+            List<Incidentes> incidentes = new ArrayList<>();
+            incidentes = incidentesDAO.obtenerIncidentes(institucionId);
+
+            for (Incidentes incidente : incidentes) {
+                IncidentesDTO incidenteDTO = new IncidentesDTO();
+                incidenteDTO.setInformacion(incidente.getInformacion());
+                String id = incidente.getInstitucionId().toString();
+                InstitucionRegistradaDTO institucionRegistradaDTO = new InstitucionRegistradaDTO(id);
+                incidenteDTO.setInstitucionRegistradaDTO(institucionRegistradaDTO);
+
+                incidentesEnProceso.add(incidenteDTO);
+            }
+
+            return incidentesEnProceso;
+        } catch (FindException ex) {
+            Logger.getLogger(IncidenteBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
 //    /**
 //     * Este método transporta los datos de un incidente DTO a través de un
 //     * objeto IncidenteDTO. Crea un nuevo objeto IncidenteDTO con el nombre del
@@ -94,5 +121,4 @@ public class IncidenteBO implements IIncidenteBO {
 //        IncidenteDTO incidenteConvertido = new IncidenteDTO(incidente.getNombreIncidente());
 //        return incidenteConvertido;
 //    }
-
 }
