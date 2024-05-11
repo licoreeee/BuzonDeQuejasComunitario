@@ -1,15 +1,15 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import dto.ReporteDTO;
+import entidades.Reporte;
 import excepciones.NegociosException;
-import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Reporte;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface IReporteBO {
 
-    ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
+    public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
 
     /**
      * Convierte un objeto ReporteDTO en un objeto Reporte.
@@ -18,5 +18,8 @@ public interface IReporteBO {
      * Reporte.
      * @return El objeto Reporte resultante de la conversión.
      */
-   Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException;
+   public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException;
+   
+   public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException;
+
 }

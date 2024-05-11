@@ -20,7 +20,33 @@ public class Reporte {
     private String descripcion;
     private Calendar fechaCreacion;
     private Binary photo;
+    private Ciudadano ciudadano;
+    private Institucion institucion;
+    private Incidentes incidente;
 
+    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+        this.id = id;
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+        this.ciudadano = ciudadano;
+        this.institucion = institucion;
+        this.incidente = incidente;
+    }
+
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+        this.ciudadano = ciudadano;
+        this.institucion = institucion;
+        this.incidente = incidente;
+    }
+    
     public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
         this.folio = folio;
         this.titulo = titulo;

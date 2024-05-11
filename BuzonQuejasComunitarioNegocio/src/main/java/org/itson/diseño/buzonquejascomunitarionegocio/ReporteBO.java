@@ -1,46 +1,44 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import dto.ReporteDTO;
-import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Reporte;
+import entidades.Reporte;
+import excepciones.NegociosException;
+import org.bson.types.Binary;
+import org.bson.types.ObjectId;
+
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class ReporteBO implements IReporteBO{
 
-    /**
-     * Transporta los datos de un objeto ReporteDTO a través de otro objeto
-     * ReporteDTO. Crea un nuevo objeto ReporteDTO con el mismo título y
-     * descripción que el reporteNuevo pasado como parámetro. Luego, llama al
-     * método convertirDatos para realizar la conversión.
-     *
-     * @param reporteNuevo El objeto ReporteDTO del cual se transportarán los
-     * datos.
-     */
-    @Override
-    public void transporteDatos(ReporteDTO reporteNuevo) {
-        ReporteDTO reporteDTO = new ReporteDTO(
-                reporteNuevo.getFolio(),
-                reporteNuevo.getTitulo(),
-                reporteNuevo.getDescripcion(),
-                reporteNuevo.getFechaCreacion());
-        convertirDatosDTO(reporteDTO);
-    }
-
-    /**
-     * Convierte un objeto ReporteDTO en un objeto Reporte. Crea un nuevo objeto
-     * Reporte con el título del reporteDTO pasado como parámetro.
-     *
-     * @param reporteDTO El objeto ReporteDTO que se convertirá en un objeto
-     * Reporte.
-     * @return El objeto Reporte resultante de la conversión.
-     */
     @Override
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) {
-        Reporte reporte = new Reporte(
-                reporteDTO.getTitulo(),
-                reporteDTO.getTitulo());
+        Reporte reporte = new Reporte(reporteDTO.getFolio(),
+                                      reporteDTO.getTitulo(),
+                                      reporteDTO.getDescripcion(),
+                                      reporteDTO.getFechaCreacion());
+        reporte.setId(new ObjectId(reporteDTO.getId()));
+        reporte.setPhoto(new Binary(reporteDTO.getPhoto()));
         return reporte;
+    }
+
+    @Override
+    public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException {
+        byte[] photo = null;
+        if (reporte.getPhoto() != null) {
+            photo = reporte.getPhoto().getData();
+        }
+
+        ReporteDTO reporteDTO = new ReporteDTO(reporte.getId().toString(), reporte.getFolio(), reporte.getTitulo(),
+                reporte.getDescripcion(), reporte.getFechaCreacion(), photo);
+        return reporteDTO;
+    }
+
+
+    @Override
+    public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
     
     

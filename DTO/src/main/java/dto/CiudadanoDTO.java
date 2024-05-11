@@ -10,10 +10,23 @@ public class CiudadanoDTO {
     private String apellidoP;
     private String apellidoM;
     private String curp;
-    private String telefono;
-    private String correo;
+    private String contrasenia;
 
-    public CiudadanoDTO() {
+    public CiudadanoDTO(String id, String nombre, String apellidoP, String apellidoM, String curp, String contrasenia) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.curp = curp;
+        this.contrasenia = contrasenia;
+    }
+
+    public CiudadanoDTO(String nombre, String apellidoP, String apellidoM, String curp, String contrasenia) {
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.curp = curp;
+        this.contrasenia = contrasenia;
     }
 
     public String getId() {
@@ -56,16 +69,14 @@ public class CiudadanoDTO {
         this.curp = curp;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public String getCorreo() {
-        return correo;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
+    
     
 }

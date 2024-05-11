@@ -2,22 +2,16 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import dto.CiudadanoDTO;
-import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Ciudadano;
+import entidades.Ciudadano;
+import excepciones.NegociosException;
+
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface ICiudadanoBO {
 
-    /**
-     * Transporta los datos de un objeto CiudadanoDTO a través de otro objeto
-     * CiudadanoDTO.
-     *
-     * @param ciudadanoDTO El objeto CiudadanoDTO del cual se transportarán los
-     * datos.
-     * @return El objeto CiudadanoDTO resultante después de la conversión.
-     */
-    public CiudadanoDTO transporteDatos(CiudadanoDTO ciudadanoDTO);
+    public CiudadanoDTO convertirDatosEntity(Ciudadano ciudadano) throws NegociosException;
 
     /**
      * Convierte un objeto CiudadanoDTO en un objeto Ciudadano.
@@ -26,6 +20,8 @@ public interface ICiudadanoBO {
      * Ciudadano.
      * @return El objeto Ciudadano resultante de la conversión.
      */
-    public Ciudadano convertirDatos(CiudadanoDTO ciudadanoDTO);
+    public Ciudadano convertirDatosDTO(CiudadanoDTO ciudadanoDTO) throws NegociosException;
+    
+    public boolean validarFormatoDTO(CiudadanoDTO ciudadano) throws NegociosException;
 
 }

@@ -14,9 +14,25 @@ public class Ciudadano {
     private String apellidoP;
     private String apellidoM;
     private String curp;
-    private String telefono;
-    private String correo;
+    private String contrasenia;
 
+    public Ciudadano(ObjectId id, String nombre, String apellidoP, String apellidoM, String curp, String contrasenia) {
+        this.id = id;
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.curp = curp;
+        this.contrasenia = contrasenia;
+    }
+
+    public Ciudadano(String nombre, String apellidoP, String apellidoM, String curp, String contrasenia) {
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+        this.curp = curp;
+        this.contrasenia = contrasenia;
+    }
+    
     public ObjectId getId() {
         return id;
     }
@@ -57,20 +73,12 @@ public class Ciudadano {
         this.curp = curp;
     }
 
-    public String geTelefono() {
-        return telefono;
+    public String getContrasenia() {
+        return contrasenia;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
 }

@@ -14,6 +14,15 @@ public class ReporteDTO {
     private Calendar fechaCreacion;
     private byte[] photo;
 
+    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
+        this.id = id;
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+    }
+
     public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
         this.folio = folio;
         this.titulo = titulo;
