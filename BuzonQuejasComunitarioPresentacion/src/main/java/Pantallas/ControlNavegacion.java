@@ -4,7 +4,10 @@
  */
 package Pantallas;
 
+import PantallasAvance.FrmComentariosReporte;
+import PantallasAvance.FrmCrearComentario;
 import PantallasAvance.FrmPortalInstituciones;
+import PantallasAvance.FrmReportesPendientes;
 import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 
@@ -22,11 +25,27 @@ public class ControlNavegacion {
         FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
         menuPrincipal.setVisible(true);
     }
-    
-    public void mostrarPortalInstituciones(){
+
+    public void mostrarPortalInstituciones() {
         FrmPortalInstituciones portalInstituciones = new FrmPortalInstituciones();
         portalInstituciones.setVisible(true);
     }
+
+    public void mostrarReportesPendientes() {
+        FrmReportesPendientes reportesPendientes = new FrmReportesPendientes();
+        reportesPendientes.setVisible(true);
+    }
+
+    public void mostrarCrearComentario() {
+        FrmCrearComentario crearComentario = new FrmCrearComentario();
+        crearComentario.setVisible(true);
+    }
+
+    public void mostrarComentariosReporte() {
+        FrmComentariosReporte comentariosReporte = new FrmComentariosReporte();
+        comentariosReporte.setVisible(true);
+    }
+
     public void mostrarSeleccionInstitucion() {
         FrmSeleccionInstitucion seleccionInstitucion = new FrmSeleccionInstitucion();
         seleccionInstitucion.setVisible(true);
@@ -51,27 +70,27 @@ public class ControlNavegacion {
         FrmFolio folio = new FrmFolio();
         folio.setVisible(true);
     }
-    
+
     public void mostrarCodigoAdmin() {
         FrmCodigoAdmin codigoAdmin = new FrmCodigoAdmin();
         codigoAdmin.setVisible(true);
     }
-    
+
     public void mostrarInstitucionesRegistradas() {
         FrmInstitucionesRegistradas institucionesRegistradas = new FrmInstitucionesRegistradas();
         institucionesRegistradas.setVisible(true);
     }
-    
+
     public void mostrarInfoInstitucion() {
         FrmInfoInstitucion infoInstitucion = new FrmInfoInstitucion();
         infoInstitucion.setVisible(true);
     }
-    
+
     public void mostrarIncidentes() {
         FrmIncidentes incidentes = new FrmIncidentes();
         incidentes.setVisible(true);
     }
-    
+
     public void mostrarConfirmado() {
         FrmConfirmado confirmado = new FrmConfirmado();
         confirmado.setVisible(true);

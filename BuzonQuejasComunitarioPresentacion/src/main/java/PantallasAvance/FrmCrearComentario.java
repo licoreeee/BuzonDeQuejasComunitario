@@ -1,12 +1,12 @@
 package PantallasAvance;
 
 import Excepciones.PersistenciaException;
+import Pantallas.ControlNavegacion;
 import dto.ComentarioDTO;
 import java.io.File;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import org.itson.diseño.levantarreportess.RegistrarAvance;
@@ -21,6 +21,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     private final RegistrarAvance registrarAvance;
     byte[] photo;
     String fileName;
+    ControlNavegacion control = new ControlNavegacion();
 
     /**
      * Creates new form CrearComentario
@@ -30,6 +31,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         registrarAvance = new RegistrarAvance();
         photo = null;
         fileName = null;
+        lblSubirImagen.setText("");
     }
 
     /**
@@ -62,11 +64,11 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         btnContinuar1 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnImagen = new javax.swing.JButton();
-        lblImagen = new javax.swing.JLabel();
         lblSubirImagen = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Crear comentario");
 
         pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
         pnlFondo.setMinimumSize(new java.awt.Dimension(600, 400));
@@ -180,11 +182,9 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         });
         pnlFondo.add(btnImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 300, -1, -1));
 
-        lblImagen.setText("jLabel2");
-        pnlFondo.add(lblImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
-
-        lblSubirImagen.setText("jLabel2");
-        pnlFondo.add(lblSubirImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, -1, -1));
+        lblSubirImagen.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
+        lblSubirImagen.setText("path");
+        pnlFondo.add(lblSubirImagen, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 330, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel2.setText("*Campo obligatorio.");
@@ -202,10 +202,11 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComentariosReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentariosReporteActionPerformed
-
+        control.mostrarComentariosReporte();
     }//GEN-LAST:event_btnComentariosReporteActionPerformed
 
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
@@ -213,33 +214,83 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnContinuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuar1ActionPerformed
-        try {
-            comentarioDTO = new ComentarioDTO(
-                    txtTitulo.getText(),
-                    txtComentario.getText(),
-                    photo);
-            registrarAvance.registarComentario(comentarioDTO);
-        } catch (PersistenciaException e) {
-            Logger.getLogger(
-                    FrmCrearComentario.class.getName()).log(
-                    Level.SEVERE,
-                    null,
-                    e);
+        if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
             JOptionPane.showMessageDialog(
                     null,
-                    e.getMessage(),
-                    "Error de persistencia",
-                    JOptionPane.ERROR_MESSAGE);
+                    "Llenar correctamente los espacios en blanco",
+                    "Espacios vacíos",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (photo == null) {
+                try {
+                    comentarioDTO = new ComentarioDTO(
+                            txtTitulo.getText(),
+                            txtComentario.getText());
+                    registrarAvance.registarComentario(comentarioDTO);
+                } catch (PersistenciaException ex) {
+                    Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(
+                            null,
+                            ex.getMessage(),
+                            "Error de persistencia",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                try {
+                    comentarioDTO = new ComentarioDTO(
+                            txtTitulo.getText(),
+                            txtComentario.getText(),
+                            photo);
+                    registrarAvance.registarComentario(comentarioDTO);
+                } catch (PersistenciaException e) {
+                    Logger.getLogger(
+                            FrmCrearComentario.class.getName()).log(
+                            Level.SEVERE,
+                            null,
+                            e);
+                    JOptionPane.showMessageDialog(
+                            null,
+                            e.getMessage(),
+                            "Error de persistencia",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
         }
     }//GEN-LAST:event_btnContinuar1ActionPerformed
 
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
+        boolean isValid = cargarImagen();
+        if (!isValid) {
+            photo = null;
+            lblSubirImagen.setText("");
+            JOptionPane.showMessageDialog(
+                    null,
+                    "El archivo seleccionado no es una imagen con formato JPG",
+                    "Formato de imagen inválido",
+                    JOptionPane.ERROR_MESSAGE);
+
+        }
+
+
+    }//GEN-LAST:event_btnImagenActionPerformed
+    private boolean isValidImage(String fileName) {
+        return fileName.toLowerCase().endsWith(".jpg");
+    }
+
+    private boolean cargarImagen() {
         JFileChooser chooser = new JFileChooser();
-        chooser.showOpenDialog(null);
+        int result = chooser.showOpenDialog(null);
+        if (result != JFileChooser.APPROVE_OPTION) {
+            // El usuario no seleccionó ningún archivo
+            return false;
+        }
         File file = chooser.getSelectedFile();
-        lblImagen.setIcon(new ImageIcon(file.toString()));
         fileName = file.getAbsolutePath();
         lblSubirImagen.setText(fileName);
+
+        if (!isValidImage(fileName)) {
+            return false;
+        }
 
         File image = new File(fileName);
         try (FileInputStream fis = new FileInputStream(image)) {
@@ -249,6 +300,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
                 baos.write(buf, 0, readNum);
             }
             photo = baos.toByteArray();
+            return true;
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(
@@ -258,16 +310,14 @@ public class FrmCrearComentario extends javax.swing.JFrame {
                     JOptionPane.ERROR_MESSAGE);
         } catch (IOException ex) {
             Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
-             JOptionPane.showMessageDialog(
+            JOptionPane.showMessageDialog(
                     null,
                     ex.getMessage(),
                     "Error al leer el archivo",
                     JOptionPane.ERROR_MESSAGE);
         }
-
-
-    }//GEN-LAST:event_btnImagenActionPerformed
-
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComentariosReporte;
@@ -286,7 +336,6 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     private javax.swing.JLabel lblFolioReporte;
     private javax.swing.JLabel lblH2;
     private javax.swing.JLabel lblHeader;
-    private javax.swing.JLabel lblImagen;
     private javax.swing.JLabel lblLogo;
     private javax.swing.JLabel lblSubirImagen;
     private javax.swing.JLabel lblTituloComentario;

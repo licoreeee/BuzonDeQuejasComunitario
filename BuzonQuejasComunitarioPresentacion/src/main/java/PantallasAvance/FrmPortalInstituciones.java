@@ -4,17 +4,18 @@
  */
 package PantallasAvance;
 
+import Pantallas.ControlNavegacion;
+
 /**
  *
  * @author hisam
  */
 public class FrmPortalInstituciones extends javax.swing.JFrame {
 
-    /**
-     * Creates new form PortalInstituciones
-     */
+    ControlNavegacion control;
     public FrmPortalInstituciones() {
         initComponents();
+        control = new ControlNavegacion();
     }
 
     /**
@@ -38,6 +39,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
         JPasswordNip = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Portal de instituciones");
 
         pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
         pnlFondo.setMinimumSize(new java.awt.Dimension(600, 400));
@@ -108,6 +110,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIDActionPerformed
@@ -115,7 +118,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-     
+     control.mostrarReportesPendientes();
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     
