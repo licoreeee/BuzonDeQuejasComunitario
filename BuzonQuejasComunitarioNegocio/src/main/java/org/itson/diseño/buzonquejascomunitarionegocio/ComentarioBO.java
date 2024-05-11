@@ -12,7 +12,6 @@ import dto.ComentarioDTO;
 import entidades.Comentario;
 import java.util.ArrayList;
 import java.util.List;
-import org.bson.Document;
 import org.bson.types.Binary;
 
 /**
@@ -22,23 +21,32 @@ import org.bson.types.Binary;
 public class ComentarioBO implements IComentarioBO {
 
     private final ComentariosDAO comentariosDAO;
+    private Comentario comentario;
     final IConexion conexion;
 
     public ComentarioBO() {
         conexion = new Conexion();
         comentariosDAO = new ComentariosDAO(conexion);
+        comentario = new Comentario();
     }
 
     @Override
     public void transporteDatos(ComentarioDTO comentarioDTO) throws PersistenciaException {
-        byte[] photo = comentarioDTO.getPhoto();
-        Binary binaryPhoto = new Binary(photo);
+        if (comentarioDTO.getPhoto() == null) {
+            comentario = new Comentario(
+                    comentarioDTO.getTitulo(),
+                    comentarioDTO.getComentario());
+        } else {
+            byte[] photo = comentarioDTO.getPhoto();
+            Binary binaryPhoto = new Binary(photo);
 
-        Comentario comentario = new Comentario(
-                comentarioDTO.getTitulo(),
-                comentarioDTO.getComentario(),
-                binaryPhoto
-        );
+            comentario = new Comentario(
+                    comentarioDTO.getTitulo(),
+                    comentarioDTO.getComentario(),
+                    binaryPhoto
+            );
+
+        }
         comentariosDAO.agregarComentario(comentario);
 
     }
@@ -53,14 +61,14 @@ public class ComentarioBO implements IComentarioBO {
     public List<ComentarioDTO> convertirListaEntidad(List<Comentario> comentarios) {
         List<ComentarioDTO> comentariosDTO = new ArrayList<>();
 
-        for (Comentario comentario : comentarios) {
-            byte[] photoBytes = comentario.getPhoto().getData();
+        for (Comentario comment : comentarios) {
+            byte[] photoBytes = comment.getPhoto().getData();
 
             ComentarioDTO comentarioDTO = new ComentarioDTO(
-                    comentario.getTitulo(),
-                    comentario.getComentario(),
+                    comment.getTitulo(),
+                    comment.getComentario(),
                     photoBytes);
-            
+
             comentariosDTO.add(comentarioDTO);
         }
 

@@ -35,6 +35,11 @@ public class Comentario {
         this.photo = photo;
     }
 
+    public Comentario(String titulo, String comentario) {
+        this.titulo = titulo;
+        this.comentario = comentario;
+    }
+
     public ObjectId getId() {
         return _id;
     }
