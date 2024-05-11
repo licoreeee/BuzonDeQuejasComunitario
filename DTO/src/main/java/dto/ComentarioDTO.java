@@ -21,6 +21,11 @@ public class ComentarioDTO {
         this.comentario = comentario;
         this.photo = photo;
     }
+
+    public ComentarioDTO(String titulo, String comentario) {
+        this.titulo = titulo;
+        this.comentario = comentario;
+    }
   
 
     public String getTitulo() {

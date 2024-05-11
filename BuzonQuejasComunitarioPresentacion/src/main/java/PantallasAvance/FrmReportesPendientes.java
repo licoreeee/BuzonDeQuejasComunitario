@@ -4,17 +4,18 @@
  */
 package PantallasAvance;
 
+import Pantallas.ControlNavegacion;
+
 /**
  *
  * @author hisam
  */
 public class FrmReportesPendientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ReportesPendientes
-     */
+    ControlNavegacion control;
     public FrmReportesPendientes() {
         initComponents();
+        control = new ControlNavegacion();
     }
 
     /**
@@ -36,6 +37,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         TablaReportesPendientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Reportes pendientes");
 
         pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
         pnlFondo.setMinimumSize(new java.awt.Dimension(600, 400));
@@ -98,10 +100,11 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-
+        control.mostrarCrearComentario();
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     

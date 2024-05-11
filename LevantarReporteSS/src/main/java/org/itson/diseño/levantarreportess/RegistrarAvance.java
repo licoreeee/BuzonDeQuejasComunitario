@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package org.itson.diseño.levantarreportess;
 
 import Excepciones.PersistenciaException;
@@ -14,6 +10,11 @@ import org.itson.diseño.buzonquejascomunitarionegocio.ComentarioBO;
  */
 public class RegistrarAvance {
     private ComentarioBO comentarioBO;
+
+    public RegistrarAvance() {
+        comentarioBO = new ComentarioBO();
+    }
+    
         public void registarComentario(ComentarioDTO comentarioDTO) throws PersistenciaException{
             try{
             comentarioBO.transporteDatos(comentarioDTO);
