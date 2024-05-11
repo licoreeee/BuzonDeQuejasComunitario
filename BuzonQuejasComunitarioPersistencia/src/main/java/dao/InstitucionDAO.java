@@ -57,7 +57,7 @@ public class InstitucionDAO implements IInstitucionDAO {
             }
             return instituciones;
         } catch (MongoException e) {
-            throw new FindException("Error al obtemer las instituciones");
+            throw new FindException("Error al obtener las instituciones");
         }
     }
     
@@ -75,7 +75,7 @@ public class InstitucionDAO implements IInstitucionDAO {
             }
             return instituciones;
         } catch (MongoException e) {
-            throw new FindException("Error al obtemer las instituciones");
+            throw new FindException("Error al obtener las instituciones");
         }
     }
 

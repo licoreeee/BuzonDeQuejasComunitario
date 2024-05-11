@@ -8,6 +8,9 @@ public class InstitucionNuevaDTO {
     private String nombre;
     private String siglas;
     private String descripcionAdicional;
+    private String codigoGestion;
+    private String nip;
+
 
     public InstitucionNuevaDTO() {
     }
@@ -47,9 +50,25 @@ public class InstitucionNuevaDTO {
         this.descripcionAdicional = descripcionAdicional;
     }
 
+    public String getCodigoGestion() {
+        return codigoGestion;
+    }
+
+    public void setCodigoGestion(String codigoGestion) {
+        this.codigoGestion = codigoGestion;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
     @Override
     public String toString() {
-        return "InstitucionNuevaDTO{" + "nombre=" + nombre + ", siglas=" + siglas + ", descripcionAdicional=" + descripcionAdicional + '}';
+        return "InstitucionNuevaDTO{" + "nombre=" + nombre + ", siglas=" + siglas + ", descripcionAdicional=" + descripcionAdicional + ", codigoGestion=" + codigoGestion + ", nip=" + nip + '}';
     }
     
 }

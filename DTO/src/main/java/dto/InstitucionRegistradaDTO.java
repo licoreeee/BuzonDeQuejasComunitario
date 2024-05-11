@@ -14,6 +14,9 @@ public class InstitucionRegistradaDTO {
     private String nombre;
     private String siglas;
     private String descripcionAdicional;
+    private String codigoGestion;
+    private String nip;
+
 
     public InstitucionRegistradaDTO() {
     }
@@ -22,17 +25,13 @@ public class InstitucionRegistradaDTO {
         this.id = id;
     }
     
-    public InstitucionRegistradaDTO(String id, String nombre, String siglas, String descripcionAdicional) {
+    public InstitucionRegistradaDTO(String id, String nombre, String siglas, String descripcionAdicional, String codigoGestion, String nip) {
         this.id = id;
         this.nombre = nombre;
         this.siglas = siglas;
         this.descripcionAdicional = descripcionAdicional;
-    }
-
-    public InstitucionRegistradaDTO(String nombre, String siglas, String descripcionAdicional) {
-        this.nombre = nombre;
-        this.siglas = siglas;
-        this.descripcionAdicional = descripcionAdicional;
+        this.codigoGestion = codigoGestion;
+        this.nip = nip;
     }
 
     public String getId() {
@@ -67,9 +66,25 @@ public class InstitucionRegistradaDTO {
         this.descripcionAdicional = descripcionAdicional;
     }
 
+    public String getCodigoGestion() {
+        return codigoGestion;
+    }
+
+    public void setCodigoGestion(String codigoGestion) {
+        this.codigoGestion = codigoGestion;
+    }
+
+    public String getNip() {
+        return nip;
+    }
+
+    public void setNip(String nip) {
+        this.nip = nip;
+    }
+
     @Override
     public String toString() {
-        return "InstitucionRegistradaDTO{" + "id=" + id + ", nombre=" + nombre + ", siglas=" + siglas + ", descripcionAdicional=" + descripcionAdicional + '}';
+        return "InstitucionRegistradaDTO{" + "id=" + id + ", nombre=" + nombre + ", siglas=" + siglas + ", descripcionAdicional=" + descripcionAdicional + ", codigoGestion=" + codigoGestion + ", nip=" + nip + '}';
     }
     
 }

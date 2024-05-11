@@ -10,6 +10,7 @@ import dto.InstitucionRegistradaDTO;
 import entidades.Institucion;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import org.bson.types.ObjectId;
 
 /**
@@ -32,6 +33,14 @@ public class InstitucionBO implements IInstitucionBO {
         institucion.setSiglas(institucionNuevaDTO.getSiglas());
         institucion.setDescripcionAdicional(institucionNuevaDTO.getDescripcionAdicional());
 
+        //Implementacion para el codigo con el cual la institucion podra acceder a comentar
+        String codigoGestion = generarNumerosAleatorios(6);
+        institucion.setCodigoGestion("00000" + codigoGestion);
+        institucionNuevaDTO.setCodigoGestion(institucion.getCodigoGestion());
+        String nip = generarNumerosAleatorios(4);
+        institucion.setNip(nip);
+        institucionNuevaDTO.setNip(institucion.getNip());
+        
         try {
             institucion = institucionDAO.agregarInstitucion(institucion);
         } catch (FindException ex) {
@@ -51,7 +60,9 @@ public class InstitucionBO implements IInstitucionBO {
                         idString,
                         institucionesObtenida.getNombre(),
                         institucionesObtenida.getSiglas(),
-                        institucionesObtenida.getDescripcionAdicional()
+                        institucionesObtenida.getDescripcionAdicional(),
+                        institucionesObtenida.getCodigoGestion(),
+                        institucionesObtenida.getNip()
                 );
                 institucionesConsultadas.add(registroInstituciones);
             }
@@ -59,6 +70,15 @@ public class InstitucionBO implements IInstitucionBO {
             throw new FindException("Error durante la consulta de instituciones" + ex.getMessage());
         }
         return institucionesConsultadas;
+    }
+    
+    private String generarNumerosAleatorios(int length) {
+        StringBuilder sb = new StringBuilder();
+        Random random = new Random();
+        for (int i = 0; i < length; i++) {
+            sb.append(random.nextInt(10)); 
+        }
+        return sb.toString();
     }
 
 //    /**

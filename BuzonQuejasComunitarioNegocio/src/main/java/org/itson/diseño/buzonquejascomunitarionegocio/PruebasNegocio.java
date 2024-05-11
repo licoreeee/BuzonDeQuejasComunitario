@@ -32,9 +32,8 @@ public class PruebasNegocio {
         IncidenteBO incidenteBO = new IncidenteBO();
 
 //        InstitucionNuevaDTO institucionDTO = new InstitucionNuevaDTO();
-//        institucionDTO.setNombre("Organismos Operadores de Agua Potable, Alcantarillado y Saneamiento");
-//        institucionDTO.setSiglas("OOMAPAS");
-//        institucionDTO.setDescripcionAdicional("garantizar el suministro de agua potable a los usuarios dentro de su jurisdicción");
+//        institucionDTO.setNombre("Policia Municipal");
+//        institucionDTO.setDescripcionAdicional("Encargados de la seguridad publica");
 //
 //        try{
 //           institucionBO.agregarInstitucion(institucionDTO);
@@ -50,9 +49,9 @@ public class PruebasNegocio {
 //            Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
 //        List<IncidentesDTO> incidentesDTO = new ArrayList<>();
-//        incidentesDTO.add(new IncidentesDTO("Fuga de agua a presion", new InstitucionRegistradaDTO("663f155f8e48ac44dc69d070")));
-//        incidentesDTO.add(new IncidentesDTO("Aguas negras", new InstitucionRegistradaDTO("663f155f8e48ac44dc69d070")));
-//        incidentesDTO.add(new IncidentesDTO("Falta de servicio de agua", new InstitucionRegistradaDTO("663f155f8e48ac44dc69d070")));
+//        incidentesDTO.add(new IncidentesDTO("Conflictos sociales", new InstitucionRegistradaDTO("663fe6ba0808a654d709479a")));
+//        incidentesDTO.add(new IncidentesDTO("Falta de seguridad en zona publica", new InstitucionRegistradaDTO("663fe6ba0808a654d709479a")));
+//        incidentesDTO.add(new IncidentesDTO("Incapacitacion de sueño por fiestas en horas vespertinas", new InstitucionRegistradaDTO("663fe6ba0808a654d709479a")));
 //
 //        try {
 //            incidentesDTO = incidenteBO.agregarIncidentes(incidentesDTO);
@@ -61,13 +60,13 @@ public class PruebasNegocio {
 //        } catch (FindException ex) {
 //            Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-        try {
-            List<IncidentesDTO> incidentesObtenidos = incidenteBO.obtenerIncidentes("663f155f8e48ac44dc69d070");
-            System.out.println(incidentesObtenidos);
-            System.out.println("Se logro consultar los incidentes de la institucion ingresada");
-        } catch (FindException ex) {
-            Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            List<IncidentesDTO> incidentesObtenidos = incidenteBO.obtenerIncidentes("663fe6ba0808a654d709479a");
+//            System.out.println(incidentesObtenidos);
+//            System.out.println("Se logro consultar los incidentes de la institucion ingresada");
+//        } catch (FindException ex) {
+//            Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
+//        }
 
     }
 
