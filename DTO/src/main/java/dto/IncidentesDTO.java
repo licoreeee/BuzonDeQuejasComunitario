@@ -10,6 +10,7 @@ package dto;
  */
 public class IncidentesDTO {
     
+    private String id;
     private String informacion;
     private InstitucionNuevaDTO institucionNuevaDTO;
     private InstitucionRegistradaDTO institucionRegistradaDTO;
@@ -50,5 +51,13 @@ public class IncidentesDTO {
     public void setInstitucionRegistradaDTO(InstitucionRegistradaDTO institucionRegistradaDTO) {
         this.institucionRegistradaDTO = institucionRegistradaDTO;
     }
-    
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
 }
