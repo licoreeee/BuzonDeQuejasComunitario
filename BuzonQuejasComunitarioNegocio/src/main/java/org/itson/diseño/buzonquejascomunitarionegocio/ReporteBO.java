@@ -14,11 +14,12 @@ public class ReporteBO implements IReporteBO{
 
     @Override
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) {
-        Reporte reporte = new Reporte(reporteDTO.getFolio(),
+        if(reporteDTO.getPhoto() == null){
+            Reporte reporte = new Reporte(reporteDTO.getFolio(),
                                       reporteDTO.getTitulo(),
                                       reporteDTO.getDescripcion(),
                                       reporteDTO.getFechaCreacion());
-        reporte.setId(new ObjectId(reporteDTO.getId()));
+        }
         reporte.setPhoto(new Binary(reporteDTO.getPhoto()));
         return reporte;
     }

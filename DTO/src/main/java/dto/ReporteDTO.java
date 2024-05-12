@@ -13,31 +13,31 @@ public class ReporteDTO {
     private String descripcion;
     private Calendar fechaCreacion;
     private byte[] photo;
-    private String idCiudadano;
-    private String idInstitucion;
-    private String idIncidente;
+    private CiudadanoDTO ciudadano;
+    private InstitucionRegistradaDTO institucion;
+    private IncidentesDTO incidente;
 
-    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, String idCiudadano, String idInstitucion, String idIncidente) {
+    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.id = id;
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
-        this.idCiudadano = idCiudadano;
-        this.idInstitucion = idInstitucion;
-        this.idIncidente = idIncidente;
+        this.ciudadano = ciudadano;
+        this.institucion = institucion;
+        this.incidente = incidente;
     }
 
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, String idCiudadano, String idInstitucion, String idIncidente) {
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
-        this.idCiudadano = idCiudadano;
-        this.idInstitucion = idInstitucion;
-        this.idIncidente = idIncidente;
+        this.ciudadano = ciudadano;
+        this.institucion = institucion;
+        this.incidente = incidente;
     }
     
     public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
@@ -111,7 +111,32 @@ public class ReporteDTO {
     public void setPhoto(byte[] photo) {
         this.photo = photo;
     }
+
+    public CiudadanoDTO getCiudadano() {
+        return ciudadano;
+    }
+
+    public void setCiudadano(CiudadanoDTO ciudadano) {
+        this.ciudadano = ciudadano;
+    }
+
+    public InstitucionRegistradaDTO getInstitucion() {
+        return institucion;
+    }
+
+    public void setInstitucion(InstitucionRegistradaDTO institucion) {
+        this.institucion = institucion;
+    }
+
+    public IncidentesDTO getIncidente() {
+        return incidente;
+    }
+
+    public void setIncidente(IncidentesDTO incidente) {
+        this.incidente = incidente;
+    }
   
+    
     
     }
 

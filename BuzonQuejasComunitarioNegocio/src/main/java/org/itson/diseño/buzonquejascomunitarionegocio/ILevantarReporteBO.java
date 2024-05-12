@@ -1,7 +1,14 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import dto.CiudadanoDTO;
+import dto.IncidentesDTO;
 import dto.InstitucionNuevaDTO;
+import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
+import entidades.Ciudadano;
+import entidades.Incidentes;
+import entidades.Institucion;
+import excepciones.NegociosException;
 import java.util.List;
 
 /**
@@ -9,9 +16,16 @@ import java.util.List;
  */
 public interface ILevantarReporteBO {
 
-    List<ReporteDTO> mostrarReportes();
-
-    public List<InstitucionNuevaDTO> cargarDatos();
+    public Ciudadano convertirCiudadanoEntidad(CiudadanoDTO ciudadanoDTO) throws NegociosException;
     
-    public InstitucionDTO transformarInstitucionDTO(Institucion institucion)
+    public CiudadanoDTO convertirCiudadanoDTO(Ciudadano ciudadano) throws NegociosException;
+    
+    public Incidentes convertirIncidenteEntidad(IncidentesDTO incidenteDTO) throws NegociosException;
+    
+    public IncidentesDTO convertirIncidenteDTO(Incidentes incidente) throws NegociosException;
+    
+    public Institucion convertirInstitucionEntidad(InstitucionRegistradaDTO institucionDTO) throws NegociosException;
+    
+    public InstitucionRegistradaDTO convertirInstitucionDTO(Institucion institucion) throws NegociosException;
+    
 }
