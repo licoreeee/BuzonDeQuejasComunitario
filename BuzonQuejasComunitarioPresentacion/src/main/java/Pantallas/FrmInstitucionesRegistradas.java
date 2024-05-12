@@ -4,17 +4,15 @@
  */
 package Pantallas;
 
-import dto.IncidenteDTO;
-import dto.InstitucionNuevaDTO;
-import dto.ReporteDTO;
-import java.awt.HeadlessException;
-import java.util.ArrayList;
+import Excepciones.FindException;
+import Excepciones.PersistenciaException;
+import dto.InstitucionRegistradaDTO;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  *
@@ -23,59 +21,41 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
 
     private ControlNavegacion controladores;
+    private IFacadeAgregarInstitucion facadeInstituciones;
+    DefaultTableModel modeloTabla = new DefaultTableModel();
+    private List<InstitucionRegistradaDTO> instituciones;
 
     /**
      * Creates new form FrmSeleccionIncidentes
      */
-    public FrmInstitucionesRegistradas() {
+    public FrmInstitucionesRegistradas(ControlNavegacion controladores) {
+        this.controladores = controladores;
+        this.facadeInstituciones = new FacadeAgregarInstitucion();
         initComponents();
-        this.controladores = new ControlNavegacion();
-//        this.institucion = institucion;
-//        mostrarTabla(institucion.getIncidentes());
+        actualizarTabla(instituciones);
     }
+    
+    private void actualizarTabla(List<InstitucionRegistradaDTO> instituciones) {
+        try {
+            DefaultTableModel institucionesRegistradas = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Hacer que todas las celdas sean no editables
+                }
+            };
+            institucionesRegistradas.addColumn("Instituciones");
+            for (InstitucionRegistradaDTO institucion : instituciones) {
+                Object[] fila = {
+                    institucion.getNombre()
+                };
+                institucionesRegistradas.addRow(fila);
+            }
+            tblInstitucionesRegistradas.setModel(institucionesRegistradas);
+        } catch (Exception ex) {
+            Logger.getLogger(FrmInstitucionesRegistradas.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-//    public FrmInstitucionesRegistradas(ReporteDTO reporteDTO) {
-//        this.reporteDTO = reporteDTO;
-//    }
-//
-//    DefaultTableModel modeloTabla = new DefaultTableModel() {
-//        @Override
-//        public boolean isCellEditable(int row, int column) {
-//            return false; // Hacer que todas las celdas sean no editables
-//        }
-//    };
-
-//    private void mostrarTabla(List<IncidenteDTO> incidentes) {
-//        modeloTabla.addColumn("Incidente");
-//        Object[] datosTabla = new Object[1];
-//
-//        // Verificar si la lista de incidentes no es null antes de iterar sobre ella
-//        if (incidentes != null) {
-//            incidentes.forEach(institucionObtenida -> {
-//                datosTabla[0] = institucionObtenida.getNombreIncidente();
-//                modeloTabla.addRow(datosTabla);
-//            });
-//        }
-//
-//        tblInstitucionesRegistradas.setModel(modeloTabla);
-//    }
-//
-//    private void obtenerDatosSeleccionados() {
-//        int filaSeleccionada = tblInstitucionesRegistradas.getSelectedRow();
-//
-//        if (filaSeleccionada != -1) {
-//            Object[] datosFila = new Object[tblInstitucionesRegistradas.getColumnCount()];
-//
-//            for (int i = 0; i < tblInstitucionesRegistradas.getColumnCount(); i++) {
-//                datosFila[i] = tblInstitucionesRegistradas.getValueAt(filaSeleccionada, i);
-//            }
-//            IncidenteDTO incidenteDTO = new IncidenteDTO();
-//            incidenteDTO.setNombreIncidente(datosFila[0].toString());
-//        } else {
-//            Logger.getLogger(FrmInstitucionesRegistradas.class.getName()).log(Level.SEVERE, "No se selecciono ningun elemento de la tabla");
-//
-//        }
-//    }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

@@ -77,7 +77,7 @@ public class ControlNavegacion {
     }
 
     public void mostrarInstitucionesRegistradas() {
-        FrmInstitucionesRegistradas institucionesRegistradas = new FrmInstitucionesRegistradas();
+        FrmInstitucionesRegistradas institucionesRegistradas = new FrmInstitucionesRegistradas(this);
         institucionesRegistradas.setVisible(true);
     }
 

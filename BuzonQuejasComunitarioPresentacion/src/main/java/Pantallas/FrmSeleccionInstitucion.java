@@ -4,7 +4,6 @@
  */
 package Pantallas;
 
-import dto.IncidenteDTO;
 import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import java.util.HashSet;
