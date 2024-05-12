@@ -170,7 +170,7 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
         String descripcion = txaDescripcionAdicional.getText();
 
         if (nombre.isEmpty() || descripcion.isEmpty()) {
-            JOptionPane.showMessageDialog(rootPane, "Es necesario ingresar el nombre y la descripción de la institución", "Aviso", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Es necesario ingresar el nombre y la descripción de la institución", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
 
             InstitucionNuevaDTO institucionNuevaDTO = new InstitucionNuevaDTO();

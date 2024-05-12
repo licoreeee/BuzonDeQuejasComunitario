@@ -51,36 +51,32 @@ public class FrmIncidentes extends javax.swing.JFrame {
     }
 
     private void agregarIncidentes() {
-        List<IncidentesDTO> listaIncidentes = new ArrayList<>();
-        DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
-
-        List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
-
-        InstitucionRegistradaDTO institucionRegistrada = new InstitucionRegistradaDTO();
-        for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
-            if (inst.getId().equals(institucion.getId())) { 
-                institucionRegistrada = inst;
-                break;
+        try {
+            List<IncidentesDTO> listaIncidentes = new ArrayList<>();
+            DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
+            List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
+            InstitucionRegistradaDTO institucionRegistrada = null;
+            for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
+                if (inst.getCodigoGestion().equals(institucion.getCodigoGestion())) {
+                    institucionRegistrada = inst;
+                    break;
+                }
             }
+            if (institucionRegistrada == null) {
+                JOptionPane.showMessageDialog(this, "No se encontró la institución correspondiente.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String informacion = (String) model.getValueAt(i, 0);
+                IncidentesDTO incidente = new IncidentesDTO();
+                incidente.setInformacion(informacion);
+                incidente.setInstitucionRegistradaDTO(institucionRegistrada);
+                listaIncidentes.add(incidente);
+            }
+            facadeIncidentes.agregarIncidentes(listaIncidentes);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-        if (institucionRegistrada == null) {
-            JOptionPane.showMessageDialog(this, "No se encontró la institución correspondiente.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
-        for (int i = 0; i < model.getRowCount(); i++) {
-            String informacion = (String) model.getValueAt(i, 0);
-
-            IncidentesDTO incidente = new IncidentesDTO();
-            incidente.setInformacion(informacion);
-            incidente.setInstitucionRegistradaDTO(institucionRegistrada);
-
-            listaIncidentes.add(incidente);
-        }
-
-    
-        facadeIncidentes.agregarIncidentes(listaIncidentes);
     }
 
     /**

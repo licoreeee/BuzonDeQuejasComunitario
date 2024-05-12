@@ -50,10 +50,8 @@ public class FrmHistorial extends javax.swing.JFrame {
         btnGenerarPDF = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblReportes = new javax.swing.JTable();
-        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
         jlbContexto2 = new javax.swing.JLabel();
         jlbContexto3 = new javax.swing.JLabel();
-        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,9 +205,6 @@ public class FrmHistorial extends javax.swing.JFrame {
         tblReportes.setSelectionForeground(new java.awt.Color(110, 110, 110));
         jScrollPane2.setViewportView(tblReportes);
 
-        datePicker1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        datePicker1.setForeground(new java.awt.Color(110, 110, 110));
-
         jlbContexto2.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         jlbContexto2.setForeground(new java.awt.Color(110, 110, 110));
         jlbContexto2.setText("desde:");
@@ -262,12 +257,8 @@ public class FrmHistorial extends javax.swing.JFrame {
                                 .addComponent(chkbxFecha)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jlbContexto2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jlbContexto3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(186, 186, 186)
+                                .addComponent(jlbContexto3))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -295,10 +286,8 @@ public class FrmHistorial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxFecha)
-                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jlbContexto2)
-                    .addComponent(jlbContexto3)
-                    .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlbContexto3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxInstitucion)
@@ -398,8 +387,6 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkbxInstitucion;
     private javax.swing.JCheckBox chkbxTitulo;
     private javax.swing.JCheckBox chkbxUbicacion;
-    private com.github.lgooddatepicker.components.DatePicker datePicker1;
-    private com.github.lgooddatepicker.components.DatePicker datePicker2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;

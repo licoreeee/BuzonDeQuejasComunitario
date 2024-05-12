@@ -8,6 +8,7 @@ import dto.InstitucionRegistradaDTO;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
 import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
@@ -54,7 +55,7 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
             }
             tblInstitucionesRegistradas.setModel(institucionesRegistradas);
         } catch (Exception ex) {
-            Logger.getLogger(FrmInstitucionesRegistradas.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Hubo un problema con la creación de la tabla", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
 
     }
