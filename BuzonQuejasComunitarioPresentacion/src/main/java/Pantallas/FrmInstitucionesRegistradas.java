@@ -4,14 +4,13 @@
  */
 package Pantallas;
 
+
 import dto.InstitucionRegistradaDTO;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
-//import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  *
@@ -20,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
 public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
 
     private ControlNavegacion controladores;
-//    private IFacadeAgregarInstitucion facadeInstituciones;
+    private IFacadeAgregarInstitucion facadeInstituciones;
     DefaultTableModel modeloTabla = new DefaultTableModel();
     private List<InstitucionRegistradaDTO> instituciones;
 
@@ -29,8 +28,8 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
      */
     public FrmInstitucionesRegistradas(ControlNavegacion controladores) {
         this.controladores = controladores;
-//        this.facadeInstituciones = new FacadeAgregarInstitucion();
-//        this.instituciones = facadeInstituciones.consultarInstituciones();
+        this.facadeInstituciones = new FacadeAgregarInstitucion();
+        this.instituciones = facadeInstituciones.consultarInstituciones();
         initComponents();
         actualizarTabla(instituciones);
     }
@@ -44,20 +43,43 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
                 }
             };
             institucionesRegistradas.addColumn("Instituciones");
+            institucionesRegistradas.addColumn("Id");
             for (InstitucionRegistradaDTO institucion : instituciones) {
                 Object[] fila;
                 if (institucion.getSiglas() != null) {
-                    fila = new Object[]{institucion.getSiglas()};
+                    fila = new Object[]{institucion.getSiglas(), institucion.getId()};
                 } else {
-                    fila = new Object[]{institucion.getNombre()};
+                    fila = new Object[]{institucion.getNombre(), institucion.getId()};
                 }
                 institucionesRegistradas.addRow(fila);
             }
+
             tblInstitucionesRegistradas.setModel(institucionesRegistradas);
+
+            // Ocultamos la columna de los id porque no nos interesa mostrarla
+            tblInstitucionesRegistradas.getColumnModel().getColumn(1).setMinWidth(0);
+            tblInstitucionesRegistradas.getColumnModel().getColumn(1).setMaxWidth(0);
+            tblInstitucionesRegistradas.getColumnModel().getColumn(1).setWidth(0);
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "Hubo un problema con la creación de la tabla", "Aviso", JOptionPane.WARNING_MESSAGE);
         }
+    }
 
+    private void transportarAIncidentesInstitucion() {
+        int filaSeleccionada = tblInstitucionesRegistradas.getSelectedRow();
+        if (filaSeleccionada == -1) { // Verificar si se ha seleccionado alguna fila
+            JOptionPane.showMessageDialog(this, "Primeramente es necesario seleccionar una institucion para ver");
+        } else {
+            String nombreInstitucion = tblInstitucionesRegistradas.getValueAt(filaSeleccionada, 0).toString();
+            String idInstitucion = tblInstitucionesRegistradas.getValueAt(filaSeleccionada, 1).toString();
+
+            InstitucionRegistradaDTO institucionSeleccionada = new InstitucionRegistradaDTO();
+            institucionSeleccionada.setId(idInstitucion);
+            institucionSeleccionada.setNombre(nombreInstitucion);
+            controladores.mostrarIncidentes(institucionSeleccionada);
+            dispose();
+        }
     }
 
     /**
@@ -73,6 +95,7 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        btnVer = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -99,6 +122,19 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
         jLabel7.setOpaque(true);
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 80));
 
+        btnVer.setBackground(new java.awt.Color(241, 241, 241));
+        btnVer.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnVer.setForeground(new java.awt.Color(181, 18, 57));
+        btnVer.setText("Ver");
+        btnVer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
+        btnVer.setContentAreaFilled(false);
+        btnVer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVer, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 220, 107, 40));
+
         btnAgregar.setBackground(new java.awt.Color(241, 241, 241));
         btnAgregar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnAgregar.setForeground(new java.awt.Color(181, 18, 57));
@@ -110,7 +146,7 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
                 btnAgregarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 180, 107, 40));
+        getContentPane().add(btnAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 160, 107, 40));
 
         jLabel1.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(33, 33, 33));
@@ -184,10 +220,15 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
+    private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
+        transportarAIncidentesInstitucion();
+    }//GEN-LAST:event_btnVerActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnVer;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

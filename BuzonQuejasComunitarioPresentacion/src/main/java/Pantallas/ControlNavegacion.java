@@ -9,6 +9,7 @@ import PantallasAvance.FrmCrearComentario;
 import PantallasAvance.FrmPortalInstituciones;
 import PantallasAvance.FrmReportesPendientes;
 import dto.InstitucionNuevaDTO;
+import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
 
 /**
@@ -88,6 +89,11 @@ public class ControlNavegacion {
 
     public void mostrarIncidentes(InstitucionNuevaDTO institucionNuevaDTO) {
         FrmIncidentes incidentes = new FrmIncidentes(institucionNuevaDTO);
+        incidentes.setVisible(true);
+    }
+
+    public void mostrarIncidentes(InstitucionRegistradaDTO institucionRegistradaDTO) {
+        FrmIncidentes incidentes = new FrmIncidentes(institucionRegistradaDTO);
         incidentes.setVisible(true);
     }
 
