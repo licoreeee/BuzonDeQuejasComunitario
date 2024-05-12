@@ -24,13 +24,6 @@ public class InstitucionRegistradaDTO {
     public InstitucionRegistradaDTO(String id) {
         this.id = id;
     }
-
-    public InstitucionRegistradaDTO(String id, String nombre, String siglas, String descripcionAdicional) {
-        this.id = id;
-        this.nombre = nombre;
-        this.siglas = siglas;
-        this.descripcionAdicional = descripcionAdicional;
-    }
     
     public InstitucionRegistradaDTO(String id, String nombre, String siglas, String descripcionAdicional, String codigoGestion, String nip) {
         this.id = id;
