@@ -1,6 +1,7 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
+import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
 import dao.InstitucionDAO;
@@ -10,6 +11,7 @@ import entidades.Institucion;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import org.bson.types.ObjectId;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina

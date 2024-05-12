@@ -26,11 +26,6 @@ public class Incidentes {
         this.informacion = informacion;
         this.institucionId = institucionId;
     }
-
-    public Incidentes(ObjectId id, String informacion) {
-        this.id = id;
-        this.informacion = informacion;
-    }
     
     public Incidentes() {
     }

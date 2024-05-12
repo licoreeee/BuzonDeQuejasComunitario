@@ -18,7 +18,7 @@ public class Institucion {
     private String descripcionAdicional;
     private String codigoGestion;
     private String nip;
-    
+
     public Institucion(ObjectId id, String nombre, String siglas, String descripcionAdicional) {
         this.id = id;
         this.nombre = nombre;
