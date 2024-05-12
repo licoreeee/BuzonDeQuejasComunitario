@@ -50,6 +50,10 @@ public class FrmHistorial extends javax.swing.JFrame {
         btnGenerarPDF = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblReportes = new javax.swing.JTable();
+        datePicker1 = new com.github.lgooddatepicker.components.DatePicker();
+        jlbContexto2 = new javax.swing.JLabel();
+        jlbContexto3 = new javax.swing.JLabel();
+        datePicker2 = new com.github.lgooddatepicker.components.DatePicker();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -67,40 +71,40 @@ public class FrmHistorial extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnAvances.setForeground(new java.awt.Color(241, 241, 241));
         btnAvances.setText("Avances");
         btnAvances.setContentAreaFilled(false);
+        btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAvances.setForeground(new java.awt.Color(241, 241, 241));
         btnAvances.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAvancesActionPerformed(evt);
             }
         });
 
-        btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnHistorial.setForeground(new java.awt.Color(241, 241, 241));
         btnHistorial.setText("Historial ");
         btnHistorial.setContentAreaFilled(false);
+        btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnHistorial.setForeground(new java.awt.Color(241, 241, 241));
         btnHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistorialActionPerformed(evt);
             }
         });
 
-        btnAdminAcceso.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnAdminAcceso.setForeground(new java.awt.Color(241, 241, 241));
         btnAdminAcceso.setText("Admin");
         btnAdminAcceso.setContentAreaFilled(false);
+        btnAdminAcceso.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAdminAcceso.setForeground(new java.awt.Color(241, 241, 241));
         btnAdminAcceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdminAccesoActionPerformed(evt);
             }
         });
 
-        btnLevantarReporte2.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnLevantarReporte2.setForeground(new java.awt.Color(241, 241, 241));
         btnLevantarReporte2.setText("Levantar Reporte");
         btnLevantarReporte2.setContentAreaFilled(false);
+        btnLevantarReporte2.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnLevantarReporte2.setForeground(new java.awt.Color(241, 241, 241));
         btnLevantarReporte2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLevantarReporte2ActionPerformed(evt);
@@ -115,79 +119,81 @@ public class FrmHistorial extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jlbHistorial.setText("Historial de reportes");
         jlbHistorial.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
         jlbHistorial.setForeground(new java.awt.Color(33, 33, 33));
-        jlbHistorial.setText("Historial de reportes");
 
+        jlbContexto.setText("Seleccione los filtros con los que desee realizar la búsqueda.");
         jlbContexto.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jlbContexto.setForeground(new java.awt.Color(110, 110, 110));
-        jlbContexto.setText("Seleccione los filtros con los que desee realizar la búsqueda.");
 
+        chkbxTitulo.setText("Título del reporte:");
         chkbxTitulo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         chkbxTitulo.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxTitulo.setText("Título del reporte:");
         chkbxTitulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chkbxTituloActionPerformed(evt);
             }
         });
 
+        chkbxFecha.setText("Fecha de creación");
         chkbxFecha.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         chkbxFecha.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxFecha.setText("Fecha de creación:");
+        chkbxFecha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkbxFechaActionPerformed(evt);
+            }
+        });
 
+        chkbxInstitucion.setText("Institución:");
         chkbxInstitucion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         chkbxInstitucion.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxInstitucion.setText("Institución:");
 
+        chkbxIncidente.setText("Incidente:");
         chkbxIncidente.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         chkbxIncidente.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxIncidente.setText("Incidente:");
 
+        chkbxUbicacion.setText("Ubicación:");
         chkbxUbicacion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         chkbxUbicacion.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxUbicacion.setText("Ubicación:");
 
+        jlbContexto1.setText("Filtros:");
         jlbContexto1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jlbContexto1.setForeground(new java.awt.Color(33, 33, 33));
-        jlbContexto1.setText("Filtros:");
 
         jTextField1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jTextField1.setForeground(new java.awt.Color(110, 110, 110));
-        jTextField1.setText("jTextField1");
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(110, 110, 110));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox2.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jComboBox2.setForeground(new java.awt.Color(110, 110, 110));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        btnBuscar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(181, 18, 57));
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
         btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(181, 18, 57));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
 
+        btnGenerarPDF.setText("Generar PDF...");
         btnGenerarPDF.setBackground(new java.awt.Color(181, 18, 57));
+        btnGenerarPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
         btnGenerarPDF.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnGenerarPDF.setForeground(new java.awt.Color(255, 255, 255));
-        btnGenerarPDF.setText("Generar PDF...");
-        btnGenerarPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
         btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarPDFActionPerformed(evt);
             }
         });
 
-        tblReportes.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        tblReportes.setForeground(new java.awt.Color(110, 110, 110));
         tblReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -196,21 +202,49 @@ public class FrmHistorial extends javax.swing.JFrame {
                 "Fecha", "Título", "Estado", "Número de resultados", ""
             }
         ));
+        tblReportes.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        tblReportes.setForeground(new java.awt.Color(110, 110, 110));
         tblReportes.setSelectionForeground(new java.awt.Color(110, 110, 110));
         jScrollPane2.setViewportView(tblReportes);
+
+        datePicker1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        datePicker1.setForeground(new java.awt.Color(110, 110, 110));
+
+        jlbContexto2.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        jlbContexto2.setForeground(new java.awt.Color(110, 110, 110));
+        jlbContexto2.setText("desde:");
+
+        jlbContexto3.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
+        jlbContexto3.setForeground(new java.awt.Color(110, 110, 110));
+        jlbContexto3.setText("hasta:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jlbContexto1))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(14, 14, 14)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbContexto)
+                            .addComponent(jlbHistorial))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGenerarPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(chkbxInstitucion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(chkbxIncidente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -219,40 +253,38 @@ public class FrmHistorial extends javax.swing.JFrame {
                         .addComponent(chkbxTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(18, 18, 18)
                         .addComponent(chkbxUbicacion)
                         .addGap(112, 112, 112))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(chkbxFecha)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlbContexto)
-                                    .addComponent(jlbContexto1)
-                                    .addComponent(jlbHistorial))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnGenerarPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(23, 23, 23))))
+                                .addComponent(chkbxFecha)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbContexto2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jlbContexto3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jlbHistorial)
-                        .addGap(3, 3, 3)
+                        .addGap(43, 43, 43)
                         .addComponent(jlbContexto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlbContexto1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(16, 16, 16)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jlbHistorial))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -261,7 +293,12 @@ public class FrmHistorial extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkbxUbicacion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(chkbxFecha)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkbxFecha)
+                    .addComponent(datePicker1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbContexto2)
+                    .addComponent(jlbContexto3)
+                    .addComponent(datePicker2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxInstitucion)
@@ -278,20 +315,23 @@ public class FrmHistorial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
-                .addComponent(btnLevantarReporte2))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(190, 190, 190)
-                .addComponent(btnAdminAcceso))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(420, 420, 420)
-                .addComponent(btnAvances))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(510, 510, 510)
-                .addComponent(btnHistorial))
-            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addComponent(logoGobiernoMexico)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(270, 270, 270)
+                        .addComponent(btnLevantarReporte2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(190, 190, 190)
+                        .addComponent(btnAdminAcceso))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(420, 420, 420)
+                        .addComponent(btnAvances))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(510, 510, 510)
+                        .addComponent(btnHistorial))
+                    .addComponent(logoGobiernoMexico))
+                .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -340,6 +380,10 @@ public class FrmHistorial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_chkbxTituloActionPerformed
 
+    private void chkbxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbxFechaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkbxFechaActionPerformed
+
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -354,6 +398,8 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkbxInstitucion;
     private javax.swing.JCheckBox chkbxTitulo;
     private javax.swing.JCheckBox chkbxUbicacion;
+    private com.github.lgooddatepicker.components.DatePicker datePicker1;
+    private com.github.lgooddatepicker.components.DatePicker datePicker2;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel2;
@@ -364,6 +410,8 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jlbContexto;
     private javax.swing.JLabel jlbContexto1;
+    private javax.swing.JLabel jlbContexto2;
+    private javax.swing.JLabel jlbContexto3;
     private javax.swing.JLabel jlbHistorial;
     private javax.swing.JLabel logoGobiernoMexico;
     private javax.swing.JTable tblReportes;
