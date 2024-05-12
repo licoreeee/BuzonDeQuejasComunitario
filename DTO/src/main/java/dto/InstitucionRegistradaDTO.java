@@ -34,6 +34,15 @@ public class InstitucionRegistradaDTO {
         this.nip = nip;
     }
 
+    public InstitucionRegistradaDTO(String nombre, String siglas, String descripcionAdicional, String codigoGestion, String nip) {
+        this.nombre = nombre;
+        this.siglas = siglas;
+        this.descripcionAdicional = descripcionAdicional;
+        this.codigoGestion = codigoGestion;
+        this.nip = nip;
+    }
+    
+
     public String getId() {
         return id;
     }

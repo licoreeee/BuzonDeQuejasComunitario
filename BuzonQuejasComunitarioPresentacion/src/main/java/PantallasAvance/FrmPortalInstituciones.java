@@ -4,17 +4,25 @@
  */
 package PantallasAvance;
 
+import Excepciones.FindException;
 import Pantallas.ControlNavegacion;
+import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import org.itson.diseño.levantarreportess.IRegistrarAvance;
+import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
- * @author hisam
+ * @author 
  */
 public class FrmPortalInstituciones extends javax.swing.JFrame {
-
-    ControlNavegacion control;
+    private IRegistrarAvance registrarAvance;
+    private final ControlNavegacion control;
     public FrmPortalInstituciones() {
         initComponents();
+        registrarAvance = new RegistrarAvance();
         control = new ControlNavegacion();
     }
 
@@ -118,7 +126,20 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-     control.mostrarReportesPendientes();
+        try {
+            registrarAvance.consultarInstitucion(
+                    txtID.getText(),
+                    new String(JPasswordNip.getPassword()));
+        } catch (FindException ex) {
+            Logger.getLogger(FrmPortalInstituciones.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                            null,
+                            ex.getMessage(),
+                            "Error al buscar la institucion",
+                            JOptionPane.ERROR_MESSAGE);
+        }
+
+     
     }//GEN-LAST:event_btnContinuarActionPerformed
 
     
