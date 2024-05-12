@@ -13,32 +13,39 @@ public class ReporteDTO {
     private String descripcion;
     private Calendar fechaCreacion;
     private byte[] photo;
+    private String calle;
+    private String colonia;
+    private String descripcionExtra;
     private CiudadanoDTO ciudadano;
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
 
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.descripcionExtra = descripcionExtra;
         this.ciudadano = ciudadano;
         this.institucion = institucion;
         this.incidente = incidente;
     }
 
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.descripcionExtra = descripcionExtra;
         this.ciudadano = ciudadano;
         this.institucion = institucion;
         this.incidente = incidente;
     }
-
-    
     
     public int getFolio() {
         return folio;
@@ -110,6 +117,30 @@ public class ReporteDTO {
 
     public void setIncidente(IncidentesDTO incidente) {
         this.incidente = incidente;
+    }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+
+    public String getDescripcionExtra() {
+        return descripcionExtra;
+    }
+
+    public void setDescripcionExtra(String descripcionExtra) {
+        this.descripcionExtra = descripcionExtra;
     }
   
     

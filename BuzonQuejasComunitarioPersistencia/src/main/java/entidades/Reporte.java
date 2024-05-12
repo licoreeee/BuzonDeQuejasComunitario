@@ -20,26 +20,35 @@ public class Reporte {
     private String descripcion;
     private Calendar fechaCreacion;
     private Binary photo;
+    private String calle;
+    private String colonia;
+    private String descripcionExtra;
     private Ciudadano ciudadano;
     private Institucion institucion;
     private Incidentes incidente;
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.descripcionExtra = descripcionExtra;
         this.ciudadano = ciudadano;
         this.institucion = institucion;
         this.incidente = incidente;
     }
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.descripcionExtra = descripcionExtra;
         this.ciudadano = ciudadano;
         this.institucion = institucion;
         this.incidente = incidente;
@@ -115,6 +124,30 @@ public class Reporte {
 
     public void setIncidente(Incidentes incidente) {
         this.incidente = incidente;
+    }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public String getColonia() {
+        return colonia;
+    }
+
+    public void setColonia(String colonia) {
+        this.colonia = colonia;
+    }
+
+    public String getDescripcionExtra() {
+        return descripcionExtra;
+    }
+
+    public void setDescripcionExtra(String descripcionExtra) {
+        this.descripcionExtra = descripcionExtra;
     }
     
     

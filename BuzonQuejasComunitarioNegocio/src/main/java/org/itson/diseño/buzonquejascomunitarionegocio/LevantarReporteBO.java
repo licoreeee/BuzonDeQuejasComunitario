@@ -76,6 +76,9 @@ public class LevantarReporteBO implements ILevantarReporteBO {
                                       reporteDTO.getTitulo(),
                                       reporteDTO.getDescripcion(),
                                       reporteDTO.getFechaCreacion(),
+                                      reporteDTO.getCalle(),
+                                      reporteDTO.getColonia(),
+                                      reporteDTO.getDescripcionExtra(),
                                       convertirCiudadanoEntidad(reporteDTO.getCiudadano()),
                                       convertirInstitucionEntidad(reporteDTO.getInstitucion()),
                                       convertirIncidenteEntidad(reporteDTO.getIncidente()));
@@ -88,6 +91,9 @@ public class LevantarReporteBO implements ILevantarReporteBO {
                                       reporteDTO.getDescripcion(),
                                       reporteDTO.getFechaCreacion(),
                                       binaryPhoto,
+                                      reporteDTO.getCalle(),
+                                      reporteDTO.getColonia(),
+                                      reporteDTO.getDescripcionExtra(),
                                       convertirCiudadanoEntidad(reporteDTO.getCiudadano()),
                                       convertirInstitucionEntidad(reporteDTO.getInstitucion()),
                                       convertirIncidenteEntidad(reporteDTO.getIncidente()));
@@ -106,6 +112,9 @@ public class LevantarReporteBO implements ILevantarReporteBO {
                                       reporte.getTitulo(),
                                       reporte.getDescripcion(),
                                       reporte.getFechaCreacion(),
+                                      reporte.getCalle(),
+                                      reporte.getColonia(),
+                                      reporte.getDescripcionExtra(),
                                       convertirCiudadanoDTO(reporte.getCiudadano()),
                                       convertirInstitucionDTO(reporte.getInstitucion()),
                                       convertirIncidenteDTO(reporte.getIncidente()));
@@ -116,6 +125,9 @@ public class LevantarReporteBO implements ILevantarReporteBO {
                                       reporte.getDescripcion(),
                                       reporte.getFechaCreacion(),
                                       reporte.getPhoto().getData(),
+                                      reporte.getCalle(),
+                                      reporte.getColonia(),
+                                      reporte.getDescripcionExtra(),
                                       convertirCiudadanoDTO(reporte.getCiudadano()),
                                       convertirInstitucionDTO(reporte.getInstitucion()),
                                       convertirIncidenteDTO(reporte.getIncidente()));
