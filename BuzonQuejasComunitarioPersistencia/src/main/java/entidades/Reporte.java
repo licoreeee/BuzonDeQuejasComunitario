@@ -20,31 +20,31 @@ public class Reporte {
     private String descripcion;
     private Calendar fechaCreacion;
     private Binary photo;
-    private Ciudadano ciudadano;
-    private Institucion institucion;
-    private Incidentes incidente;
+    private ObjectId idCiudadano;
+    private ObjectId idInstitucion;
+    private ObjectId idIncidente;
 
-    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
         this.id = id;
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
-        this.ciudadano = ciudadano;
-        this.institucion = institucion;
-        this.incidente = incidente;
+        this.idCiudadano = idCiudadano;
+        this.idInstitucion = idInstitucion;
+        this.idIncidente = idIncidente;
     }
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
-        this.ciudadano = ciudadano;
-        this.institucion = institucion;
-        this.incidente = incidente;
+        this.idCiudadano = idCiudadano;
+        this.idInstitucion = idInstitucion;
+        this.idIncidente = idIncidente;
     }
     
     public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
@@ -126,8 +126,31 @@ public class Reporte {
     public void setPhoto(Binary photo) {
         this.photo = photo;
     }
-    
-    
 
+    public ObjectId getIdCiudadano() {
+        return idCiudadano;
+    }
+
+    public void setIdCiudadano(ObjectId idCiudadano) {
+        this.idCiudadano = idCiudadano;
+    }
+
+    public ObjectId getIdInstitucion() {
+        return idInstitucion;
+    }
+
+    public void setIdInstitucion(ObjectId idInstitucion) {
+        this.idInstitucion = idInstitucion;
+    }
+
+    public ObjectId getIdIncidente() {
+        return idIncidente;
+    }
+
+    public void setIdIncidente(ObjectId idIncidente) {
+        this.idIncidente = idIncidente;
+    }
+
+    
 }
 

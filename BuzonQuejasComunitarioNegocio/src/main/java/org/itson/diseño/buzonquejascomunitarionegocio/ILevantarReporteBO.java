@@ -12,4 +12,6 @@ public interface ILevantarReporteBO {
     List<ReporteDTO> mostrarReportes();
 
     public List<InstitucionNuevaDTO> cargarDatos();
+    
+    public InstitucionDTO transformarInstitucionDTO(Institucion institucion)
 }

@@ -13,7 +13,33 @@ public class ReporteDTO {
     private String descripcion;
     private Calendar fechaCreacion;
     private byte[] photo;
+    private String idCiudadano;
+    private String idInstitucion;
+    private String idIncidente;
 
+    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, String idCiudadano, String idInstitucion, String idIncidente) {
+        this.id = id;
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+        this.idCiudadano = idCiudadano;
+        this.idInstitucion = idInstitucion;
+        this.idIncidente = idIncidente;
+    }
+
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, String idCiudadano, String idInstitucion, String idIncidente) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+        this.idCiudadano = idCiudadano;
+        this.idInstitucion = idInstitucion;
+        this.idIncidente = idIncidente;
+    }
+    
     public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
         this.id = id;
         this.folio = folio;
