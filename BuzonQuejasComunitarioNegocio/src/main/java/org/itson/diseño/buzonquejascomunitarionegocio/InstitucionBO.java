@@ -79,8 +79,8 @@ public class InstitucionBO implements IInstitucionBO {
         return sb.toString();
     }
     
-    private InstitucionDTO transporteDatos (){
-        
+    private InstitucionRegistradaDTO transporteDatos (String codigoGestion) throws FindException{
+        institucionDAO.obtenerInstitucionPorCodigo(codigoGestion);
     }
 
 //    /**
