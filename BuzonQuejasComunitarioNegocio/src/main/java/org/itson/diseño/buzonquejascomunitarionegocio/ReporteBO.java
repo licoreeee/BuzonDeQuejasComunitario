@@ -58,10 +58,11 @@ public class ReporteBO implements IReporteBO {
     }
 
     @Override
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
-        
-       List<ReporteDTO> reportes = null;
-       return reportes;
+    public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String idInstitucion) throws FindException {
+       
+       
+      
+       return null;
 
     }
 }

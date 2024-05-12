@@ -8,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
-//import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
-//import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
-//import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  *
@@ -22,14 +22,16 @@ public class FrmIncidentes extends javax.swing.JFrame {
     private ControlNavegacion controladores;    
     private InstitucionNuevaDTO institucion;
     private List<String> incidentes;
+    private IFacadeAgregarInstitucion facadeInstituciones;
+    private IFacadeAgregarIncidentes facadeIncidentes;
 
     /**
      * Creates new form FrmSeleccionIncidentes
      */
     public FrmIncidentes(InstitucionNuevaDTO institucion) {
         this.controladores = new ControlNavegacion();
-//        this.facadeInstituciones = new FacadeAgregarInstitucion();
-//        this.facadeIncidentes = new FacadeAgregarIncidentes();
+        this.facadeInstituciones = new FacadeAgregarInstitucion();
+        this.facadeIncidentes = new FacadeAgregarIncidentes();
         this.institucion = institucion;
         initComponents();
 
@@ -45,36 +47,36 @@ public class FrmIncidentes extends javax.swing.JFrame {
         }
     }
 
-//    private void agregarIncidentes() {
-//
-//        try {
-//            List<IncidentesDTO> listaIncidentes = new ArrayList<>();
-//            DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
-//            List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
-//            InstitucionRegistradaDTO institucionRegistrada = null;
-//            for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
-//                if (inst.getCodigoGestion().equals(institucion.getCodigoGestion())) {
-//                    institucionRegistrada = inst;
-//                    break;
-//                }
-//            }
-//            if (institucionRegistrada == null) {
-//                JOptionPane.showMessageDialog(this, "No se encontró la institución correspondiente.", "Error", JOptionPane.ERROR_MESSAGE);
-//                return;
-//            }
-//            for (int i = 0; i < model.getRowCount(); i++) {
-//                String informacion = (String) model.getValueAt(i, 0);
-//                IncidentesDTO incidente = new IncidentesDTO();
-//                incidente.setInformacion(informacion);
-//                incidente.setInstitucionRegistradaDTO(institucionRegistrada);
-//                listaIncidentes.add(incidente);
-//            }
-//            facadeIncidentes.agregarIncidentes(listaIncidentes);
-//        } catch (Exception ex) {
-//            JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
-//        }
-//
-//    }
+    private void agregarIncidentes() {
+
+        try {
+            List<IncidentesDTO> listaIncidentes = new ArrayList<>();
+            DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
+            List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
+            InstitucionRegistradaDTO institucionRegistrada = null;
+            for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
+                if (inst.getCodigoGestion().equals(institucion.getCodigoGestion())) {
+                    institucionRegistrada = inst;
+                    break;
+                }
+            }
+            if (institucionRegistrada == null) {
+                JOptionPane.showMessageDialog(this, "No se encontró la institución correspondiente.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String informacion = (String) model.getValueAt(i, 0);
+                IncidentesDTO incidente = new IncidentesDTO();
+                incidente.setInformacion(informacion);
+                incidente.setInstitucionRegistradaDTO(institucionRegistrada);
+                listaIncidentes.add(incidente);
+            }
+            facadeIncidentes.agregarIncidentes(listaIncidentes);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

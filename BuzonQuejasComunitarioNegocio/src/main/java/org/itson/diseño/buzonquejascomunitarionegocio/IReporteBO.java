@@ -25,7 +25,7 @@ public interface IReporteBO {
 
     public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException;
 
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException;
+    public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String idInstitucion) throws FindException;
 
 
 
