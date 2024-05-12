@@ -86,8 +86,8 @@ public class ControlNavegacion {
         infoInstitucion.setVisible(true);
     }
 
-    public void mostrarIncidentes() {
-        FrmIncidentes incidentes = new FrmIncidentes();
+    public void mostrarIncidentes(InstitucionNuevaDTO institucionNuevaDTO) {
+        FrmIncidentes incidentes = new FrmIncidentes(institucionNuevaDTO);
         incidentes.setVisible(true);
     }
 
