@@ -27,4 +27,9 @@ public class AgregarIncidentes {
         return incidentes;
     }
     
+    public List<IncidentesDTO> consultarIncidentes(String id) throws FindException {
+        List<IncidentesDTO> incidentesEncontrados = incidenteBO.obtenerIncidentes(id);
+        return incidentesEncontrados;
+    }
+    
 }

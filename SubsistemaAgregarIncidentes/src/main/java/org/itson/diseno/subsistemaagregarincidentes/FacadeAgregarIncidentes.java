@@ -17,7 +17,7 @@ import org.itson.diseño.buzonquejascomunitarionegocio.IncidenteBO;
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
-public class FacadeAgregarIncidentes {
+public class FacadeAgregarIncidentes implements IFacadeAgregarIncidentes {
 
     private AgregarIncidentes incidentes;
 
@@ -36,4 +36,15 @@ public class FacadeAgregarIncidentes {
         return null;
     }
 
+    @Override
+    public List<IncidentesDTO> consultarIncidentes(String id) {
+        List<IncidentesDTO> incidentesObtenidos = new ArrayList<>();
+        try {
+            incidentesObtenidos = incidentes.consultarIncidentes(id);
+            return incidentesObtenidos;
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeAgregarIncidentes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 }

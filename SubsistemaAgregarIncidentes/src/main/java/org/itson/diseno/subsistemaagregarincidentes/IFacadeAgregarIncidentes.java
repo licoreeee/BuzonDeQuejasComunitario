@@ -15,4 +15,5 @@ public interface IFacadeAgregarIncidentes {
     
     public List<IncidentesDTO> agregarIncidentes(List<IncidentesDTO> incidentesDTO);
     
+    public List<IncidentesDTO> consultarIncidentes(String id);
 }
