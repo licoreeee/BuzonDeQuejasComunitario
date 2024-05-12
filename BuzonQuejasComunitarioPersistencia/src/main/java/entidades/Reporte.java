@@ -32,7 +32,6 @@ public class Reporte {
     private Institucion institucion;
     private Incidentes incidente;
 
-
     public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
@@ -47,7 +46,7 @@ public class Reporte {
         this.incidente = incidente;
     }
 
-        public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -57,7 +56,7 @@ public class Reporte {
         this.idInstitucion = idInstitucion;
         this.idIncidente = idIncidente;
     }
-    
+
     public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
         this.folio = folio;
         this.titulo = titulo;
@@ -82,11 +81,14 @@ public class Reporte {
         this.photo = photo;
     }
 
-    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion) {
+    public Reporte(ObjectId id, int folio, String titulo, Calendar fechaCreacion) {
         this.id = id;
+        this.folio = folio;
+        this.titulo = titulo;
+        this.fechaCreacion = fechaCreacion;
+    }
 
     public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
-
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -98,7 +100,19 @@ public class Reporte {
         this.institucion = institucion;
         this.incidente = incidente;
     }
-    
+
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Incidentes incidente) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.descripcionExtra = descripcionExtra;
+        this.ciudadano = ciudadano;
+        this.incidente = incidente;
+    }
+
     public ObjectId getId() {
         return id;
     }
@@ -122,21 +136,13 @@ public class Reporte {
     public void setFechaCreacion(Calendar fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
-    
+
     public int getFolio() {
         return folio;
     }
 
     public void setFolio(int folio) {
         this.folio = folio;
-    }
-
-    public List<Comentario> getComentarios() {
-        return comentarios;
-    }
-
-    public void setComentarios(List<Comentario> comentarios) {
-        this.comentarios = comentarios;
     }
 
     public String getTitulo() {
@@ -210,8 +216,5 @@ public class Reporte {
     public void setDescripcionExtra(String descripcionExtra) {
         this.descripcionExtra = descripcionExtra;
     }
-    
-    
-    
-}
 
+}

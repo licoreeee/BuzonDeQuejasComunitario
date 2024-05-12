@@ -13,6 +13,8 @@ import entidades.Incidentes;
 import entidades.Institucion;
 import entidades.Reporte;
 import excepciones.NegociosException;
+import java.lang.module.FindException;
+import java.util.List;
 import org.bson.types.Binary;
 
 /**
@@ -136,6 +138,11 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         } catch (NegociosException ex) {
             throw new NegociosException(ex.getMessage());
         }
+    }
+
+    @Override
+    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
  

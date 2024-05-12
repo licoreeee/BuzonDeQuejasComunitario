@@ -31,11 +31,11 @@ class LevantarReporte {
     protected LevantarReporte() {
 //        this.levantarReporteBO = new LevantarReporteBO();
     }
-
-        protected List<InstitucionNuevaDTO> obtenerInstituciones() {
-            List<InstitucionNuevaDTO> instituciones = levantarReporteBO.cargarDatos();
-        return instituciones;
-    }
+//
+//        protected List<InstitucionNuevaDTO> obtenerInstituciones() {
+//            List<InstitucionNuevaDTO> instituciones = levantarReporteBO.cargarDatos();
+//        return instituciones;
+//    }
     
 //    protected InstitucionNuevaDTO seleccionarInsitucion(InstitucionNuevaDTO institucion) {
 //        IInstitucionBO insitucionBO = new InstitucionBO();

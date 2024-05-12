@@ -25,7 +25,6 @@ public class ReporteDTO {
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
 
-
     public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.folio = folio;
         this.titulo = titulo;
@@ -40,7 +39,14 @@ public class ReporteDTO {
         this.incidente = incidente;
     }
 
-
+    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
+        this.id = id;
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.photo = photo;
+    }
 
     public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
 
@@ -55,7 +61,7 @@ public class ReporteDTO {
         this.institucion = institucion;
         this.incidente = incidente;
     }
-    
+
     public int getFolio() {
         return folio;
     }
@@ -70,10 +76,6 @@ public class ReporteDTO {
 
     public Boolean getEstado() {
         return estado;
-    }
-
-    public List<ComentarioDTO> getComentario() {
-        return comentario;
     }
 
     public void setTitulo(String titulo) {
@@ -175,11 +177,5 @@ public class ReporteDTO {
     public void setDescripcionExtra(String descripcionExtra) {
         this.descripcionExtra = descripcionExtra;
     }
-  
-    
-    
-    }
 
-    
-
-
+}
