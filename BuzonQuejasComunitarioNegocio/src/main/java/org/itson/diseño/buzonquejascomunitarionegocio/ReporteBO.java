@@ -7,7 +7,6 @@ import dao.IReportesDAO;
 import dao.ReportesDAO;
 import dto.ComentarioDTO;
 import dto.ReporteDTO;
-import entidades.Comentario;
 import entidades.Reporte;
 import excepciones.NegociosException;
 import java.util.ArrayList;
@@ -58,11 +57,37 @@ public class ReporteBO implements IReporteBO {
     }
 
     @Override
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
-        
-       List<ReporteDTO> reportes = null;
-       return reportes;
+    public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String idInstitucion) throws NegociosException {
+        try {
+            ObjectId objectId = new ObjectId(idInstitucion);
+            List<ReporteDTO> reportesDTO = new ArrayList<>();
+            List<Reporte> reportes = reportesDAO.obtenerReportesPorInstitucion(objectId);
+            if (!reportes.isEmpty()) {
+                for (Reporte reporte : reportes) {
+                    if (reporte.getEstado()) {
+                        ReporteDTO reporteDTO = new ReporteDTO(
+                                reporte.getFolio(),
+                                reporte.getTitulo(),
+                                reporte.getDescripcion(),
+                                reporte.getFechaCreacion(),
+                                reporte.getEstado(),
+                                reporte.getCalle(),
+                                reporte.getColonia());
 
+                        reportesDTO.add(reporteDTO);
+                    }
+                }
+                if (!reportesDTO.isEmpty()) {
+                    return reportesDTO;
+                } else {
+                    throw new NegociosException("No se encontró ningún reporte abierto.");
+                }
+            } else {
+                throw new NegociosException("No se encontró ningún reporte, intente más tarde.");
+            }
+        } catch (FindException e) {
+            throw new NegociosException(e.getMessage());
+        }
     }
-}
 
+}

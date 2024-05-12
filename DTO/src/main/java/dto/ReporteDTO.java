@@ -39,6 +39,16 @@ public class ReporteDTO {
         this.incidente = incidente;
     }
 
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, Boolean estado, String calle, String colonia) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
+        this.calle = calle;
+        this.colonia = colonia;
+    }
+
     public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
         this.id = id;
         this.folio = folio;
