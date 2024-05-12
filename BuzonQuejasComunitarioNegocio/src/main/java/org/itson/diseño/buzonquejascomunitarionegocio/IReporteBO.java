@@ -11,6 +11,7 @@ import java.util.List;
  */
 public interface IReporteBO {
 
+
     public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
 
     /**
@@ -25,5 +26,8 @@ public interface IReporteBO {
     public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException;
 
     public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException;
+
+   public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException;
+
 
 }

@@ -60,18 +60,18 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         siglasUnicas.forEach(sigla -> cboSeleccionInstitucion.addItem(sigla));
     }
 
-//    public void institucionReporte(String siglas, String funcion, String nombre, List<IncidenteDTO> incidentes) {
-//        institucionDTO = new InstitucionNuevaDTO(
-//                nombre,
-//                funcion,
-//                siglas,
-//                incidentes
-//        );
-//        if (reporteDTO == null) {
-//            reporteDTO = new ReporteDTO();
-//        }
-//        reporteDTO.setInstitucion(institucionDTO);
-//    }
+    public void institucionReporte(String siglas, String funcion, String nombre, List<IncidenteDTO> incidentes) {
+        institucionDTO = new InstitucionNuevaDTO(
+                nombre,
+                funcion,
+                siglas,
+                incidentes
+        );
+        if (reporteDTO == null) {
+            reporteDTO = new ReporteDTO();
+        }
+        reporteDTO.setInstitucion(institucionDTO);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -206,7 +206,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         if (institucionDTO != null) {
 
-//            institucionReporte(institucionDTO.getSiglas(), institucionDTO.getFuncionInstitucion(), institucionDTO.getNombreInstitucion(), institucionDTO.getIncidentes());
+            institucionReporte(institucionDTO.getSiglas(), institucionDTO.getFuncionInstitucion(), institucionDTO.getNombreInstitucion(), institucionDTO.getIncidentes());
             controladores.mostrarSeleccionIncidentes(institucionDTO);
             dispose();
         } else {

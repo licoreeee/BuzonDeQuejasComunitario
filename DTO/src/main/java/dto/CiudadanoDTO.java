@@ -29,6 +29,12 @@ public class CiudadanoDTO {
         this.contrasenia = contrasenia;
     }
 
+    public CiudadanoDTO(String nombre, String apellidoP, String apellidoM) {
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+    }
+
     public String getId() {
         return id;
     }

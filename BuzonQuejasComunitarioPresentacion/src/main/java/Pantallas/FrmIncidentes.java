@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package Pantallas;
 
 import dto.IncidentesDTO;
@@ -11,10 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-//import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
-//import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
-//import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
-//import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  *
@@ -22,9 +19,9 @@ import javax.swing.table.DefaultTableModel;
  */
 public class FrmIncidentes extends javax.swing.JFrame {
 
-    private ControlNavegacion controladores;
-//    private IFacadeAgregarIncidentes facadeIncidentes;
-//    private IFacadeAgregarInstitucion facadeInstituciones;
+    private ControlNavegacion controladores;    
+    private IFacadeAgregarIncidentes facadeIncidentes;   
+    private IFacadeAgregarInstitucion facadeInstituciones;
     private InstitucionNuevaDTO institucion;
     private List<String> incidentes;
 
@@ -33,8 +30,8 @@ public class FrmIncidentes extends javax.swing.JFrame {
      */
     public FrmIncidentes(InstitucionNuevaDTO institucion) {
         this.controladores = new ControlNavegacion();
-//        this.facadeInstituciones = new FacadeAgregarInstitucion();
-//        this.facadeIncidentes = new FacadeAgregarIncidentes();
+        this.facadeInstituciones = new FacadeAgregarInstitucion();
+        this.facadeIncidentes = new FacadeAgregarIncidentes();
         this.institucion = institucion;
         initComponents();
 
@@ -51,36 +48,34 @@ public class FrmIncidentes extends javax.swing.JFrame {
     }
 
     private void agregarIncidentes() {
-//        List<IncidentesDTO> listaIncidentes = new ArrayList<>();
-//        DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
-//
-//        List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
-//
-//        InstitucionRegistradaDTO institucionRegistrada = new InstitucionRegistradaDTO();
-//        for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
-//            if (inst.getId().equals(institucion.getId())) { 
-//                institucionRegistrada = inst;
-//                break;
-//            }
-//        }
-//
-//        if (institucionRegistrada == null) {
-//            JOptionPane.showMessageDialog(this, "No se encontró la institución correspondiente.", "Error", JOptionPane.ERROR_MESSAGE);
-//            return;
-//        }
-//
-//        for (int i = 0; i < model.getRowCount(); i++) {
-//            String informacion = (String) model.getValueAt(i, 0);
-//
-//            IncidentesDTO incidente = new IncidentesDTO();
-//            incidente.setInformacion(informacion);
-//            incidente.setInstitucionRegistradaDTO(institucionRegistrada);
-//
-//            listaIncidentes.add(incidente);
-//        }
-//
-//    
-//        facadeIncidentes.agregarIncidentes(listaIncidentes);
+
+        try {
+            List<IncidentesDTO> listaIncidentes = new ArrayList<>();
+            DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
+            List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
+            InstitucionRegistradaDTO institucionRegistrada = null;
+            for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
+                if (inst.getCodigoGestion().equals(institucion.getCodigoGestion())) {
+                    institucionRegistrada = inst;
+                    break;
+                }
+            }
+            if (institucionRegistrada == null) {
+                JOptionPane.showMessageDialog(this, "No se encontró la institución correspondiente.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            for (int i = 0; i < model.getRowCount(); i++) {
+                String informacion = (String) model.getValueAt(i, 0);
+                IncidentesDTO incidente = new IncidentesDTO();
+                incidente.setInformacion(informacion);
+                incidente.setInstitucionRegistradaDTO(institucionRegistrada);
+                listaIncidentes.add(incidente);
+            }
+            facadeIncidentes.agregarIncidentes(listaIncidentes);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
     /**

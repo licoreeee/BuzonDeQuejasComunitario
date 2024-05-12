@@ -29,6 +29,7 @@ public class ReporteBO implements IReporteBO {
     }
 
     @Override
+
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) {
         Reporte reporte = new Reporte(reporteDTO.getFolio(),
                 reporteDTO.getTitulo(),

@@ -32,6 +32,12 @@ public class Ciudadano {
         this.curp = curp;
         this.contrasenia = contrasenia;
     }
+
+    public Ciudadano(String nombre, String apellidoP, String apellidoM) {
+        this.nombre = nombre;
+        this.apellidoP = apellidoP;
+        this.apellidoM = apellidoM;
+    }
     
     public ObjectId getId() {
         return id;

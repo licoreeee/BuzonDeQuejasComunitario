@@ -18,6 +18,12 @@ public class IncidentesDTO {
     public IncidentesDTO() {
     }
 
+    public IncidentesDTO(String informacion) {
+        this.informacion = informacion;
+    }
+    
+    
+
     public IncidentesDTO(String informacion, InstitucionNuevaDTO institucionNuevaDTO) {
         this.informacion = informacion;
         this.institucionNuevaDTO = institucionNuevaDTO;

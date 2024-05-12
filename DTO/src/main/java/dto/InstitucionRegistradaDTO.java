@@ -21,6 +21,11 @@ public class InstitucionRegistradaDTO {
     public InstitucionRegistradaDTO() {
     }
 
+    public InstitucionRegistradaDTO(String nombre, String siglas) {
+        this.nombre = nombre;
+        this.siglas = siglas;
+    }
+    
     public InstitucionRegistradaDTO(String id) {
         this.id = id;
     }
