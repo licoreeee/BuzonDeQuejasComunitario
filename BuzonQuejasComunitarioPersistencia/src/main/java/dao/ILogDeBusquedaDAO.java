@@ -11,6 +11,6 @@ import entidades.LogDeBusqueda;
  */
 public interface ILogDeBusquedaDAO {
     
-    LogDeBusqueda agregarLogDeBusqueda() throws PersistenciaException;
+    public LogDeBusqueda agregarLogDeBusqueda(LogDeBusqueda logDeBusqueda) throws PersistenciaException;
     
 }

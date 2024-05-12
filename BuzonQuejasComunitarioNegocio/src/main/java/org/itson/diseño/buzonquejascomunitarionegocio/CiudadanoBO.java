@@ -50,6 +50,24 @@ public class CiudadanoBO implements ICiudadanoBO {
     }
 
     @Override
+    public Ciudadano convertirCiudadanoEntidad(CiudadanoDTO ciudadanoDTO) throws NegociosException {
+            Ciudadano ciudadano = new Ciudadano(
+                    ciudadanoDTO.getNombre(),
+                    ciudadanoDTO.getApellidoP(),
+                    ciudadanoDTO.getApellidoM());
+            return ciudadano;
+    }
+
+    @Override
+    public CiudadanoDTO convertirCiudadanoDTO(Ciudadano ciudadano) throws NegociosException {
+        CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(
+        ciudadano.getNombre(),
+        ciudadano.getApellidoP(),
+        ciudadano.getApellidoM());
+        return ciudadanoDTO;
+    }
+    
+    @Override
     public boolean validarFormatoDTO(CiudadanoDTO ciudadano) throws NegociosException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
