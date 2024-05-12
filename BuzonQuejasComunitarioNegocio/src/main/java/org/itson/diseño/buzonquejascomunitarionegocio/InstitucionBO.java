@@ -79,7 +79,9 @@ public class InstitucionBO implements IInstitucionBO {
         return sb.toString();
     }
     
-    private InstitucionDTO transporteDatos ()
+    private InstitucionDTO transporteDatos (){
+        
+    }
 
 //    /**
 //     * Este método transporta los datos de una institución DTO a través de un
