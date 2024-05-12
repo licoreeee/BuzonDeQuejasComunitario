@@ -8,6 +8,7 @@ import dto.ReporteDTO;
 import entidades.Ciudadano;
 import entidades.Incidentes;
 import entidades.Institucion;
+import entidades.Reporte;
 import excepciones.NegociosException;
 import java.util.List;
 
@@ -27,5 +28,16 @@ public interface ILevantarReporteBO {
     public Institucion convertirInstitucionEntidad(InstitucionRegistradaDTO institucionDTO) throws NegociosException;
     
     public InstitucionRegistradaDTO convertirInstitucionDTO(Institucion institucion) throws NegociosException;
+    
+    public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
+
+    /**
+     * Convierte un objeto ReporteDTO en un objeto Reporte.
+     *
+     * @param reporteDTO El objeto ReporteDTO que se convertirá en un objeto
+     * Reporte.
+     * @return El objeto Reporte resultante de la conversión.
+     */
+   public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException;
     
 }

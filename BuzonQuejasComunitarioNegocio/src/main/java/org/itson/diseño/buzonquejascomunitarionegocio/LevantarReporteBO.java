@@ -7,10 +7,13 @@ package org.itson.diseño.buzonquejascomunitarionegocio;
 import dto.CiudadanoDTO;
 import dto.IncidentesDTO;
 import dto.InstitucionRegistradaDTO;
+import dto.ReporteDTO;
 import entidades.Ciudadano;
 import entidades.Incidentes;
 import entidades.Institucion;
+import entidades.Reporte;
 import excepciones.NegociosException;
+import org.bson.types.Binary;
 
 /**
  *
@@ -63,6 +66,64 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         institucion.getNombre(),
         institucion.getSiglas());
         return institucionDTO;
+    }
+
+    @Override
+    public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException {
+        try {
+        if(reporteDTO.getPhoto() == null){
+            Reporte reporte = new Reporte(reporteDTO.getFolio(),
+                                      reporteDTO.getTitulo(),
+                                      reporteDTO.getDescripcion(),
+                                      reporteDTO.getFechaCreacion(),
+                                      convertirCiudadanoEntidad(reporteDTO.getCiudadano()),
+                                      convertirInstitucionEntidad(reporteDTO.getInstitucion()),
+                                      convertirIncidenteEntidad(reporteDTO.getIncidente()));
+            return reporte;
+        }else{
+            byte[] photo = reporteDTO.getPhoto();
+            Binary binaryPhoto = new Binary(photo);
+            Reporte reporte = new Reporte(reporteDTO.getFolio(),
+                                      reporteDTO.getTitulo(),
+                                      reporteDTO.getDescripcion(),
+                                      reporteDTO.getFechaCreacion(),
+                                      binaryPhoto,
+                                      convertirCiudadanoEntidad(reporteDTO.getCiudadano()),
+                                      convertirInstitucionEntidad(reporteDTO.getInstitucion()),
+                                      convertirIncidenteEntidad(reporteDTO.getIncidente()));
+            return reporte;
+        }
+        } catch (NegociosException ex) {
+            throw new NegociosException(ex.getMessage());
+        }
+    }
+
+    @Override
+    public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException {
+                try {
+        if(reporte.getPhoto() == null){
+            ReporteDTO reporteDTO = new ReporteDTO(reporte.getFolio(),
+                                      reporte.getTitulo(),
+                                      reporte.getDescripcion(),
+                                      reporte.getFechaCreacion(),
+                                      convertirCiudadanoDTO(reporte.getCiudadano()),
+                                      convertirInstitucionDTO(reporte.getInstitucion()),
+                                      convertirIncidenteDTO(reporte.getIncidente()));
+            return reporteDTO;
+        }else{
+            ReporteDTO reporteDTO = new ReporteDTO(reporte.getFolio(),
+                                      reporte.getTitulo(),
+                                      reporte.getDescripcion(),
+                                      reporte.getFechaCreacion(),
+                                      reporte.getPhoto().getData(),
+                                      convertirCiudadanoDTO(reporte.getCiudadano()),
+                                      convertirInstitucionDTO(reporte.getInstitucion()),
+                                      convertirIncidenteDTO(reporte.getIncidente()));
+            return reporteDTO;
+        }
+        } catch (NegociosException ex) {
+            throw new NegociosException(ex.getMessage());
+        }
     }
 
  

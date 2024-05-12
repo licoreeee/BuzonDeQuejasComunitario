@@ -20,63 +20,29 @@ public class Reporte {
     private String descripcion;
     private Calendar fechaCreacion;
     private Binary photo;
-    private ObjectId idCiudadano;
-    private ObjectId idInstitucion;
-    private ObjectId idIncidente;
+    private Ciudadano ciudadano;
+    private Institucion institucion;
+    private Incidentes incidente;
 
-    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
-        this.id = id;
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
-        this.idCiudadano = idCiudadano;
-        this.idInstitucion = idInstitucion;
-        this.idIncidente = idIncidente;
+        this.ciudadano = ciudadano;
+        this.institucion = institucion;
+        this.incidente = incidente;
     }
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-        this.idCiudadano = idCiudadano;
-        this.idInstitucion = idInstitucion;
-        this.idIncidente = idIncidente;
-    }
-    
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-    }
-
-    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo) {
-        this.id = id;
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-    }
-
-    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion) {
-        this.id = id;
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
+        this.ciudadano = ciudadano;
+        this.institucion = institucion;
+        this.incidente = incidente;
     }
     
     public ObjectId getId() {
@@ -127,30 +93,31 @@ public class Reporte {
         this.photo = photo;
     }
 
-    public ObjectId getIdCiudadano() {
-        return idCiudadano;
+    public Ciudadano getCiudadano() {
+        return ciudadano;
     }
 
-    public void setIdCiudadano(ObjectId idCiudadano) {
-        this.idCiudadano = idCiudadano;
+    public void setCiudadano(Ciudadano ciudadano) {
+        this.ciudadano = ciudadano;
     }
 
-    public ObjectId getIdInstitucion() {
-        return idInstitucion;
+    public Institucion getInstitucion() {
+        return institucion;
     }
 
-    public void setIdInstitucion(ObjectId idInstitucion) {
-        this.idInstitucion = idInstitucion;
+    public void setInstitucion(Institucion institucion) {
+        this.institucion = institucion;
     }
 
-    public ObjectId getIdIncidente() {
-        return idIncidente;
+    public Incidentes getIncidente() {
+        return incidente;
     }
 
-    public void setIdIncidente(ObjectId idIncidente) {
-        this.idIncidente = idIncidente;
+    public void setIncidente(Incidentes incidente) {
+        this.incidente = incidente;
     }
-
+    
+    
     
 }
 

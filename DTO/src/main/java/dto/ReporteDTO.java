@@ -17,18 +17,6 @@ public class ReporteDTO {
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
 
-    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
-        this.id = id;
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-        this.ciudadano = ciudadano;
-        this.institucion = institucion;
-        this.incidente = incidente;
-    }
-
     public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.folio = folio;
         this.titulo = titulo;
@@ -39,30 +27,18 @@ public class ReporteDTO {
         this.institucion = institucion;
         this.incidente = incidente;
     }
+
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.ciudadano = ciudadano;
+        this.institucion = institucion;
+        this.incidente = incidente;
+    }
+
     
-    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
-        this.id = id;
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-    }
-
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-    }
     
     public int getFolio() {
         return folio;

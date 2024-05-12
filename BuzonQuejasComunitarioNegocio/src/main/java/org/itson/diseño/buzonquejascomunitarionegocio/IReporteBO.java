@@ -9,17 +9,6 @@ import excepciones.NegociosException;
  */
 public interface IReporteBO {
 
-    public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
-
-    /**
-     * Convierte un objeto ReporteDTO en un objeto Reporte.
-     *
-     * @param reporteDTO El objeto ReporteDTO que se convertirá en un objeto
-     * Reporte.
-     * @return El objeto Reporte resultante de la conversión.
-     */
-   public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException;
-   
    public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException;
 
 }
