@@ -4,8 +4,6 @@
  */
 package Pantallas;
 
-import Excepciones.FindException;
-import Excepciones.PersistenciaException;
 import dto.InstitucionRegistradaDTO;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,10 +29,11 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
     public FrmInstitucionesRegistradas(ControlNavegacion controladores) {
         this.controladores = controladores;
         this.facadeInstituciones = new FacadeAgregarInstitucion();
+        this.instituciones = facadeInstituciones.consultarInstituciones();
         initComponents();
         actualizarTabla(instituciones);
     }
-    
+
     private void actualizarTabla(List<InstitucionRegistradaDTO> instituciones) {
         try {
             DefaultTableModel institucionesRegistradas = new DefaultTableModel() {
@@ -45,9 +44,12 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
             };
             institucionesRegistradas.addColumn("Instituciones");
             for (InstitucionRegistradaDTO institucion : instituciones) {
-                Object[] fila = {
-                    institucion.getNombre()
-                };
+                Object[] fila;
+                if (institucion.getSiglas() != null) {
+                    fila = new Object[]{institucion.getSiglas()};
+                } else {
+                    fila = new Object[]{institucion.getNombre()};
+                }
                 institucionesRegistradas.addRow(fila);
             }
             tblInstitucionesRegistradas.setModel(institucionesRegistradas);

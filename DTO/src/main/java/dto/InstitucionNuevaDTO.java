@@ -4,13 +4,13 @@ package dto;
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class InstitucionNuevaDTO {
-    
+
+    private String id;
     private String nombre;
     private String siglas;
     private String descripcionAdicional;
     private String codigoGestion;
     private String nip;
-
 
     public InstitucionNuevaDTO() {
     }
@@ -24,6 +24,14 @@ public class InstitucionNuevaDTO {
         this.nombre = nombre;
         this.siglas = siglas;
         this.descripcionAdicional = descripcionAdicional;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -70,5 +78,5 @@ public class InstitucionNuevaDTO {
     public String toString() {
         return "InstitucionNuevaDTO{" + "nombre=" + nombre + ", siglas=" + siglas + ", descripcionAdicional=" + descripcionAdicional + ", codigoGestion=" + codigoGestion + ", nip=" + nip + '}';
     }
-    
+
 }

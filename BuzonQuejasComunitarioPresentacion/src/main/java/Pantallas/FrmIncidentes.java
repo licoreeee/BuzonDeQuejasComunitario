@@ -4,6 +4,17 @@
  */
 package Pantallas;
 
+import dto.IncidentesDTO;
+import dto.InstitucionNuevaDTO;
+import dto.InstitucionRegistradaDTO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  *
@@ -12,59 +23,65 @@ package Pantallas;
 public class FrmIncidentes extends javax.swing.JFrame {
 
     private ControlNavegacion controladores;
+    private IFacadeAgregarIncidentes facadeIncidentes;
+    private IFacadeAgregarInstitucion facadeInstituciones;
+    private InstitucionNuevaDTO institucion;
+    private List<String> incidentes;
 
     /**
      * Creates new form FrmSeleccionIncidentes
      */
-    public FrmIncidentes() {
-        initComponents();
+    public FrmIncidentes(InstitucionNuevaDTO institucion) {
         this.controladores = new ControlNavegacion();
-//        this.institucion = institucion;
-//        mostrarTabla(institucion.getIncidentes());
+        this.facadeInstituciones = new FacadeAgregarInstitucion();
+        this.facadeIncidentes = new FacadeAgregarIncidentes();
+        this.institucion = institucion;
+        initComponents();
+
     }
 
-//    public FrmInstitucionesRegistradas(ReporteDTO reporteDTO) {
-//        this.reporteDTO = reporteDTO;
-//    }
-//
-//    DefaultTableModel modeloTabla = new DefaultTableModel() {
-//        @Override
-//        public boolean isCellEditable(int row, int column) {
-//            return false; // Hacer que todas las celdas sean no editables
-//        }
-//    };
+    private void actualizarTabla() {
+        try {
+            DefaultTableModel modeloTabla = (DefaultTableModel) tblIncidentes.getModel();
+            modeloTabla.fireTableDataChanged();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar la tabla de incidentes.", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
 
-//    private void mostrarTabla(List<IncidenteDTO> incidentes) {
-//        modeloTabla.addColumn("Incidente");
-//        Object[] datosTabla = new Object[1];
-//
-//        // Verificar si la lista de incidentes no es null antes de iterar sobre ella
-//        if (incidentes != null) {
-//            incidentes.forEach(institucionObtenida -> {
-//                datosTabla[0] = institucionObtenida.getNombreIncidente();
-//                modeloTabla.addRow(datosTabla);
-//            });
-//        }
-//
-//        tblInstitucionesRegistradas.setModel(modeloTabla);
-//    }
-//
-//    private void obtenerDatosSeleccionados() {
-//        int filaSeleccionada = tblInstitucionesRegistradas.getSelectedRow();
-//
-//        if (filaSeleccionada != -1) {
-//            Object[] datosFila = new Object[tblInstitucionesRegistradas.getColumnCount()];
-//
-//            for (int i = 0; i < tblInstitucionesRegistradas.getColumnCount(); i++) {
-//                datosFila[i] = tblInstitucionesRegistradas.getValueAt(filaSeleccionada, i);
-//            }
-//            IncidenteDTO incidenteDTO = new IncidenteDTO();
-//            incidenteDTO.setNombreIncidente(datosFila[0].toString());
-//        } else {
-//            Logger.getLogger(FrmInstitucionesRegistradas.class.getName()).log(Level.SEVERE, "No se selecciono ningun elemento de la tabla");
-//
-//        }
-//    }
+    private void agregarIncidentes() {
+        List<IncidentesDTO> listaIncidentes = new ArrayList<>();
+        DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
+
+        List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
+
+        InstitucionRegistradaDTO institucionRegistrada = new InstitucionRegistradaDTO();
+        for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
+            if (inst.getId().equals(institucion.getId())) { 
+                institucionRegistrada = inst;
+                break;
+            }
+        }
+
+        if (institucionRegistrada == null) {
+            JOptionPane.showMessageDialog(this, "No se encontró la institución correspondiente.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        for (int i = 0; i < model.getRowCount(); i++) {
+            String informacion = (String) model.getValueAt(i, 0);
+
+            IncidentesDTO incidente = new IncidentesDTO();
+            incidente.setInformacion(informacion);
+            incidente.setInstitucionRegistradaDTO(institucionRegistrada);
+
+            listaIncidentes.add(incidente);
+        }
+
+    
+        facadeIncidentes.agregarIncidentes(listaIncidentes);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -192,12 +209,28 @@ public class FrmIncidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        controladores.mostrarConfirmado();
-        dispose();
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas confirmar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+
+            facadeInstituciones.agregarInstitucion(institucion);
+            agregarIncidentes();
+
+            JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            controladores.mostrarConfirmado();
+            dispose();
+
+        } else if (opcion == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "La acción se ha cancelado.");
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnAgregarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNuevoActionPerformed
-        // TODO add your handling code here:
+        String nuevoIncidente = JOptionPane.showInputDialog(this, "Ingrese la informacion del nuevo incidente:");
+        if (nuevoIncidente != null && !nuevoIncidente.isEmpty()) {
+            DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
+            model.addRow(new Object[]{nuevoIncidente});
+            actualizarTabla();
+        }
     }//GEN-LAST:event_btnAgregarNuevoActionPerformed
 
 

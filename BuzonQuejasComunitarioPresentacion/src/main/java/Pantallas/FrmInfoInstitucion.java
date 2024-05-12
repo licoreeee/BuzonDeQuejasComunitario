@@ -4,17 +4,22 @@
  */
 package Pantallas;
 
-import dto.ReporteDTO;
-import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
-
-
+import Excepciones.PersistenciaException;
+import dto.InstitucionNuevaDTO;
+import javax.swing.JOptionPane;
+import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmInfoInstitucion extends javax.swing.JFrame {
-    
+
     private ControlNavegacion controladores;
+    private IFacadeAgregarInstitucion facadeInstituciones;
+    private IFacadeAgregarIncidentes facadeIncidentes;
 
     /**
      * Creates new form FrmLevantarReporte
@@ -22,7 +27,6 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
     public FrmInfoInstitucion() {
         initComponents();
         this.controladores = new ControlNavegacion();
-
     }
 
     /**
@@ -42,13 +46,13 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
         jlbNombre = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        cmpTitulo = new javax.swing.JTextField();
-        cmpDescripcion = new javax.swing.JTextField();
+        cmpNombre = new javax.swing.JTextField();
+        cmpSiglas = new javax.swing.JTextField();
         jlbObligatorio = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txaDescripcionAdicional = new javax.swing.JTextArea();
 
         jButton1.setText("jButton1");
 
@@ -91,24 +95,24 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
         jLabel1.setText("Siglas:");
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
-        cmpTitulo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        cmpTitulo.setForeground(new java.awt.Color(33, 33, 33));
-        cmpTitulo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        cmpTitulo.addActionListener(new java.awt.event.ActionListener() {
+        cmpNombre.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        cmpNombre.setForeground(new java.awt.Color(33, 33, 33));
+        cmpNombre.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cmpNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmpTituloActionPerformed(evt);
+                cmpNombreActionPerformed(evt);
             }
         });
-        jPanel1.add(cmpTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 410, -1));
+        jPanel1.add(cmpNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 410, -1));
 
-        cmpDescripcion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        cmpDescripcion.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        cmpDescripcion.addActionListener(new java.awt.event.ActionListener() {
+        cmpSiglas.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        cmpSiglas.setHorizontalAlignment(javax.swing.JTextField.LEFT);
+        cmpSiglas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmpDescripcionActionPerformed(evt);
+                cmpSiglasActionPerformed(evt);
             }
         });
-        jPanel1.add(cmpDescripcion, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 410, 30));
+        jPanel1.add(cmpSiglas, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 410, 30));
 
         jlbObligatorio.setFont(new java.awt.Font("Inter", 0, 10)); // NOI18N
         jlbObligatorio.setForeground(new java.awt.Color(110, 110, 110));
@@ -139,9 +143,9 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
         });
         jPanel1.add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 280, 104, 43));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaDescripcionAdicional.setColumns(20);
+        txaDescripcionAdicional.setRows(5);
+        jScrollPane1.setViewportView(txaDescripcionAdicional);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 410, 70));
 
@@ -152,17 +156,31 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
 
-    private void cmpTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpTituloActionPerformed
+    private void cmpNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmpTituloActionPerformed
+    }//GEN-LAST:event_cmpNombreActionPerformed
 
-    private void cmpDescripcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpDescripcionActionPerformed
+    private void cmpSiglasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpSiglasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cmpDescripcionActionPerformed
+    }//GEN-LAST:event_cmpSiglasActionPerformed
 
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        controladores.mostrarIncidentes();
-        dispose();
+        String nombre = cmpNombre.getText();
+        String siglas = cmpSiglas.getText();
+        String descripcion = txaDescripcionAdicional.getText();
+
+        if (nombre.isEmpty() || descripcion.isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Es necesario ingresar el nombre y la descripción de la institución", "Aviso", JOptionPane.WARNING_MESSAGE);
+        } else {
+
+            InstitucionNuevaDTO institucionNuevaDTO = new InstitucionNuevaDTO();
+            institucionNuevaDTO.setNombre(nombre);
+            institucionNuevaDTO.setSiglas(siglas);
+            institucionNuevaDTO.setDescripcionAdicional(descripcion);
+
+            controladores.mostrarIncidentes(institucionNuevaDTO);
+            dispose();
+        }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
@@ -208,8 +226,8 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JTextField cmpDescripcion;
-    private javax.swing.JTextField cmpTitulo;
+    private javax.swing.JTextField cmpNombre;
+    private javax.swing.JTextField cmpSiglas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -217,9 +235,9 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel jlbNombre;
     private javax.swing.JLabel jlbObligatorio;
     private javax.swing.JLabel jlbTitulo;
+    private javax.swing.JTextArea txaDescripcionAdicional;
     // End of variables declaration//GEN-END:variables
 }
