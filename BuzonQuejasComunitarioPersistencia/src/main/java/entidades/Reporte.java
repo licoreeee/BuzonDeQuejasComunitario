@@ -5,6 +5,7 @@
 package entidades;
 
 import java.util.Calendar;
+import java.util.List;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
@@ -20,9 +21,11 @@ public class Reporte {
     private String descripcion;
     private Calendar fechaCreacion;
     private Binary photo;
+    private Boolean estado;
     private ObjectId idCiudadano;
     private ObjectId idInstitucion;
     private ObjectId idIncidente;
+    private List<Comentario>comentarios;
 
     public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
         this.id = id;
@@ -52,6 +55,15 @@ public class Reporte {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
+    }
+
+    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, List<Comentario> comentarios, Boolean estado) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.comentarios = comentarios;
+        this.estado = estado;
     }
 
     public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo) {
@@ -87,6 +99,14 @@ public class Reporte {
         this.id = id;
     }
 
+    public Boolean getEstado() {
+        return estado;
+    }
+
+    public void setEstado(Boolean estado) {
+        this.estado = estado;
+    }
+
     public Calendar getFechaCreacion() {
         return fechaCreacion;
     }
@@ -101,6 +121,14 @@ public class Reporte {
 
     public void setFolio(int folio) {
         this.folio = folio;
+    }
+
+    public List<Comentario> getComentarios() {
+        return comentarios;
+    }
+
+    public void setComentarios(List<Comentario> comentarios) {
+        this.comentarios = comentarios;
     }
 
     public String getTitulo() {

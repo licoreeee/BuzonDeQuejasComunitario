@@ -9,8 +9,8 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
-import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
-import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
+//import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+//import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  *
@@ -19,7 +19,7 @@ import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
 
     private ControlNavegacion controladores;
-    private IFacadeAgregarInstitucion facadeInstituciones;
+//    private IFacadeAgregarInstitucion facadeInstituciones;
     DefaultTableModel modeloTabla = new DefaultTableModel();
     private List<InstitucionRegistradaDTO> instituciones;
 
@@ -28,8 +28,8 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
      */
     public FrmInstitucionesRegistradas(ControlNavegacion controladores) {
         this.controladores = controladores;
-        this.facadeInstituciones = new FacadeAgregarInstitucion();
-        this.instituciones = facadeInstituciones.consultarInstituciones();
+//        this.facadeInstituciones = new FacadeAgregarInstitucion();
+//        this.instituciones = facadeInstituciones.consultarInstituciones();
         initComponents();
         actualizarTabla(instituciones);
     }

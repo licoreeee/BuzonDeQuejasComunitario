@@ -4,6 +4,8 @@ import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import dto.ComentarioDTO;
 import dto.InstitucionRegistradaDTO;
+import dto.ReporteDTO;
+import java.util.List;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,4 +19,5 @@ import dto.InstitucionRegistradaDTO;
 public interface IRegistrarAvance {
     public void registarComentario(ComentarioDTO comentarioDTO) throws PersistenciaException;
     public InstitucionRegistradaDTO consultarInstitucion(String codigoGestion, String nip)throws FindException;
+    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion (String idInstitucion)throws FindException;
 }

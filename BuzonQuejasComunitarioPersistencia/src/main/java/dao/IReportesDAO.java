@@ -8,6 +8,8 @@ import Excepciones.FindException;
 import entidades.Reporte;
 import java.util.Calendar;
 import Excepciones.PersistenciaException;
+import java.util.List;
+import org.bson.types.ObjectId;
 
 /**
  *
@@ -27,4 +29,5 @@ public interface IReportesDAO {
     
     Reporte obtenerReportePorCoordendas(String coordendas) throws FindException;
     
+    List<Reporte> obtenerReportesPorInstitucion(ObjectId idInstitucion) throws FindException;
 }

@@ -1,23 +1,39 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import Excepciones.FindException;
+import conexion.Conexion;
+import conexion.IConexion;
+import dao.IReportesDAO;
+import dao.ReportesDAO;
+import dto.ComentarioDTO;
 import dto.ReporteDTO;
+import entidades.Comentario;
 import entidades.Reporte;
 import excepciones.NegociosException;
+import java.util.ArrayList;
+import java.util.List;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
-
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
-public class ReporteBO implements IReporteBO{
+public class ReporteBO implements IReporteBO {
+
+    private final IReportesDAO reportesDAO;
+    final IConexion conexion;
+
+    public ReporteBO() {
+        conexion = new Conexion();
+        reportesDAO = new ReportesDAO(conexion);
+    }
 
     @Override
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) {
         Reporte reporte = new Reporte(reporteDTO.getFolio(),
-                                      reporteDTO.getTitulo(),
-                                      reporteDTO.getDescripcion(),
-                                      reporteDTO.getFechaCreacion());
+                reporteDTO.getTitulo(),
+                reporteDTO.getDescripcion(),
+                reporteDTO.getFechaCreacion());
         reporte.setId(new ObjectId(reporteDTO.getId()));
         reporte.setPhoto(new Binary(reporteDTO.getPhoto()));
         return reporte;
@@ -35,11 +51,16 @@ public class ReporteBO implements IReporteBO{
         return reporteDTO;
     }
 
-
     @Override
     public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
-    
+
+    @Override
+    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
+        
+       
+
+    }
 }
+

@@ -7,10 +7,10 @@ package Pantallas;
 import Excepciones.PersistenciaException;
 import dto.InstitucionNuevaDTO;
 import javax.swing.JOptionPane;
-import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
-import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
-import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
-import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
+//import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
+//import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
+//import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+//import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
@@ -18,8 +18,8 @@ import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 public class FrmInfoInstitucion extends javax.swing.JFrame {
 
     private ControlNavegacion controladores;
-    private IFacadeAgregarInstitucion facadeInstituciones;
-    private IFacadeAgregarIncidentes facadeIncidentes;
+//    private IFacadeAgregarInstitucion facadeInstituciones;
+//    private IFacadeAgregarIncidentes facadeIncidentes;
 
     /**
      * Creates new form FrmLevantarReporte

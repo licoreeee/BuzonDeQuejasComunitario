@@ -16,7 +16,10 @@ public class ComentarioDTO {
     private String comentario;
     private byte[] photo;
 
-    public ComentarioDTO(String titulo, String comentario,  byte[] photo) {
+    public ComentarioDTO() {
+    }
+
+    public ComentarioDTO(String titulo, String comentario, byte[] photo) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
@@ -26,7 +29,6 @@ public class ComentarioDTO {
         this.titulo = titulo;
         this.comentario = comentario;
     }
-  
 
     public String getTitulo() {
         return titulo;
@@ -36,9 +38,8 @@ public class ComentarioDTO {
         return comentario;
     }
 
-    public  byte[] getPhoto() {
+    public byte[] getPhoto() {
         return photo;
     }
-    
-    
+
 }

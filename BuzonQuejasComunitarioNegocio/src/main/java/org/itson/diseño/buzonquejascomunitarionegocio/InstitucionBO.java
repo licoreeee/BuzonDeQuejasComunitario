@@ -91,6 +91,7 @@ public class InstitucionBO implements IInstitucionBO {
                 throw new FindException("El ID o el NIP proporcionado es incorrecto.");
             } else {
                 return new InstitucionRegistradaDTO(
+                        institucion.getId().toHexString(),
                         institucion.getNombre(),
                         institucion.getSiglas(),
                         institucion.getDescripcionAdicional(),
