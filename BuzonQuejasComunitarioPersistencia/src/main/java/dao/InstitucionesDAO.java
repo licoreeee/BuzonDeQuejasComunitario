@@ -21,15 +21,14 @@ import org.bson.types.ObjectId;
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
-public class InstitucionDAO implements IInstitucionDAO {
+public class InstitucionesDAO implements IInstitucionDAO {
 
     private final IConexion conexion;
     private final MongoCollection<Institucion> collection;
-    private Institucion institucion;
 
-    public InstitucionDAO(IConexion conexion) {
+    public InstitucionesDAO(IConexion conexion) {
         this.conexion = conexion;
-        institucion = new Institucion();
+
         MongoDatabase database = conexion.crearConexion();
         this.collection = database.getCollection("Instituciones", Institucion.class);
     }
@@ -85,23 +84,19 @@ public class InstitucionDAO implements IInstitucionDAO {
 
     @Override
     public Institucion obtenerInstitucionPorCodigo(String codigoGestion) throws FindException {
-        institucion = null;
         try {
-            Bson filter = Filters.eq("codigoGestion", codigoGestion);
-            MongoCursor<Institucion> cursor = collection.find(filter).iterator();
-            try {
-                if (cursor.hasNext()) {
-                    institucion = cursor.next();
-                }
-
-            } finally {
-                cursor.close();
+        Bson filter = Filters.eq("codigoGestion", codigoGestion);
+        try (MongoCursor<Institucion> cursor = collection.find(filter).iterator()) {
+            if (cursor.hasNext()) {
+                return cursor.next();
+            } else {
+                return null; 
             }
-
-        } catch (MongoException e) {
-            throw new FindException("Error al obtener la institución");
         }
-        return institucion;
+    } catch (MongoException e) {
+        throw new FindException("Error al obtener la institución");
+    }
+
     }
 
 }

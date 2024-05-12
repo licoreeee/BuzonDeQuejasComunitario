@@ -1,7 +1,6 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
-import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
 import dao.IncidentesDAO;
@@ -80,6 +79,11 @@ public class IncidenteBO implements IIncidenteBO {
         }
         return null;
     }
+     @Override
+    public List<IncidentesDTO> obtenerIncidentesAbiertosPorInstitucion (String idInstitucion) throws FindException{
+         List<IncidentesDTO>incidentes = new ArrayList<IncidentesDTO>();
+        return incidentes;
+    } 
 
 //    /**
 //     * Este método transporta los datos de un incidente DTO a través de un

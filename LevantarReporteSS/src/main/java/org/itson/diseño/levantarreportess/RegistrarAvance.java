@@ -3,9 +3,9 @@ package org.itson.diseño.levantarreportess;
 import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import dto.ComentarioDTO;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import dto.InstitucionRegistradaDTO;
 import org.itson.diseño.buzonquejascomunitarionegocio.ComentarioBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IInstitucionBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.InstitucionBO;
 
 /**
@@ -14,7 +14,7 @@ import org.itson.diseño.buzonquejascomunitarionegocio.InstitucionBO;
  */
 public class RegistrarAvance implements IRegistrarAvance{
     private final ComentarioBO comentarioBO;
-    private final InstitucionBO institucionBO;
+    private final IInstitucionBO institucionBO;
 
     public RegistrarAvance() {
         comentarioBO = new ComentarioBO();
@@ -26,16 +26,15 @@ public class RegistrarAvance implements IRegistrarAvance{
             try{
             comentarioBO.transporteDatos(comentarioDTO);
             }catch(PersistenciaException e){
-                e.getMessage();
+                throw new PersistenciaException(e.getMessage());
             }
         }
     @Override
-        public void consultarInstitucion(String codigoGestion, String nip) throws FindException{
+        public InstitucionRegistradaDTO consultarInstitucion(String codigoGestion, String nip) throws FindException{
         try {
-            institucionBO.transporteDatos(codigoGestion, nip);
+            return institucionBO.transporteDatos(codigoGestion, nip);
         } catch (FindException ex) {
-            Logger.getLogger(RegistrarAvance.class.getName()).log(Level.SEVERE, null, ex);
-            ex.getMessage();
+            throw ex;
         }
         }
 }

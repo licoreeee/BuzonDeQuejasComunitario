@@ -4,7 +4,7 @@
  */
 package Pantallas;
 
-import dto.DomicilioDTO;
+//import dto.DomicilioDTO;
 import dto.ReporteDTO;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
@@ -14,7 +14,7 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public class FrmDireccion extends javax.swing.JFrame {
 
-    private DomicilioDTO domicilio;
+//    private DomicilioDTO domicilio;
     private ReporteDTO reporte;
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
@@ -25,7 +25,7 @@ public class FrmDireccion extends javax.swing.JFrame {
     public FrmDireccion(ReporteDTO reporte) {
         initComponents();
         this.reporte = reporte;
-        this.domicilio = new DomicilioDTO();
+//        this.domicilio = new DomicilioDTO();
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
 
@@ -289,12 +289,12 @@ public class FrmDireccion extends javax.swing.JFrame {
         String cp = cmpCP.getText();
         String descripcionExtra = cmpDescripcionExtra.getText();
 
-        domicilio.setCalle(calle);
-        domicilio.setCodigoPostal(cp);
-        domicilio.setColonia(colonia);
-        domicilio.setEspecificaciones(descripcionExtra);
-
-        reporte.setDomicilio(domicilio);
+//        domicilio.setCalle(calle);
+//        domicilio.setCodigoPostal(cp);
+//        domicilio.setColonia(colonia);
+//        domicilio.setEspecificaciones(descripcionExtra);
+//
+//        reporte.setDomicilio(domicilio);
 
         controladores.mostrarFolio();
         dispose();
