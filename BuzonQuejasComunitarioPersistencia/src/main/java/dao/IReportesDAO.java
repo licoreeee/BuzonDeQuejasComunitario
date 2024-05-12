@@ -19,15 +19,13 @@ public interface IReportesDAO {
     
     Reporte agregarReporte(Reporte reporte) throws PersistenciaException;
     
-    Reporte obtenerReportePorTitulo(String titulo) throws FindException;
+    List<Reporte> obtenerReportePorTitulo(String titulo) throws FindException;
     
-    Reporte obtenerReportePorInstitucion(String institucion) throws FindException;
+    List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException;
     
-    Reporte obtenerReportePorIncidente(String incidente) throws FindException;
+    List<Reporte> obtenerReportePorIncidente(String incidente) throws FindException;
     
-    Reporte obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException;
-    
-    Reporte obtenerReportePorCoordendas(String coordendas) throws FindException;
+    List<Reporte> obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException;
     
     List<Reporte> obtenerReportesPorInstitucion(ObjectId idInstitucion) throws FindException;
 }

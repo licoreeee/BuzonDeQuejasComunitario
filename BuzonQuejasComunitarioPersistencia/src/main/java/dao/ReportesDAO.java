@@ -38,38 +38,50 @@ public class ReportesDAO implements IReportesDAO {
     public Reporte agregarReporte(Reporte reporte) throws PersistenciaException {
         try {
             collection.insertOne(reporte);
-        } catch (MongoException e) {
+        } catch (MongoException ex) {
             throw new PersistenciaException("Error al agregar el reporte.");
         }
         return reporte;
     }
 
     @Override
-    public Reporte obtenerReportePorTitulo(String titulo) throws FindException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Reporte> obtenerReportePorTitulo(String titulo) throws FindException {
+        try {
+            return collection.find(Filters.eq("titulo", titulo)).into(new ArrayList());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
     }
 
     @Override
-    public Reporte obtenerReportePorInstitucion(String institucion) throws FindException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException {
+        try {
+            return collection.find(Filters.eq("institucion.siglas", institucion)).into(new ArrayList());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorIncidente(String incidente) throws FindException {
+        try {
+            return collection.find(Filters.eq("incidente.nombre", incidente)).into(new ArrayList());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                Filters.gte("fechaCreacion", fechaInicio),
+                Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
     
-    }
-
-    @Override
-    public Reporte obtenerReportePorIncidente(String incidente) throws FindException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Reporte obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public Reporte obtenerReportePorCoordendas(String coordendas) throws FindException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
     @Override
     public List<Reporte> obtenerReportesPorInstitucion(ObjectId idInstitucion) throws FindException {
         try {
