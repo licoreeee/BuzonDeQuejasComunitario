@@ -35,7 +35,7 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         jlbCURP = new javax.swing.JLabel();
         jlbContrasenia = new javax.swing.JLabel();
         cmpContrasenia = new javax.swing.JTextField();
-        btnRegistrarse = new javax.swing.JButton();
+        btnSiguiente = new javax.swing.JButton();
         jlbFechaNacimiento = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -99,14 +99,14 @@ public class FrmRegistrarse extends javax.swing.JFrame {
             }
         });
 
-        btnRegistrarse.setBackground(new java.awt.Color(181, 18, 57));
-        btnRegistrarse.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnRegistrarse.setForeground(new java.awt.Color(255, 255, 255));
-        btnRegistrarse.setText("Registrarse");
-        btnRegistrarse.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
-        btnRegistrarse.addActionListener(new java.awt.event.ActionListener() {
+        btnSiguiente.setBackground(new java.awt.Color(181, 18, 57));
+        btnSiguiente.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnSiguiente.setForeground(new java.awt.Color(255, 255, 255));
+        btnSiguiente.setText("Siguiente");
+        btnSiguiente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnSiguiente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarseActionPerformed(evt);
+                btnSiguienteActionPerformed(evt);
             }
         });
 
@@ -138,7 +138,7 @@ public class FrmRegistrarse extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(cmpContrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -164,7 +164,7 @@ public class FrmRegistrarse extends javax.swing.JFrame {
                         .addGap(0, 42, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRegistrarse, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSiguiente, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30))))
         );
 
@@ -181,13 +181,13 @@ public class FrmRegistrarse extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmpContraseniaActionPerformed
 
-    private void btnRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarseActionPerformed
+    private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnRegistrarseActionPerformed
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnRegistrarse;
+    private javax.swing.JButton btnSiguiente;
     private javax.swing.JTextField cmpCURP;
     private javax.swing.JTextField cmpContrasenia;
     private javax.swing.JLabel jLabel1;
