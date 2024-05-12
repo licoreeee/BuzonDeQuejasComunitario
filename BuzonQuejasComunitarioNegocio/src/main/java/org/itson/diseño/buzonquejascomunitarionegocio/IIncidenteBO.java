@@ -3,7 +3,6 @@ package org.itson.diseño.buzonquejascomunitarionegocio;
 import Excepciones.FindException;
 import dto.IncidentesDTO;
 import java.util.List;
-import org.itson.diseño.buzonquejascomunitariopersistencia.entidades.Incidente;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
