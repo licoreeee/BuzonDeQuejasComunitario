@@ -29,7 +29,7 @@ class LevantarReporte {
     ILevantarReporteBO levantarReporteBO;
 
     protected LevantarReporte() {
-        this.levantarReporteBO = new LevantarReporteBO();
+//        this.levantarReporteBO = new LevantarReporteBO();
     }
 
         protected List<InstitucionNuevaDTO> obtenerInstituciones() {
@@ -37,84 +37,84 @@ class LevantarReporte {
         return instituciones;
     }
     
-    protected InstitucionNuevaDTO seleccionarInsitucion(InstitucionNuevaDTO institucion) {
-        IInstitucionBO insitucionBO = new InstitucionBO();
-        InstitucionNuevaDTO institucionDTO = new InstitucionNuevaDTO(
-                institucion.getNombreInstitucion(),
-                institucion.getFuncionInstitucion(),
-                institucion.getSiglas()
-        );
-        insitucionBO.transporteDatos(institucionDTO);
-        return institucionDTO;
-    }
+//    protected InstitucionNuevaDTO seleccionarInsitucion(InstitucionNuevaDTO institucion) {
+//        IInstitucionBO insitucionBO = new InstitucionBO();
+//        InstitucionNuevaDTO institucionDTO = new InstitucionNuevaDTO(
+//                institucion.getNombreInstitucion(),
+//                institucion.getFuncionInstitucion(),
+//                institucion.getSiglas()
+//        );
+//        insitucionBO.transporteDatos(institucionDTO);
+//        return institucionDTO;
+//    }
 
-    protected IncidenteDTO seleccionarIncidente(IncidenteDTO incidente) {
-        IIncidenteBO incidenteBO = new IncidenteBO();
-        IncidenteDTO incidenteDTO = new IncidenteDTO(incidente.getNombreIncidente());
-        incidenteBO.transporteDatos(incidenteDTO);
-        return incidenteDTO;
-    }
+//    protected IncidenteDTO seleccionarIncidente(IncidenteDTO incidente) {
+//        IIncidenteBO incidenteBO = new IncidenteBO();
+//        IncidenteDTO incidenteDTO = new IncidenteDTO(incidente.getNombreIncidente());
+//        incidenteBO.transporteDatos(incidenteDTO);
+//        return incidenteDTO;
+//    }
 
-    protected DomicilioDTO ingresarDomicilio(DomicilioDTO domicilio) {
-        if (domicilio != null) {
-            IDomicilioBO domicilioBO = new DomicilioBO();
-            DomicilioDTO domicilioDTO = new DomicilioDTO(
-                    domicilio.getCalle(),
-                    domicilio.getColonia(),
-                    domicilio.getCodigoPostal(),
-                    domicilio.getEspecificaciones()
-            );
-            domicilioBO.transporteDatos(domicilioDTO);
-            return domicilioDTO;
-        } else {
-            Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto domicilio es nulo");
-        }
-        return null;
-    }
-
-    protected CiudadanoDTO ingresarCiudadano(CiudadanoDTO ciudadano) {
-        if (ciudadano != null) {
-            ICiudadanoBO ciudadanoBO = new CiudadanoBO();
-            CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(
-                    ciudadano.getNombre(),
-                    ciudadano.getApellidoP(),
-                    ciudadano.getApellidoM(),
-                    ciudadano.getCURP(),
-                    ciudadano.getTelefono(),
-                    ciudadano.getCorreo()
-            );
-            ciudadanoBO.transporteDatos(ciudadanoDTO);
-            return ciudadanoDTO;
-        } else {
-            Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto ciudadano es nulo");
-        }
-        return null;
-    }
-
-    protected ReporteDTO generarReporte(ReporteDTO reporte) {
-        if (reporte != null) {
-            IReporteBO reporteBO = new ReporteBO();
-            ReporteDTO reporteDTO = new ReporteDTO(
-                    reporte.getTitulo(),
-                    reporte.getDescripcion()
-            );
-            reporteBO.transporteDatos(reporteDTO);
-            return reporteDTO;
-        } else {
-            Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto reporte es nulo");
-        }
-        return null;
-    }
-    
-    protected void levantarReporte(ReporteDTO reporte){
-        ReporteDTO reporteDTO = new ReporteDTO(
-                reporte.getFolio(), 
-                reporte.getTitulo(), 
-                reporte.getDescripcion(), 
-                seleccionarIncidente(reporte.getIncidente()), 
-                seleccionarInsitucion(reporte.getInstitucion()), 
-                ingresarDomicilio(reporte.getDomicilio()), 
-                ingresarCiudadano(reporte.getCiudadano()));
-    }
+//    protected DomicilioDTO ingresarDomicilio(DomicilioDTO domicilio) {
+//        if (domicilio != null) {
+//            IDomicilioBO domicilioBO = new DomicilioBO();
+//            DomicilioDTO domicilioDTO = new DomicilioDTO(
+//                    domicilio.getCalle(),
+//                    domicilio.getColonia(),
+//                    domicilio.getCodigoPostal(),
+//                    domicilio.getEspecificaciones()
+//            );
+//            domicilioBO.transporteDatos(domicilioDTO);
+//            return domicilioDTO;
+//        } else {
+//            Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto domicilio es nulo");
+//        }
+//        return null;
+//    }
+//
+//    protected CiudadanoDTO ingresarCiudadano(CiudadanoDTO ciudadano) {
+//        if (ciudadano != null) {
+//            ICiudadanoBO ciudadanoBO = new CiudadanoBO();
+//            CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(
+//                    ciudadano.getNombre(),
+//                    ciudadano.getApellidoP(),
+//                    ciudadano.getApellidoM(),
+//                    ciudadano.getCURP(),
+//                    ciudadano.getTelefono(),
+//                    ciudadano.getCorreo()
+//            );
+//            ciudadanoBO.transporteDatos(ciudadanoDTO);
+//            return ciudadanoDTO;
+//        } else {
+//            Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto ciudadano es nulo");
+//        }
+//        return null;
+//    }
+//
+//    protected ReporteDTO generarReporte(ReporteDTO reporte) {
+//        if (reporte != null) {
+//            IReporteBO reporteBO = new ReporteBO();
+//            ReporteDTO reporteDTO = new ReporteDTO(
+//                    reporte.getTitulo(),
+//                    reporte.getDescripcion()
+//            );
+//            reporteBO.transporteDatos(reporteDTO);
+//            return reporteDTO;
+//        } else {
+//            Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "El objeto reporte es nulo");
+//        }
+//        return null;
+//    }
+//    
+//    protected void levantarReporte(ReporteDTO reporte){
+//        ReporteDTO reporteDTO = new ReporteDTO(
+//                reporte.getFolio(), 
+//                reporte.getTitulo(), 
+//                reporte.getDescripcion(), 
+//                seleccionarIncidente(reporte.getIncidente()), 
+//                seleccionarInsitucion(reporte.getInstitucion()), 
+//                ingresarDomicilio(reporte.getDomicilio()), 
+//                ingresarCiudadano(reporte.getCiudadano()));
+//    }
 
 }

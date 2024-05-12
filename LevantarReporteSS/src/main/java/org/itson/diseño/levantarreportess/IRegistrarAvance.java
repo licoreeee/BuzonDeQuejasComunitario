@@ -1,5 +1,6 @@
 package org.itson.diseño.levantarreportess;
 
+import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import dto.ComentarioDTO;
 
@@ -14,4 +15,5 @@ import dto.ComentarioDTO;
  */
 public interface IRegistrarAvance {
     public void registarComentario(ComentarioDTO comentarioDTO) throws PersistenciaException;
+    public void consultarInstitucion(String codigoGestion, String nip)throws FindException;
 }

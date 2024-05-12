@@ -20,9 +20,11 @@ public class InstitucionBO implements IInstitucionBO {
 
     private final IConexion conexion;
     private InstitucionDAO institucionDAO;
+    private Institucion institucion;
 
     public InstitucionBO() {
         conexion = new Conexion();
+        institucion = new Institucion ();
         this.institucionDAO = new InstitucionDAO(conexion);
     }
 
@@ -81,8 +83,25 @@ public class InstitucionBO implements IInstitucionBO {
         return sb.toString();
     }
     
-    private InstitucionRegistradaDTO transporteDatos (String codigoGestion) throws FindException{
-        institucionDAO.obtenerInstitucionPorCodigo(codigoGestion);
+    public InstitucionRegistradaDTO transporteDatos (String codigoGestion, String nip) throws FindException{
+         institucion = null;
+    try {
+        institucion = institucionDAO.obtenerInstitucionPorCodigo(codigoGestion);
+        if (institucion != null && institucion.getNip().equals(nip)) {
+            InstitucionRegistradaDTO institucionRegistradaDTO = new InstitucionRegistradaDTO(
+                    institucion.getNombre(),
+                    institucion.getSiglas(),
+                    institucion.getDescripcionAdicional(),
+                    institucion.getCodigoGestion(),
+                    institucion.getNip());
+            return institucionRegistradaDTO;
+        } else {
+                throw new FindException("El ID o el NIP proporcionado es incorrecto.");
+        }
+    } catch (FindException e) {
+        throw e;
+    }
+     
     }
 
 //    /**
