@@ -4,7 +4,7 @@ import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
-import dao.InstitucionDAO;
+import dao.InstitucionesDAO;
 import dto.InstitucionNuevaDTO;
 import dto.InstitucionRegistradaDTO;
 import entidades.Institucion;
@@ -19,13 +19,14 @@ import org.bson.types.ObjectId;
 public class InstitucionBO implements IInstitucionBO {
 
     private final IConexion conexion;
-    private InstitucionDAO institucionDAO;
+    private InstitucionesDAO institucionDAO;
     private Institucion institucion;
 
     public InstitucionBO() {
         conexion = new Conexion();
-        institucion = new Institucion ();
-        this.institucionDAO = new InstitucionDAO(conexion);
+        institucion = new Institucion();
+        this.institucionDAO = new InstitucionesDAO(conexion);
+
     }
 
     @Override
@@ -42,7 +43,7 @@ public class InstitucionBO implements IInstitucionBO {
         String nip = generarNumerosAleatorios(4);
         institucion.setNip(nip);
         institucionNuevaDTO.setNip(institucion.getNip());
-        
+
         try {
             institucion = institucionDAO.agregarInstitucion(institucion);
         } catch (FindException ex) {
@@ -73,35 +74,35 @@ public class InstitucionBO implements IInstitucionBO {
         }
         return institucionesConsultadas;
     }
-    
+
     private String generarNumerosAleatorios(int length) {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
         for (int i = 0; i < length; i++) {
-            sb.append(random.nextInt(10)); 
+            sb.append(random.nextInt(10));
         }
         return sb.toString();
     }
-    
-    public InstitucionRegistradaDTO transporteDatos (String codigoGestion, String nip) throws FindException{
-         institucion = null;
-    try {
-        institucion = institucionDAO.obtenerInstitucionPorCodigo(codigoGestion);
-        if (institucion != null && institucion.getNip().equals(nip)) {
-            InstitucionRegistradaDTO institucionRegistradaDTO = new InstitucionRegistradaDTO(
-                    institucion.getNombre(),
-                    institucion.getSiglas(),
-                    institucion.getDescripcionAdicional(),
-                    institucion.getCodigoGestion(),
-                    institucion.getNip());
-            return institucionRegistradaDTO;
-        } else {
+
+    public InstitucionRegistradaDTO transporteDatos(String codigoGestion, String nip) throws FindException {
+        try {
+            institucion = institucionDAO.obtenerInstitucionPorCodigo(codigoGestion);
+            if (institucion == null || !institucion.getNip().equals(nip)) {
                 throw new FindException("El ID o el NIP proporcionado es incorrecto.");
+            } else {
+                return new InstitucionRegistradaDTO(
+                        institucion.getNombre(),
+                        institucion.getSiglas(),
+                        institucion.getDescripcionAdicional(),
+                        institucion.getCodigoGestion(),
+                        institucion.getNip());
+            }
+
+        } catch (FindException e) {
+            throw e;
+             
         }
-    } catch (FindException e) {
-        throw e;
-    }
-     
+
     }
 
 //    /**

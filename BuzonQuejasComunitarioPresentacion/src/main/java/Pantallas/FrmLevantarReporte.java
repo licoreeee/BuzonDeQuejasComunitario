@@ -161,11 +161,11 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         String titulo = cmpTitulo.getText();
         String descripcion = cmpDescripcion.getText();
         
-        ReporteDTO reporte = new ReporteDTO();
-        reporte.setTitulo(titulo);
-        reporte.setDescripcion(descripcion);
-        
-        controladores.mostrarDireccion(reporte);
+//        ReporteDTO reporte = new ReporteDTO();
+//        reporte.setTitulo(titulo);
+//        reporte.setDescripcion(descripcion);
+//        
+//        controladores.mostrarDireccion(reporte);
         dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 

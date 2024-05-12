@@ -5,7 +5,6 @@
 package dao;
 
 import Excepciones.FindException;
-import Excepciones.PersistenciaException;
 import entidades.Institucion;
 import java.util.List;
 import org.bson.types.ObjectId;

@@ -14,6 +14,8 @@ public interface IIncidenteBO {
     
     public List<IncidentesDTO> obtenerIncidentes(String idString) throws FindException;
     
+    public List<IncidentesDTO> obtenerIncidentesAbiertosPorInstitucion (String idInstitucion) throws FindException;
+    
 //    /**
 //     * Este método transporta los datos de un objeto IncidenteDTO a través de
 //     * otro objeto IncidenteDTO. Crea un nuevo objeto IncidenteDTO con el mismo

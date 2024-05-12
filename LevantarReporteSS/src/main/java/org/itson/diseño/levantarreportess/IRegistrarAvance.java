@@ -3,6 +3,7 @@ package org.itson.diseño.levantarreportess;
 import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import dto.ComentarioDTO;
+import dto.InstitucionRegistradaDTO;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,5 +16,5 @@ import dto.ComentarioDTO;
  */
 public interface IRegistrarAvance {
     public void registarComentario(ComentarioDTO comentarioDTO) throws PersistenciaException;
-    public void consultarInstitucion(String codigoGestion, String nip)throws FindException;
+    public InstitucionRegistradaDTO consultarInstitucion(String codigoGestion, String nip)throws FindException;
 }

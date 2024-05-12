@@ -13,6 +13,7 @@ public interface IInstitucionBO {
     public InstitucionNuevaDTO agregarInstitucion(InstitucionNuevaDTO institucionNuevaDTO) throws FindException;
 
     public List<InstitucionRegistradaDTO> consultarInstituciones() throws FindException;
+    public InstitucionRegistradaDTO transporteDatos(String codigoGestion, String nip) throws FindException ;
     
 //    /**
 //     * Transporta los datos de una InstitucionDTO a través de otro objeto

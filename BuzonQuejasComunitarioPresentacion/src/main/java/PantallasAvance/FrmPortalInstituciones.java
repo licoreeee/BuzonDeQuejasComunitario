@@ -6,20 +6,20 @@ package PantallasAvance;
 
 import Excepciones.FindException;
 import Pantallas.ControlNavegacion;
-import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import dto.InstitucionRegistradaDTO;
 import javax.swing.JOptionPane;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
 import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
- * @author 
+ * @author
  */
 public class FrmPortalInstituciones extends javax.swing.JFrame {
+
     private IRegistrarAvance registrarAvance;
     private final ControlNavegacion control;
+
     public FrmPortalInstituciones() {
         initComponents();
         registrarAvance = new RegistrarAvance();
@@ -102,8 +102,6 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
             }
         });
         pnlFondo.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
-
-        JPasswordNip.setText("jPasswordField1");
         pnlFondo.add(JPasswordNip, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 130, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -126,23 +124,35 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
     }//GEN-LAST:event_txtIDActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        try {
-            registrarAvance.consultarInstitucion(
-                    txtID.getText(),
-                    new String(JPasswordNip.getPassword()));
-        } catch (FindException ex) {
-            Logger.getLogger(FrmPortalInstituciones.class.getName()).log(Level.SEVERE, null, ex);
+        if (!txtID.getText().isEmpty() && JPasswordNip.getPassword().length > 0 && JPasswordNip.getPassword().length == 4) {
+
+            try {
+                InstitucionRegistradaDTO instituciconDTO = registrarAvance.consultarInstitucion(
+                        txtID.getText(),
+                        new String(JPasswordNip.getPassword()));
+                
+
+                control.mostrarReportesPendientes();
+                dispose();
+            } catch (FindException e) {
+                JOptionPane.showMessageDialog(
+                        null,
+                        e.getMessage(),
+                        "Error de llenado",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
             JOptionPane.showMessageDialog(
-                            null,
-                            ex.getMessage(),
-                            "Error al buscar la institucion",
-                            JOptionPane.ERROR_MESSAGE);
+                    null,
+                    "Llene correctamente las casillas",
+                    "Error de llenado",
+                    JOptionPane.ERROR_MESSAGE);
         }
 
-     
+
     }//GEN-LAST:event_btnContinuarActionPerformed
 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField JPasswordNip;

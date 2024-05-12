@@ -8,7 +8,7 @@ import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
-import dao.InstitucionDAO;
+import dao.InstitucionesDAO;
 import dto.IncidentesDTO;
 import dto.InstitucionNuevaDTO;
 import dto.InstitucionRegistradaDTO;

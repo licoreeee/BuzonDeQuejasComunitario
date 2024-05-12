@@ -22,7 +22,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
     private ReporteDTO reporteDTO;
-    private List<IncidenteDTO> incidentes;
+//    private List<IncidenteDTO> incidentes;
     private InstitucionNuevaDTO institucion;
 
     /**
@@ -32,7 +32,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         initComponents();
         this.controladores = new ControlNavegacion();
         this.institucion = institucion;
-        mostrarTabla(institucion.getIncidentes());
+//        mostrarTabla(institucion.getIncidentes());
     }
 
     public FrmSeleccionIncidentes(ReporteDTO reporteDTO) {
@@ -46,20 +46,20 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         }
     };
 
-    private void mostrarTabla(List<IncidenteDTO> incidentes) {
-        modeloTabla.addColumn("Incidente");
-        Object[] datosTabla = new Object[1];
-
-        // Verificar si la lista de incidentes no es null antes de iterar sobre ella
-        if (incidentes != null) {
-            incidentes.forEach(institucionObtenida -> {
-                datosTabla[0] = institucionObtenida.getNombreIncidente();
-                modeloTabla.addRow(datosTabla);
-            });
-        }
-
-        tblIncidentes.setModel(modeloTabla);
-    }
+//    private void mostrarTabla(List<IncidenteDTO> incidentes) {
+//        modeloTabla.addColumn("Incidente");
+//        Object[] datosTabla = new Object[1];
+//
+//        // Verificar si la lista de incidentes no es null antes de iterar sobre ella
+//        if (incidentes != null) {
+//            incidentes.forEach(institucionObtenida -> {
+//                datosTabla[0] = institucionObtenida.getNombreIncidente();
+//                modeloTabla.addRow(datosTabla);
+//            });
+//        }
+//
+//        tblIncidentes.setModel(modeloTabla);
+//    }
 
     private void obtenerDatosSeleccionados() {
         int filaSeleccionada = tblIncidentes.getSelectedRow();
@@ -70,8 +70,8 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
             for (int i = 0; i < tblIncidentes.getColumnCount(); i++) {
                 datosFila[i] = tblIncidentes.getValueAt(filaSeleccionada, i);
             }
-            IncidenteDTO incidenteDTO = new IncidenteDTO();
-            incidenteDTO.setNombreIncidente(datosFila[0].toString());
+//            IncidenteDTO incidenteDTO = new IncidenteDTO();
+//            incidenteDTO.setNombreIncidente(datosFila[0].toString());
         } else {
             Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No se selecciono ningun elemento de la tabla");
 
