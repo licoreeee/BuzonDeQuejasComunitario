@@ -4,21 +4,20 @@
  */
 package PantallasAvance;
 
-import Excepciones.FindException;
-import Excepciones.PersistenciaException;
 import Pantallas.ControlNavegacion;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.EventObject;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.CellEditorListener;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -42,154 +41,96 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         this.institucionDTO = institucionDTO;
         registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
-        consultarComentariosInstitucion(institucionDTO);
-        TablaReportesPendientes.setDefaultEditor(Object.class, null);
     }
-
-    private void consultarComentariosInstitucion(InstitucionRegistradaDTO institucionDTO) {
-        try {
-            reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getSiglas());
-            insertarReportesEnTabla(reportesDTO);
-        } catch (FindException ex) {
-            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(
-                    null,
-                    ex.getMessage(),
-                    "Error con los reportes",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
-
-    private void insertarReportesEnTabla(List<ReporteDTO> reportes) {
-        DefaultTableModel model = new DefaultTableModel() {
-
+    public ActionListener botonValidar() {
+        ActionListener validarListener = new ActionListener() {
             @Override
-            public Class<?> getColumnClass(int columnIndex) {
-                if (columnIndex == 5 || columnIndex == 6) {
-                    return JButton.class;
+            public void actionPerformed(ActionEvent e) {
+                ReporteDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
+                if (!reporteSelec.isValidado()) {
+                    dispose() ;
+                    System.out.println((reporteSelec.getAlumno().getNombre())) ;
+                    FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
+                    frmValidar.setVisible(true);
                 } else {
-                    return super.getColumnClass(columnIndex);
+                    JOptionPane.showConfirmDialog(new JFrame(), "Este reporte ya ha sido validado previamente", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
                 }
+                
             }
-        };
-        model.addColumn("Folio");
-        model.addColumn("Título");
-        model.addColumn("Descripción");
-        model.addColumn("Calle");
-        model.addColumn("Colonia");
-        model.addColumn("Cerrar");
-        model.addColumn("Comentar");
-
-        for (ReporteDTO reporteDTO : reportes) {
-            Object[] rowData = {
-                reporteDTO.getFolio(),
-                reporteDTO.getTitulo(),
-                reporteDTO.getDescripcion(),
-                reporteDTO.getCalle(),
-                reporteDTO.getColonia(),
-                botonCerrar(reporteDTO),
-                botonComentar(reporteDTO.getId())
-            };
-            model.addRow(rowData);
-        }
-
-        TablaReportesPendientes.setModel(model);
-    }
-
-    private JButton botonCerrar(ReporteDTO reporteDTO) {
-        JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener((ActionEvent e) -> {
-
-            cerrarReporte(reporteDTO);
-        });
-        return btnCerrar;
-    }
-
-    private JButton botonComentar(String id) {
-        JButton btnComentar = new JButton("Comentar");
-        btnComentar.addActionListener((ActionEvent e) -> {
-            comentarReporte(id);
-        });
-        return btnComentar;
-    }
-
-    private void cerrarReporte(ReporteDTO reporteDTO) {
-        try {
-            registrarAvance.actualizarEstado(reporteDTO);
-        } catch (PersistenciaException ex) {
-            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(
-                    null,
-                    ex.getMessage(),
-                    "Error ",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    // Método para comentar un reporte
-    private void comentarReporte(String id) {
-        control.mostrarCrearComentario();
-        dispose();
-    }
-
-    public void refrescarTabla(List<ReporteDTO> reportes) {
-        try {
-            DefaultTableModel model = new DefaultTableModel();
-            reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getId());
-            Object[] datosTabla = new Object[9];
-            model.addColumn("Folio");
-            model.addColumn("Título");
-            model.addColumn("Descripción");
-            model.addColumn("Calle");
-            model.addColumn("Colonia");
-            model.addColumn("Cerrar");
-            model.addColumn("Comentar");
-
-            for (ReporteDTO reporteDTO : reportes) {
-                Object[] rowData = {
-                    reporteDTO.getFolio(),
-                    reporteDTO.getTitulo(),
-                    reporteDTO.getDescripcion(),
-                    reporteDTO.getCalle(),
-                    reporteDTO.getColonia(),
-                    botonCerrar(reporteDTO),
-                    botonComentar(reporteDTO.getId())
-                };
-                model.addRow(rowData);
-            }
-
+        } ;
         
-
-        TablaReportesPendientes.setModel(model);
-        TablaReportesPendientes.setRowHeight(30);
-        TablaReportesPendientes.getColumnModel().getColumn(5).setCellRenderer(new JButtonRenderer());
-        TablaReportesPendientes.getColumnModel().getColumn(6).setCellEditor(new JButtonCellEditor());
+        return validarListener ;
     }
-    catch (FindException ex) {
-            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(
-                    null,
-                    ex.getMessage(),
-                    "Error con los reportes",
-                    JOptionPane.ERROR_MESSAGE);
-    }
-}
+    
+    
+    
+    
+    
+    public void refrescarTabla() {
+        DefaultTableModel modeloTabla = new DefaultTableModel() ;
+        List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes() ;
+        Object[] datosTabla = new Object[9];
+        modeloTabla.addColumn("CURP");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Grado y Grupo");
+        modeloTabla.addColumn("Fecha y Hora");
+        modeloTabla.addColumn("Gravedad");
+        modeloTabla.addColumn("Motivo");
+        modeloTabla.addColumn("Descripción");
+        modeloTabla.addColumn("Notificado");
+        modeloTabla.addColumn("Validar");
+        
+        
+        
+        for (int i = 0; i < reportes.size(); i++) {
+            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
+            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
+            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
+            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
+            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
+            datosTabla[5] = reportes.get(i).getMotivo() ;
+            datosTabla[6] = reportes.get(i).getDescripcion() ;
+            if (reportes.get(i).isNotificado()) {
+                datosTabla[7] = "NOTIFICADO" ;
+            } else {
+                datosTabla[7] = "PENDIENTE" ;
+            }
+            if (reportes.get(i).isValidado()) {
+                datosTabla[8] = "VALIDADO" ;
+            } 
+            
+            modeloTabla.addRow(datosTabla);
+        }
+        
+        tablaReportes.setModel(modeloTabla);
+        tablaReportes.setRowHeight(30);
+        tablaReportes.getColumnModel().getColumn(8).setCellRenderer(new JButtonRenderer("Validar"));
+        tablaReportes.getColumnModel().getColumn(8).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
 
-public class JButtonCellEditor extends AbstractCellEditor implements TableCellEditor {
+    }
+
+public class JButtonCellEditor implements TableCellEditor {
 
     private final JButton button;
+    private int row;
+    private ActionListener actionListener;
 
-    public JButtonCellEditor() {
-        this.button = new JButton("Validar");
-        this.button.addActionListener((ActionEvent evt) -> {
-            // Aquí iría la lógica para validar el reporte correspondiente
-            stopCellEditing();
+    public JButtonCellEditor(String text, ActionListener actionListener) {
+        this.button = new JButton(text);
+//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
+//        this.button.setBackground(new Color(188, 149, 92));
+//        this.button.setForeground(new Color(242, 242, 242));
+        this.actionListener = actionListener;
+        this.button.addActionListener((ActionEvent evt)->{
+            this.actionListener.actionPerformed(
+                new ActionEvent(this.button, ActionEvent.ACTION_PERFORMED, this.row+"")
+            );
         });
     }
 
     @Override
     public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        this.row = row;
         return this.button;
     }
 
@@ -197,26 +138,57 @@ public class JButtonCellEditor extends AbstractCellEditor implements TableCellEd
     public Object getCellEditorValue() {
         return true;
     }
+
+    @Override
+    public boolean isCellEditable(EventObject anEvent) {
+        return true;
+    }
+
+    @Override
+    public boolean shouldSelectCell(EventObject anEvent) {
+        return true;
+    }
+
+    @Override
+    public boolean stopCellEditing() {
+        return true;
+    }
+
+    @Override
+    public void cancelCellEditing() {}
+
+    @Override
+    public void addCellEditorListener(CellEditorListener l) {}
+
+    @Override
+    public void removeCellEditorListener(CellEditorListener l) {}
 }
+    
+    public class JButtonRenderer implements TableCellRenderer {
 
-public class JButtonRenderer extends JButton implements TableCellRenderer {
+    private final JButton button;
 
-    public JButtonRenderer() {
-        setOpaque(true);
+    public JButtonRenderer(String text) {
+        this.button = new JButton(text);
+//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
+//        this.button.setBackground(new Color(188, 149, 92));
+//        this.button.setForeground(new Color(242, 242, 242));
     }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        return this;
+        return this.button;
     }
-}
 
-/**
- * This method is called from within the constructor to initialize the form.
- * WARNING: Do NOT modify this code. The content of this method is always
- * regenerated by the Form Editor.
- */
-@SuppressWarnings("unchecked")
+}
+    
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

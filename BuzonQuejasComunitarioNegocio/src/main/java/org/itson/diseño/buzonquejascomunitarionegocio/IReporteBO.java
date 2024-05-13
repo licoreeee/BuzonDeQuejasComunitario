@@ -1,7 +1,6 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
-import Excepciones.PersistenciaException;
 import dto.ReporteDTO;
 import entidades.Reporte;
 import excepciones.NegociosException;
@@ -28,6 +27,6 @@ public interface IReporteBO {
 
     public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String idInstitucion) throws FindException;
 
-    public void actualizarEstado(ReporteDTO reporteDTO) throws PersistenciaException;
+
 
 }
