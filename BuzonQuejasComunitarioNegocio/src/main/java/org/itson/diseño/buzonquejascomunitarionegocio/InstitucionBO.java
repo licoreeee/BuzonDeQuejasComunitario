@@ -85,6 +85,7 @@ public class InstitucionBO implements IInstitucionBO {
         return sb.toString();
     }
 
+    @Override
     public InstitucionRegistradaDTO transporteDatos(String codigoGestion, String nip) throws FindException {
         try {
             institucion = institucionDAO.obtenerInstitucionPorCodigo(codigoGestion);

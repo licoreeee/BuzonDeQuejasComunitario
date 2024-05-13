@@ -42,7 +42,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
     
     private void consultarComentariosInstitucion(InstitucionRegistradaDTO institucionDTO){
         try {
-             reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getId());
+             reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getSiglas());
               insertarReportesEnTabla(reportesDTO);
         } catch (FindException ex) {
             Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);

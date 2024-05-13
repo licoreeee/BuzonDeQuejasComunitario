@@ -1,8 +1,6 @@
 package dto;
 
 import java.sql.Date;
-import java.util.Calendar;
-import java.util.List;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina

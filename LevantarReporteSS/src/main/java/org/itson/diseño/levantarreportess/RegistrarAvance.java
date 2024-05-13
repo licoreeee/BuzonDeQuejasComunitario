@@ -50,9 +50,9 @@ public class RegistrarAvance implements IRegistrarAvance {
     }
 
     @Override
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
+    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String siglas) throws FindException {
         try {
-            return reporteBO.obtenerReportesAbiertosPorInstitucion(idInstitucion);
+            return reporteBO.obtenerReportesAbiertosPorInstitucion(siglas);
         } catch (FindException ex) {
             throw ex;
         }
