@@ -21,6 +21,9 @@ public class ReporteDTO {
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
 
+    public ReporteDTO() {
+    }
+
     public ReporteDTO(int folio, String titulo, String descripcion, Date fechaCreacion, byte[] photo, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.folio = folio;
         this.titulo = titulo;
@@ -44,7 +47,7 @@ public class ReporteDTO {
         this.calle = calle;
         this.colonia = colonia;
     }
-
+    
     public ReporteDTO(String id, int folio, String titulo, String descripcion, Date fechaCreacion, byte[] photo) {
         this.id = id;
         this.folio = folio;
@@ -91,7 +94,7 @@ public class ReporteDTO {
     public String getDescripcion() {
         return descripcion;
     }
-
+    
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }

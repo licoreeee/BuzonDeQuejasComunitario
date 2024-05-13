@@ -9,14 +9,13 @@ import java.util.Calendar;
 import Excepciones.PersistenciaException;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
-import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.model.Filters;
 import conexion.IConexion;
 import entidades.Reporte;
 import java.util.ArrayList;
 import java.util.List;
-import org.bson.conversions.Bson;
+import org.bson.Document;
 import org.bson.types.ObjectId;
 
 /**
@@ -75,13 +74,18 @@ public class ReportesDAO implements IReportesDAO {
     public List<Reporte> obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException {
         try {
             return collection.find(Filters.and(
-                Filters.gte("fechaCreacion", fechaInicio),
-                Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList());
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList());
         } catch (MongoException ex) {
             throw new FindException("Error al obtener los reportes.");
         }
     }
-    
-    
+
+    @Override
+    public void actualizarEstado(Reporte reporte) throws PersistenciaException {
+        ObjectId idReporte = reporte.getId();
+        Document updateDoc = new Document("$set", new Document("estado", false));
+        collection.updateOne(Filters.eq("_id", idReporte), updateDoc);
+    }
 
 }

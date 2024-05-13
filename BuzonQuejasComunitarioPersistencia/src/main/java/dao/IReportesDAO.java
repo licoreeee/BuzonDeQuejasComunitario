@@ -16,15 +16,17 @@ import org.bson.types.ObjectId;
  * @author Dell
  */
 public interface IReportesDAO {
-    
+
     Reporte agregarReporte(Reporte reporte) throws PersistenciaException;
-    
+
     List<Reporte> obtenerReportePorTitulo(String titulo) throws FindException;
-    
+
     List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException;
-    
+
     List<Reporte> obtenerReportePorIncidente(String incidente) throws FindException;
-    
+
     List<Reporte> obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException;
+
+    void actualizarEstado(Reporte reporte) throws PersistenciaException;
 
 }

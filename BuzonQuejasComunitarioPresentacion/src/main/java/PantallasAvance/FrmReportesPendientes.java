@@ -5,18 +5,23 @@
 package PantallasAvance;
 
 import Excepciones.FindException;
+import Excepciones.PersistenciaException;
 import Pantallas.ControlNavegacion;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.AbstractCellEditor;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
 import org.itson.diseño.levantarreportess.RegistrarAvance;
 
@@ -38,15 +43,16 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
         consultarComentariosInstitucion(institucionDTO);
+        TablaReportesPendientes.setDefaultEditor(Object.class, null);
     }
-    
-    private void consultarComentariosInstitucion(InstitucionRegistradaDTO institucionDTO){
+
+    private void consultarComentariosInstitucion(InstitucionRegistradaDTO institucionDTO) {
         try {
-             reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getSiglas());
-              insertarReportesEnTabla(reportesDTO);
+            reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getSiglas());
+            insertarReportesEnTabla(reportesDTO);
         } catch (FindException ex) {
             Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-              JOptionPane.showMessageDialog(
+            JOptionPane.showMessageDialog(
                     null,
                     ex.getMessage(),
                     "Error con los reportes",
@@ -56,7 +62,17 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
     }
 
     private void insertarReportesEnTabla(List<ReporteDTO> reportes) {
-        DefaultTableModel model = new DefaultTableModel();
+        DefaultTableModel model = new DefaultTableModel() {
+
+            @Override
+            public Class<?> getColumnClass(int columnIndex) {
+                if (columnIndex == 5 || columnIndex == 6) {
+                    return JButton.class;
+                } else {
+                    return super.getColumnClass(columnIndex);
+                }
+            }
+        };
         model.addColumn("Folio");
         model.addColumn("Título");
         model.addColumn("Descripción");
@@ -72,7 +88,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
                 reporteDTO.getDescripcion(),
                 reporteDTO.getCalle(),
                 reporteDTO.getColonia(),
-                botonCerrar(reporteDTO.getId()),
+                botonCerrar(reporteDTO),
                 botonComentar(reporteDTO.getId())
             };
             model.addRow(rowData);
@@ -81,45 +97,126 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         TablaReportesPendientes.setModel(model);
     }
 
-    private JButton botonCerrar(String id) {
+    private JButton botonCerrar(ReporteDTO reporteDTO) {
         JButton btnCerrar = new JButton("Cerrar");
-        btnCerrar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para cerrar el reporte con el folio proporcionado
-                cerrarReporte(id);
-            }
+        btnCerrar.addActionListener((ActionEvent e) -> {
+
+            cerrarReporte(reporteDTO);
         });
         return btnCerrar;
     }
 
-    private JButton botonComentar(String folio) {
+    private JButton botonComentar(String id) {
         JButton btnComentar = new JButton("Comentar");
-        btnComentar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Lógica para comentar el reporte con el folio proporcionado
-                comentarReporte(folio);
-            }
+        btnComentar.addActionListener((ActionEvent e) -> {
+            comentarReporte(id);
         });
         return btnComentar;
     }
 
-    private void cerrarReporte(String folio) {
-        // Lógica para cerrar el reporte con el folio proporcionado
+    private void cerrarReporte(ReporteDTO reporteDTO) {
+        try {
+            registrarAvance.actualizarEstado(reporteDTO);
+        } catch (PersistenciaException ex) {
+            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error ",
+                    JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     // Método para comentar un reporte
-    private void comentarReporte(String folio) {
+    private void comentarReporte(String id) {
         control.mostrarCrearComentario();
+        dispose();
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
+    public void refrescarTabla(List<ReporteDTO> reportes) {
+        try {
+            DefaultTableModel model = new DefaultTableModel();
+            reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getId());
+            Object[] datosTabla = new Object[9];
+            model.addColumn("Folio");
+            model.addColumn("Título");
+            model.addColumn("Descripción");
+            model.addColumn("Calle");
+            model.addColumn("Colonia");
+            model.addColumn("Cerrar");
+            model.addColumn("Comentar");
+
+            for (ReporteDTO reporteDTO : reportes) {
+                Object[] rowData = {
+                    reporteDTO.getFolio(),
+                    reporteDTO.getTitulo(),
+                    reporteDTO.getDescripcion(),
+                    reporteDTO.getCalle(),
+                    reporteDTO.getColonia(),
+                    botonCerrar(reporteDTO),
+                    botonComentar(reporteDTO.getId())
+                };
+                model.addRow(rowData);
+            }
+
+        
+
+        TablaReportesPendientes.setModel(model);
+        TablaReportesPendientes.setRowHeight(30);
+        TablaReportesPendientes.getColumnModel().getColumn(5).setCellRenderer(new JButtonRenderer());
+        TablaReportesPendientes.getColumnModel().getColumn(6).setCellEditor(new JButtonCellEditor());
+    }
+    catch (FindException ex) {
+            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error con los reportes",
+                    JOptionPane.ERROR_MESSAGE);
+    }
+}
+
+public class JButtonCellEditor extends AbstractCellEditor implements TableCellEditor {
+
+    private final JButton button;
+
+    public JButtonCellEditor() {
+        this.button = new JButton("Validar");
+        this.button.addActionListener((ActionEvent evt) -> {
+            // Aquí iría la lógica para validar el reporte correspondiente
+            stopCellEditing();
+        });
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        return this.button;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+        return true;
+    }
+}
+
+public class JButtonRenderer extends JButton implements TableCellRenderer {
+
+    public JButtonRenderer() {
+        setOpaque(true);
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        return this;
+    }
+}
+
+/**
+ * This method is called from within the constructor to initialize the form.
+ * WARNING: Do NOT modify this code. The content of this method is always
+ * regenerated by the Form Editor.
+ */
+@SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 

@@ -1,6 +1,7 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
+import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
 import dao.IReportesDAO;
@@ -11,6 +12,8 @@ import entidades.Reporte;
 import excepciones.NegociosException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
@@ -86,6 +89,18 @@ public class ReporteBO implements IReporteBO {
             }
         } catch (FindException e) {
             throw e;
+        }
+    }
+
+    public void actualizarEstado(ReporteDTO reporteDTO) throws PersistenciaException{
+        ObjectId id = new ObjectId(reporteDTO.getId()); 
+        Reporte reporte = new Reporte(
+                id,
+                reporteDTO.getEstado());
+        try {
+            reportesDAO.actualizarEstado(reporte);
+        } catch (PersistenciaException ex) {
+            throw ex;
         }
     }
 

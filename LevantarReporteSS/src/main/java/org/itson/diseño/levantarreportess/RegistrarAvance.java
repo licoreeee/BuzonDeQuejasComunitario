@@ -57,5 +57,8 @@ public class RegistrarAvance implements IRegistrarAvance {
             throw ex;
         }
     }
+    public void actualizarEstado (ReporteDTO reporteDTO)  throws PersistenciaException{
+        reporteBO.actualizarEstado(reporteDTO);
+    }
 
 }
