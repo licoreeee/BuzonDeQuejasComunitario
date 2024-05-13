@@ -8,6 +8,8 @@ import dto.ReporteDTO;
 import entidades.Reporte;
 import excepciones.NegociosException;
 import java.lang.module.FindException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.bson.types.Binary;
 
@@ -31,10 +33,11 @@ public class LevantarReporteBO implements ILevantarReporteBO {
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException {
         try {
         if(reporteDTO.getPhoto() == null){
+            Date date = reporteDTO.getFechaCreacion().getTime();
             Reporte reporte = new Reporte(reporteDTO.getFolio(),
                                       reporteDTO.getTitulo(),
                                       reporteDTO.getDescripcion(),
-                                      reporteDTO.getFechaCreacion(),
+                                      date,
                                       reporteDTO.getCalle(),
                                       reporteDTO.getColonia(),
                                       reporteDTO.getDescripcionExtra(),
@@ -43,12 +46,13 @@ public class LevantarReporteBO implements ILevantarReporteBO {
                                       incidenteBO.convertirIncidenteEntidad(reporteDTO.getIncidente()));
             return reporte;
         }else{
+            Date date = reporteDTO.getFechaCreacion().getTime();
             byte[] photo = reporteDTO.getPhoto();
             Binary binaryPhoto = new Binary(photo);
             Reporte reporte = new Reporte(reporteDTO.getFolio(),
                                       reporteDTO.getTitulo(),
                                       reporteDTO.getDescripcion(),
-                                      reporteDTO.getFechaCreacion(),
+                                      date,
                                       binaryPhoto,
                                       reporteDTO.getCalle(),
                                       reporteDTO.getColonia(),
@@ -67,10 +71,12 @@ public class LevantarReporteBO implements ILevantarReporteBO {
     public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException {
                 try {
         if(reporte.getPhoto() == null){
+            Calendar calendar = null;
+            calendar.setTime(reporte.getFechaCreacion());
             ReporteDTO reporteDTO = new ReporteDTO(reporte.getFolio(),
                                       reporte.getTitulo(),
                                       reporte.getDescripcion(),
-                                      reporte.getFechaCreacion(),
+                                      calendar,
                                       reporte.getCalle(),
                                       reporte.getColonia(),
                                       reporte.getDescripcionExtra(),
@@ -79,10 +85,12 @@ public class LevantarReporteBO implements ILevantarReporteBO {
                                       incidenteBO.convertirIncidenteDTO(reporte.getIncidente()));
             return reporteDTO;
         }else{
+            Calendar calendar = null;
+            calendar.setTime(reporte.getFechaCreacion());
             ReporteDTO reporteDTO = new ReporteDTO(reporte.getFolio(),
                                       reporte.getTitulo(),
                                       reporte.getDescripcion(),
-                                      reporte.getFechaCreacion(),
+                                      calendar,
                                       reporte.getPhoto().getData(),
                                       reporte.getCalle(),
                                       reporte.getColonia(),

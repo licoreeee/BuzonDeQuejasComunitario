@@ -10,6 +10,8 @@ import dto.ReporteDTO;
 import entidades.Reporte;
 import excepciones.NegociosException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
@@ -30,10 +32,11 @@ public class ReporteBO implements IReporteBO {
     @Override
 
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) {
+        Date date = reporteDTO.getFechaCreacion().getTime();
         Reporte reporte = new Reporte(reporteDTO.getFolio(),
                 reporteDTO.getTitulo(),
                 reporteDTO.getDescripcion(),
-                reporteDTO.getFechaCreacion());
+                date);
         reporte.setId(new ObjectId(reporteDTO.getId()));
         reporte.setPhoto(new Binary(reporteDTO.getPhoto()));
         return reporte;
@@ -42,12 +45,13 @@ public class ReporteBO implements IReporteBO {
     @Override
     public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException {
         byte[] photo = null;
+        Calendar calendar = null;
         if (reporte.getPhoto() != null) {
             photo = reporte.getPhoto().getData();
         }
-
+        calendar.setTime(reporte.getFechaCreacion());
         ReporteDTO reporteDTO = new ReporteDTO(reporte.getId().toString(), reporte.getFolio(), reporte.getTitulo(),
-                reporte.getDescripcion(), reporte.getFechaCreacion(), photo);
+                reporte.getDescripcion(), calendar, photo);
         return reporteDTO;
     }
 
@@ -59,16 +63,18 @@ public class ReporteBO implements IReporteBO {
     @Override
     public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String siglasInstitucion) throws FindException {
         try {
+            Calendar calendar = null;
             List<ReporteDTO> reportesDTO = new ArrayList<>();
             List<Reporte> reportes = reportesDAO.obtenerReportePorInstitucion(siglasInstitucion);
             if (!reportes.isEmpty()) {
                 for (Reporte reporte : reportes) {
                     if (reporte.getEstado()) {
+                        calendar.setTime(reporte.getFechaCreacion());
                         ReporteDTO reporteDTO = new ReporteDTO(
                                 reporte.getFolio(),
                                 reporte.getTitulo(),
                                 reporte.getDescripcion(),
-                                reporte.getFechaCreacion(),
+                                calendar,
                                 reporte.getEstado(),
                                 reporte.getCalle(),
                                 reporte.getColonia());
@@ -88,5 +94,19 @@ public class ReporteBO implements IReporteBO {
             throw e;
         }
     }
+
+    @Override
+    public void actualizarEstado(ReporteDTO reporteDTO) throws PersistenciaException{
+        ObjectId id = new ObjectId(reporteDTO.getId()); 
+        Reporte reporte = new Reporte(
+                id,
+                reporteDTO.getEstado());
+        try {
+            reportesDAO.actualizarEstado(reporte);
+        } catch (PersistenciaException ex) {
+            throw ex;
+        }
+    }
+
 
 }
