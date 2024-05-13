@@ -9,30 +9,20 @@ import java.util.List;
  */
 public class LogDeBusquedaDTO {
     
-    private String nombreCiudadano;
-    private String curpCiudadano;
+    private CiudadanoDTO ciudadanoDTO;
     private List<String> filtros;
 
-    public LogDeBusquedaDTO(String nombreCiudadano, String curpCiudadano, List<String> filtros) {
-        this.nombreCiudadano = nombreCiudadano;
-        this.curpCiudadano = curpCiudadano;
+    public LogDeBusquedaDTO(CiudadanoDTO ciudadanoDTO, List<String> filtros) {
+        this.ciudadanoDTO = ciudadanoDTO;
         this.filtros = filtros;
     }
 
-    public String getNombreCiudadano() {
-        return nombreCiudadano;
+    public CiudadanoDTO getCiudadanoDTO() {
+        return ciudadanoDTO;
     }
 
-    public void setNombreCiudadano(String nombreCiudadano) {
-        this.nombreCiudadano = nombreCiudadano;
-    }
-
-    public String getCurpCiudadano() {
-        return curpCiudadano;
-    }
-
-    public void setCurpCiudadano(String curpCiudadano) {
-        this.curpCiudadano = curpCiudadano;
+    public void setCiudadanoDTO(CiudadanoDTO ciudadanoDTO) {
+        this.ciudadanoDTO = ciudadanoDTO;
     }
 
     public List<String> getFiltros() {
