@@ -1,6 +1,6 @@
 package dto;
 
-import java.sql.Date;
+import java.util.Date;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
