@@ -14,6 +14,7 @@ import com.mongodb.client.model.Filters;
 import conexion.IConexion;
 import entidades.Reporte;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -71,7 +72,7 @@ public class ReportesDAO implements IReportesDAO {
     }
 
     @Override
-    public List<Reporte> obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException {
+    public List<Reporte> obtenerReportePorFecha(Date fechaInicio, Date fechaFinal) throws FindException {
         try {
             return collection.find(Filters.and(
                     Filters.gte("fechaCreacion", fechaInicio),
@@ -82,10 +83,147 @@ public class ReportesDAO implements IReportesDAO {
     }
 
     @Override
+
     public void actualizarEstado(Reporte reporte) throws PersistenciaException {
         ObjectId idReporte = reporte.getId();
         Document updateDoc = new Document("$set", new Document("estado", false));
         collection.updateOne(Filters.eq("_id", idReporte), updateDoc);
     }
+
+    public List<Reporte> obtenerReportePorTituloYInstitucion(String titulo, String institucion) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("titulo", titulo),
+                    Filters.eq("institucion.siglas", institucion))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorTituloYFecha(String titulo, Date fechaInicio, Date fechaFinal) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("titulo", titulo),
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorTituloYIncidente(String titulo, String incidente) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("titulo", titulo),
+                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorInstitucionYIncidente(String institucion, String incidente) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("institucion.siglas", institucion),
+                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorInstitucionYFecha(String institucion, Date fechaInicio, Date fechaFinal) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("institucion.siglas", institucion),
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorIncidenteYFecha(String incidente, Date fechaInicio, Date fechaFinal) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("incidente.nombre", incidente),
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("titulo", titulo),
+                    Filters.eq("institucion.siglas", institucion),
+                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorTituloYInstitucionYFecha(String titulo, String institucion, Date fechaInicio, Date fechaFinal) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("titulo", titulo),
+                    Filters.eq("institucion.siglas", institucion),
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorTituloYIncidenteYFecha(String titulo, String incidente, Date fechaInicio, Date fechaFinal) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("titulo", titulo),
+                    Filters.eq("incidente.nombre", incidente),
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorInstitucionYFechaYIncidente(String institucion, Date fechaInicio, Date fechaFinal, String incidente) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("institucion.siglas", institucion),
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal),
+                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+
+    @Override
+    public List<Reporte> obtenerReportePorTituloYInstitucionYIncidenteYFecha(String titulo, String institucion, String incidente, Date fechaInicio, Date fechaFinal) throws FindException {
+        try {
+            return collection.find(Filters.and(
+                    Filters.eq("titulo", titulo),
+                    Filters.eq("institucion.siglas", institucion),
+                    Filters.eq("incidente.nombre", incidente),
+                    Filters.gte("fechaCreacion", fechaInicio),
+                    Filters.lte("fechaCreacion", fechaFinal))).into(new ArrayList<>());
+        } catch (MongoException ex) {
+            throw new FindException("Error al obtener los reportes.");
+        }
+    }
+    
+    
+
 
 }

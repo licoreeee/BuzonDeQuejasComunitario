@@ -24,6 +24,7 @@ public class FrmIncidentes extends javax.swing.JFrame {
     private final InstitucionNuevaDTO institucionNuevaDTO;
     private final InstitucionRegistradaDTO institucionRegistradaDTO;
     private boolean cambiosRealizados = false;
+    List<String> incidentesActuales = new ArrayList<>();
 
     /**
      * Creates new form FrmSeleccionIncidentes
@@ -64,7 +65,6 @@ public class FrmIncidentes extends javax.swing.JFrame {
             } else if (opcion == JOptionPane.YES_OPTION) {
                 facadeInstituciones.agregarInstitucion(institucionNuevaDTO);
                 agregarIncidentesAInstitucionNueva();
-                JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 controladores.mostrarConfirmado();
                 dispose();
             }
@@ -74,7 +74,6 @@ public class FrmIncidentes extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "La acción se ha cancelado.");
             } else if (opcion == JOptionPane.YES_OPTION) {
                 agregarIncidentesAInstitucionRegistrada();
-                JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
                 controladores.mostrarConfirmado();
                 dispose();
             }
@@ -94,23 +93,28 @@ public class FrmIncidentes extends javax.swing.JFrame {
     private void agregarIncidentesAInstitucionRegistrada() {
         try {
             DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
-            List<String> incidentesActuales = new ArrayList<>();
-            for (int i = 0; i < model.getRowCount(); i++) {
-                incidentesActuales.add((String) model.getValueAt(i, 0));
-            }
 //            model.setRowCount(0);
-
             String id = institucionRegistradaDTO.getId();
             List<IncidentesDTO> listaIncidentesRegistrados = facadeIncidentes.consultarIncidentes(id);
             for (IncidentesDTO incidente : listaIncidentesRegistrados) {
                 String informacion = incidente.getInformacion();
+                model.addRow(new Object[]{informacion});
+            }
+            model.fireTableDataChanged();
 
-                if (!incidentesActuales.contains(informacion)) {
-                    model.addRow(new Object[]{informacion});
+            if (incidentesActuales != null && !incidentesActuales.isEmpty()) {
+                List<IncidentesDTO> listaIncidentesActuales = new ArrayList<>();
+                for (String informacion : incidentesActuales) {
+                    IncidentesDTO incidente = new IncidentesDTO(
+                            informacion,
+                            institucionRegistradaDTO
+                    );
+                    listaIncidentesActuales.add(incidente);
                 }
+
+                facadeIncidentes.agregarIncidentes(listaIncidentesActuales);
             }
 
-            model.fireTableDataChanged();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -293,6 +297,7 @@ public class FrmIncidentes extends javax.swing.JFrame {
         } else {
             DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
             model.addRow(new Object[]{nuevoIncidente});
+            incidentesActuales.add(nuevoIncidente);
             actualizarTabla();
             cambiosRealizados = true;
         }
