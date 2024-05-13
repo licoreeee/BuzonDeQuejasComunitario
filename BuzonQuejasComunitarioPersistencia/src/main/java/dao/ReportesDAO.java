@@ -31,7 +31,7 @@ public class ReportesDAO implements IReportesDAO {
     public ReportesDAO(IConexion conexion) {
         this.conexion = conexion;
         MongoDatabase database = conexion.crearConexion();
-        this.collection = database.getCollection("Reporte", Reporte.class);
+        this.collection = database.getCollection("Reportes", Reporte.class);
     }
 
     @Override
@@ -82,23 +82,6 @@ public class ReportesDAO implements IReportesDAO {
         }
     }
     
-    @Override
-    public List<Reporte> obtenerReportesPorInstitucion(ObjectId idInstitucion) throws FindException {
-        try {
-            List<Reporte> reportes = new ArrayList<>();
-            Bson filter = Filters.eq("institucionId", idInstitucion);
-            MongoCursor<Reporte> cursor = collection.find(filter).iterator();
-            try {
-                while (cursor.hasNext()) {
-                    reportes.add(cursor.next());
-                }
-        } finally {
-                cursor.close();
-            }
-            return reportes;
-        } catch (MongoException e) {
-            throw new FindException("Error al obtener los reportes");
-        }
-    }
+    
 
 }

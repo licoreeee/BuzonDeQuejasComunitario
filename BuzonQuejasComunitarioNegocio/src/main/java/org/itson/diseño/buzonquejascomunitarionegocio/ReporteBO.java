@@ -57,11 +57,10 @@ public class ReporteBO implements IReporteBO {
     }
 
     @Override
-    public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String idInstitucion) throws NegociosException {
+    public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String siglasInstitucion) throws FindException {
         try {
-            ObjectId objectId = new ObjectId(idInstitucion);
             List<ReporteDTO> reportesDTO = new ArrayList<>();
-            List<Reporte> reportes = reportesDAO.obtenerReportesPorInstitucion(objectId);
+            List<Reporte> reportes = reportesDAO.obtenerReportePorInstitucion(siglasInstitucion);
             if (!reportes.isEmpty()) {
                 for (Reporte reporte : reportes) {
                     if (reporte.getEstado()) {
@@ -80,13 +79,13 @@ public class ReporteBO implements IReporteBO {
                 if (!reportesDTO.isEmpty()) {
                     return reportesDTO;
                 } else {
-                    throw new NegociosException("No se encontró ningún reporte abierto.");
+                    throw new FindException("No se encontró ningún reporte abierto.");
                 }
             } else {
-                throw new NegociosException("No se encontró ningún reporte, intente más tarde.");
+                throw new FindException("No se encontró ningún reporte, intente más tarde.");
             }
         } catch (FindException e) {
-            throw new NegociosException(e.getMessage());
+            throw e;
         }
     }
 

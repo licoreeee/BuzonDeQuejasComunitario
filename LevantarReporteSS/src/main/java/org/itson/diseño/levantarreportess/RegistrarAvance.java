@@ -36,7 +36,7 @@ public class RegistrarAvance implements IRegistrarAvance {
         try {
             comentarioBO.transporteDatos(comentarioDTO);
         } catch (PersistenciaException e) {
-            throw new PersistenciaException(e.getMessage());
+            throw e;
         }
     }
 
@@ -53,9 +53,8 @@ public class RegistrarAvance implements IRegistrarAvance {
     public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
         try {
             return reporteBO.obtenerReportesAbiertosPorInstitucion(idInstitucion);
-        } catch (NegociosException ex) {
-            Logger.getLogger(RegistrarAvance.class.getName()).log(Level.SEVERE, null, ex);
-            throw new FindException(ex.getMessage());
+        } catch (FindException ex) {
+            throw ex;
         }
     }
 
