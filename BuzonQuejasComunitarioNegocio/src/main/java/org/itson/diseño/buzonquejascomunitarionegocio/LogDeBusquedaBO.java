@@ -5,8 +5,10 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import dto.LogDeBusquedaDTO;
+import entidades.Ciudadano;
 import entidades.LogDeBusqueda;
 import excepciones.NegociosException;
+import java.util.List;
 
 /**
  *
@@ -28,10 +30,11 @@ public class LogDeBusquedaBO implements ILogDeBusquedaBO{
     @Override
     public LogDeBusqueda convertirDTO(LogDeBusquedaDTO logDeBusquedaDTO) throws NegociosException {
         try {
-            return new LogDeBusqueda(ciudadanoBO.convertirCiudadanoEntidad(logDeBusquedaDTO.getCiudadanoDTO()), logDeBusquedaDTO.getFiltros());
+            Ciudadano ciudadano = ciudadanoBO.convertirCiudadanoEntidad(logDeBusquedaDTO.getCiudadanoDTO());
+            return new LogDeBusqueda(ciudadano, logDeBusquedaDTO.getFiltros());
         } catch (NegociosException ex) {
-            throw new NegociosException("Error al convertir LogDeBusquedaDTO a LogDeBusqueda.");
+            throw new NegociosException("Error al convertir LogDeBusquedaDTO a entidad.");
         }
     }
-    
+
 }
