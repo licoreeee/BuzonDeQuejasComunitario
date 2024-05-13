@@ -90,6 +90,7 @@ public class ReportesDAO implements IReportesDAO {
         collection.updateOne(Filters.eq("_id", idReporte), updateDoc);
     }
 
+    @Override
     public List<Reporte> obtenerReportePorTituloYInstitucion(String titulo, String institucion) throws FindException {
         try {
             return collection.find(Filters.and(
@@ -222,8 +223,5 @@ public class ReportesDAO implements IReportesDAO {
             throw new FindException("Error al obtener los reportes.");
         }
     }
-    
-    
-
 
 }

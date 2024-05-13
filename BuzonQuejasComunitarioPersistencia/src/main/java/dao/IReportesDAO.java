@@ -26,10 +26,6 @@ public interface IReportesDAO {
 
     List<Reporte> obtenerReportePorIncidente(String incidente) throws FindException;
 
-
-    List<Reporte> obtenerReportePorFecha(Calendar fechaInicio, Calendar fechaFinal) throws FindException;
-
-    
     List<Reporte> obtenerReportePorFecha(Date fechaInicio, Date fechaFinal) throws FindException;
     
     List<Reporte> obtenerReportePorTituloYInstitucion(String titulo, String institucion) throws FindException;
