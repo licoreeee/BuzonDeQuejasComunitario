@@ -1,9 +1,12 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
+import Excepciones.PersistenciaException;
 import dto.ReporteDTO;
 import entidades.Reporte;
 import excepciones.NegociosException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -26,7 +29,28 @@ public interface IReporteBO {
     public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException;
 
     public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String idInstitucion) throws FindException;
+    
+    public void actualizarEstado(ReporteDTO reporteDTO) throws PersistenciaException;
+    
+    List<ReporteDTO> obtenerReportePorTitulo(String titulo, Calendar dia) throws FindException;
 
+    List<ReporteDTO> obtenerReportePorInstitucion(String institucion, Calendar dia) throws FindException;
 
+    List<ReporteDTO> obtenerReportePorIncidente(String incidente, Calendar dia) throws FindException;
 
+    List<ReporteDTO> obtenerReportePorDia(Calendar dia) throws FindException;
+    
+    List<ReporteDTO> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Calendar dia) throws FindException;
+    
+    List<ReporteDTO> obtenerReportePorTituloYIncidente(String titulo, String incidente, Calendar dia) throws FindException;
+    
+    List<ReporteDTO> obtenerReportePorInstitucionYIncidente(String institucion, String incidente, Calendar dia) throws FindException;
+    
+    List<ReporteDTO> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente, Calendar dia) throws FindException;
+    
+    List<ReporteDTO> convertirReportesAEntidad(List<Reporte> reportes) throws NegociosException;
+    
+    Calendar dateToCalendar(Date date);
+    
+    Date calendarToDate(Calendar calendar);
 }
