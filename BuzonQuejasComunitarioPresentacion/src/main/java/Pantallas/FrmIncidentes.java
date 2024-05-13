@@ -21,8 +21,9 @@ public class FrmIncidentes extends javax.swing.JFrame {
     private final ControlNavegacion controladores;
     private final IFacadeAgregarIncidentes facadeIncidentes;
     private final IFacadeAgregarInstitucion facadeInstituciones;
-    private InstitucionNuevaDTO institucionNuevaDTO;
-    private InstitucionRegistradaDTO institucionRegistradaDTO;
+    private final InstitucionNuevaDTO institucionNuevaDTO;
+    private final InstitucionRegistradaDTO institucionRegistradaDTO;
+    private boolean cambiosRealizados = false;
 
     /**
      * Creates new form FrmSeleccionIncidentes
@@ -35,6 +36,7 @@ public class FrmIncidentes extends javax.swing.JFrame {
         this.facadeInstituciones = new FacadeAgregarInstitucion();
         this.facadeIncidentes = new FacadeAgregarIncidentes();
         this.institucionNuevaDTO = institucionNuevaDTO;
+        this.institucionRegistradaDTO = null;
         initComponents();
     }
 
@@ -49,7 +51,34 @@ public class FrmIncidentes extends javax.swing.JFrame {
         this.facadeInstituciones = new FacadeAgregarInstitucion();
         this.facadeIncidentes = new FacadeAgregarIncidentes();
         this.institucionRegistradaDTO = institucionRegistradaDTO;
+        this.institucionNuevaDTO = null;
         initComponents();
+        agregarIncidentesAInstitucionRegistrada();
+    }
+
+    private void confirmarOperaciones() {
+        if (institucionRegistradaDTO == null) { //FLUJO PRINCIPAL  
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas confirmar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "La acción se ha cancelado.");
+            } else if (opcion == JOptionPane.YES_OPTION) {
+                facadeInstituciones.agregarInstitucion(institucionNuevaDTO);
+                agregarIncidentesAInstitucionNueva();
+                JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                controladores.mostrarConfirmado();
+                dispose();
+            }
+        } else if (institucionNuevaDTO == null) { //FLUJO ALTERNATIVO
+            int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas confirmar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+            if (opcion == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(this, "La acción se ha cancelado.");
+            } else if (opcion == JOptionPane.YES_OPTION) {
+                agregarIncidentesAInstitucionRegistrada();
+                JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+                controladores.mostrarConfirmado();
+                dispose();
+            }
+        }
     }
 
     private void actualizarTabla() {
@@ -62,8 +91,32 @@ public class FrmIncidentes extends javax.swing.JFrame {
         }
     }
 
-    private void agregarIncidentes() {
+    private void agregarIncidentesAInstitucionRegistrada() {
+        try {
+            DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
+            List<String> incidentesActuales = new ArrayList<>();
+            for (int i = 0; i < model.getRowCount(); i++) {
+                incidentesActuales.add((String) model.getValueAt(i, 0));
+            }
+//            model.setRowCount(0);
 
+            String id = institucionRegistradaDTO.getId();
+            List<IncidentesDTO> listaIncidentesRegistrados = facadeIncidentes.consultarIncidentes(id);
+            for (IncidentesDTO incidente : listaIncidentesRegistrados) {
+                String informacion = incidente.getInformacion();
+
+                if (!incidentesActuales.contains(informacion)) {
+                    model.addRow(new Object[]{informacion});
+                }
+            }
+
+            model.fireTableDataChanged();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void agregarIncidentesAInstitucionNueva() {
         try {
             List<IncidentesDTO> listaIncidentes = new ArrayList<>();
             DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
@@ -88,24 +141,7 @@ public class FrmIncidentes extends javax.swing.JFrame {
             }
             facadeIncidentes.agregarIncidentes(listaIncidentes);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
-        }
-
-    }
-
-    private void logicaConfirmacion() {
-        int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas confirmar?", "Confirmar", JOptionPane.YES_NO_OPTION);
-        if (opcion == JOptionPane.YES_OPTION) {
-
-            facadeInstituciones.agregarInstitucion(institucionNuevaDTO);
-            agregarIncidentes();
-
-            JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-            controladores.mostrarConfirmado();
-            dispose();
-
-        } else if (opcion == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(this, "La acción se ha cancelado.");
+            JOptionPane.showMessageDialog(this, "Ocurrió un problema mientras se agregaban incidentes.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -230,20 +266,35 @@ public class FrmIncidentes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
-        controladores.mostrarInfoInstitucion();
-        dispose();
+        if (institucionRegistradaDTO == null) { //FLUJO PRINCIPAL
+            controladores.mostrarInfoInstitucion();
+            dispose();
+        } else if (institucionNuevaDTO == null) { //FLUJO ALTERNATIVO 
+            controladores.mostrarInstitucionesRegistradas();
+            dispose();
+        }
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-        logicaConfirmacion();
+        if (!cambiosRealizados) {
+            JOptionPane.showMessageDialog(this, "No se han realizado cambios.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+            return;
+        } else {
+            confirmarOperaciones();
+        }
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnAgregarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNuevoActionPerformed
         String nuevoIncidente = JOptionPane.showInputDialog(this, "Ingrese la informacion del nuevo incidente:");
-        if (nuevoIncidente != null && !nuevoIncidente.isEmpty()) {
+        if (nuevoIncidente == null) {
+            return;
+        } else if (nuevoIncidente.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor ingrese un incidente correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
+        } else {
             DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
             model.addRow(new Object[]{nuevoIncidente});
             actualizarTabla();
+            cambiosRealizados = true;
         }
     }//GEN-LAST:event_btnAgregarNuevoActionPerformed
 
