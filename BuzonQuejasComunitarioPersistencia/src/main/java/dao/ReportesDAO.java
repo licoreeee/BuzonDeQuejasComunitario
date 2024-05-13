@@ -86,13 +86,13 @@ public class ReportesDAO implements IReportesDAO {
     public List<Reporte> obtenerReportesPorInstitucion(ObjectId idInstitucion) throws FindException {
         try {
             List<Reporte> reportes = new ArrayList<>();
-            Bson filter = Filters.eq("reporteId", idInstitucion);
+            Bson filter = Filters.eq("institucionId", idInstitucion);
             MongoCursor<Reporte> cursor = collection.find(filter).iterator();
             try {
                 while (cursor.hasNext()) {
                     reportes.add(cursor.next());
                 }
-            } finally {
+        } finally {
                 cursor.close();
             }
             return reportes;

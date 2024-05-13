@@ -32,8 +32,8 @@ public class ControlNavegacion {
         portalInstituciones.setVisible(true);
     }
 
-    public void mostrarReportesPendientes() {
-        FrmReportesPendientes reportesPendientes = new FrmReportesPendientes();
+    public void mostrarReportesPendientes(InstitucionRegistradaDTO institucion) {
+        FrmReportesPendientes reportesPendientes = new FrmReportesPendientes(institucion);
         reportesPendientes.setVisible(true);
     }
 
