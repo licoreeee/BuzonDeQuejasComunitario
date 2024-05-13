@@ -9,6 +9,7 @@ import PantallasAvance.FrmCrearComentario;
 import PantallasAvance.FrmPortalInstituciones;
 import PantallasAvance.FrmReportesPendientes;
 import dto.InstitucionNuevaDTO;
+import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
 
 /**
@@ -31,8 +32,8 @@ public class ControlNavegacion {
         portalInstituciones.setVisible(true);
     }
 
-    public void mostrarReportesPendientes() {
-        FrmReportesPendientes reportesPendientes = new FrmReportesPendientes();
+    public void mostrarReportesPendientes(InstitucionRegistradaDTO institucion) {
+        FrmReportesPendientes reportesPendientes = new FrmReportesPendientes(institucion);
         reportesPendientes.setVisible(true);
     }
 
