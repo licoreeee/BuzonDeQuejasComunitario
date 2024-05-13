@@ -18,18 +18,6 @@ import java.util.List;
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface ILevantarReporteBO {
-
-    public Ciudadano convertirCiudadanoEntidad(CiudadanoDTO ciudadanoDTO) throws NegociosException;
-    
-    public CiudadanoDTO convertirCiudadanoDTO(Ciudadano ciudadano) throws NegociosException;
-    
-    public Incidentes convertirIncidenteEntidad(IncidentesDTO incidenteDTO) throws NegociosException;
-    
-    public IncidentesDTO convertirIncidenteDTO(Incidentes incidente) throws NegociosException;
-    
-    public Institucion convertirInstitucionEntidad(InstitucionRegistradaDTO institucionDTO) throws NegociosException;
-    
-    public InstitucionRegistradaDTO convertirInstitucionDTO(Institucion institucion) throws NegociosException;
     
     public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
 

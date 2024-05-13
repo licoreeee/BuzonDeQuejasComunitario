@@ -1,4 +1,3 @@
-
 package Pantallas;
 
 import dto.IncidentesDTO;
@@ -19,22 +18,38 @@ import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
  */
 public class FrmIncidentes extends javax.swing.JFrame {
 
-    private ControlNavegacion controladores;    
-    private InstitucionNuevaDTO institucion;
-    private List<String> incidentes;
-    private IFacadeAgregarInstitucion facadeInstituciones;
-    private IFacadeAgregarIncidentes facadeIncidentes;
+    private final ControlNavegacion controladores;
+    private final IFacadeAgregarIncidentes facadeIncidentes;
+    private final IFacadeAgregarInstitucion facadeInstituciones;
+    private InstitucionNuevaDTO institucionNuevaDTO;
+    private InstitucionRegistradaDTO institucionRegistradaDTO;
 
     /**
      * Creates new form FrmSeleccionIncidentes
+     *
+     *
+     * @param institucionNuevaDTO
      */
-    public FrmIncidentes(InstitucionNuevaDTO institucion) {
+    public FrmIncidentes(InstitucionNuevaDTO institucionNuevaDTO) {
         this.controladores = new ControlNavegacion();
         this.facadeInstituciones = new FacadeAgregarInstitucion();
         this.facadeIncidentes = new FacadeAgregarIncidentes();
-        this.institucion = institucion;
+        this.institucionNuevaDTO = institucionNuevaDTO;
         initComponents();
+    }
 
+    /**
+     * Creates new form FrmSeleccionIncidentes
+     *
+     *
+     * @param institucionRegistradaDTO
+     */
+    public FrmIncidentes(InstitucionRegistradaDTO institucionRegistradaDTO) {
+        this.controladores = new ControlNavegacion();
+        this.facadeInstituciones = new FacadeAgregarInstitucion();
+        this.facadeIncidentes = new FacadeAgregarIncidentes();
+        this.institucionRegistradaDTO = institucionRegistradaDTO;
+        initComponents();
     }
 
     private void actualizarTabla() {
@@ -55,7 +70,7 @@ public class FrmIncidentes extends javax.swing.JFrame {
             List<InstitucionRegistradaDTO> institucionesRegistradas = facadeInstituciones.consultarInstituciones();
             InstitucionRegistradaDTO institucionRegistrada = null;
             for (InstitucionRegistradaDTO inst : institucionesRegistradas) {
-                if (inst.getCodigoGestion().equals(institucion.getCodigoGestion())) {
+                if (inst.getCodigoGestion().equals(institucionNuevaDTO.getCodigoGestion())) {
                     institucionRegistrada = inst;
                     break;
                 }
@@ -76,6 +91,22 @@ public class FrmIncidentes extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
 
+    }
+
+    private void logicaConfirmacion() {
+        int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas confirmar?", "Confirmar", JOptionPane.YES_NO_OPTION);
+        if (opcion == JOptionPane.YES_OPTION) {
+
+            facadeInstituciones.agregarInstitucion(institucionNuevaDTO);
+            agregarIncidentes();
+
+            JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
+            controladores.mostrarConfirmado();
+            dispose();
+
+        } else if (opcion == JOptionPane.NO_OPTION) {
+            JOptionPane.showMessageDialog(this, "La acción se ha cancelado.");
+        }
     }
 
     /**
@@ -204,19 +235,7 @@ public class FrmIncidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVolverActionPerformed
 
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
-//        int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas confirmar?", "Confirmar", JOptionPane.YES_NO_OPTION);
-//        if (opcion == JOptionPane.YES_OPTION) {
-//
-//            facadeInstituciones.agregarInstitucion(institucion);
-//            agregarIncidentes();
-//
-//            JOptionPane.showMessageDialog(this, "La acción se ha confirmado exitosamente.", "Éxito", JOptionPane.INFORMATION_MESSAGE);
-//            controladores.mostrarConfirmado();
-//            dispose();
-//
-//        } else if (opcion == JOptionPane.NO_OPTION) {
-//            JOptionPane.showMessageDialog(this, "La acción se ha cancelado.");
-//        }
+        logicaConfirmacion();
     }//GEN-LAST:event_btnConfirmarActionPerformed
 
     private void btnAgregarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNuevoActionPerformed

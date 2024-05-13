@@ -92,6 +92,11 @@ public class ControlNavegacion {
         incidentes.setVisible(true);
     }
 
+    public void mostrarIncidentes(InstitucionRegistradaDTO institucionRegistradaDTO) {
+        FrmIncidentes incidentes = new FrmIncidentes(institucionRegistradaDTO);
+        incidentes.setVisible(true);
+    }
+
     public void mostrarConfirmado() {
         FrmConfirmado confirmado = new FrmConfirmado();
         confirmado.setVisible(true);

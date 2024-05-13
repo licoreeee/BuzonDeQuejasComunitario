@@ -10,18 +10,32 @@ import org.bson.types.ObjectId;
  */
 public class LogDeBusqueda {
     
-    private ObjectId id;
-    private Ciudadano ciudadano;
+    private String nombreCiudadano;
+    private String curpCiudadano;
     List<String> filtros;
 
-    public Ciudadano getCiudadano() {
-        return ciudadano;
+    public LogDeBusqueda(String nombreCiudadano, String curpCiudadano, List<String> filtros) {
+        this.nombreCiudadano = nombreCiudadano;
+        this.curpCiudadano = curpCiudadano;
+        this.filtros = filtros;
     }
 
-    public void setCiudadano(Ciudadano ciudadano) {
-        this.ciudadano = ciudadano;
+    public String getNombreCiudadano() {
+        return nombreCiudadano;
     }
 
+    public void setNombreCiudadano(String nombreCiudadano) {
+        this.nombreCiudadano = nombreCiudadano;
+    }
+
+    public String getCurpCiudadano() {
+        return curpCiudadano;
+    }
+
+    public void setCurpCiudadano(String curpCiudadano) {
+        this.curpCiudadano = curpCiudadano;
+    }
+    
     public List<String> getFiltros() {
         return filtros;
     }

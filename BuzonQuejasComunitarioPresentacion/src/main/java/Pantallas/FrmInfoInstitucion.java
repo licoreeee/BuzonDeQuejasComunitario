@@ -4,13 +4,8 @@
  */
 package Pantallas;
 
-import Excepciones.PersistenciaException;
 import dto.InstitucionNuevaDTO;
 import javax.swing.JOptionPane;
-//import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
-//import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
-//import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
-//import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
@@ -18,8 +13,6 @@ import javax.swing.JOptionPane;
 public class FrmInfoInstitucion extends javax.swing.JFrame {
 
     private ControlNavegacion controladores;
-//    private IFacadeAgregarInstitucion facadeInstituciones;
-//    private IFacadeAgregarIncidentes facadeIncidentes;
 
     /**
      * Creates new form FrmLevantarReporte
@@ -172,14 +165,23 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
         if (nombre.isEmpty() || descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Es necesario ingresar el nombre y la descripción de la institución", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
+            if (siglas.isEmpty() || siglas.isBlank()) {
+                InstitucionNuevaDTO institucionNuevaDTO = new InstitucionNuevaDTO();
+                institucionNuevaDTO.setNombre(nombre);
+                institucionNuevaDTO.setSiglas(null);
+                institucionNuevaDTO.setDescripcionAdicional(descripcion);
 
-            InstitucionNuevaDTO institucionNuevaDTO = new InstitucionNuevaDTO();
-            institucionNuevaDTO.setNombre(nombre);
-            institucionNuevaDTO.setSiglas(siglas);
-            institucionNuevaDTO.setDescripcionAdicional(descripcion);
+                controladores.mostrarIncidentes(institucionNuevaDTO);
+                dispose();
+            } else {
+                InstitucionNuevaDTO institucionNuevaDTO = new InstitucionNuevaDTO();
+                institucionNuevaDTO.setNombre(nombre);
+                institucionNuevaDTO.setSiglas(siglas);
+                institucionNuevaDTO.setDescripcionAdicional(descripcion);
 
-            controladores.mostrarIncidentes(institucionNuevaDTO);
-            dispose();
+                controladores.mostrarIncidentes(institucionNuevaDTO);
+                dispose();
+            }
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 

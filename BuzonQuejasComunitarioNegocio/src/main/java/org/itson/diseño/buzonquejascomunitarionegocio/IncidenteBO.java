@@ -7,6 +7,7 @@ import dao.IncidentesDAO;
 import dto.IncidentesDTO;
 import dto.InstitucionRegistradaDTO;
 import entidades.Incidentes;
+import excepciones.NegociosException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -84,6 +85,19 @@ public class IncidenteBO implements IIncidenteBO {
          List<IncidentesDTO>incidentes = new ArrayList<IncidentesDTO>();
         return incidentes;
     } 
+
+    @Override
+    public Incidentes convertirIncidenteEntidad(IncidentesDTO incidenteDTO) throws NegociosException {
+        Incidentes incidente = new Incidentes();
+        incidente.setInformacion(incidenteDTO.getInformacion());
+        return incidente;
+    }
+
+    @Override
+    public IncidentesDTO convertirIncidenteDTO(Incidentes incidente) throws NegociosException {
+        IncidentesDTO incidenteDTO = new IncidentesDTO(incidente.getInformacion());
+        return incidenteDTO;
+    }
 
 //    /**
 //     * Este método transporta los datos de un incidente DTO a través de un
