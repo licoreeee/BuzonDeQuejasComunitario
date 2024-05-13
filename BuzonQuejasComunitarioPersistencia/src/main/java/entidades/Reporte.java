@@ -4,7 +4,7 @@
  */
 package entidades;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.Calendar;
 import java.util.List;
 import org.bson.types.Binary;
@@ -29,6 +29,9 @@ public class Reporte {
     private Ciudadano ciudadano;
     private Institucion institucion;
     private Incidentes incidente;
+
+    public Reporte() {
+    }
 
     public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
