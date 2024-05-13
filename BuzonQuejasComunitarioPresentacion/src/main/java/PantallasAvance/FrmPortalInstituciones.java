@@ -7,6 +7,10 @@ package PantallasAvance;
 import Excepciones.FindException;
 import Pantallas.ControlNavegacion;
 import dto.InstitucionRegistradaDTO;
+import dto.ReporteDTO;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
 import org.itson.diseño.levantarreportess.RegistrarAvance;
@@ -125,14 +129,11 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         if (!txtID.getText().isEmpty() && JPasswordNip.getPassword().length > 0 && JPasswordNip.getPassword().length == 4) {
-
             try {
-                InstitucionRegistradaDTO instituciconDTO = registrarAvance.consultarInstitucion(
+               InstitucionRegistradaDTO institucionDTO = registrarAvance.consultarInstitucion(
                         txtID.getText(),
                         new String(JPasswordNip.getPassword()));
-                
-
-                control.mostrarReportesPendientes();
+                control.mostrarReportesPendientes(institucionDTO);
                 dispose();
             } catch (FindException e) {
                 JOptionPane.showMessageDialog(
@@ -149,6 +150,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
                     "Error de llenado",
                     JOptionPane.ERROR_MESSAGE);
         }
+   
 
 
     }//GEN-LAST:event_btnContinuarActionPerformed

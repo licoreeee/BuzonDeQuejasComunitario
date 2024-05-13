@@ -8,6 +8,7 @@ import dao.InstitucionesDAO;
 import dto.InstitucionNuevaDTO;
 import dto.InstitucionRegistradaDTO;
 import entidades.Institucion;
+import excepciones.NegociosException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -84,6 +85,7 @@ public class InstitucionBO implements IInstitucionBO {
         return sb.toString();
     }
 
+    @Override
     public InstitucionRegistradaDTO transporteDatos(String codigoGestion, String nip) throws FindException {
         try {
             institucion = institucionDAO.obtenerInstitucionPorCodigo(codigoGestion);
@@ -104,6 +106,22 @@ public class InstitucionBO implements IInstitucionBO {
              
         }
 
+    }
+    
+    @Override
+    public Institucion convertirInstitucionEntidad(InstitucionRegistradaDTO institucionDTO) throws NegociosException {
+        Institucion institucion = new Institucion();
+        institucion.setSiglas(institucionDTO.getSiglas());
+        institucion.setNombre(institucionDTO.getNombre());
+        return institucion;
+    }
+
+    @Override
+    public InstitucionRegistradaDTO convertirInstitucionDTO(Institucion institucion) throws NegociosException {
+        InstitucionRegistradaDTO institucionDTO = new InstitucionRegistradaDTO(
+        institucion.getNombre(),
+        institucion.getSiglas());
+        return institucionDTO;
     }
 
 //    /**

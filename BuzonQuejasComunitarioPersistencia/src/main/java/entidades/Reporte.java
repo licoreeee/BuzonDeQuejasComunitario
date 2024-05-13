@@ -4,6 +4,7 @@
  */
 package entidades;
 
+import java.sql.Date;
 import java.util.Calendar;
 import java.util.List;
 import org.bson.types.Binary;
@@ -19,12 +20,9 @@ public class Reporte {
     private int folio;
     private String titulo;
     private String descripcion;
-    private Calendar fechaCreacion;
+    private Date fechaCreacion;
     private Binary photo;
     private Boolean estado;
-    private ObjectId idCiudadano;
-    private ObjectId idInstitucion;
-    private ObjectId idIncidente;
     private String calle;
     private String colonia;
     private String descripcionExtra;
@@ -32,7 +30,7 @@ public class Reporte {
     private Institucion institucion;
     private Incidentes incidente;
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -46,25 +44,14 @@ public class Reporte {
         this.incidente = incidente;
     }
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo, ObjectId idCiudadano, ObjectId idInstitucion, ObjectId idIncidente) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-        this.idCiudadano = idCiudadano;
-        this.idInstitucion = idInstitucion;
-        this.idIncidente = idIncidente;
-    }
-
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion) {
+    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo) {
+    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -72,7 +59,7 @@ public class Reporte {
         this.photo = photo;
     }
 
-    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Calendar fechaCreacion, Binary photo) {
+    public Reporte(ObjectId id, int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo) {
         this.id = id;
         this.folio = folio;
         this.titulo = titulo;
@@ -81,14 +68,14 @@ public class Reporte {
         this.photo = photo;
     }
 
-    public Reporte(ObjectId id, int folio, String titulo, Calendar fechaCreacion) {
+    public Reporte(ObjectId id, int folio, String titulo, Date fechaCreacion) {
         this.id = id;
         this.folio = folio;
         this.titulo = titulo;
         this.fechaCreacion = fechaCreacion;
     }
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
+    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -101,7 +88,7 @@ public class Reporte {
         this.incidente = incidente;
     }
 
-    public Reporte(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Incidentes incidente) {
+    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -129,11 +116,11 @@ public class Reporte {
         this.estado = estado;
     }
 
-    public Calendar getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Calendar fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

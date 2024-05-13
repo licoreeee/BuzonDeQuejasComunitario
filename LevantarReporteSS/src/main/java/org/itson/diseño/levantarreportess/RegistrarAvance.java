@@ -5,7 +5,10 @@ import Excepciones.PersistenciaException;
 import dto.ComentarioDTO;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
+import excepciones.NegociosException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.itson.diseño.buzonquejascomunitarionegocio.ComentarioBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IInstitucionBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IReporteBO;
@@ -33,7 +36,7 @@ public class RegistrarAvance implements IRegistrarAvance {
         try {
             comentarioBO.transporteDatos(comentarioDTO);
         } catch (PersistenciaException e) {
-            throw new PersistenciaException(e.getMessage());
+            throw e;
         }
     }
 
@@ -47,8 +50,12 @@ public class RegistrarAvance implements IRegistrarAvance {
     }
 
     @Override
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
-        return reporteBO.obtenerIncidentesAbiertosPorInstitucion(idInstitucion);
+    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String siglas) throws FindException {
+        try {
+            return reporteBO.obtenerReportesAbiertosPorInstitucion(siglas);
+        } catch (FindException ex) {
+            throw ex;
+        }
     }
 
 }

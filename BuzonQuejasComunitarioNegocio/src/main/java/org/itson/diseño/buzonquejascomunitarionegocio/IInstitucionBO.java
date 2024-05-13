@@ -3,6 +3,8 @@ package org.itson.diseño.buzonquejascomunitarionegocio;
 import Excepciones.FindException;
 import dto.InstitucionNuevaDTO;
 import dto.InstitucionRegistradaDTO;
+import entidades.Institucion;
+import excepciones.NegociosException;
 import java.util.List;
 
 /**
@@ -15,6 +17,9 @@ public interface IInstitucionBO {
     public List<InstitucionRegistradaDTO> consultarInstituciones() throws FindException;
     public InstitucionRegistradaDTO transporteDatos(String codigoGestion, String nip) throws FindException ;
     
+    public Institucion convertirInstitucionEntidad(InstitucionRegistradaDTO institucionDTO) throws NegociosException;
+    
+    public InstitucionRegistradaDTO convertirInstitucionDTO(Institucion institucion) throws NegociosException;
 //    /**
 //     * Transporta los datos de una InstitucionDTO a través de otro objeto
 //     * InstitucionDTO. Crea un nuevo objeto InstitucionDTO con los mismos

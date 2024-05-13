@@ -10,9 +10,13 @@ import org.bson.types.ObjectId;
  */
 public class LogDeBusqueda {
     
-    private ObjectId id;
     private Ciudadano ciudadano;
     List<String> filtros;
+
+    public LogDeBusqueda(Ciudadano ciudadano, List<String> filtros) {
+        this.ciudadano = ciudadano;
+        this.filtros = filtros;
+    }
 
     public Ciudadano getCiudadano() {
         return ciudadano;
@@ -21,7 +25,7 @@ public class LogDeBusqueda {
     public void setCiudadano(Ciudadano ciudadano) {
         this.ciudadano = ciudadano;
     }
-
+    
     public List<String> getFiltros() {
         return filtros;
     }

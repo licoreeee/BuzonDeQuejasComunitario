@@ -1,7 +1,6 @@
 package dto;
 
-import java.util.Calendar;
-import java.util.List;
+import java.sql.Date;
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
@@ -12,12 +11,9 @@ public class ReporteDTO {
     private int folio;
     private String titulo;
     private String descripcion;
-    private Calendar fechaCreacion;
+    private Date fechaCreacion;
     private Boolean estado;
     private byte[] photo;
-    private String idCiudadano;
-    private String idInstitucion;
-    private String idIncidente;
     private String calle;
     private String colonia;
     private String descripcionExtra;
@@ -25,7 +21,7 @@ public class ReporteDTO {
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
 
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
+    public ReporteDTO(int folio, String titulo, String descripcion, Date fechaCreacion, byte[] photo, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -39,7 +35,7 @@ public class ReporteDTO {
         this.incidente = incidente;
     }
 
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, Boolean estado, String calle, String colonia) {
+    public ReporteDTO(int folio, String titulo, String descripcion, Date fechaCreacion, Boolean estado, String calle, String colonia) {
         this.folio = folio;
         this.titulo = titulo;
         this.descripcion = descripcion;
@@ -49,7 +45,7 @@ public class ReporteDTO {
         this.colonia = colonia;
     }
 
-    public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
+    public ReporteDTO(String id, int folio, String titulo, String descripcion, Date fechaCreacion, byte[] photo) {
         this.id = id;
         this.folio = folio;
         this.titulo = titulo;
@@ -58,7 +54,7 @@ public class ReporteDTO {
         this.photo = photo;
     }
 
-    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
+    public ReporteDTO(int folio, String titulo, String descripcion, Date fechaCreacion, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
 
         this.folio = folio;
         this.titulo = titulo;
@@ -104,18 +100,6 @@ public class ReporteDTO {
         return estado;
     }
 
-    public String getIdCiudadano() {
-        return idCiudadano;
-    }
-
-    public String getIdInstitucion() {
-        return idInstitucion;
-    }
-
-    public String getIdIncidente() {
-        return idIncidente;
-    }
-
     public String getId() {
         return id;
     }
@@ -124,11 +108,11 @@ public class ReporteDTO {
         this.id = id;
     }
 
-    public Calendar getFechaCreacion() {
+    public Date getFechaCreacion() {
         return fechaCreacion;
     }
 
-    public void setFechaCreacion(Calendar fechaCreacion) {
+    public void setFechaCreacion(Date fechaCreacion) {
         this.fechaCreacion = fechaCreacion;
     }
 

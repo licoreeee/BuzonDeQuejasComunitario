@@ -4,7 +4,21 @@
  */
 package PantallasAvance;
 
+import Excepciones.FindException;
 import Pantallas.ControlNavegacion;
+import dto.InstitucionRegistradaDTO;
+import dto.ReporteDTO;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.itson.diseño.levantarreportess.IRegistrarAvance;
+import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
@@ -13,9 +27,91 @@ import Pantallas.ControlNavegacion;
 public class FrmReportesPendientes extends javax.swing.JFrame {
 
     ControlNavegacion control;
-    public FrmReportesPendientes() {
+    IRegistrarAvance registrarAvance;
+    InstitucionRegistradaDTO institucionDTO;
+    List<ReporteDTO> reportesDTO;
+
+    public FrmReportesPendientes(InstitucionRegistradaDTO institucionDTO) {
         initComponents();
         control = new ControlNavegacion();
+        this.institucionDTO = institucionDTO;
+        registrarAvance = new RegistrarAvance();
+        reportesDTO = new ArrayList<>();
+        consultarComentariosInstitucion(institucionDTO);
+    }
+    
+    private void consultarComentariosInstitucion(InstitucionRegistradaDTO institucionDTO){
+        try {
+             reportesDTO = registrarAvance.obtenerIncidentesAbiertosPorInstitucion(institucionDTO.getSiglas());
+              insertarReportesEnTabla(reportesDTO);
+        } catch (FindException ex) {
+            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+              JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error con los reportes",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+
+    }
+
+    private void insertarReportesEnTabla(List<ReporteDTO> reportes) {
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Folio");
+        model.addColumn("Título");
+        model.addColumn("Descripción");
+        model.addColumn("Calle");
+        model.addColumn("Colonia");
+        model.addColumn("Cerrar");
+        model.addColumn("Comentar");
+
+        for (ReporteDTO reporteDTO : reportes) {
+            Object[] rowData = {
+                reporteDTO.getFolio(),
+                reporteDTO.getTitulo(),
+                reporteDTO.getDescripcion(),
+                reporteDTO.getCalle(),
+                reporteDTO.getColonia(),
+                botonCerrar(reporteDTO.getId()),
+                botonComentar(reporteDTO.getId())
+            };
+            model.addRow(rowData);
+        }
+
+        TablaReportesPendientes.setModel(model);
+    }
+
+    private JButton botonCerrar(String id) {
+        JButton btnCerrar = new JButton("Cerrar");
+        btnCerrar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lógica para cerrar el reporte con el folio proporcionado
+                cerrarReporte(id);
+            }
+        });
+        return btnCerrar;
+    }
+
+    private JButton botonComentar(String folio) {
+        JButton btnComentar = new JButton("Comentar");
+        btnComentar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Lógica para comentar el reporte con el folio proporcionado
+                comentarReporte(folio);
+            }
+        });
+        return btnComentar;
+    }
+
+    private void cerrarReporte(String folio) {
+        // Lógica para cerrar el reporte con el folio proporcionado
+    }
+
+    // Método para comentar un reporte
+    private void comentarReporte(String folio) {
+        control.mostrarCrearComentario();
     }
 
     /**
@@ -32,7 +128,6 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         lblHeader = new javax.swing.JLabel();
         lblDireccionReporte = new javax.swing.JLabel();
         jlbContexto = new javax.swing.JLabel();
-        btnContinuar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaReportesPendientes = new javax.swing.JTable();
 
@@ -61,18 +156,6 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         jlbContexto.setText("Seleccione el reporte que le desea hacer modificaciones.");
         pnlFondo.add(jlbContexto, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, -1, -1));
 
-        btnContinuar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnContinuar.setForeground(new java.awt.Color(181, 18, 57));
-        btnContinuar.setText("Continuar");
-        btnContinuar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
-        btnContinuar.setContentAreaFilled(false);
-        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinuarActionPerformed(evt);
-            }
-        });
-        pnlFondo.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
-
         TablaReportesPendientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -86,7 +169,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaReportesPendientes);
 
-        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 560, 140));
+        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 560, 220));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,15 +186,9 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-        control.mostrarCrearComentario();
-    }//GEN-LAST:event_btnContinuarActionPerformed
-
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaReportesPendientes;
-    private javax.swing.JButton btnContinuar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbContexto;
     private javax.swing.JLabel lblDireccionReporte;

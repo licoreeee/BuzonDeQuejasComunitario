@@ -2,6 +2,8 @@ package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
 import dto.IncidentesDTO;
+import entidades.Incidentes;
+import excepciones.NegociosException;
 import java.util.List;
 
 /**
@@ -14,6 +16,10 @@ public interface IIncidenteBO {
     public List<IncidentesDTO> obtenerIncidentes(String idString) throws FindException;
     
     public List<IncidentesDTO> obtenerIncidentesAbiertosPorInstitucion (String idInstitucion) throws FindException;
+    
+    public Incidentes convertirIncidenteEntidad(IncidentesDTO incidenteDTO) throws NegociosException;
+    
+    public IncidentesDTO convertirIncidenteDTO(Incidentes incidente) throws NegociosException;
     
 //    /**
 //     * Este método transporta los datos de un objeto IncidenteDTO a través de

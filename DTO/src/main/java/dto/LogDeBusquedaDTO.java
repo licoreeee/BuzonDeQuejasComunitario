@@ -9,15 +9,20 @@ import java.util.List;
  */
 public class LogDeBusquedaDTO {
     
-    CiudadanoDTO ciudadano;
-    List<String> filtros;
+    private CiudadanoDTO ciudadanoDTO;
+    private List<String> filtros;
 
-    public CiudadanoDTO getCiudadano() {
-        return ciudadano;
+    public LogDeBusquedaDTO(CiudadanoDTO ciudadanoDTO, List<String> filtros) {
+        this.ciudadanoDTO = ciudadanoDTO;
+        this.filtros = filtros;
     }
 
-    public void setCiudadano(CiudadanoDTO ciudadano) {
-        this.ciudadano = ciudadano;
+    public CiudadanoDTO getCiudadanoDTO() {
+        return ciudadanoDTO;
+    }
+
+    public void setCiudadanoDTO(CiudadanoDTO ciudadanoDTO) {
+        this.ciudadanoDTO = ciudadanoDTO;
     }
 
     public List<String> getFiltros() {
