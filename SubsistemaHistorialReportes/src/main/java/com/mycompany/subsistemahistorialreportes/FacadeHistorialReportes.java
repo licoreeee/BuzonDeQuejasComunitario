@@ -19,7 +19,7 @@ public class FacadeHistorialReportes implements IFacadeHistorialReportes{
     
     private HistorialReportes historial;
 
-    public FacadeHistorialReportes(HistorialReportes historial) {
+    public FacadeHistorialReportes() {
         historial = new HistorialReportes();
     }
 
