@@ -25,6 +25,13 @@ public class ReporteDTO {
     public ReporteDTO() {
     }
 
+    public ReporteDTO(String id, String titulo, Boolean estado) {
+        this.id = id;
+        this.titulo = titulo;
+        this.estado = estado;
+
+    }
+
     public ReporteDTO(String id, Boolean estado) {
         this.id = id;
         this.estado = estado;
