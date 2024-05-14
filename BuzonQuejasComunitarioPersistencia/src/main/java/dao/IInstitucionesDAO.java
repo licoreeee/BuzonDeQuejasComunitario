@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package dao;
 
 import Excepciones.FindException;
@@ -14,7 +10,7 @@ import org.bson.types.ObjectId;
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
-public interface IInstitucionDAO {
+public interface IInstitucionesDAO {
 
     /* *
      * Método para agregar una institución a la base de datos.
@@ -33,14 +29,8 @@ public interface IInstitucionDAO {
 
 
 
-
-    /* *
-     * Método para obtener una institución por su código de gestión.
-     * @param codigoGestion El código de gestión de la institución.
-     * @return La institución correspondiente al código de gestión especificado.
-     * @throws FindException Si ocurre un error al obtener la institución por su código de gestión.
-     */
-
     public Institucion obtenerInstitucionPorCodigo(String codigoGestion) throws FindException;
+    
+    
 
 }

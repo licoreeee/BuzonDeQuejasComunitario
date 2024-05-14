@@ -56,6 +56,7 @@ public class ControlNavegacion {
 
     /**
      * Muestra el formulario para crear un comentario.
+     * @param reporteDTO
      */
     public void mostrarCrearComentario(ReporteDTO reporteDTO) {
         FrmCrearComentario crearComentario = new FrmCrearComentario(reporteDTO);
@@ -167,7 +168,7 @@ public class ControlNavegacion {
         FrmConfirmado confirmado = new FrmConfirmado();
         confirmado.setVisible(true);
     }
-    
+
     public void mostrarHistorial() {
         FrmHistorial historial = new FrmHistorial();
         historial.setVisible(true);

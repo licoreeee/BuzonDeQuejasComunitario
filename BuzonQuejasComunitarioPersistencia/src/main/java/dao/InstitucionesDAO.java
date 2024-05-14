@@ -23,7 +23,7 @@ import org.bson.types.ObjectId;
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
-public class InstitucionesDAO implements IInstitucionDAO {
+public class InstitucionesDAO implements IInstitucionesDAO {
 
     private final IConexion conexion;
     private final MongoCollection<Institucion> collection;
@@ -34,6 +34,7 @@ public class InstitucionesDAO implements IInstitucionDAO {
      */
     public InstitucionesDAO(IConexion conexion) {
         this.conexion = conexion;
+
         MongoDatabase database = conexion.crearConexion();
         this.collection = database.getCollection("Instituciones", Institucion.class);
     }
@@ -77,7 +78,7 @@ public class InstitucionesDAO implements IInstitucionDAO {
         }
     }
 
-    
+ 
 
     /* *
      * Método para obtener una institución por su código de gestión.
