@@ -11,6 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase de pruebas dentro del subsistema agregar incidentes.
  *
  * @author castr
  */
@@ -39,6 +40,5 @@ public class SubsistemaAgregarIncidentes {
 //        } catch (Exception ex) {
 //            Logger.getLogger(AgregarIncidentes.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
     }
 }
