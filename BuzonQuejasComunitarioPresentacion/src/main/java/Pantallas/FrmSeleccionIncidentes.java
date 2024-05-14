@@ -26,7 +26,7 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  * @author victo
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
-
+    
     private IFacadeAgregarIncidentes facadeAgregarIncidentes;
     private IFacadeAgregarInstitucion facadeAgregarInstitucion;
     private IFacadeLevantarReporte fachadaLevantarReporte;
@@ -54,7 +54,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         this.incidentesDeInstitucion = incidentesDeInstitucion;
         actualizarTabla(incidentesDTOs);
     }
-
+    
     private void actualizarTabla(List<IncidentesDTO> incidentesDTOs) {
         try {
             DefaultTableModel incidentesRegistrados = new DefaultTableModel() {
@@ -74,21 +74,23 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
-
+        
     }
-
+    
     private void obtenerDatosSeleccionados() {
         int filaSeleccionada = tblIncidentes.getSelectedRow();
-
+        
         if (filaSeleccionada != -1) {
             Object[] datosFila = new Object[tblIncidentes.getColumnCount()];
-
+            
             for (int i = 0; i < tblIncidentes.getColumnCount(); i++) {
                 datosFila[i] = tblIncidentes.getValueAt(filaSeleccionada, i);
             }
             IncidentesDTO incidenteDTO = new IncidentesDTO();
             incidenteDTO.setInformacion(datosFila[0].toString());
-
+            incidenteDTO.setInstitucionRegistradaDTO(institucionRegistradaDTO);
+            
+            
             reporteDTO.setIncidente(incidenteDTO);
             controladores.mostrarLevantarReporte(reporteDTO);
             dispose();

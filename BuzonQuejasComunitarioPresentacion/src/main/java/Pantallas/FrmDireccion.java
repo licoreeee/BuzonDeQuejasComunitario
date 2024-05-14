@@ -6,6 +6,8 @@ package Pantallas;
 
 //import dto.DomicilioDTO;
 import dto.ReporteDTO;
+import java.util.Calendar;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import org.itson.diseño.levantarreportess.FacadeLevantarReporte;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
@@ -34,7 +36,10 @@ public class FrmDireccion extends javax.swing.JFrame {
     private void levantarReporte() {
         if (reporteDTO == null) {
             JOptionPane.showMessageDialog(this, "No fue posible levantar su reporte", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
+        Calendar fechaCreacion = Calendar.getInstance();
+        reporteDTO.setFechaCreacion(fechaCreacion);
         reporteDTO = fachadaLevantarReporte.levantarReporte(reporteDTO);
         controladores.mostrarFolio(reporteDTO);
         dispose();

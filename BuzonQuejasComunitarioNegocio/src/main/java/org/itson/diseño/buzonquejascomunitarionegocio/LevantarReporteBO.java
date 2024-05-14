@@ -144,7 +144,7 @@ public class LevantarReporteBO implements ILevantarReporteBO {
             reporte.setFolio(folio);
             reporte.setTitulo(reporteDTO.getTitulo());
             reporte.setDescripcion(reporteDTO.getDescripcion());
-            Date fechaCreacion = reporteDTO.getFechaCreacion().getTime();
+            Date fechaCreacion = new Date(); 
             reporte.setFechaCreacion(fechaCreacion);
             reporte.setEstado(true);
             reporte.setCalle(reporteDTO.getCalle());
@@ -194,11 +194,21 @@ public class LevantarReporteBO implements ILevantarReporteBO {
     }
 
     private Incidentes convertirDTOAIncidentes(IncidentesDTO incidentesDTO) {
-        Incidentes incidentes = new Incidentes();
-        incidentes.setInformacion(incidentesDTO.getInformacion());
-        String idInstitucion = incidentesDTO.getInstitucionRegistradaDTO().getId();
-        incidentes.setInstitucionId(new ObjectId(idInstitucion));
-        return incidentes;
+        try {
+            Incidentes incidentes = new Incidentes();
+            incidentes.setInformacion(incidentesDTO.getInformacion());
+            // Verificar si el objeto InstitucionRegistradaDTO es null
+            if (incidentesDTO.getInstitucionRegistradaDTO() != null) {
+                String idInstitucion = incidentesDTO.getInstitucionRegistradaDTO().getId();
+                incidentes.setInstitucionId(new ObjectId(idInstitucion));
+            } else {
+                throw new NegociosException();
+            }
+            return incidentes;
+        } catch (NegociosException ex) {
+            Logger.getLogger(LevantarReporteBO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     private IncidentesDTO convertirAIncidentesDTO(Incidentes incidentes) {

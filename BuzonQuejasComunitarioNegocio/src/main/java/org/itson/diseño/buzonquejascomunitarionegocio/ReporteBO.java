@@ -233,4 +233,9 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    @Override
+    public ReporteDTO transportarDatos(ReporteDTO reporteDTO) throws NegociosException {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
