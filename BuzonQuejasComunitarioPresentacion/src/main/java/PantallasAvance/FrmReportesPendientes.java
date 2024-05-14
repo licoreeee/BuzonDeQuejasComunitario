@@ -30,27 +30,44 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
     List<ReporteDTO> reportesDTO;
 
     public FrmReportesPendientes(InstitucionRegistradaDTO institucionDTO) {
-        initComponents();
+        initComponents();      
         control = new ControlNavegacion();
         this.institucionDTO = institucionDTO;
         registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
-        llenarTabla(institucionDTO);
+        buscarReporte(institucionDTO);
     }
 
-    public void llenarTabla(InstitucionRegistradaDTO institucionDTO) {
+    private void buscarReporte(InstitucionRegistradaDTO institucionDTO) {
+
         try {
             reportesDTO = registrarAvance.obtenerReportesAbiertosPorInstitucion(institucionDTO.getSiglas());
         } catch (FindException ex) {
             Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(
+             JOptionPane.showMessageDialog(
                     this,
                     ex.getMessage(),
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
-            return;
+            control.mostrarPortalInstituciones();
+            dispose();
+        }
+        if (!reportesDTO.isEmpty()) {
+            this.setVisible(true);
+            llenarTabla();
+        } else {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No se encontró ningun reporte",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            control.mostrarPortalInstituciones();
+            dispose();
 
         }
+    }
+
+    private void llenarTabla() {
 
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Folio");
@@ -122,28 +139,36 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
                     "Error",
                     JOptionPane.ERROR_MESSAGE);
         } else {
-            String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
-            Integer folio = Integer.valueOf(folioString);
+            int opcion = JOptionPane.showConfirmDialog(
+                    this,
+                    "¿Estás seguro de cerrar este reporte?",
+                    "Confirmar cierre de reporte",
+                    JOptionPane.YES_NO_OPTION);
 
-            ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
-                    folio, true);
+            if (opcion == JOptionPane.YES_OPTION) {
+                String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
+                Integer folio = Integer.valueOf(folioString);
 
-            try {
-                registrarAvance.actualizarEstado(reporteDTOSeleccionado);
-            } catch (PersistenciaException ex) {
-                Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(
-                        this,
-                        ex.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
+                        folio, true);
+                try {
+                    registrarAvance.actualizarEstado(reporteDTOSeleccionado);
+                } catch (PersistenciaException ex) {
+                    Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(
+                            this,
+                            ex.getMessage(),
+                            "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         }
-        actualizarTabla();
+
     }
 
     private void actualizarTabla() {
         try {
+
             List<ReporteDTO> reportesActivos = new ArrayList<>();
             for (ReporteDTO reporte : reportesDTO) {
                 if (reporte.getEstado()) {
@@ -152,11 +177,24 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
             }
             DefaultTableModel modeloTabla = (DefaultTableModel) TablaReportesPendientes.getModel();
             modeloTabla.fireTableDataChanged();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd : HH:mm");
+            for (ReporteDTO reporte : reportesActivos) {
+                String formattedDate = sdf.format(reporte.getFechaCreacion().getTime());
+                modeloTabla.addRow(new Object[]{
+                    reporte.getFolio(),
+                    reporte.getTitulo(),
+                    reporte.getDescripcion(),
+                    formattedDate,
+                    reporte.getCalle(),
+                    reporte.getColonia()
+                });
+
+            }
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(
-                    this, 
-                    "Error al actualizar la tabla de incidentes.", 
-                    "Error", 
+                    this,
+                    "Error al actualizar la tabla de incidentes.",
+                    "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -261,6 +299,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
         btnCerrar();
+        buscarReporte(institucionDTO);
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed

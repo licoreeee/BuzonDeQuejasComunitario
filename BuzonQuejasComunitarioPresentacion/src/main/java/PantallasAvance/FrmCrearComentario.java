@@ -106,6 +106,8 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         pnlFondo.setMinimumSize(new java.awt.Dimension(600, 400));
         pnlFondo.setPreferredSize(new java.awt.Dimension(600, 400));
         pnlFondo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_gobierno_mexico.png"))); // NOI18N
         pnlFondo.add(lblLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 190, 60));
 
         lblHeader.setBackground(new java.awt.Color(10, 50, 6));
@@ -236,7 +238,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComentariosReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentariosReporteActionPerformed
-//        control.mostrarComentariosReporte();
+        control.mostrarComentariosReporte();
     }//GEN-LAST:event_btnComentariosReporteActionPerformed
 
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed

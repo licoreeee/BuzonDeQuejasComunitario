@@ -547,30 +547,30 @@ public class FrmHistorial extends javax.swing.JFrame {
             }
         }
         
-        for (int i = 0; i < reportes.size(); i++) {
-            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
-            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
-            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
-            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
-            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
-            datosTabla[5] = reportes.get(i).getMotivo() ;
-            datosTabla[6] = reportes.get(i).getDescripcion() ;
-            if (reportes.get(i).isNotificado()) {
-                datosTabla[7] = "NOTIFICADO" ;
-            } else {
-                datosTabla[7] = "PENDIENTE" ;
-            }
-            if (reportes.get(i).isValidado()) {
-                datosTabla[8] = "VALIDADO" ;
-            } 
-            
-            modeloTabla.addRow(datosTabla);
-        }
-        
-        tablaReportes.setModel(modeloTabla);
-        tablaReportes.setRowHeight(30);
-        tablaReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
-        tablaReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
+//        for (int i = 0; i < reportes.size(); i++) {
+//            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
+//            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
+//            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
+//            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
+//            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
+//            datosTabla[5] = reportes.get(i).getMotivo() ;
+//            datosTabla[6] = reportes.get(i).getDescripcion() ;
+//            if (reportes.get(i).isNotificado()) {
+//                datosTabla[7] = "NOTIFICADO" ;
+//            } else {
+//                datosTabla[7] = "PENDIENTE" ;
+//            }
+//            if (reportes.get(i).isValidado()) {
+//                datosTabla[8] = "VALIDADO" ;
+//            } 
+//            
+//            modeloTabla.addRow(datosTabla);
+//        }
+//        
+//        tablaReportes.setModel(modeloTabla);
+//        tablaReportes.setRowHeight(30);
+//        tablaReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
+//        tablaReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
 
     }
 

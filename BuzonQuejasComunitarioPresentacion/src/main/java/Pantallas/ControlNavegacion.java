@@ -51,7 +51,6 @@ public class ControlNavegacion {
      */
     public void mostrarReportesPendientes(InstitucionRegistradaDTO institucion) {
         FrmReportesPendientes reportesPendientes = new FrmReportesPendientes(institucion);
-        reportesPendientes.setVisible(true);
     }
 
     /**
