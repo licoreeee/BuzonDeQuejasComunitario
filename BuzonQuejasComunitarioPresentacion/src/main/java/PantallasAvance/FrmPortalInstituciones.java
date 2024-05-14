@@ -26,7 +26,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
 
     public FrmPortalInstituciones() {
         initComponents();
-//        registrarAvance = new RegistrarAvance();
+        registrarAvance = new RegistrarAvance();
         control = new ControlNavegacion();
     }
 
