@@ -19,8 +19,6 @@ public interface IInstitucionDAO {
 
     public List<Institucion> obtenerInstituciones() throws FindException;
 
-    public List<Institucion> obtenerInstitucionesPorId(ObjectId id) throws FindException;
-
     public Institucion obtenerInstitucionPorCodigo(String codigoGestion) throws FindException;
 
 }

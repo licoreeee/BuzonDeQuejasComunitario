@@ -4,8 +4,6 @@
  */
 package dto;
 
-import java.sql.Blob;
-
 /**
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina

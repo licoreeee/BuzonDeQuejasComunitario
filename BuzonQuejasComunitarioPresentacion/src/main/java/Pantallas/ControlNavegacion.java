@@ -37,8 +37,8 @@ public class ControlNavegacion {
         reportesPendientes.setVisible(true);
     }
 
-    public void mostrarCrearComentario() {
-        FrmCrearComentario crearComentario = new FrmCrearComentario();
+    public void mostrarCrearComentario(ReporteDTO reporteDTO) {
+        FrmCrearComentario crearComentario = new FrmCrearComentario(reporteDTO);
         crearComentario.setVisible(true);
     }
 

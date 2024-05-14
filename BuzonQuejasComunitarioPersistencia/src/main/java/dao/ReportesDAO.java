@@ -87,11 +87,9 @@ public class ReportesDAO implements IReportesDAO {
     }
 
     @Override
-
     public void actualizarEstado(Reporte reporte) throws PersistenciaException {
-        ObjectId idReporte = reporte.getId();
         Document updateDoc = new Document("$set", new Document("estado", false));
-        collection.updateOne(Filters.eq("_id", idReporte), updateDoc);
+        collection.updateOne(Filters.eq("folio", reporte.getFolio()), updateDoc);
     }
 
     @Override

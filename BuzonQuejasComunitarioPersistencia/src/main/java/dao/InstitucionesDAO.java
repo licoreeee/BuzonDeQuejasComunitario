@@ -28,7 +28,6 @@ public class InstitucionesDAO implements IInstitucionDAO {
 
     public InstitucionesDAO(IConexion conexion) {
         this.conexion = conexion;
-
         MongoDatabase database = conexion.crearConexion();
         this.collection = database.getCollection("Instituciones", Institucion.class);
     }
@@ -64,23 +63,7 @@ public class InstitucionesDAO implements IInstitucionDAO {
         }
     }
 
-    @Override
-    public List<Institucion> obtenerInstitucionesPorId(ObjectId id) throws FindException {
-        try {
-            List<Institucion> instituciones = new ArrayList<>();
-            MongoCursor<Institucion> cursor = collection.find().iterator();
-            try {
-                while (cursor.hasNext()) {
-                    instituciones.add(cursor.next());
-                }
-            } finally {
-                cursor.close();
-            }
-            return instituciones;
-        } catch (MongoException e) {
-            throw new FindException("Error al obtener las instituciones");
-        }
-    }
+    
 
     @Override
     public Institucion obtenerInstitucionPorCodigo(String codigoGestion) throws FindException {
