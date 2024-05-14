@@ -1,26 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package PantallasAvance;
 
 import Pantallas.ControlNavegacion;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.EventObject;
 import java.util.List;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.event.CellEditorListener;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellEditor;
-import javax.swing.table.TableCellRenderer;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
 import org.itson.diseño.levantarreportess.RegistrarAvance;
 
@@ -43,134 +27,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         reportesDTO = new ArrayList<>();
     }
 
-    public ActionListener botonActualizar() {
-        ActionListener actualizarListener = new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                ReporteDTO reporteDTO = registrarAvance.actualizarEstado(reporte);
-
-            }
-        };
-
-        return actualizarListener;
-    }
-
-    public void refrescarTabla() {
-        DefaultTableModel modeloTabla = new DefaultTableModel();
-        List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes();
-        Object[] datosTabla = new Object[9];
-        modeloTabla.addColumn("CURP");
-        modeloTabla.addColumn("Nombre");
-        modeloTabla.addColumn("Grado y Grupo");
-        modeloTabla.addColumn("Fecha y Hora");
-        modeloTabla.addColumn("Gravedad");
-        modeloTabla.addColumn("Motivo");
-        modeloTabla.addColumn("Descripción");
-        modeloTabla.addColumn("Notificado");
-        modeloTabla.addColumn("Validar");
-
-        for (int i = 0; i < reportes.size(); i++) {
-            datosTabla[0] = reportes.get(i).getAlumno().getCurp();
-            datosTabla[1] = reportes.get(i).getAlumno().getNombre();
-            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo();
-            datosTabla[3] = reportes.get(i).getFechaHora().getTime();
-            datosTabla[4] = reportes.get(i).getNivelIncidencia();
-            datosTabla[5] = reportes.get(i).getMotivo();
-            datosTabla[6] = reportes.get(i).getDescripcion();
-            if (reportes.get(i).isNotificado()) {
-                datosTabla[7] = "NOTIFICADO";
-            } else {
-                datosTabla[7] = "PENDIENTE";
-            }
-            if (reportes.get(i).isValidado()) {
-                datosTabla[8] = "VALIDADO";
-            }
-
-            modeloTabla.addRow(datosTabla);
-        }
-
-        tablaReportes.setModel(modeloTabla);
-        tablaReportes.setRowHeight(30);
-        tablaReportes.getColumnModel().getColumn(8).setCellRenderer(new JButtonRenderer("Validar"));
-        tablaReportes.getColumnModel().getColumn(8).setCellEditor(new JButtonCellEditor("Validar", botonValidar()));
-
-    }
-
-    public class JButtonCellEditor implements TableCellEditor {
-
-        private final JButton button;
-        private int row;
-        private ActionListener actionListener;
-
-        public JButtonCellEditor(String text, ActionListener actionListener) {
-            this.button = new JButton(text);
-//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-//        this.button.setBackground(new Color(188, 149, 92));
-//        this.button.setForeground(new Color(242, 242, 242));
-            this.actionListener = actionListener;
-            this.button.addActionListener((ActionEvent evt) -> {
-                this.actionListener.actionPerformed(
-                        new ActionEvent(this.button, ActionEvent.ACTION_PERFORMED, this.row + "")
-                );
-            });
-        }
-
-        @Override
-        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-            this.row = row;
-            return this.button;
-        }
-
-        @Override
-        public Object getCellEditorValue() {
-            return true;
-        }
-
-        @Override
-        public boolean isCellEditable(EventObject anEvent) {
-            return true;
-        }
-
-        @Override
-        public boolean shouldSelectCell(EventObject anEvent) {
-            return true;
-        }
-
-        @Override
-        public boolean stopCellEditing() {
-            return true;
-        }
-
-        @Override
-        public void cancelCellEditing() {
-        }
-
-        @Override
-        public void addCellEditorListener(CellEditorListener l) {
-        }
-
-        @Override
-        public void removeCellEditorListener(CellEditorListener l) {
-        }
-    }
-
-    public class JButtonRenderer implements TableCellRenderer {
-
-        private final JButton button;
-
-        public JButtonRenderer(String text) {
-            this.button = new JButton(text);
-//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-//        this.button.setBackground(new Color(188, 149, 92));
-//        this.button.setForeground(new Color(242, 242, 242));
-        }
-
-        @Override
-        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-            return this.button;
-        }
-
-    }
+  
 
     /**
      * This method is called from within the constructor to initialize the form.

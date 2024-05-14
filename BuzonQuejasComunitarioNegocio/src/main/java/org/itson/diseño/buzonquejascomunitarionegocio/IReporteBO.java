@@ -33,8 +33,6 @@ public interface IReporteBO {
     public void actualizarEstado(ReporteDTO reporteDTO) throws PersistenciaException;
     
     List<ReporteDTO> obtenerReportePorTitulo(String titulo, Calendar dia) throws FindException;
-
-    public void actualizarEstado(ReporteDTO reporteDTO) throws PersistenciaException;
     
     List<ReporteDTO> obtenerReportePorInstitucion(String institucion, Calendar dia) throws FindException;
 
