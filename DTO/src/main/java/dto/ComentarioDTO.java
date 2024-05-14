@@ -4,7 +4,7 @@
  */
 package dto;
 
-import java.sql.Blob;
+import java.util.Date;
 
 /**
  *
@@ -16,21 +16,25 @@ public class ComentarioDTO {
     private String comentario;
     private byte[] photo;
     private Integer folio;
+    private Date fechaCreacion;
 
     public ComentarioDTO() {
     }
 
-    public ComentarioDTO(String titulo, String comentario, byte[] photo, Integer folio) {
+    public ComentarioDTO(String titulo, String comentario, byte[] photo, Integer folio, Date fechaCreacion) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
         this.folio = folio;
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public ComentarioDTO(String titulo, String comentario, Integer folio) {
+    public ComentarioDTO(String titulo, String comentario, Integer folio, Date fechaCreacion) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.folio = folio;
+        this.fechaCreacion = fechaCreacion;
+
     }
     
 
@@ -38,11 +42,6 @@ public class ComentarioDTO {
         return folio;
     }
 
-    public void setFolio(Integer folio) {
-        this.folio = folio;
-    }
-
-    
     public String getTitulo() {
         return titulo;
     }
@@ -53,6 +52,10 @@ public class ComentarioDTO {
 
     public byte[] getPhoto() {
         return photo;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
     }
 
 }

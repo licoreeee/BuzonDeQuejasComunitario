@@ -4,7 +4,7 @@
  */
 package entidades;
 
-import java.sql.Blob;
+import java.util.Date;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
@@ -19,30 +19,36 @@ public class Comentario {
     private String comentario;
     private Binary photo;
     private Integer folio;
+    private Date fechaCreacion;
 
     public Comentario() {
     }
 
-    public Comentario(ObjectId _id, String titulo, String comentario, Binary  photo) {
+    public Comentario(ObjectId _id, String titulo, String comentario, Binary  photo, Date fechaCreacion) {
         this._id = _id;
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
+        this.fechaCreacion = fechaCreacion;
+
     }
 
-    public Comentario(String titulo, String comentario, Binary photo, Integer folio) {
+    public Comentario(String titulo, String comentario, Binary photo, Integer folio, Date fechaCreacion) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
         this.folio = folio;
+        this.fechaCreacion = fechaCreacion;
     }
 
     
 
-    public Comentario(String titulo, String comentario, Integer folio) {
+    public Comentario(String titulo, String comentario, Integer folio, Date fechaCreacion) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.folio = folio;
+        this.fechaCreacion = fechaCreacion;
+
     }
 
     
@@ -85,6 +91,14 @@ public class Comentario {
 
     public void setFolio(Integer folio) {
         this.folio = folio;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
     
     

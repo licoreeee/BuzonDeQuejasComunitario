@@ -16,5 +16,5 @@ import org.bson.types.ObjectId;
  */
 public interface IComentariosDAO {
     public Comentario agregarComentario(Comentario comentario) throws PersistenciaException;
-     public List<Comentario> consultarComentariosReporte(ObjectId reporteId) throws FindException;
+     public List<Comentario> consultarComentariosReporte(Integer folio) throws FindException;
 }

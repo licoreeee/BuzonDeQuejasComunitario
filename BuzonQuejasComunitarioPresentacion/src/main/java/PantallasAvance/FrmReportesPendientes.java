@@ -39,7 +39,6 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
     }
 
     private void buscarReporte(InstitucionRegistradaDTO institucionDTO) {
-
         try {
             reportesDTO = registrarAvance.obtenerReportesAbiertosPorInstitucion(institucionDTO.getSiglas());
         } catch (FindException ex) {
@@ -125,7 +124,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
             String colonia = TablaReportesPendientes.getValueAt(filaSeleccionada, 5).toString();
             ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
                     folio, titulo, descripcion, fechaCreacion, calle, colonia);
-            control.mostrarCrearComentario(reporteDTOSeleccionado);
+            control.mostrarCrearComentario(reporteDTOSeleccionado, institucionDTO);
             dispose();
         }
     }

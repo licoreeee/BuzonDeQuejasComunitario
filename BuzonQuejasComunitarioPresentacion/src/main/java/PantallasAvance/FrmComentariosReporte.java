@@ -4,19 +4,73 @@
  */
 package PantallasAvance;
 
+import Excepciones.FindException;
+import Pantallas.ControlNavegacion;
+import dto.ComentarioDTO;
+import dto.InstitucionRegistradaDTO;
+import dto.ReporteDTO;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import registrarAvance.consultarComentariosReporte.ConsultarComentariosReporte;
+import registrarAvance.consultarComentariosReporte.IConsultarComentariosReporte;
+
 /**
  *
  * @author hisam
  */
 public class FrmComentariosReporte extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ComentariosReporte
-     */
-    public FrmComentariosReporte() {
+    ControlNavegacion control = new ControlNavegacion();
+    ReporteDTO reporteDTO;
+    InstitucionRegistradaDTO institucionDTO;
+    IConsultarComentariosReporte consultarComentarios;
+    List<ComentarioDTO>comentariosDTO;
+
+    public FrmComentariosReporte(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
         initComponents();
+        consultarComentarios = new ConsultarComentariosReporte();
+        comentariosDTO = new ArrayList<>();
+        this.reporteDTO = reporteDTO;
+        comentariosReporte(reporteDTO);
     }
 
+    private void comentariosReporte(ReporteDTO reporteDTO) {
+        try {
+            comentariosDTO = consultarComentarios.consultarComentarios(reporteDTO);
+            llenarTabla();
+        } catch (FindException ex) {
+            Logger.getLogger(FrmComentariosReporte.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    this,
+                    "No existen comentarios",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void llenarTabla(){
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Título");
+        model.addColumn("Descripción");
+        model.addColumn("Fecha de Creación");
+        model.addColumn("Imágen");
+
+        for (ComentarioDTO comentario : comentariosDTO) {
+            model.addRow(new Object[]{
+                comentario.getTitulo(),
+                comentario.getComentario(),
+                comentario.getFechaCreacion(),
+                comentario.getPhoto(),
+            });
+        }
+
+        TablaReportesPendientes.setModel(model);
+        TablaReportesPendientes.setDefaultEditor(Object.class, null);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -36,6 +90,7 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
         TablaReportesPendientes = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Comentarios del reporte");
 
         pnlFondo.setBackground(new java.awt.Color(255, 255, 255));
         pnlFondo.setMinimumSize(new java.awt.Dimension(600, 400));
@@ -98,13 +153,14 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-
+        control.mostrarCrearComentario(reporteDTO, institucionDTO);
+        dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaReportesPendientes;
