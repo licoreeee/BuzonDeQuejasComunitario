@@ -18,6 +18,7 @@ public class Comentario {
     private String titulo;
     private String comentario;
     private Binary photo;
+    private Reporte reporte;
 
     public Comentario() {
     }
@@ -70,6 +71,14 @@ public class Comentario {
 
     public void setPhoto(Binary  photo) {
         this.photo = photo;
+    }
+
+    public Reporte getReporte() {
+        return reporte;
+    }
+
+    public void setReporte(Reporte reporte) {
+        this.reporte = reporte;
     }
     
     

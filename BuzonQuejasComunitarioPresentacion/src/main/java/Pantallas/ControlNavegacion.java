@@ -57,8 +57,8 @@ public class ControlNavegacion {
     /**
      * Muestra el formulario para crear un comentario.
      */
-    public void mostrarCrearComentario() {
-        FrmCrearComentario crearComentario = new FrmCrearComentario();
+    public void mostrarCrearComentario(ReporteDTO reporteDTO) {
+        FrmCrearComentario crearComentario = new FrmCrearComentario(reporteDTO);
         crearComentario.setVisible(true);
     }
 

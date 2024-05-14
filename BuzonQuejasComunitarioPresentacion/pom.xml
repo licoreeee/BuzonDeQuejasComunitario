@@ -24,11 +24,6 @@
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>org.itson.bdavanzadas</groupId>
-            <artifactId>LevantarReporteSS</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
             <groupId>org.itson.diseno</groupId>
             <artifactId>SubsistemaAgregarIncidentes</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -41,6 +36,11 @@
         <dependency>
             <groupId>com.mycompany</groupId>
             <artifactId>SubsistemaHistorialReportes</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.itson.bdavanzadas</groupId>
+            <artifactId>LevantarReporteSS</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

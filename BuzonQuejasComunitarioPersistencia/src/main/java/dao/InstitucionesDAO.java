@@ -77,29 +77,7 @@ public class InstitucionesDAO implements IInstitucionDAO {
         }
     }
 
-    /* *
-     * Método para obtener todas las instituciones por su ID.
-     * @param id El ObjectId de la institución.
-     * @return Una lista de instituciones correspondientes al ID especificado.
-     * @throws FindException Si ocurre un error al obtener las instituciones por su ID.
-     */
-    @Override
-    public List<Institucion> obtenerInstitucionesPorId(ObjectId id) throws FindException {
-        try {
-            List<Institucion> instituciones = new ArrayList<>();
-            MongoCursor<Institucion> cursor = collection.find().iterator();
-            try {
-                while (cursor.hasNext()) {
-                    instituciones.add(cursor.next());
-                }
-            } finally {
-                cursor.close();
-            }
-            return instituciones;
-        } catch (MongoException e) {
-            throw new FindException("Error al obtener las instituciones");
-        }
-    }
+    
 
     /* *
      * Método para obtener una institución por su código de gestión.
@@ -123,5 +101,7 @@ public class InstitucionesDAO implements IInstitucionDAO {
         }
 
     }
+
+   
 
 }

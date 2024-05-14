@@ -76,6 +76,11 @@ public class Reporte {
         this.photo = photo;
     }
 
+    public Reporte(int folio, Boolean estado) {
+        this.folio = folio;
+        this.estado = estado;
+    }
+
     public Reporte(ObjectId id, int folio, String titulo, Date fechaCreacion) {
         this.id = id;
         this.folio = folio;

@@ -3,13 +3,20 @@ package PantallasAvance;
 import Excepciones.PersistenciaException;
 import Pantallas.ControlNavegacion;
 import dto.ComentarioDTO;
+import dto.ReporteDTO;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-//import org.itson.diseño.levantarreportess.RegistrarAvance;
+import org.itson.diseño.levantarreportess.IRegistrarAvance;
+import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
@@ -18,20 +25,48 @@ import javax.swing.JOptionPane;
 public class FrmCrearComentario extends javax.swing.JFrame {
 
     private ComentarioDTO comentarioDTO;
-    private final RegistrarAvance registrarAvance;
+    private final IRegistrarAvance registrarAvance;
     byte[] photo;
     String fileName;
+    ReporteDTO reporteDTO;
     ControlNavegacion control = new ControlNavegacion();
 
     /**
      * Creates new form CrearComentario
      */
-    public FrmCrearComentario() {
+    public FrmCrearComentario(ReporteDTO reporteDTO) {
         initComponents();
         registrarAvance = new RegistrarAvance();
         photo = null;
+        this.reporteDTO = reporteDTO;
         fileName = null;
+        setDatosReporte();
+    }
+
+    private void setDatosReporte() {
         lblSubirImagen.setText("");
+        lblTituloReporte.setText(reporteDTO.getTitulo());
+        lblDireccionReporte.setText(reporteDTO.getCalle() + ", " + reporteDTO.getColonia());
+        lblFolioReporte.setText("Folio: "+String.valueOf(reporteDTO.getFolio()));
+        Calendar fechaCreacion = reporteDTO.getFechaCreacion();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String fechaFormateada = sdf.format(fechaCreacion.getTime());
+        lblFechaHora.setText(fechaFormateada);
+        String descripcion = reporteDTO.getDescripcion();
+        if (descripcion.length() > 20) {
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            while (i < descripcion.length()) {
+                sb.append(descripcion.substring(
+                        i,
+                        Math.min(i + 20, descripcion.length())));
+                sb.append("<br>");
+                i += 20;
+            }
+            lblDescripcionReporte.setText("<html>" + sb.toString() + "</html>");
+        } else {
+            lblDescripcionReporte.setText(descripcion);
+        }
     }
 
     /**
@@ -118,14 +153,14 @@ public class FrmCrearComentario extends javax.swing.JFrame {
 
         lblDireccionReporte.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblDireccionReporte.setText("Av. Náinari #314, Col. Quinta Díaz, CP: 821900");
-        pnlFondo.add(lblDireccionReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 230, -1, -1));
+        pnlFondo.add(lblDireccionReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
         lblFolioReporte.setText("Folio: 48902");
-        pnlFondo.add(lblFolioReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, -1, -1));
+        pnlFondo.add(lblFolioReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
         lblFechaHora.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         lblFechaHora.setText("20/04/24 13:10");
-        pnlFondo.add(lblFechaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, -1, -1));
+        pnlFondo.add(lblFechaHora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 330, -1, -1));
 
         lblComentario.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         lblComentario.setForeground(new java.awt.Color(33, 33, 33));
@@ -206,7 +241,8 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComentariosReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentariosReporteActionPerformed
-//        control.mostrarComentariosReporte();
+        control.mostrarComentariosReporte();
+        dispose();
     }//GEN-LAST:event_btnComentariosReporteActionPerformed
 
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
