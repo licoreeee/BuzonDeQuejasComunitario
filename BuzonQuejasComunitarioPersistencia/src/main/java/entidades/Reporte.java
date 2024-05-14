@@ -37,7 +37,7 @@ public class Reporte {
         this.id = id;
         this.estado = estado;
     }
-    
+
     public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;
@@ -210,6 +210,11 @@ public class Reporte {
 
     public void setDescripcionExtra(String descripcionExtra) {
         this.descripcionExtra = descripcionExtra;
+    }
+
+    @Override
+    public String toString() {
+        return "Reporte{" + "id=" + id + ", folio=" + folio + ", titulo=" + titulo + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", photo=" + photo + ", estado=" + estado + ", calle=" + calle + ", colonia=" + colonia + ", descripcionExtra=" + descripcionExtra + ", ciudadano=" + ciudadano + ", institucion=" + institucion + ", incidente=" + incidente + '}';
     }
 
 }

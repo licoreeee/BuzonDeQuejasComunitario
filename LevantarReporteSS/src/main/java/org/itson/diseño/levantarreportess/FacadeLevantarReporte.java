@@ -15,38 +15,42 @@ import java.util.List;
  */
 public class FacadeLevantarReporte implements IFacadeLevantarReporte {
 
-//    LevantarReporte levantarReporte = new LevantarReporte();
+    private LevantarReporte levantarReporte;
+
+    public FacadeLevantarReporte() {
+        levantarReporte = new LevantarReporte();
+    }
 
     @Override
     public ReporteDTO levantarReporte(ReporteDTO reporteNuevo) {
         if (reporteNuevo != null) {
 
-//            levantarReporte.seleccionarInsitucion(reporteNuevo.getInstitucion());
-//            levantarReporte.seleccionarIncidente(reporteNuevo.getIncidente());
-//            levantarReporte.ingresarDomicilio(reporteNuevo.getDomicilio());
-//            levantarReporte.ingresarCiudadano(reporteNuevo.getCiudadano());
-//            levantarReporte.generarReporte(reporteNuevo);
+            levantarReporte.seleccionarInsitucion(reporteNuevo.getInstitucion());
+            levantarReporte.seleccionarIncidente(reporteNuevo.getIncidente());
+            levantarReporte.ingresarDomicilio(reporteNuevo.getDomicilio());
+            levantarReporte.ingresarCiudadano(reporteNuevo.getCiudadano());
+            levantarReporte.generarReporte(reporteNuevo);
 
             return reporteNuevo;
 
         }
 
-//        Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "No es posible realizar el levantamiento de reporte");
-       return null;
+        Logger.getLogger(LevantarReporte.class.getName()).log(Level.SEVERE, "No es posible realizar el levantamiento de reporte");
+        return null;
     }
 
     @Override
     public InstitucionNuevaDTO obtenerInstitucion(InstitucionNuevaDTO institucionSeleccionada) {
-//        levantarReporte.seleccionarInsitucion(institucionSeleccionada);
+        levantarReporte.seleccionarInsitucion(institucionSeleccionada);
         return institucionSeleccionada;
 
     }
 
     @Override
     public List<InstitucionNuevaDTO> obtenerInstituciones() {
-//        List<InstitucionNuevaDTO> instituciones = levantarReporte.obtenerInstituciones();
-//        Set<InstitucionNuevaDTO> institucionesUnicas = new HashSet<>(instituciones);
-//        List<InstitucionNuevaDTO> listaInstitucionesUnicas = new ArrayList<>(institucionesUnicas);
+        List<InstitucionNuevaDTO> instituciones = levantarReporte.obtenerInstituciones();
+        Set<InstitucionNuevaDTO> institucionesUnicas = new HashSet<>(instituciones);
+        List<InstitucionNuevaDTO> listaInstitucionesUnicas = new ArrayList<>(institucionesUnicas);
 
         return new ArrayList<InstitucionNuevaDTO>();
     }

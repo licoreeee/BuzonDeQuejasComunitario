@@ -17,22 +17,22 @@ import javax.swing.JOptionPane;
  */
 public class FrmCrearComentario extends javax.swing.JFrame {
 
-//    private ComentarioDTO comentarioDTO;
-//    private final RegistrarAvance registrarAvance;
-//    byte[] photo;
-//    String fileName;
-//    ControlNavegacion control = new ControlNavegacion();
-//
-//    /**
-//     * Creates new form CrearComentario
-//     */
-//    public FrmCrearComentario() {
-//        initComponents();
-//        registrarAvance = new RegistrarAvance();
-//        photo = null;
-//        fileName = null;
-//        lblSubirImagen.setText("");
-//    }
+    private ComentarioDTO comentarioDTO;
+    private final RegistrarAvance registrarAvance;
+    byte[] photo;
+    String fileName;
+    ControlNavegacion control = new ControlNavegacion();
+
+    /**
+     * Creates new form CrearComentario
+     */
+    public FrmCrearComentario() {
+        initComponents();
+        registrarAvance = new RegistrarAvance();
+        photo = null;
+        fileName = null;
+        lblSubirImagen.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -214,62 +214,62 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTituloActionPerformed
 
     private void btnContinuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuar1ActionPerformed
-//        if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
-//            JOptionPane.showMessageDialog(
-//                    null,
-//                    "Llenar correctamente los espacios en blanco",
-//                    "Espacios vacíos",
-//                    JOptionPane.INFORMATION_MESSAGE);
-//        } else {
-//            if (photo == null) {
-//                try {
-//                    comentarioDTO = new ComentarioDTO(
-//                            txtTitulo.getText(),
-//                            txtComentario.getText());
-//                    registrarAvance.registarComentario(comentarioDTO);
-//                } catch (PersistenciaException ex) {
-//                    Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
-//                    JOptionPane.showMessageDialog(
-//                            null,
-//                            ex.getMessage(),
-//                            "Error de persistencia",
-//                            JOptionPane.ERROR_MESSAGE);
-//                }
-//            } else {
-//                try {
-//                    comentarioDTO = new ComentarioDTO(
-//                            txtTitulo.getText(),
-//                            txtComentario.getText(),
-//                            photo);
-//                    registrarAvance.registarComentario(comentarioDTO);
-//                } catch (PersistenciaException e) {
-//                    Logger.getLogger(
-//                            FrmCrearComentario.class.getName()).log(
-//                            Level.SEVERE,
-//                            null,
-//                            e);
-//                    JOptionPane.showMessageDialog(
-//                            null,
-//                            e.getMessage(),
-//                            "Error de persistencia",
-//                            JOptionPane.ERROR_MESSAGE);
-//                }
-//            }
-//        }
+        if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Llenar correctamente los espacios en blanco",
+                    "Espacios vacíos",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (photo == null) {
+                try {
+                    comentarioDTO = new ComentarioDTO(
+                            txtTitulo.getText(),
+                            txtComentario.getText());
+                    registrarAvance.registarComentario(comentarioDTO);
+                } catch (PersistenciaException ex) {
+                    Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(
+                            null,
+                            ex.getMessage(),
+                            "Error de persistencia",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                try {
+                    comentarioDTO = new ComentarioDTO(
+                            txtTitulo.getText(),
+                            txtComentario.getText(),
+                            photo);
+                    registrarAvance.registarComentario(comentarioDTO);
+                } catch (PersistenciaException e) {
+                    Logger.getLogger(
+                            FrmCrearComentario.class.getName()).log(
+                            Level.SEVERE,
+                            null,
+                            e);
+                    JOptionPane.showMessageDialog(
+                            null,
+                            e.getMessage(),
+                            "Error de persistencia",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }//GEN-LAST:event_btnContinuar1ActionPerformed
 
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
-//        boolean isValid = cargarImagen();
-//        if (!isValid) {
-//            photo = null;
-//            lblSubirImagen.setText("");
-//            JOptionPane.showMessageDialog(
-//                    null,
-//                    "El archivo seleccionado no es una imagen con formato JPG",
-//                    "Formato de imagen inválido",
-//                    JOptionPane.ERROR_MESSAGE);
-//
-//        }
+        boolean isValid = cargarImagen();
+        if (!isValid) {
+            photo = null;
+            lblSubirImagen.setText("");
+            JOptionPane.showMessageDialog(
+                    null,
+                    "El archivo seleccionado no es una imagen con formato JPG",
+                    "Formato de imagen inválido",
+                    JOptionPane.ERROR_MESSAGE);
+
+        }
 
 
     }//GEN-LAST:event_btnImagenActionPerformed
@@ -277,47 +277,47 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         return fileName.toLowerCase().endsWith(".jpg");
     }
 
-//    private boolean cargarImagen() {
-//        JFileChooser chooser = new JFileChooser();
-//        int result = chooser.showOpenDialog(null);
-//        if (result != JFileChooser.APPROVE_OPTION) {
-//            // El usuario no seleccionó ningún archivo
-//            return false;
-//        }
-//        File file = chooser.getSelectedFile();
-//        fileName = file.getAbsolutePath();
-//        lblSubirImagen.setText(fileName);
-//
-//        if (!isValidImage(fileName)) {
-//            return false;
-//        }
-//
-//        File image = new File(fileName);
-//        try (FileInputStream fis = new FileInputStream(image)) {
-//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//            byte[] buf = new byte[1024];
-//            for (int readNum; (readNum = fis.read(buf)) != -1;) {
-//                baos.write(buf, 0, readNum);
-//            }
-//            photo = baos.toByteArray();
-//            return true;
-//        } catch (FileNotFoundException ex) {
-//            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(
-//                    null,
-//                    ex.getMessage(),
-//                    "Error al cargar la imágen",
-//                    JOptionPane.ERROR_MESSAGE);
-//        } catch (IOException ex) {
-//            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
-//            JOptionPane.showMessageDialog(
-//                    null,
-//                    ex.getMessage(),
-//                    "Error al leer el archivo",
-//                    JOptionPane.ERROR_MESSAGE);
-//        }
-//        return false;
-//    }
+    private boolean cargarImagen() {
+        JFileChooser chooser = new JFileChooser();
+        int result = chooser.showOpenDialog(null);
+        if (result != JFileChooser.APPROVE_OPTION) {
+            // El usuario no seleccionó ningún archivo
+            return false;
+        }
+        File file = chooser.getSelectedFile();
+        fileName = file.getAbsolutePath();
+        lblSubirImagen.setText(fileName);
+
+        if (!isValidImage(fileName)) {
+            return false;
+        }
+
+        File image = new File(fileName);
+        try (FileInputStream fis = new FileInputStream(image)) {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+                baos.write(buf, 0, readNum);
+            }
+            photo = baos.toByteArray();
+            return true;
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error al cargar la imágen",
+                    JOptionPane.ERROR_MESSAGE);
+        } catch (IOException ex) {
+            Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    null,
+                    ex.getMessage(),
+                    "Error al leer el archivo",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        return false;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComentariosReporte;
