@@ -10,6 +10,7 @@ import dto.ReporteDTO;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -393,7 +394,7 @@ public class FrmHistorial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnLevantarReporte2ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-
+        refrescarTabla();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
@@ -495,6 +496,12 @@ public class FrmHistorial extends javax.swing.JFrame {
         calendar.set(fecha.getYear(), fecha.getMonthValue() - 1, fecha.getDayOfMonth());
         return calendar;
     }
+
+    private String fechaEnFormato(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+        return sdf.format(calendar.getTime());
+    }
     
     public void refrescarTabla() {
         String titulo = cmpTitulo.getText();
@@ -523,58 +530,67 @@ public class FrmHistorial extends javax.swing.JFrame {
                 String informacionIncidente = incidente.getInformacion();
                 
                 List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaDesde);
-                
-                Calendar fechaMasVieja = obtenerFechaMasVieja(reportesEncontrados);
-                Calendar fechaMasReciente = obtenerFechaMasReciente(reportesEncontrados);
 
-                long diferenciaEnMilisegundos = fechaMasReciente.getTimeInMillis() - fechaMasVieja.getTimeInMillis();
-                int diferenciaEnDias = (int) TimeUnit.DAYS.convert(diferenciaEnMilisegundos, TimeUnit.MILLISECONDS);
-
-                Map<Calendar, List<ReporteDTO>> reportesPorFecha = new HashMap<>();
+                List<Object[]> resultados = new ArrayList<>();
 
                 for (ReporteDTO reporte : reportesEncontrados) {
                     Calendar fechaCreacion = reporte.getFechaCreacion();
-                    List<ReporteDTO> reportesEnFecha = reportesPorFecha.get(fechaCreacion);
-                    if (reportesEnFecha == null) {
-                        reportesEnFecha = new ArrayList<>();
-                        reportesPorFecha.put(fechaCreacion, reportesEnFecha);
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
                     }
-
-                    reportesEnFecha.add(reporte);
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
                 }
-
-
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
             }
-        }
         
-        for (int i = 0; i < reportes.size(); i++) {
-            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
-            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
-            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
-            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
-            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
-            datosTabla[5] = reportes.get(i).getMotivo() ;
-            datosTabla[6] = reportes.get(i).getDescripcion() ;
-            if (reportes.get(i).isNotificado()) {
-                datosTabla[7] = "NOTIFICADO" ;
-            } else {
-                datosTabla[7] = "PENDIENTE" ;
-            }
-            if (reportes.get(i).isValidado()) {
-                datosTabla[8] = "VALIDADO" ;
-            } 
-            
-            modeloTabla.addRow(datosTabla);
+//        for (int i = 0; i < reportes.size(); i++) {
+//            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
+//            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
+//            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
+//            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
+//            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
+//            datosTabla[5] = reportes.get(i).getMotivo() ;
+//            datosTabla[6] = reportes.get(i).getDescripcion() ;
+//            if (reportes.get(i).isNotificado()) {
+//                datosTabla[7] = "NOTIFICADO" ;
+//            } else {
+//                datosTabla[7] = "PENDIENTE" ;
+//            }
+//            if (reportes.get(i).isValidado()) {
+//                datosTabla[8] = "VALIDADO" ;
+//            } 
+//            
+//            modeloTabla.addRow(datosTabla);
+//        }
+//        
+//        tablaReportes.setModel(modeloTabla);
+//        tablaReportes.setRowHeight(30);
+//        tablaReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
+//        tablaReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
+//
+//    
         }
-        
-        tablaReportes.setModel(modeloTabla);
-        tablaReportes.setRowHeight(30);
-        tablaReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
-        tablaReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
-
     }
-
-    public class JButtonCellEditor implements TableCellEditor {
+    private class JButtonCellEditor implements TableCellEditor {
 
     private final JButton button;
     private int row;

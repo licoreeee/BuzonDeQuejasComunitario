@@ -47,8 +47,9 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTitulo(String titulo, Date dia) throws FindException {
         try {
+            String regexPattern = ".*" + titulo + ".*";
             return collection.find(Filters.and(
-                    Filters.eq("titulo", titulo),
+                    Filters.regex("titulo", regexPattern),
                     Filters.eq("fechaCreacion", dia))).into(new ArrayList<>());
         } catch (MongoException ex) {
             throw new FindException("Error al obtener los reportes.");
@@ -58,23 +59,25 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorInstitucion(String institucion, Date dia) throws FindException {
         try {
-            return collection.find(Filters.and(
-                    Filters.eq("fechaCreacion", dia),
-                    Filters.eq("institucion.siglas", institucion))).into(new ArrayList());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        String regexPattern = ".*" + institucion + ".*";
+        return collection.find(Filters.and(
+                Filters.eq("fechaCreacion", dia),
+                Filters.regex("institucion.siglas", regexPattern))).into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
 
     @Override
     public List<Reporte> obtenerReportePorIncidente(String incidente, Date dia) throws FindException {
         try {
-            return collection.find(Filters.and(
-                    Filters.eq("fechaCreacion", dia),
-                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        String regexPattern = ".*" + incidente + ".*";
+        return collection.find(Filters.and(
+                Filters.eq("fechaCreacion", dia),
+                Filters.regex("incidente.nombre", regexPattern))).into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
 
     @Override
@@ -87,7 +90,6 @@ public class ReportesDAO implements IReportesDAO {
     }
 
     @Override
-
     public void actualizarEstado(Reporte reporte) throws PersistenciaException {
         ObjectId idReporte = reporte.getId();
         Document updateDoc = new Document("$set", new Document("estado", false));
@@ -97,60 +99,69 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Date dia) throws FindException {
         try {
-            return collection.find(Filters.and(
-                    Filters.eq("fechaCreacion", dia),
-                    Filters.eq("titulo", titulo),
-                    Filters.eq("institucion.siglas", institucion))).into(new ArrayList<>());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        String tituloRegex = ".*" + titulo + ".*";
+        String institucionRegex = ".*" + institucion + ".*";
+        return collection.find(Filters.and(
+                Filters.eq("fechaCreacion", dia),
+                Filters.regex("titulo", tituloRegex),
+                Filters.regex("institucion.siglas", institucionRegex))).into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
 
     @Override
     public List<Reporte> obtenerReportePorTituloYIncidente(String titulo, String incidente, Date dia) throws FindException {
         try {
-            return collection.find(Filters.and(
-                    Filters.eq("fechaCreacion", dia),
-                    Filters.eq("titulo", titulo),
-                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList<>());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        String tituloRegex = ".*" + titulo + ".*";
+        String incidenteRegex = ".*" + incidente + ".*";
+        return collection.find(Filters.and(
+                Filters.eq("fechaCreacion", dia),
+                Filters.regex("titulo", tituloRegex),
+                Filters.regex("incidente.nombre", incidenteRegex))).into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
 
     @Override
     public List<Reporte> obtenerReportePorInstitucionYIncidente(String institucion, String incidente, Date dia) throws FindException {
         try {
-            return collection.find(Filters.and(
-                    Filters.eq("fechaCreacion", dia),
-                    Filters.eq("institucion.siglas", institucion),
-                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList<>());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        String institucionRegex = ".*" + institucion + ".*";
+        String incidenteRegex = ".*" + incidente + ".*";
+        return collection.find(Filters.and(
+                Filters.eq("fechaCreacion", dia),
+                Filters.regex("institucion.siglas", institucionRegex),
+                Filters.regex("incidente.nombre", incidenteRegex))).into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
 
     @Override
     public List<Reporte> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente, Date dia) throws FindException {
         try {
-            return collection.find(Filters.and(
-                    Filters.eq("fechaCreacion", dia),
-                    Filters.eq("titulo", titulo),
-                    Filters.eq("institucion.siglas", institucion),
-                    Filters.eq("incidente.nombre", incidente))).into(new ArrayList<>());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        String tituloRegex = ".*" + titulo + ".*";
+        String institucionRegex = ".*" + institucion + ".*";
+        String incidenteRegex = ".*" + incidente + ".*";
+        return collection.find(Filters.and(
+                Filters.eq("fechaCreacion", dia),
+                Filters.regex("titulo", tituloRegex),
+                Filters.regex("institucion.siglas", institucionRegex),
+                Filters.regex("incidente.nombre", incidenteRegex))).into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
     
     @Override
     public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException {
         try {
-            return collection.find(Filters.and(
-                    Filters.eq("institucion.siglas", institucion))).into(new ArrayList());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        String institucionRegex = ".*" + institucion + ".*";
+        return collection.find(Filters.regex("institucion.siglas", institucionRegex)).into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
 
 }
