@@ -6,7 +6,6 @@ package dao;
 
 import Excepciones.FindException;
 import entidades.Comentario;
-import entidades.Reporte;
 import java.util.List;
 import Excepciones.PersistenciaException;
 import com.mongodb.MongoException;
@@ -45,10 +44,10 @@ public class ComentariosDAO implements IComentariosDAO {
     }
 
     @Override
-    public List<Comentario> consultarComentariosReporte(ObjectId reporteId) throws FindException {
+    public List<Comentario> consultarComentariosReporte(Integer folio) throws FindException {
     try {
             List<Comentario> comentarios = new ArrayList<>();
-            Bson filter = Filters.eq("reporteId", reporteId);
+            Bson filter = Filters.eq("folio", folio);
             MongoCursor<Comentario> cursor = collection.find(filter).iterator();
             try {
                 while (cursor.hasNext()) {

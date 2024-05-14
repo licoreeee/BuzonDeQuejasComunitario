@@ -3,20 +3,19 @@ package PantallasAvance;
 import Excepciones.PersistenciaException;
 import Pantallas.ControlNavegacion;
 import dto.ComentarioDTO;
+import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import org.itson.diseño.levantarreportess.IRegistrarAvance;
-import org.itson.diseño.levantarreportess.RegistrarAvance;
+import registrarAvance.IRegistrarAvance;
+import registrarAvance.RegistrarAvance;
 
 /**
  *
@@ -29,16 +28,20 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     byte[] photo;
     String fileName;
     ReporteDTO reporteDTO;
+    private InstitucionRegistradaDTO institucionDTO;
     ControlNavegacion control = new ControlNavegacion();
 
     /**
      * Creates new form CrearComentario
+     *
+     * @param reporteDTO
      */
-    public FrmCrearComentario(ReporteDTO reporteDTO) {
+    public FrmCrearComentario(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
         initComponents();
         registrarAvance = new RegistrarAvance();
         photo = null;
         this.reporteDTO = reporteDTO;
+        this.institucionDTO = institucionDTO;
         fileName = null;
         setDatosReporte();
     }
@@ -47,7 +50,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         lblSubirImagen.setText("");
         lblTituloReporte.setText(reporteDTO.getTitulo());
         lblDireccionReporte.setText(reporteDTO.getCalle() + ", " + reporteDTO.getColonia());
-        lblFolioReporte.setText("Folio: "+String.valueOf(reporteDTO.getFolio()));
+        lblFolioReporte.setText("Folio: " + String.valueOf(reporteDTO.getFolio()));
         Calendar fechaCreacion = reporteDTO.getFechaCreacion();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String fechaFormateada = sdf.format(fechaCreacion.getTime());
@@ -96,11 +99,12 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtComentario = new javax.swing.JTextArea();
         lblComentario1 = new javax.swing.JLabel();
-        btnContinuar1 = new javax.swing.JButton();
+        btnAtrás = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnImagen = new javax.swing.JButton();
         lblSubirImagen = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        btnContinuar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear comentario");
@@ -153,10 +157,10 @@ public class FrmCrearComentario extends javax.swing.JFrame {
 
         lblDireccionReporte.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblDireccionReporte.setText("Av. Náinari #314, Col. Quinta Díaz, CP: 821900");
-        pnlFondo.add(lblDireccionReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
+        pnlFondo.add(lblDireccionReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 290, -1, -1));
 
         lblFolioReporte.setText("Folio: 48902");
-        pnlFondo.add(lblFolioReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
+        pnlFondo.add(lblFolioReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 310, -1, -1));
 
         lblFechaHora.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         lblFechaHora.setText("20/04/24 13:10");
@@ -193,17 +197,17 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         lblComentario1.setText("Comentario*:");
         pnlFondo.add(lblComentario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 190, -1, -1));
 
-        btnContinuar1.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnContinuar1.setForeground(new java.awt.Color(181, 18, 57));
-        btnContinuar1.setText("Continuar");
-        btnContinuar1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
-        btnContinuar1.setContentAreaFilled(false);
-        btnContinuar1.addActionListener(new java.awt.event.ActionListener() {
+        btnAtrás.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnAtrás.setForeground(new java.awt.Color(181, 18, 57));
+        btnAtrás.setText("Atrás");
+        btnAtrás.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnAtrás.setContentAreaFilled(false);
+        btnAtrás.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnContinuar1ActionPerformed(evt);
+                btnAtrásActionPerformed(evt);
             }
         });
-        pnlFondo.add(btnContinuar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
+        pnlFondo.add(btnAtrás, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 350, 104, 43));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 8)); // NOI18N
         jLabel1.setText("formato jpg");
@@ -225,6 +229,18 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         jLabel2.setText("*Campo obligatorio.");
         pnlFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
+        btnContinuar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnContinuar.setForeground(new java.awt.Color(181, 18, 57));
+        btnContinuar.setText("Continuar");
+        btnContinuar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnContinuar.setContentAreaFilled(false);
+        btnContinuar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContinuarActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,58 +257,17 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnComentariosReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentariosReporteActionPerformed
-        control.mostrarComentariosReporte();
-        dispose();
+        control.mostrarComentariosReporte(reporteDTO, institucionDTO);
     }//GEN-LAST:event_btnComentariosReporteActionPerformed
 
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloActionPerformed
 
-    private void btnContinuar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuar1ActionPerformed
-        if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
-            JOptionPane.showMessageDialog(
-                    null,
-                    "Llenar correctamente los espacios en blanco",
-                    "Espacios vacíos",
-                    JOptionPane.INFORMATION_MESSAGE);
-        } else {
-            if (photo == null) {
-                try {
-                    comentarioDTO = new ComentarioDTO(
-                            txtTitulo.getText(),
-                            txtComentario.getText());
-                    registrarAvance.registarComentario(comentarioDTO);
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(
-                            null,
-                            ex.getMessage(),
-                            "Error de persistencia",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                try {
-                    comentarioDTO = new ComentarioDTO(
-                            txtTitulo.getText(),
-                            txtComentario.getText(),
-                            photo);
-                    registrarAvance.registarComentario(comentarioDTO);
-                } catch (PersistenciaException e) {
-                    Logger.getLogger(
-                            FrmCrearComentario.class.getName()).log(
-                            Level.SEVERE,
-                            null,
-                            e);
-                    JOptionPane.showMessageDialog(
-                            null,
-                            e.getMessage(),
-                            "Error de persistencia",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-    }//GEN-LAST:event_btnContinuar1ActionPerformed
+    private void btnAtrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrásActionPerformed
+        control.mostrarReportesPendientes(institucionDTO);
+        dispose();
+    }//GEN-LAST:event_btnAtrásActionPerformed
 
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
         boolean isValid = cargarImagen();
@@ -307,8 +282,67 @@ public class FrmCrearComentario extends javax.swing.JFrame {
 
         }
 
-
     }//GEN-LAST:event_btnImagenActionPerformed
+
+    private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
+        if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
+            JOptionPane.showMessageDialog(
+                    null,
+                    "Llenar correctamente los espacios en blanco",
+                    "Espacios vacíos",
+                    JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            int confirmacion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Estás seguro de publicar el comentario?",
+                    "Confirmar publicación",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                if (photo == null) {
+                    try {
+                        comentarioDTO = new ComentarioDTO(
+                                txtTitulo.getText(),
+                                txtComentario.getText(),
+                                reporteDTO.getFolio(),
+                                new Date());
+                        registrarAvance.registarComentario(comentarioDTO);
+                        control.mostrarComentarioExitoso(reporteDTO, institucionDTO);
+                        dispose();
+                    } catch (PersistenciaException ex) {
+                        Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                ex.getMessage(),
+                                "Error de persistencia",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    try {
+                        comentarioDTO = new ComentarioDTO(
+                                txtTitulo.getText(),
+                                txtComentario.getText(),
+                                photo,
+                                reporteDTO.getFolio(),
+                                new Date());
+                        registrarAvance.registarComentario(comentarioDTO);
+                        control.mostrarComentarioExitoso(reporteDTO, institucionDTO);
+                        dispose();
+                    } catch (PersistenciaException e) {
+                        Logger.getLogger(
+                                FrmCrearComentario.class.getName()).log(
+                                Level.SEVERE,
+                                null,
+                                e);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                e.getMessage(),
+                                "Error de persistencia",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+    }//GEN-LAST:event_btnContinuarActionPerformed
     private boolean isValidImage(String fileName) {
         return fileName.toLowerCase().endsWith(".jpg");
     }
@@ -356,8 +390,9 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAtrás;
     private javax.swing.JButton btnComentariosReporte;
-    private javax.swing.JButton btnContinuar1;
+    private javax.swing.JButton btnContinuar;
     private javax.swing.JButton btnImagen;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

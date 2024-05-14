@@ -7,13 +7,10 @@ package PantallasAvance;
 import Excepciones.FindException;
 import Pantallas.ControlNavegacion;
 import dto.InstitucionRegistradaDTO;
-import dto.ReporteDTO;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.itson.diseño.levantarreportess.IRegistrarAvance;
-import org.itson.diseño.levantarreportess.RegistrarAvance;
+import registrarAvance.IRegistrarAvance;
+import registrarAvance.RegistrarAvance;
+
 
 /**
  *

@@ -1,4 +1,4 @@
-package org.itson.diseño.levantarreportess;
+package registrarAvance;
 
 import Excepciones.FindException;
 import Excepciones.PersistenciaException;
@@ -32,15 +32,6 @@ public class RegistrarAvance implements IRegistrarAvance {
     }
 
     @Override
-    public void registarComentario(ComentarioDTO comentarioDTO) throws PersistenciaException {
-        try {
-            comentarioBO.transporteDatos(comentarioDTO);
-        } catch (PersistenciaException e) {
-            throw e;
-        }
-    }
-
-    @Override
     public InstitucionRegistradaDTO consultarInstitucion(String codigoGestion, String nip) throws FindException {
         try {
             return institucionBO.transporteDatos(codigoGestion, nip);
@@ -60,8 +51,23 @@ public class RegistrarAvance implements IRegistrarAvance {
 
     @Override
     public void actualizarEstado(ReporteDTO reporte) throws PersistenciaException {
-         reporteBO.actualizarEstado(reporte);
-         }
-      
+        reporteBO.actualizarEstado(reporte);
+    }
+
+    @Override
+    public void registarComentario(ComentarioDTO comentarioDTO) throws PersistenciaException {
+        try {
+            comentarioBO.transporteDatos(comentarioDTO);
+        } catch (PersistenciaException e) {
+            throw e;
+        }
+    }
+
+    @Override
+    public List<ComentarioDTO> consultarComentarios(ReporteDTO reporteDTO) throws FindException {
+
+        return comentarioBO.consultarLista(reporteDTO);
+
+    }
 
 }

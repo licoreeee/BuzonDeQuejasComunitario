@@ -110,6 +110,17 @@ public class FacadeHistorialReportes implements IFacadeHistorialReportes{
         }
         return null;
     }
+
+    @Override
+    public List<ReporteDTO> obtenerTodosLosReportes() {
+        try {
+            List<ReporteDTO> reportes = historial.obtenerTodosLosReportes();
+            return reportes;
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
     
     

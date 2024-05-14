@@ -4,7 +4,7 @@
  */
 package entidades;
 
-import java.sql.Blob;
+import java.util.Date;
 import org.bson.types.Binary;
 import org.bson.types.ObjectId;
 
@@ -18,28 +18,40 @@ public class Comentario {
     private String titulo;
     private String comentario;
     private Binary photo;
-    private Reporte reporte;
+    private Integer folio;
+    private Date fechaCreacion;
 
     public Comentario() {
     }
 
-    public Comentario(ObjectId _id, String titulo, String comentario, Binary  photo) {
+    public Comentario(ObjectId _id, String titulo, String comentario, Binary  photo, Date fechaCreacion) {
         this._id = _id;
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
+        this.fechaCreacion = fechaCreacion;
+
     }
 
-    public Comentario(String titulo, String comentario, Binary photo) {
+    public Comentario(String titulo, String comentario, Binary photo, Integer folio, Date fechaCreacion) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
+        this.folio = folio;
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public Comentario(String titulo, String comentario) {
+    
+
+    public Comentario(String titulo, String comentario, Integer folio, Date fechaCreacion) {
         this.titulo = titulo;
         this.comentario = comentario;
+        this.folio = folio;
+        this.fechaCreacion = fechaCreacion;
+
     }
+
+    
 
     public ObjectId getId() {
         return _id;
@@ -73,12 +85,20 @@ public class Comentario {
         this.photo = photo;
     }
 
-    public Reporte getReporte() {
-        return reporte;
+    public Integer getFolio() {
+        return folio;
     }
 
-    public void setReporte(Reporte reporte) {
-        this.reporte = reporte;
+    public void setFolio(Integer folio) {
+        this.folio = folio;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
     
     

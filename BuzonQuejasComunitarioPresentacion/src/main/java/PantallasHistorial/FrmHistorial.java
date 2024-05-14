@@ -1,8 +1,35 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package PantallasHistorial;
+
+import Pantallas.ControlNavegacion;
+import com.mycompany.subsistemahistorialreportes.FacadeHistorialReportes;
+import com.mycompany.subsistemahistorialreportes.IFacadeHistorialReportes;
+import dto.IncidentesDTO;
+import dto.InstitucionRegistradaDTO;
+import dto.ReporteDTO;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.EventObject;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+import javax.swing.JButton;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.event.CellEditorListener;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableCellEditor;
+import javax.swing.table.TableCellRenderer;
+import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
  *
@@ -10,11 +37,22 @@ package PantallasHistorial;
  */
 public class FrmHistorial extends javax.swing.JFrame {
 
+    ControlNavegacion controladores;
+    IFacadeAgregarIncidentes facadeIncidentes;
+    IFacadeAgregarInstitucion facadeInstituciones;
+    IFacadeHistorialReportes facadeHistorial;
+    
     /**
      * Creates new form FrmHistorial
      */
     public FrmHistorial() {
+        this.controladores = new ControlNavegacion();
+        this.facadeInstituciones = new FacadeAgregarInstitucion();
+        this.facadeIncidentes = new FacadeAgregarIncidentes();
+        this.facadeHistorial = new FacadeHistorialReportes();
         initComponents();
+        agregarInstitucionesAComboBox();
+        agregarIncidentesAComboBox();
     }
 
     /**
@@ -41,17 +79,18 @@ public class FrmHistorial extends javax.swing.JFrame {
         chkbxFecha = new javax.swing.JCheckBox();
         chkbxInstitucion = new javax.swing.JCheckBox();
         chkbxIncidente = new javax.swing.JCheckBox();
-        chkbxUbicacion = new javax.swing.JCheckBox();
         jlbContexto1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        cmpTitulo = new javax.swing.JTextField();
+        cmbxInstituciones = new javax.swing.JComboBox<>();
+        cmbxIncidentes = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
         btnGenerarPDF = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblReportes = new javax.swing.JTable();
         jlbContexto2 = new javax.swing.JLabel();
         jlbContexto3 = new javax.swing.JLabel();
+        datePickerDesde = new com.github.lgooddatepicker.components.DatePicker();
+        datePickerHasta = new com.github.lgooddatepicker.components.DatePicker();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -68,41 +107,42 @@ public class FrmHistorial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
+        setResizable(false);
 
-        btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnAvances.setForeground(new java.awt.Color(241, 241, 241));
         btnAvances.setText("Avances");
         btnAvances.setContentAreaFilled(false);
+        btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAvances.setForeground(new java.awt.Color(241, 241, 241));
         btnAvances.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAvancesActionPerformed(evt);
             }
         });
 
-        btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnHistorial.setForeground(new java.awt.Color(241, 241, 241));
         btnHistorial.setText("Historial ");
         btnHistorial.setContentAreaFilled(false);
+        btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnHistorial.setForeground(new java.awt.Color(241, 241, 241));
         btnHistorial.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnHistorialActionPerformed(evt);
             }
         });
 
-        btnAdminAcceso.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnAdminAcceso.setForeground(new java.awt.Color(241, 241, 241));
         btnAdminAcceso.setText("Admin");
         btnAdminAcceso.setContentAreaFilled(false);
+        btnAdminAcceso.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnAdminAcceso.setForeground(new java.awt.Color(241, 241, 241));
         btnAdminAcceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAdminAccesoActionPerformed(evt);
             }
         });
 
-        btnLevantarReporte2.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnLevantarReporte2.setForeground(new java.awt.Color(241, 241, 241));
         btnLevantarReporte2.setText("Levantar Reporte");
         btnLevantarReporte2.setContentAreaFilled(false);
+        btnLevantarReporte2.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
+        btnLevantarReporte2.setForeground(new java.awt.Color(241, 241, 241));
         btnLevantarReporte2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLevantarReporte2ActionPerformed(evt);
@@ -117,101 +157,90 @@ public class FrmHistorial extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        jlbHistorial.setText("Historial de reportes");
         jlbHistorial.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
         jlbHistorial.setForeground(new java.awt.Color(33, 33, 33));
-        jlbHistorial.setText("Historial de reportes");
 
+        jlbContexto.setText("Seleccione los filtros con los que desee realizar la búsqueda.");
         jlbContexto.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jlbContexto.setForeground(new java.awt.Color(110, 110, 110));
-        jlbContexto.setText("Seleccione los filtros con los que desee realizar la búsqueda.");
 
+        chkbxTitulo.setText("Título del reporte:");
         chkbxTitulo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         chkbxTitulo.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxTitulo.setText("Título del reporte:");
-        chkbxTitulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkbxTituloActionPerformed(evt);
-            }
-        });
 
+        chkbxFecha.setText("Fecha de creación");
         chkbxFecha.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         chkbxFecha.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxFecha.setText("Fecha de creación");
-        chkbxFecha.addActionListener(new java.awt.event.ActionListener() {
+
+        chkbxInstitucion.setText("Institución:");
+        chkbxInstitucion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        chkbxInstitucion.setForeground(new java.awt.Color(110, 110, 110));
+
+        chkbxIncidente.setText("Incidente:");
+        chkbxIncidente.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        chkbxIncidente.setForeground(new java.awt.Color(110, 110, 110));
+
+        jlbContexto1.setText("Filtros:");
+        jlbContexto1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
+        jlbContexto1.setForeground(new java.awt.Color(33, 33, 33));
+
+        cmpTitulo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        cmpTitulo.setForeground(new java.awt.Color(110, 110, 110));
+
+        cmbxInstituciones.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        cmbxInstituciones.setForeground(new java.awt.Color(110, 110, 110));
+        cmbxInstituciones.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkbxFechaActionPerformed(evt);
+                cmbxInstitucionesActionPerformed(evt);
             }
         });
 
-        chkbxInstitucion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        chkbxInstitucion.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxInstitucion.setText("Institución:");
+        cmbxIncidentes.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        cmbxIncidentes.setForeground(new java.awt.Color(110, 110, 110));
 
-        chkbxIncidente.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        chkbxIncidente.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxIncidente.setText("Incidente:");
-
-        chkbxUbicacion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        chkbxUbicacion.setForeground(new java.awt.Color(110, 110, 110));
-        chkbxUbicacion.setText("Ubicación:");
-
-        jlbContexto1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
-        jlbContexto1.setForeground(new java.awt.Color(33, 33, 33));
-        jlbContexto1.setText("Filtros:");
-
-        jTextField1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(110, 110, 110));
-
-        jComboBox1.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(110, 110, 110));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox2.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        jComboBox2.setForeground(new java.awt.Color(110, 110, 110));
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        btnBuscar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(181, 18, 57));
         btnBuscar.setText("Buscar");
         btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
         btnBuscar.setContentAreaFilled(false);
+        btnBuscar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(181, 18, 57));
         btnBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarActionPerformed(evt);
             }
         });
 
+        btnGenerarPDF.setText("Generar PDF...");
         btnGenerarPDF.setBackground(new java.awt.Color(181, 18, 57));
+        btnGenerarPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
         btnGenerarPDF.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnGenerarPDF.setForeground(new java.awt.Color(255, 255, 255));
-        btnGenerarPDF.setText("Generar PDF...");
-        btnGenerarPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
         btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGenerarPDFActionPerformed(evt);
             }
         });
 
-        tblReportes.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        tblReportes.setForeground(new java.awt.Color(110, 110, 110));
         tblReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Fecha", "Título", "Estado", "Número de resultados", ""
+
             }
         ));
+        tblReportes.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        tblReportes.setForeground(new java.awt.Color(110, 110, 110));
         tblReportes.setSelectionForeground(new java.awt.Color(110, 110, 110));
         jScrollPane2.setViewportView(tblReportes);
 
+        jlbContexto2.setText("desde:");
         jlbContexto2.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         jlbContexto2.setForeground(new java.awt.Color(110, 110, 110));
-        jlbContexto2.setText("desde:");
 
+        jlbContexto3.setText("hasta:");
         jlbContexto3.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         jlbContexto3.setForeground(new java.awt.Color(110, 110, 110));
-        jlbContexto3.setText("hasta:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -237,27 +266,29 @@ public class FrmHistorial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(chkbxInstitucion)
-                        .addGap(18, 18, 18)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmbxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(chkbxIncidente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(100, 100, 100))
+                        .addComponent(cmbxIncidentes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(chkbxTitulo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField1)
-                        .addGap(18, 18, 18)
-                        .addComponent(chkbxUbicacion)
-                        .addGap(112, 112, 112))
+                        .addComponent(cmpTitulo)
+                        .addGap(222, 222, 222))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(chkbxFecha)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlbContexto2)
-                        .addGap(186, 186, 186)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(datePickerDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlbContexto3)
-                        .addContainerGap(187, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
@@ -281,22 +312,23 @@ public class FrmHistorial extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxTitulo)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chkbxUbicacion))
+                    .addComponent(cmpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxFecha)
                     .addComponent(jlbContexto2)
-                    .addComponent(jlbContexto3))
+                    .addComponent(jlbContexto3)
+                    .addComponent(datePickerDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxInstitucion)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(chkbxIncidente)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cmbxIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 226, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -339,22 +371,27 @@ public class FrmHistorial extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
-
+        controladores.mostrarPortalInstituciones();
+        dispose();
     }//GEN-LAST:event_btnAvancesActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-
+        controladores.mostrarHistorial();
+        dispose();
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnAdminAccesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminAccesoActionPerformed
-
+        controladores.mostrarCodigoAdmin();
+        dispose();
     }//GEN-LAST:event_btnAdminAccesoActionPerformed
 
     private void btnLevantarReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporte2ActionPerformed
-
+        controladores.mostrarSeleccionInstitucion();
+        dispose();
     }//GEN-LAST:event_btnLevantarReporte2ActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
@@ -365,15 +402,32 @@ public class FrmHistorial extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGenerarPDFActionPerformed
 
-    private void chkbxTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbxTituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chkbxTituloActionPerformed
-
-    private void chkbxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkbxFechaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_chkbxFechaActionPerformed
+    private void cmbxInstitucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxInstitucionesActionPerformed
+        agregarIncidentesAComboBox();
+    }//GEN-LAST:event_cmbxInstitucionesActionPerformed
 
 
+    private void agregarInstitucionesAComboBox() {
+        List<InstitucionRegistradaDTO> instituciones = facadeInstituciones.consultarInstituciones();
+        instituciones.forEach(institucion -> {
+            String institucionEnFormato = institucion.getSiglas();
+            cmbxInstituciones.addItem(institucionEnFormato);
+        });
+    }
+    
+    private void agregarIncidentesAComboBox() {
+        int indexInstitucion = cmbxInstituciones.getSelectedIndex();
+        List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+        InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+        List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+        incidentes.forEach(incidente -> {
+            String incidenteEnFormato = incidente.getInformacion();
+            cmbxInstituciones.addItem(incidenteEnFormato);
+        });
+    }
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdminAcceso;
@@ -386,15 +440,16 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JCheckBox chkbxIncidente;
     private javax.swing.JCheckBox chkbxInstitucion;
     private javax.swing.JCheckBox chkbxTitulo;
-    private javax.swing.JCheckBox chkbxUbicacion;
-    private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> cmbxIncidentes;
+    private javax.swing.JComboBox<String> cmbxInstituciones;
+    private javax.swing.JTextField cmpTitulo;
+    private com.github.lgooddatepicker.components.DatePicker datePickerDesde;
+    private com.github.lgooddatepicker.components.DatePicker datePickerHasta;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JLabel jlbContexto;
     private javax.swing.JLabel jlbContexto1;
     private javax.swing.JLabel jlbContexto2;
@@ -403,4 +458,424 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JLabel logoGobiernoMexico;
     private javax.swing.JTable tblReportes;
     // End of variables declaration//GEN-END:variables
+
+    public ActionListener botonVer() {
+        return null;
+    }
+    
+    public static Calendar obtenerFechaMasVieja(List<ReporteDTO> reportes) {
+        if (reportes == null || reportes.isEmpty()) {
+            return null;
+        }
+        
+        Calendar fechaMasVieja = reportes.get(0).getFechaCreacion();
+        for (ReporteDTO reporte : reportes) {
+            Calendar fechaCreacion = reporte.getFechaCreacion();
+            if (fechaCreacion.before(fechaMasVieja)) {
+                fechaMasVieja = fechaCreacion;
+            }
+        }
+        return fechaMasVieja;
+    }
+    
+    public static Calendar obtenerFechaMasReciente(List<ReporteDTO> reportes) {
+        if (reportes == null || reportes.isEmpty()) {
+            return null;
+        }
+        Calendar fechaMasReciente = reportes.get(0).getFechaCreacion();
+        for (ReporteDTO reporte : reportes) {
+            Calendar fechaCreacion = reporte.getFechaCreacion();
+            if (fechaCreacion.after(fechaMasReciente)) {
+                fechaMasReciente = fechaCreacion;
+            }
+        }
+        return fechaMasReciente;
+    }
+    
+    private Calendar localDateACalendar(LocalDate fecha) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(fecha.getYear(), fecha.getMonthValue() - 1, fecha.getDayOfMonth());
+        return calendar;
+    }
+
+    private String fechaEnFormato(Calendar calendar) {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+
+        return sdf.format(calendar.getTime());
+    }
+    
+    public void refrescarTabla() {
+        List<ReporteDTO> todosLosReportes = facadeHistorial.obtenerTodosLosReportes();
+        Calendar fechaMasVieja = obtenerFechaMasVieja(todosLosReportes);
+        Calendar fechaMasReciente = obtenerFechaMasReciente(todosLosReportes);
+        String titulo = cmpTitulo.getText();
+        String desde = datePickerDesde.getText();
+        String hasta = datePickerHasta.getText();
+        Calendar fechaDesde;
+        Calendar fechaHasta;
+        int indexInstitucion = cmbxInstituciones.getSelectedIndex();
+        int indexIncidente = cmbxIncidentes.getSelectedIndex();
+        DefaultTableModel modeloTabla = new DefaultTableModel() ;
+        modeloTabla.addColumn("Fecha");
+        modeloTabla.addColumn("Núm. Reportes"); 
+        modeloTabla.addColumn("");
+        
+        if(chkbxFecha.isSelected() && chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
+                chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty() || !desde.isBlank() || !desde.isEmpty()|| 
+                    !hasta.isEmpty() || !hasta.isBlank()){
+                fechaDesde = localDateACalendar(datePickerDesde.getDate());
+                fechaHasta = localDateACalendar(datePickerHasta.getDate());
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+                IncidentesDTO incidente = incidentes.get(indexIncidente);
+                String informacionIncidente = incidente.getInformacion();
+
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+        } else if(chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+                IncidentesDTO incidente = incidentes.get(indexIncidente);
+                String informacionIncidente = incidente.getInformacion();
+                
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+        }else if(chkbxInstitucion.isSelected() && chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorTituloYInstitucion(titulo, siglasInstitucion, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } else if(chkbxInstitucion.isSelected()){
+            List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorInstitucion(siglasInstitucion, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+        }else if(chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorTitulo(titulo, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(!chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+            JOptionPane.showConfirmDialog(this, "Seleccione la casilla de instituciones para buscar por incidentes.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+        }
+    }
+        
+//        for (int i = 0; i < reportes.size(); i++) {
+//            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
+//            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
+//            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
+//            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
+//            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
+//            datosTabla[5] = reportes.get(i).getMotivo() ;
+//            datosTabla[6] = reportes.get(i).getDescripcion() ;
+//            if (reportes.get(i).isNotificado()) {
+//                datosTabla[7] = "NOTIFICADO" ;
+//            } else {
+//                datosTabla[7] = "PENDIENTE" ;
+//            }
+//            if (reportes.get(i).isValidado()) {
+//                datosTabla[8] = "VALIDADO" ;
+//            } 
+//            
+//            modeloTabla.addRow(datosTabla);
+//        }
+//        
+//        tablaReportes.setModel(modeloTabla);
+//        tablaReportes.setRowHeight(30);
+//        tablaReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
+//        tablaReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
+//
+//    
+        
+    
+    private class JButtonCellEditor implements TableCellEditor {
+
+    private final JButton button;
+    private int row;
+    private ActionListener actionListener;
+
+    public JButtonCellEditor(String text, ActionListener actionListener) {
+        this.button = new JButton(text);
+//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
+//        this.button.setBackground(new Color(188, 149, 92));
+//        this.button.setForeground(new Color(242, 242, 242));
+        this.actionListener = actionListener;
+        this.button.addActionListener((ActionEvent evt)->{
+            this.actionListener.actionPerformed(
+                new ActionEvent(this.button, ActionEvent.ACTION_PERFORMED, this.row+"")
+            );
+        });
+    }
+
+    @Override
+    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+        this.row = row;
+        return this.button;
+    }
+
+    @Override
+    public Object getCellEditorValue() {
+        return true;
+    }
+
+    @Override
+    public boolean isCellEditable(EventObject anEvent) {
+        return true;
+    }
+
+    @Override
+    public boolean shouldSelectCell(EventObject anEvent) {
+        return true;
+    }
+
+    @Override
+    public boolean stopCellEditing() {
+        return true;
+    }
+
+    @Override
+    public void cancelCellEditing() {}
+
+    @Override
+    public void addCellEditorListener(CellEditorListener l) {}
+
+    @Override
+    public void removeCellEditorListener(CellEditorListener l) {}
+}
+    
+    public class JButtonRenderer implements TableCellRenderer {
+
+    private final JButton button;
+
+    public JButtonRenderer(String text) {
+        this.button = new JButton(text);
+//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
+//        this.button.setBackground(new Color(188, 149, 92));
+//        this.button.setForeground(new Color(242, 242, 242));
+    }
+
+    @Override
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        return this.button;
+    }
+
+}
+
 }

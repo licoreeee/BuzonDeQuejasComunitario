@@ -29,10 +29,11 @@
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="ff" green="ff" red="ff" type="rgb"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -99,14 +100,14 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnAvances">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Avances"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Inter Light" size="14" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f1" green="f1" red="f1" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Avances"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAvancesActionPerformed"/>
@@ -114,14 +115,14 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnHistorial">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Historial "/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Inter Light" size="14" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f1" green="f1" red="f1" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Historial "/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHistorialActionPerformed"/>
@@ -129,14 +130,14 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnAdminAcceso">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Admin"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Inter Light" size="14" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f1" green="f1" red="f1" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Admin"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAdminAccesoActionPerformed"/>
@@ -144,14 +145,14 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnLevantarReporte2">
       <Properties>
+        <Property name="text" type="java.lang.String" value="Levantar Reporte"/>
+        <Property name="contentAreaFilled" type="boolean" value="false"/>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Inter Light" size="14" style="0"/>
         </Property>
         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
           <Color blue="f1" green="f1" red="f1" type="rgb"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Levantar Reporte"/>
-        <Property name="contentAreaFilled" type="boolean" value="false"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnLevantarReporte2ActionPerformed"/>
@@ -211,29 +212,31 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="chkbxInstitucion" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                          <Component id="jComboBox1" min="-2" pref="113" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="cmbxInstituciones" min="-2" pref="131" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="chkbxIncidente" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jComboBox2" max="32767" attributes="0"/>
-                          <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                          <Component id="cmbxIncidentes" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="chkbxTitulo" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jTextField1" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="chkbxUbicacion" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>
+                          <Component id="cmpTitulo" max="32767" attributes="0"/>
+                          <EmptySpace min="-2" pref="222" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="chkbxFecha" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jlbContexto2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="186" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="datePickerDesde" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="jlbContexto3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="187" max="32767" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="datePickerHasta" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane2" min="-2" pref="588" max="-2" attributes="0"/>
@@ -266,25 +269,26 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="chkbxTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="chkbxUbicacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmpTitulo" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="chkbxFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlbContexto2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlbContexto3" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="datePickerDesde" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="datePickerHasta" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="chkbxInstitucion" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbxInstituciones" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="chkbxIncidente" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="cmbxIncidentes" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jScrollPane2" min="-2" pref="226" max="-2" attributes="0"/>
-                  <EmptySpace pref="15" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" pref="185" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -292,99 +296,82 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jlbHistorial">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Historial de reportes"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="20" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="21" green="21" red="21" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Historial de reportes"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlbContexto">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Seleccione los filtros con los que desee realizar la b&#xfa;squeda."/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Seleccione los filtros con los que desee realizar la b&#xfa;squeda."/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkbxTitulo">
           <Properties>
+            <Property name="text" type="java.lang.String" value="T&#xed;tulo del reporte:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="T&#xed;tulo del reporte:"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkbxTituloActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkbxFecha">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Fecha de creaci&#xf3;n"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Fecha de creaci&#xf3;n"/>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkbxFechaActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkbxInstitucion">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Instituci&#xf3;n:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Instituci&#xf3;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="chkbxIncidente">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6e" green="6e" red="6e" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Incidente:"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JCheckBox" name="chkbxUbicacion">
-          <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Ubicaci&#xf3;n:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlbContexto1">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Filtros:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="1"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="21" green="21" red="21" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Filtros:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="cmpTitulo">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
@@ -394,42 +381,35 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox1">
+        <Component class="javax.swing.JComboBox" name="cmbxInstituciones">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter" size="14" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6e" green="6e" red="6e" type="rgb"/>
-            </Property>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
+              <StringArray count="0"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Inter" size="14" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbxInstitucionesActionPerformed"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="cmbxIncidentes">
           <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="0"/>
+            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="14" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
-            </Property>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
             </Property>
           </Properties>
           <AuxValues>
@@ -438,12 +418,6 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnBuscar">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter Light" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="39" green="12" red="b5" type="rgb"/>
-            </Property>
             <Property name="text" type="java.lang.String" value="Buscar"/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -453,6 +427,12 @@
               </Border>
             </Property>
             <Property name="contentAreaFilled" type="boolean" value="false"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Inter Light" size="16" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="39" green="12" red="b5" type="rgb"/>
+            </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBuscarActionPerformed"/>
@@ -460,22 +440,22 @@
         </Component>
         <Component class="javax.swing.JButton" name="btnGenerarPDF">
           <Properties>
+            <Property name="text" type="java.lang.String" value="Generar PDF..."/>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="39" green="12" red="b5" type="rgb"/>
             </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Inter Light" size="16" style="0"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Generar PDF..."/>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder>
                   <Color PropertyName="color" blue="0" green="0" red="cc" type="rgb"/>
                 </LineBorder>
               </Border>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Inter Light" size="16" style="0"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
           </Properties>
           <Events>
@@ -491,20 +471,14 @@
           <SubComponents>
             <Component class="javax.swing.JTable" name="tblReportes">
               <Properties>
+                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                  <Table columnCount="0" rowCount="0"/>
+                </Property>
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Inter" size="14" style="0"/>
                 </Property>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6e" green="6e" red="6e" type="rgb"/>
-                </Property>
-                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="0">
-                    <Column editable="true" title="Fecha" type="java.lang.Object"/>
-                    <Column editable="true" title="T&#xed;tulo" type="java.lang.Object"/>
-                    <Column editable="true" title="Estado" type="java.lang.Object"/>
-                    <Column editable="true" title="N&#xfa;mero de resultados" type="java.lang.Object"/>
-                    <Column editable="true" title="" type="java.lang.Object"/>
-                  </Table>
                 </Property>
                 <Property name="selectionForeground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="6e" green="6e" red="6e" type="rgb"/>
@@ -515,25 +489,29 @@
         </Container>
         <Component class="javax.swing.JLabel" name="jlbContexto2">
           <Properties>
+            <Property name="text" type="java.lang.String" value="desde:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="12" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="desde:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jlbContexto3">
           <Properties>
+            <Property name="text" type="java.lang.String" value="hasta:"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Inter" size="12" style="0"/>
             </Property>
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6e" green="6e" red="6e" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="hasta:"/>
           </Properties>
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePickerDesde">
+        </Component>
+        <Component class="com.github.lgooddatepicker.components.DatePicker" name="datePickerHasta">
         </Component>
       </SubComponents>
     </Container>

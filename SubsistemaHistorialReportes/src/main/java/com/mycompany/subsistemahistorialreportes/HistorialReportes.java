@@ -71,4 +71,10 @@ public class HistorialReportes {
             return reportes;
     }
     
+    public List<ReporteDTO> obtenerTodosLosReportes() throws FindException{
+        List<ReporteDTO> reportes;
+        reportes = reporteBO.obtenerTodosLosReportes();
+        return reportes;
+    }
+    
 }

@@ -21,15 +21,9 @@ public class ReporteDTO {
     private CiudadanoDTO ciudadano;
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
+  
 
     public ReporteDTO() {
-    }
-
-    public ReporteDTO(String id, String titulo, Boolean estado) {
-        this.id = id;
-        this.titulo = titulo;
-        this.estado = estado;
-
     }
 
     public ReporteDTO(int folio, Boolean estado) {
@@ -57,6 +51,13 @@ public class ReporteDTO {
         this.descripcionExtra = descripcionExtra;
         this.institucion = institucion;
         this.incidente = incidente;
+
+    }   
+    public ReporteDTO(String id, String titulo, Boolean estado) {
+        this.id = id;
+        this.titulo = titulo;
+        this.estado = estado;
+
     }
 
     public ReporteDTO(String id, Boolean estado) {

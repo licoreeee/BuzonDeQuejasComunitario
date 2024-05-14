@@ -4,6 +4,7 @@
  */
 package Pantallas;
 
+import PantallasAvance.DlgComentarioExitoso;
 import PantallasAvance.FrmComentariosReporte;
 import PantallasAvance.FrmCrearComentario;
 import PantallasAvance.FrmPortalInstituciones;
@@ -17,7 +18,7 @@ import dto.ReporteDTO;
  * Controlador encargado de la navegación entre las diferentes vistas del
  * sistema.
  *
- * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
+ * @author Hisamy Cota, Gael Castro, Victoria Vega
  */
 public class ControlNavegacion {
 
@@ -51,22 +52,28 @@ public class ControlNavegacion {
      */
     public void mostrarReportesPendientes(InstitucionRegistradaDTO institucion) {
         FrmReportesPendientes reportesPendientes = new FrmReportesPendientes(institucion);
-        reportesPendientes.setVisible(true);
     }
-
+    
+    public void mostrarComentarioExitoso(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO){
+        DlgComentarioExitoso comentarioExitoso= new  DlgComentarioExitoso(null, true, reporteDTO, institucionDTO);
+        comentarioExitoso.setVisible(true);
+        
+    }
     /**
      * Muestra el formulario para crear un comentario.
+     * @param reporteDTO
+     * @param institucionDTO
      */
-    public void mostrarCrearComentario(ReporteDTO reporteDTO) {
-        FrmCrearComentario crearComentario = new FrmCrearComentario(reporteDTO);
+    public void mostrarCrearComentario(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
+        FrmCrearComentario crearComentario = new FrmCrearComentario(reporteDTO, institucionDTO);
         crearComentario.setVisible(true);
     }
 
     /**
      * Muestra la vista para visualizar los comentarios de un reporte.
      */
-    public void mostrarComentariosReporte() {
-        FrmComentariosReporte comentariosReporte = new FrmComentariosReporte();
+    public void mostrarComentariosReporte(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
+        FrmComentariosReporte comentariosReporte = new FrmComentariosReporte(reporteDTO, institucionDTO);
         comentariosReporte.setVisible(true);
     }
 
@@ -169,7 +176,7 @@ public class ControlNavegacion {
         FrmConfirmado confirmado = new FrmConfirmado();
         confirmado.setVisible(true);
     }
-    
+
     public void mostrarHistorial() {
         FrmHistorial historial = new FrmHistorial();
         historial.setVisible(true);

@@ -63,37 +63,30 @@ public class ReporteBO implements IReporteBO {
 
     @Override
     public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String siglasInstitucion) throws FindException {
-        try {
 
-            List<ReporteDTO> reportesDTO = new ArrayList<>();
-            List<Reporte> reportes = reportesDAO.obtenerReportePorInstitucion(siglasInstitucion);
-            if (!reportes.isEmpty()) {
-                for (Reporte reporte : reportes) {
-                    if (reporte.getEstado()) {
-                        Calendar calendar = Calendar.getInstance();
-                        calendar.setTime(reporte.getFechaCreacion());
-                        ReporteDTO reporteDTO = new ReporteDTO(
-                                reporte.getFolio(),
-                                reporte.getTitulo(),
-                                reporte.getDescripcion(),
-                                calendar,
-                                reporte.getEstado(),
-                                reporte.getCalle(),
-                                reporte.getColonia());
+        List<ReporteDTO> reportesDTO = new ArrayList<>();
+        List<Reporte> reportes = reportesDAO.obtenerReportePorInstitucion(siglasInstitucion);
+        if (!reportes.isEmpty()) {
+            for (Reporte reporte : reportes) {
+                if (reporte.getEstado()) {
+                    Calendar calendar = Calendar.getInstance();
+                    calendar.setTime(reporte.getFechaCreacion());
+                    ReporteDTO reporteDTO = new ReporteDTO(
+                            reporte.getFolio(),
+                            reporte.getTitulo(),
+                            reporte.getDescripcion(),
+                            calendar,
+                            reporte.getEstado(),
+                            reporte.getCalle(),
+                            reporte.getColonia());
 
-                        reportesDTO.add(reporteDTO);
-                    }
+                    reportesDTO.add(reporteDTO);
                 }
-                if (!reportesDTO.isEmpty()) {
-                    return reportesDTO;
-                } else {
-                    throw new FindException("No se encontró ningún reporte abierto.");
-                }
-            } else {
-                throw new FindException("No se encontró ningún reporte, intente más tarde.");
             }
-        } catch (FindException e) {
-            throw e;
+            return reportesDTO;
+
+        } else {
+            throw new FindException("No se encontró ningún reporte, intente más tarde.");
         }
     }
 
@@ -230,27 +223,14 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
-   
-
-    /**
-     * Método para generar una cadena de números aleatorios de longitud
-     * específica.
-     *
-     * @param length La longitud de la cadena de números aleatorios a generar.
-     * @return Una cadena de números aleatorios.
-     */
-    private String generarNumerosAleatorios(int length) {
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        for (int i = 0; i < length; i++) {
-            sb.append(random.nextInt(10));
-        }
-        return sb.toString();
-    }
-
     @Override
-    public ReporteDTO transportarDatos(ReporteDTO reporteDTO) throws NegociosException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public List<ReporteDTO> obtenerTodosLosReportes() throws FindException {
+        try {
+            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerTodosLosReportes());
+        } catch (Exception e) {
+            new NegociosException().getMessage();
+        }
+        return null;
     }
 
 }

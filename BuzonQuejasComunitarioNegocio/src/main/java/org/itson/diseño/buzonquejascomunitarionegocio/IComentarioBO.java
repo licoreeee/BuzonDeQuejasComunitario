@@ -4,9 +4,10 @@
  */
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import Excepciones.FindException;
 import Excepciones.PersistenciaException;
 import dto.ComentarioDTO;
-import entidades.Comentario;
+import dto.ReporteDTO;
 import java.util.List;
 
 /**
@@ -15,6 +16,5 @@ import java.util.List;
  */
 public interface IComentarioBO {
     void transporteDatos(ComentarioDTO comentarioDTO)throws PersistenciaException;
-    void transporteLista(List<Comentario> comentarios);
-    List<ComentarioDTO> convertirListaEntidad(List<Comentario> comentarios);
+    List<ComentarioDTO> consultarLista(ReporteDTO reporteDTO) throws FindException;
 }

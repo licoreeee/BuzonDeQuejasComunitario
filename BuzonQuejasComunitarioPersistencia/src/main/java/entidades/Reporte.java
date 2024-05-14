@@ -33,10 +33,12 @@ public class Reporte {
     public Reporte() {
     }
 
-    public Reporte(ObjectId id, Boolean estado) {
-        this.id = id;
+    public Reporte(int folio, Boolean estado) {
+        this.folio = folio;
         this.estado = estado;
     }
+
+    
 
     public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
@@ -74,11 +76,6 @@ public class Reporte {
         this.descripcion = descripcion;
         this.fechaCreacion = fechaCreacion;
         this.photo = photo;
-    }
-
-    public Reporte(int folio, Boolean estado) {
-        this.folio = folio;
-        this.estado = estado;
     }
 
     public Reporte(ObjectId id, int folio, String titulo, Date fechaCreacion) {

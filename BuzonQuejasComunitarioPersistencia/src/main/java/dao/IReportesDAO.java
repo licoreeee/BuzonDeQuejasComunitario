@@ -39,5 +39,7 @@ public interface IReportesDAO {
     void actualizarEstado(Reporte reporte) throws PersistenciaException;
     
     List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException;
+    
+    List<Reporte> obtenerTodosLosReportes() throws FindException;
 
 }
