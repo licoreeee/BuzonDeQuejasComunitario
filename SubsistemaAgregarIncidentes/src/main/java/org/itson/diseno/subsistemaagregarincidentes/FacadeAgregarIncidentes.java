@@ -14,6 +14,7 @@ import org.itson.diseño.buzonquejascomunitarionegocio.IIncidenteBO;
 import org.itson.diseño.buzonquejascomunitarionegocio.IncidenteBO;
 
 /**
+ * Clase fachada para el subsistema de agregar incidentes.
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
@@ -21,10 +22,20 @@ public class FacadeAgregarIncidentes implements IFacadeAgregarIncidentes {
 
     private AgregarIncidentes incidentes;
 
+    /**
+     * Constructor de la clase FacadeAgregarIncidentes.
+     */
     public FacadeAgregarIncidentes() {
         incidentes = new AgregarIncidentes();
     }
 
+    /**
+     * Método para agregar incidentes.
+     *
+     * @param incidentesDTO La lista de DTOs que representan los incidentes a
+     * agregar.
+     * @return Una lista de DTOs que representan los incidentes agregados.
+     */
     public List<IncidentesDTO> agregarIncidentes(List<IncidentesDTO> incidentesDTO) {
         List<IncidentesDTO> incidentesObtenidos = new ArrayList<>();
         try {
@@ -36,6 +47,13 @@ public class FacadeAgregarIncidentes implements IFacadeAgregarIncidentes {
         return null;
     }
 
+    /**
+     * Método para consultar los incidentes asociados a una institución.
+     *
+     * @param id El ID de la institución.
+     * @return Una lista de DTOs que representan los incidentes asociados a la
+     * institución.
+     */
     @Override
     public List<IncidentesDTO> consultarIncidentes(String id) {
         List<IncidentesDTO> incidentesObtenidos = new ArrayList<>();

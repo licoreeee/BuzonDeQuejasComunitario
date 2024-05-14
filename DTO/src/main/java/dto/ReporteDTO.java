@@ -22,8 +22,8 @@ public class ReporteDTO {
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
 
-
     public ReporteDTO(int folio, String titulo, String descripcion, Date fechaCreacion, byte[] photo, String calle, String colonia, String descripcionExtra, CiudadanoDTO ciudadano, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
+    }
 
     public ReporteDTO() {
     }
@@ -53,7 +53,6 @@ public class ReporteDTO {
         this.colonia = colonia;
     }
 
-    
     public ReporteDTO(String id, int folio, String titulo, String descripcion, Calendar fechaCreacion, byte[] photo) {
 
         this.id = id;

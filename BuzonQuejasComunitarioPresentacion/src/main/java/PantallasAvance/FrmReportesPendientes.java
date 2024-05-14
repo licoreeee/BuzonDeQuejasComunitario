@@ -22,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
-import org.itson.diseño.levantarreportess.RegistrarAvance;
+//import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
@@ -39,22 +39,22 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         initComponents();
         control = new ControlNavegacion();
         this.institucionDTO = institucionDTO;
-        registrarAvance = new RegistrarAvance();
+//        registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
     }
     public ActionListener botonValidar() {
         ActionListener validarListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ReporteDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
-                if (!reporteSelec.isValidado()) {
-                    dispose() ;
-                    System.out.println((reporteSelec.getAlumno().getNombre())) ;
-                    FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
-                    frmValidar.setVisible(true);
-                } else {
-                    JOptionPane.showConfirmDialog(new JFrame(), "Este reporte ya ha sido validado previamente", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
-                }
+//                ReporteDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
+//                if (!reporteSelec.isValidado()) {
+//                    dispose() ;
+//                    System.out.println((reporteSelec.getAlumno().getNombre())) ;
+//                    FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
+//                    frmValidar.setVisible(true);
+//                } else {
+//                    JOptionPane.showConfirmDialog(new JFrame(), "Este reporte ya ha sido validado previamente", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
+//                }
                 
             }
         } ;
@@ -68,7 +68,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
     
     public void refrescarTabla() {
         DefaultTableModel modeloTabla = new DefaultTableModel() ;
-        List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes() ;
+//        List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes() ;
         Object[] datosTabla = new Object[9];
         modeloTabla.addColumn("CURP");
         modeloTabla.addColumn("Nombre");
@@ -82,30 +82,30 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         
         
         
-        for (int i = 0; i < reportes.size(); i++) {
-            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
-            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
-            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
-            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
-            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
-            datosTabla[5] = reportes.get(i).getMotivo() ;
-            datosTabla[6] = reportes.get(i).getDescripcion() ;
-            if (reportes.get(i).isNotificado()) {
-                datosTabla[7] = "NOTIFICADO" ;
-            } else {
-                datosTabla[7] = "PENDIENTE" ;
-            }
-            if (reportes.get(i).isValidado()) {
-                datosTabla[8] = "VALIDADO" ;
-            } 
-            
-            modeloTabla.addRow(datosTabla);
-        }
-        
-        tablaReportes.setModel(modeloTabla);
-        tablaReportes.setRowHeight(30);
-        tablaReportes.getColumnModel().getColumn(8).setCellRenderer(new JButtonRenderer("Validar"));
-        tablaReportes.getColumnModel().getColumn(8).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
+//        for (int i = 0; i < reportes.size(); i++) {
+//            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
+//            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
+//            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
+//            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
+//            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
+//            datosTabla[5] = reportes.get(i).getMotivo() ;
+//            datosTabla[6] = reportes.get(i).getDescripcion() ;
+//            if (reportes.get(i).isNotificado()) {
+//                datosTabla[7] = "NOTIFICADO" ;
+//            } else {
+//                datosTabla[7] = "PENDIENTE" ;
+//            }
+//            if (reportes.get(i).isValidado()) {
+//                datosTabla[8] = "VALIDADO" ;
+//            } 
+//            
+//            modeloTabla.addRow(datosTabla);
+//        }
+//        
+//        tablaReportes.setModel(modeloTabla);
+//        tablaReportes.setRowHeight(30);
+//        tablaReportes.getColumnModel().getColumn(8).setCellRenderer(new JButtonRenderer("Validar"));
+//        tablaReportes.getColumnModel().getColumn(8).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
 
     }
 

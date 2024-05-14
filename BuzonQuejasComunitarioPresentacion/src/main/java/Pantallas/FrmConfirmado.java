@@ -8,15 +8,20 @@ import java.util.Random;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 /**
+ * Ventana de confirmación de operación exitosa. Muestra un mensaje indicando
+ * que la operación se realizó correctamente en la lista de instituciones del
+ * programa. Ofrece opciones para volver al menú principal o volver a la lista
+ * de instituciones registradas.
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmConfirmado extends javax.swing.JFrame {
-    
+
     private ControlNavegacion controladores;
 
     /**
-     * Creates new form FrmFolio
+     * Crea una nueva instancia de FrmConfirmado. Inicializa los componentes
+     * visuales y establece el controlador de navegación.
      */
     public FrmConfirmado() {
         initComponents();
@@ -146,11 +151,23 @@ public class FrmConfirmado extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Muestra el menú principal y cierra la ventana actual al hacer clic en el
+     * botón "Salir".
+     *
+     * @param evt El evento de acción.
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         controladores.mostrarMenuPrincipal();
         dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    /**
+     * Muestra el frame de instituciones registradas al hacer clic en el botón
+     * "Volver a Instituciones Registradas".
+     *
+     * @param evt El evento de acción.
+     */
     private void btnVolverInstitucionesRegistradasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverInstitucionesRegistradasActionPerformed
         controladores.mostrarInstitucionesRegistradas();
         dispose();
