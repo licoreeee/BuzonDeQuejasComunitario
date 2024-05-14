@@ -54,8 +54,8 @@ public class ControlNavegacion {
         FrmReportesPendientes reportesPendientes = new FrmReportesPendientes(institucion);
     }
     
-    public void mostrarComentarioExitoso(){
-        DlgComentarioExitoso comentarioExitoso= new  DlgComentarioExitoso(null, true);
+    public void mostrarComentarioExitoso(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO){
+        DlgComentarioExitoso comentarioExitoso= new  DlgComentarioExitoso(null, true, reporteDTO, institucionDTO);
         comentarioExitoso.setVisible(true);
         
     }

@@ -285,53 +285,60 @@ public class FrmCrearComentario extends javax.swing.JFrame {
     }//GEN-LAST:event_btnImagenActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
- if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
+        if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
             JOptionPane.showMessageDialog(
                     null,
                     "Llenar correctamente los espacios en blanco",
                     "Espacios vacíos",
                     JOptionPane.INFORMATION_MESSAGE);
         } else {
-            if (photo == null) {
-                try {
-                    comentarioDTO = new ComentarioDTO(
-                            txtTitulo.getText(),
-                            txtComentario.getText(),
-                            reporteDTO.getFolio(),
-                            new Date());
-                    registrarAvance.registarComentario(comentarioDTO);
-                    control.mostrarComentarioExitoso();
-                    dispose();
-                } catch (PersistenciaException ex) {
-                    Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
-                    JOptionPane.showMessageDialog(
-                            null,
-                            ex.getMessage(),
-                            "Error de persistencia",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                try {
-                    comentarioDTO = new ComentarioDTO(
-                            txtTitulo.getText(),
-                            txtComentario.getText(),
-                            photo,
-                            reporteDTO.getFolio(),
-                            new Date());
-                    registrarAvance.registarComentario(comentarioDTO);
-                    control.mostrarComentarioExitoso();
-                    dispose();
-                } catch (PersistenciaException e) {
-                    Logger.getLogger(
-                            FrmCrearComentario.class.getName()).log(
-                            Level.SEVERE,
-                            null,
-                            e);
-                    JOptionPane.showMessageDialog(
-                            null,
-                            e.getMessage(),
-                            "Error de persistencia",
-                            JOptionPane.ERROR_MESSAGE);
+            int confirmacion = JOptionPane.showConfirmDialog(
+                    null,
+                    "¿Estás seguro de publicar el comentario?",
+                    "Confirmar publicación",
+                    JOptionPane.YES_NO_OPTION);
+            if (confirmacion == JOptionPane.YES_OPTION) {
+                if (photo == null) {
+                    try {
+                        comentarioDTO = new ComentarioDTO(
+                                txtTitulo.getText(),
+                                txtComentario.getText(),
+                                reporteDTO.getFolio(),
+                                new Date());
+                        registrarAvance.registarComentario(comentarioDTO);
+                        control.mostrarComentarioExitoso(reporteDTO, institucionDTO);
+                        dispose();
+                    } catch (PersistenciaException ex) {
+                        Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                ex.getMessage(),
+                                "Error de persistencia",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    try {
+                        comentarioDTO = new ComentarioDTO(
+                                txtTitulo.getText(),
+                                txtComentario.getText(),
+                                photo,
+                                reporteDTO.getFolio(),
+                                new Date());
+                        registrarAvance.registarComentario(comentarioDTO);
+                        control.mostrarComentarioExitoso(reporteDTO, institucionDTO);
+                        dispose();
+                    } catch (PersistenciaException e) {
+                        Logger.getLogger(
+                                FrmCrearComentario.class.getName()).log(
+                                Level.SEVERE,
+                                null,
+                                e);
+                        JOptionPane.showMessageDialog(
+                                null,
+                                e.getMessage(),
+                                "Error de persistencia",
+                                JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }

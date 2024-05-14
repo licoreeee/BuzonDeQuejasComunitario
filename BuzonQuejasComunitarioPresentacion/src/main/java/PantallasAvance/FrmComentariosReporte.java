@@ -15,8 +15,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import registrarAvance.consultarComentariosReporte.ConsultarComentariosReporte;
-import registrarAvance.consultarComentariosReporte.IConsultarComentariosReporte;
+import registrarAvance.IRegistrarAvance;
+import registrarAvance.RegistrarAvance;
+
 
 /**
  *
@@ -27,12 +28,12 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
     ControlNavegacion control = new ControlNavegacion();
     ReporteDTO reporteDTO;
     InstitucionRegistradaDTO institucionDTO;
-    IConsultarComentariosReporte consultarComentarios;
+    IRegistrarAvance registrarAvance;
     List<ComentarioDTO>comentariosDTO;
 
     public FrmComentariosReporte(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
         initComponents();
-        consultarComentarios = new ConsultarComentariosReporte();
+        registrarAvance = new RegistrarAvance();
         comentariosDTO = new ArrayList<>();
         this.reporteDTO = reporteDTO;
         comentariosReporte(reporteDTO);
@@ -40,7 +41,7 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
 
     private void comentariosReporte(ReporteDTO reporteDTO) {
         try {
-            comentariosDTO = consultarComentarios.consultarComentarios(reporteDTO);
+            comentariosDTO = registrarAvance.consultarComentarios(reporteDTO);
             llenarTabla();
         } catch (FindException ex) {
             Logger.getLogger(FrmComentariosReporte.class.getName()).log(Level.SEVERE, null, ex);

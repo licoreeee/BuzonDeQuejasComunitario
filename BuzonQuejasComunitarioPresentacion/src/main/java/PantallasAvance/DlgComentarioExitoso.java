@@ -4,18 +4,28 @@
  */
 package PantallasAvance;
 
+import Pantallas.ControlNavegacion;
+import dto.InstitucionRegistradaDTO;
+import dto.ReporteDTO;
+
 /**
  *
  * @author hisam
  */
 public class DlgComentarioExitoso extends javax.swing.JDialog {
 
+    private ControlNavegacion control;
+    private ReporteDTO reporteDTO;
+    private InstitucionRegistradaDTO institucionDTO;
     /**
      * Creates new form DlgComentarioExitoso
      */
-    public DlgComentarioExitoso(java.awt.Frame parent, boolean modal) {
+    public DlgComentarioExitoso(java.awt.Frame parent, boolean modal, ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
         super(parent, modal);
         initComponents();
+        this.institucionDTO = institucionDTO;
+        this.reporteDTO = reporteDTO;
+        control = new ControlNavegacion();
     }
 
     /**
@@ -33,6 +43,7 @@ public class DlgComentarioExitoso extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         lblMensaje = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
+        btnComentario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Comentario exitoso");
@@ -87,7 +98,7 @@ public class DlgComentarioExitoso extends javax.swing.JDialog {
                 .addGap(36, 36, 36))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, 430, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 430, -1));
 
         btnSalir.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnSalir.setForeground(new java.awt.Color(204, 0, 0));
@@ -99,7 +110,19 @@ public class DlgComentarioExitoso extends javax.swing.JDialog {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 80, 40));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 80, 40));
+
+        btnComentario.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnComentario.setForeground(new java.awt.Color(204, 0, 0));
+        btnComentario.setText("Crear otro comentario");
+        btnComentario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnComentario.setContentAreaFilled(false);
+        btnComentario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComentarioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnComentario, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 170, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -117,11 +140,19 @@ public class DlgComentarioExitoso extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        control.mostrarMenuPrincipal();
+        dispose();
         
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    private void btnComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarioActionPerformed
+        control.mostrarCrearComentario(reporteDTO, institucionDTO);
+        dispose();
+    }//GEN-LAST:event_btnComentarioActionPerformed
+
   
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnComentario;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
