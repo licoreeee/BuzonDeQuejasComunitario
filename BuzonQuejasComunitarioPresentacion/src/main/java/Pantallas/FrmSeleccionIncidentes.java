@@ -36,6 +36,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private List<IncidentesDTO> incidentesDeInstitucion = new ArrayList<>();
     private InstitucionNuevaDTO institucion;
     private List<IncidentesDTO> incidentesDTOs;
+    private ControlNavegacion control;
 
     /**
      * Creates new form FrmSeleccionIncidentes
@@ -53,6 +54,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         this.institucionRegistradaDTO = institucionRegistradaDTO;
         this.incidentesDeInstitucion = incidentesDeInstitucion;
         actualizarTabla(incidentesDTOs);
+        control = new ControlNavegacion();
     }
     
     private void actualizarTabla(List<IncidentesDTO> incidentesDTOs) {
@@ -110,7 +112,6 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jLabel6 = new javax.swing.JLabel();
-        btnLevantarReporte = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
@@ -133,18 +134,16 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnLevantarReporte.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnLevantarReporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnLevantarReporte.setText("Levantar Reporte");
-        btnLevantarReporte.setBorderPainted(false);
-        btnLevantarReporte.setContentAreaFilled(false);
-        getContentPane().add(btnLevantarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(277, 50, -1, -1));
-
         btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnAvances.setForeground(new java.awt.Color(255, 255, 255));
         btnAvances.setText("Avances");
         btnAvances.setBorderPainted(false);
         btnAvances.setContentAreaFilled(false);
+        btnAvances.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvancesActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 50, -1, -1));
 
         btnHistorial.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
@@ -152,6 +151,11 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         btnHistorial.setText("Historial");
         btnHistorial.setBorderPainted(false);
         btnHistorial.setContentAreaFilled(false);
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 50, -1, -1));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_gobierno_mexico.png"))); // NOI18N
@@ -235,11 +239,19 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
+    private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
+    control.mostrarPortalInstituciones();
+    }//GEN-LAST:event_btnAvancesActionPerformed
+
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+    control.mostrarHistorial();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHistorialActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
-    private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

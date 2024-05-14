@@ -46,6 +46,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
         txtID = new javax.swing.JTextField();
         btnContinuar = new javax.swing.JButton();
         JPasswordNip = new javax.swing.JPasswordField();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Portal de instituciones");
@@ -102,8 +103,20 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
                 btnContinuarActionPerformed(evt);
             }
         });
-        pnlFondo.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
+        pnlFondo.add(btnContinuar, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 104, 43));
         pnlFondo.add(JPasswordNip, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 130, -1));
+
+        btnAtras.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(181, 18, 57));
+        btnAtras.setText("Atrás");
+        btnAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 350, 104, 43));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -152,9 +165,14 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnContinuarActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        control.mostrarMenuPrincipal();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPasswordField JPasswordNip;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnContinuar;
     private javax.swing.JLabel jlbCalle;
     private javax.swing.JLabel jlbColonia;

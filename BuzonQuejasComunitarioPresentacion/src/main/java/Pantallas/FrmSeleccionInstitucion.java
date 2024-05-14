@@ -35,6 +35,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private List<InstitucionNuevaDTO> institucionesnuevas;
     private List<InstitucionRegistradaDTO> instituciones;
     private InstitucionRegistradaDTO institucionSeleccionada;
+    private ControlNavegacion control;
 
     /**
      * Creates new form FrmSeleccionInstitucion
@@ -48,6 +49,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         institucionesnuevas = facadeLevantarReporte.obtenerInstituciones();
         this.controladores = new ControlNavegacion();
         this.instituciones = facadeAgregarInstitucion.consultarInstituciones();
+        control = new ControlNavegacion();
         llenarComboBox();
     }
 
@@ -121,7 +123,6 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblDescripcion1 = new javax.swing.JLabel();
         lblDescripcion2 = new javax.swing.JLabel();
         lblInformacionInstitucion = new javax.swing.JLabel();
-        btnLevantarReporte = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
@@ -154,18 +155,16 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblInformacionInstitucion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(lblInformacionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 500, -1));
 
-        btnLevantarReporte.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnLevantarReporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnLevantarReporte.setText("Levantar Reporte");
-        btnLevantarReporte.setBorder(null);
-        btnLevantarReporte.setContentAreaFilled(false);
-        jPanel1.add(btnLevantarReporte, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 50, 130, -1));
-
         btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnAvances.setForeground(new java.awt.Color(255, 255, 255));
         btnAvances.setText("Avances");
         btnAvances.setBorder(null);
         btnAvances.setContentAreaFilled(false);
+        btnAvances.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAvancesActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnAvances, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
 
         btnSiguiente.setBackground(new java.awt.Color(229, 229, 229));
@@ -242,6 +241,11 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         seleccionarSiguiente();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
+    private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
+    control.mostrarPortalInstituciones();
+    dispose();
+    }//GEN-LAST:event_btnAvancesActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -265,7 +269,6 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
-    private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JComboBox<String> cboSeleccionInstitucion;
     private javax.swing.JLabel jLabel1;

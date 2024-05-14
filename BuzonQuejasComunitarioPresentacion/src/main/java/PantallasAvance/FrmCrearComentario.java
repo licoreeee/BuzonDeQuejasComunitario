@@ -266,6 +266,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
 
     private void btnAtrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrásActionPerformed
         control.mostrarReportesPendientes(institucionDTO);
+        
         dispose();
     }//GEN-LAST:event_btnAtrásActionPerformed
 

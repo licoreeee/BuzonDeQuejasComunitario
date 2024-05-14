@@ -216,6 +216,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         TablaReportesPendientes = new javax.swing.JTable();
         btnCerrar = new javax.swing.JButton();
         btnComentar = new javax.swing.JButton();
+        btnAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reportes pendientes");
@@ -267,7 +268,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        pnlFondo.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 350, 120, 43));
+        pnlFondo.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 120, 43));
 
         btnComentar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnComentar.setForeground(new java.awt.Color(181, 18, 57));
@@ -280,6 +281,18 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
             }
         });
         pnlFondo.add(btnComentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
+
+        btnAtras.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnAtras.setForeground(new java.awt.Color(181, 18, 57));
+        btnAtras.setText("Atrás");
+        btnAtras.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnAtras.setContentAreaFilled(false);
+        btnAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAtrasActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 350, 104, 43));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -305,9 +318,15 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         btnComentario();
     }//GEN-LAST:event_btnComentarActionPerformed
 
+    private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
+        control.mostrarPortalInstituciones();
+        dispose();
+    }//GEN-LAST:event_btnAtrasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaReportesPendientes;
+    private javax.swing.JButton btnAtras;
     private javax.swing.JButton btnCerrar;
     private javax.swing.JButton btnComentar;
     private javax.swing.JScrollPane jScrollPane1;
