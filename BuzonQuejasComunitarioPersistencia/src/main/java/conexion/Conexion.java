@@ -11,23 +11,17 @@ import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 
 /**
- * Clase que implementa la interfaz de conexión a MongoDB.
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
-public class Conexion implements IConexion {
-
+public class Conexion implements IConexion{
+    
     private static String cadenaConexion = "mongodb://127.0.0.1:27017";
     private static String nombreBaseDatos = "BuzonQuejasComunitario";
 
-    /**
-     * Crea una conexión a la base de datos MongoDB.
-     *
-     * @return La base de datos MongoDB a la que se ha conectado.
-     */
     @Override
     public MongoDatabase crearConexion() {
-        CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
+       CodecRegistry pojoCodecRegistry = fromRegistries(MongoClientSettings.getDefaultCodecRegistry(),
                 fromProviders(PojoCodecProvider.builder().automatic(true).build()));
 
         MongoClientSettings settings = MongoClientSettings.builder()
@@ -36,8 +30,8 @@ public class Conexion implements IConexion {
                 .build();
         MongoClient mongoClient = MongoClients.create(settings);
         MongoDatabase database = mongoClient.getDatabase(nombreBaseDatos);
-
+        
         return database;
     }
-
+    
 }

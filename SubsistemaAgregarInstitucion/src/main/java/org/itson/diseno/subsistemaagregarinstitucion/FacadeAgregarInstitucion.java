@@ -13,27 +13,17 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Facade para el subsistema de agregar instituciones.
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
-public class FacadeAgregarInstitucion implements IFacadeAgregarInstitucion {
+public class FacadeAgregarInstitucion implements IFacadeAgregarInstitucion{
 
     private AgregarInstitucion institucion;
 
-    /**
-     * Constructor de la clase FacadeAgregarInstitucion.
-     */
     public FacadeAgregarInstitucion() {
         institucion = new AgregarInstitucion();
     }
-
-    /**
-     * Agrega una nueva institución al sistema.
-     *
-     * @param institucionNuevaDTO La información de la nueva institución.
-     * @return La información de la institución agregada.
-     */
+    
     @Override
     public InstitucionNuevaDTO agregarInstitucion(InstitucionNuevaDTO institucionNuevaDTO) {
         try {
@@ -45,11 +35,6 @@ public class FacadeAgregarInstitucion implements IFacadeAgregarInstitucion {
         return null;
     }
 
-    /**
-     * Consulta todas las instituciones registradas en el sistema.
-     *
-     * @return Una lista de las instituciones registradas.
-     */
     @Override
     public List<InstitucionRegistradaDTO> consultarInstituciones() {
         try {
@@ -60,5 +45,5 @@ public class FacadeAgregarInstitucion implements IFacadeAgregarInstitucion {
         }
         return null;
     }
-
+    
 }

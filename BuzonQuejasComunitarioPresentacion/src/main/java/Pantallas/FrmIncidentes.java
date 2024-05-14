@@ -13,12 +13,6 @@ import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
 import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
- * Ventana para la selección de incidentes. Permite al usuario agregar
- * incidentes a una institución, ya sea nueva o registrada. En caso de que se
- * reciba una institución nueva, se mostrarán los incidentes disponibles para
- * agregar. En caso de que se reciba una institución registrada, se mostrarán
- * los incidentes asociados a esa institución. Esta clase tiene dos flujos
- * distintos dependiendo del tipo de institución recibida en el constructor.
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
@@ -33,10 +27,10 @@ public class FrmIncidentes extends javax.swing.JFrame {
     List<String> incidentesActuales = new ArrayList<>();
 
     /**
-     * Constructor para una institución nueva.
+     * Creates new form FrmSeleccionIncidentes
      *
-     * @param institucionNuevaDTO Objeto de tipo InstitucionNuevaDTO que
-     * representa la institución nueva.
+     *
+     * @param institucionNuevaDTO
      */
     public FrmIncidentes(InstitucionNuevaDTO institucionNuevaDTO) {
         this.controladores = new ControlNavegacion();
@@ -48,10 +42,10 @@ public class FrmIncidentes extends javax.swing.JFrame {
     }
 
     /**
-     * Constructor para una institución registrada.
+     * Creates new form FrmSeleccionIncidentes
      *
-     * @param institucionRegistradaDTO Objeto de tipo InstitucionRegistradaDTO
-     * que representa la institución registrada.
+     *
+     * @param institucionRegistradaDTO
      */
     public FrmIncidentes(InstitucionRegistradaDTO institucionRegistradaDTO) {
         this.controladores = new ControlNavegacion();
@@ -63,13 +57,6 @@ public class FrmIncidentes extends javax.swing.JFrame {
         agregarIncidentesAInstitucionRegistrada();
     }
 
-    /**
-     * Método para confirmar las operaciones realizadas. Si se está trabajando
-     * con una institución nueva, muestra una ventana de confirmación antes de
-     * agregar la institución y sus incidentes. Si se está trabajando con una
-     * institución registrada, muestra una ventana de confirmación antes de
-     * agregar los incidentes a la institución.
-     */
     private void confirmarOperaciones() {
         if (institucionRegistradaDTO == null) { //FLUJO PRINCIPAL  
             int opcion = JOptionPane.showConfirmDialog(this, "¿Estás seguro que deseas confirmar?", "Confirmar", JOptionPane.YES_NO_OPTION);
@@ -93,10 +80,6 @@ public class FrmIncidentes extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Método para actualizar la tabla de incidentes. Actualiza el modelo de
-     * datos de la tabla de incidentes.
-     */
     private void actualizarTabla() {
         try {
             DefaultTableModel modeloTabla = (DefaultTableModel) tblIncidentes.getModel();
@@ -107,14 +90,10 @@ public class FrmIncidentes extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Método para agregar incidentes a una institución registrada. Consulta los
-     * incidentes asociados a la institución registrada y los agrega a la tabla
-     * de incidentes.
-     */
     private void agregarIncidentesAInstitucionRegistrada() {
         try {
             DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();
+//            model.setRowCount(0);
             String id = institucionRegistradaDTO.getId();
             List<IncidentesDTO> listaIncidentesRegistrados = facadeIncidentes.consultarIncidentes(id);
             for (IncidentesDTO incidente : listaIncidentesRegistrados) {
@@ -132,18 +111,15 @@ public class FrmIncidentes extends javax.swing.JFrame {
                     );
                     listaIncidentesActuales.add(incidente);
                 }
+
                 facadeIncidentes.agregarIncidentes(listaIncidentesActuales);
             }
+
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 
-    /**
-     * Método para agregar incidentes a una institución nueva. Obtiene los
-     * incidentes seleccionados por el usuario y los agrega a la institución
-     * nueva.
-     */
     private void agregarIncidentesAInstitucionNueva() {
         try {
             List<IncidentesDTO> listaIncidentes = new ArrayList<>();
@@ -293,14 +269,6 @@ public class FrmIncidentes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Acción realizada al presionar el botón "Volver". Si se está trabajando
-     * con una institución nueva (flujo principal), muestra la ventana para
-     * ingresar información de la institución. Si se está trabajando con una
-     * institución registrada (flujo alternativo), muestra la ventana con la
-     * lista de instituciones registradas.
-     *
-     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         if (institucionRegistradaDTO == null) { //FLUJO PRINCIPAL
             controladores.mostrarInfoInstitucion();
@@ -311,12 +279,6 @@ public class FrmIncidentes extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnVolverActionPerformed
 
-    /**
-     * Acción realizada al presionar el botón "Confirmar". Verifica si se han
-     * realizado cambios en los incidentes. Si no se han realizado cambios,
-     * muestra un mensaje informativo. Si se han realizado cambios, llama al
-     * método para confirmar las operaciones.
-     */
     private void btnConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmarActionPerformed
         if (!cambiosRealizados) {
             JOptionPane.showMessageDialog(this, "No se han realizado cambios.", "Aviso", JOptionPane.INFORMATION_MESSAGE);
@@ -325,19 +287,12 @@ public class FrmIncidentes extends javax.swing.JFrame {
             confirmarOperaciones();
         }
     }//GEN-LAST:event_btnConfirmarActionPerformed
-    /**
-     * Acción realizada al presionar el botón "Agregar Nuevo". Muestra un cuadro
-     * de diálogo para que el usuario ingrese la información del nuevo
-     * incidente. Si se cancela el diálogo o no se ingresa información, no se
-     * realiza ninguna acción. Si se ingresa información válida, agrega el nuevo
-     * incidente a la tabla de incidentes, actualiza la lista de incidentes
-     * actuales y marca que se han realizado cambios.
-     */
+
     private void btnAgregarNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarNuevoActionPerformed
         String nuevoIncidente = JOptionPane.showInputDialog(this, "Ingrese la informacion del nuevo incidente:");
         if (nuevoIncidente == null) {
             return;
-        } else if (nuevoIncidente.isEmpty() || nuevoIncidente.isBlank()) {
+        } else if (nuevoIncidente.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor ingrese un incidente correctamente", "Aviso", JOptionPane.INFORMATION_MESSAGE);
         } else {
             DefaultTableModel model = (DefaultTableModel) tblIncidentes.getModel();

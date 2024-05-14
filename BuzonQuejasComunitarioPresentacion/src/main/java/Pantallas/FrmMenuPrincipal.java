@@ -141,8 +141,7 @@ public class FrmMenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAvancesActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-        controladores.mostrarHistorial();
-        dispose();
+
     }//GEN-LAST:event_btnHistorialActionPerformed
 
     private void btnLevantarReporte2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporte2ActionPerformed

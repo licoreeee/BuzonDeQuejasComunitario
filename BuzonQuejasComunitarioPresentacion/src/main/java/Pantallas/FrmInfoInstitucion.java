@@ -8,9 +8,6 @@ import dto.InstitucionNuevaDTO;
 import javax.swing.JOptionPane;
 
 /**
- * Ventana para ingresar información de la institución. Permite al usuario
- * ingresar el nombre, siglas y una descripción adicional de la institución.
- *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmInfoInstitucion extends javax.swing.JFrame {
@@ -18,8 +15,7 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
     private ControlNavegacion controladores;
 
     /**
-     * Constructor de la clase FrmInfoInstitucion. Inicializa los componentes de
-     * la interfaz gráfica y establece el controlador de navegación.
+     * Creates new form FrmLevantarReporte
      */
     public FrmInfoInstitucion() {
         initComponents();
@@ -161,20 +157,12 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmpSiglasActionPerformed
 
-    /**
-     * Método para manejar el evento de clic en el botón "Siguiente". Obtiene
-     * los datos ingresados por el usuario, valida que el nombre y la
-     * descripción no estén vacíos, y muestra la ventana de incidentes
-     * correspondiente a la institución ingresada.
-     *
-     * @param evt Evento de acción del botón.
-     */
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         String nombre = cmpNombre.getText();
         String siglas = cmpSiglas.getText();
         String descripcion = txaDescripcionAdicional.getText();
 
-        if (nombre.isEmpty() || descripcion.isEmpty() || nombre.isBlank() || descripcion.isBlank() || siglas.isBlank()) {
+        if (nombre.isEmpty() || descripcion.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Es necesario ingresar el nombre y la descripción de la institución", "Aviso", JOptionPane.WARNING_MESSAGE);
         } else {
             if (siglas.isEmpty() || siglas.isBlank()) {
@@ -197,12 +185,6 @@ public class FrmInfoInstitucion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    /**
-     * Método para manejar el evento de clic en el botón "Volver". Muestra la
-     * ventana de instituciones registradas y cierra la ventana actual.
-     *
-     * @param evt Evento de acción del botón.
-     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         controladores.mostrarInstitucionesRegistradas();
         dispose();

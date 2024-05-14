@@ -11,7 +11,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Clase de pruebas dentro del subsistema agregar instituciones.
  *
  * @author castr
  */
@@ -33,13 +32,14 @@ public class SubsistemaAgregarInstitucion {
 //        } catch (Exception ex) {
 //            Logger.getLogger(AgregarInstitucion.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-//        try {
-//            List<InstitucionRegistradaDTO> instituciones = facade.consultarInstituciones();
-//            System.out.println(instituciones.toString());
-//            System.out.println("Se consultaron las instituciones correctamente!");
-//        } catch (Exception ex) {
-//            Logger.getLogger(AgregarInstitucion.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        
+        try {
+            List<InstitucionRegistradaDTO> instituciones = facade.consultarInstituciones();
+            System.out.println(instituciones.toString());
+            System.out.println("Se consultaron las instituciones correctamente!");
+        } catch (Exception ex) {
+            Logger.getLogger(AgregarInstitucion.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 }

@@ -13,7 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
-//import org.itson.diseño.levantarreportess.RegistrarAvance;
+import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
@@ -26,7 +26,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
 
     public FrmPortalInstituciones() {
         initComponents();
-//        registrarAvance = new RegistrarAvance();
+        registrarAvance = new RegistrarAvance();
         control = new ControlNavegacion();
     }
 

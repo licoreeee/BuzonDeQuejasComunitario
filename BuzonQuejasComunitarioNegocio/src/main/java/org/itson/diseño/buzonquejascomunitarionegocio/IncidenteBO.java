@@ -15,8 +15,6 @@ import java.util.logging.Logger;
 import org.bson.types.ObjectId;
 
 /**
- * Clase que implementa la lógica de negocio relacionada con los incidentes.
- *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class IncidenteBO implements IIncidenteBO {
@@ -24,23 +22,11 @@ public class IncidenteBO implements IIncidenteBO {
     private final IConexion conexion;
     private IncidentesDAO incidentesDAO;
 
-    /**
-     * Constructor de la clase IncidenteBO.
-     */
     public IncidenteBO() {
         conexion = new Conexion();
         this.incidentesDAO = new IncidentesDAO(conexion);
     }
 
-    /**
-     * Método para agregar una lista de incidentes.
-     *
-     * @param incidentesDTO La lista de DTOs que representan los incidentes a
-     * agregar.
-     * @return Una lista de DTOs que representan los incidentes agregados.
-     * @throws FindException Si ocurre un error durante la agregación de los
-     * incidentes.
-     */
     @Override
     public List<IncidentesDTO> agregarIncidentes(List<IncidentesDTO> incidentesDTO) throws FindException {
         try {
@@ -70,14 +56,6 @@ public class IncidenteBO implements IIncidenteBO {
         return null;
     }
 
-    /**
-     * Método para obtener los incidentes asociados a una institución.
-     *
-     * @param idString El ID de la institución.
-     * @return Una lista de DTOs que representan los incidentes obtenidos.
-     * @throws FindException Si ocurre un error durante la obtención de los
-     * incidentes.
-     */
     @Override
     public List<IncidentesDTO> obtenerIncidentes(String idString) throws FindException {
         List<IncidentesDTO> incidentesEnProceso = new ArrayList<>();
@@ -102,29 +80,12 @@ public class IncidenteBO implements IIncidenteBO {
         }
         return null;
     }
-
-    /**
-     * Método para obtener los incidentes abiertos asociados a una institución.
-     *
-     * @param idInstitucion El ID de la institución.
-     * @return Una lista de DTOs que representan los incidentes abiertos
-     * obtenidos.
-     * @throws FindException Si ocurre un error durante la obtención de los
-     * incidentes abiertos.
-     */
-    @Override
-    public List<IncidentesDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
-        List<IncidentesDTO> incidentes = new ArrayList<IncidentesDTO>();
+     @Override
+    public List<IncidentesDTO> obtenerIncidentesAbiertosPorInstitucion (String idInstitucion) throws FindException{
+         List<IncidentesDTO>incidentes = new ArrayList<IncidentesDTO>();
         return incidentes;
-    }
+    } 
 
-    /**
-     * Método para convertir un DTO de incidente a la entidad correspondiente.
-     *
-     * @param incidenteDTO El DTO del incidente a convertir.
-     * @return La entidad del incidente correspondiente.
-     * @throws NegociosException Si ocurre un error durante la conversión.
-     */
     @Override
     public Incidentes convertirIncidenteEntidad(IncidentesDTO incidenteDTO) throws NegociosException {
         Incidentes incidente = new Incidentes();
@@ -132,13 +93,6 @@ public class IncidenteBO implements IIncidenteBO {
         return incidente;
     }
 
-    /**
-     * Método para convertir una entidad de incidente a DTO.
-     *
-     * @param incidente La entidad del incidente a convertir.
-     * @return El DTO del incidente correspondiente.
-     * @throws NegociosException Si ocurre un error durante la conversión.
-     */
     @Override
     public IncidentesDTO convertirIncidenteDTO(Incidentes incidente) throws NegociosException {
         IncidentesDTO incidenteDTO = new IncidentesDTO(incidente.getInformacion());

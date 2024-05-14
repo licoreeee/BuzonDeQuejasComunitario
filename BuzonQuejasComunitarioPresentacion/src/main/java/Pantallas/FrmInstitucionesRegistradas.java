@@ -4,6 +4,7 @@
  */
 package Pantallas;
 
+
 import dto.InstitucionRegistradaDTO;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -12,23 +13,18 @@ import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
 import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 
 /**
- * Clase que representa la ventana para mostrar las instituciones registradas.
- * Permite visualizar una lista de instituciones registradas y transportarse a
- * la ventana de incidentes de una institución seleccionada.
  *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
 
-    private final ControlNavegacion controladores;
-    private final IFacadeAgregarInstitucion facadeInstituciones;
-    private final List<InstitucionRegistradaDTO> instituciones;
+    private ControlNavegacion controladores;
+    private IFacadeAgregarInstitucion facadeInstituciones;
+    DefaultTableModel modeloTabla = new DefaultTableModel();
+    private List<InstitucionRegistradaDTO> instituciones;
 
     /**
-     * Constructor de la clase FrmInstitucionesRegistradas.
-     *
-     * @param controladores Objeto de la clase ControlNavegacion para el control
-     * de navegación.
+     * Creates new form FrmSeleccionIncidentes
      */
     public FrmInstitucionesRegistradas(ControlNavegacion controladores) {
         this.controladores = controladores;
@@ -38,13 +34,6 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
         actualizarTabla(instituciones);
     }
 
-    /**
-     * Método privado para actualizar la tabla que muestra las instituciones
-     * registradas.
-     *
-     * @param instituciones Lista de instituciones registradas a mostrar en la
-     * tabla.
-     */
     private void actualizarTabla(List<InstitucionRegistradaDTO> instituciones) {
         try {
             DefaultTableModel institucionesRegistradas = new DefaultTableModel() {
@@ -77,10 +66,6 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
         }
     }
 
-    /**
-     * Método privado para transportarse a la ventana de incidentes de la
-     * institución seleccionada.
-     */
     private void transportarAIncidentesInstitucion() {
         int filaSeleccionada = tblInstitucionesRegistradas.getSelectedRow();
         if (filaSeleccionada == -1) { // Verificar si se ha seleccionado alguna fila
@@ -140,7 +125,7 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
         btnVer.setBackground(new java.awt.Color(241, 241, 241));
         btnVer.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnVer.setForeground(new java.awt.Color(181, 18, 57));
-        btnVer.setText("Ver incidentes");
+        btnVer.setText("Ver");
         btnVer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
         btnVer.setContentAreaFilled(false);
         btnVer.addActionListener(new java.awt.event.ActionListener() {
@@ -225,36 +210,16 @@ public class FrmInstitucionesRegistradas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Método para manejar el evento de clic en el botón "Siguiente". Muestra la
-     * ventana para ingresar el código de administrador y cierra la ventana
-     * actual.
-     *
-     * @param evt Evento de acción del botón.
-     */
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         controladores.mostrarCodigoAdmin();
         dispose();
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
-    /**
-     * Método para manejar el evento de clic en el botón "Agregar". Muestra la
-     * ventana para agregar información de la institución y cierra la ventana
-     * actual.
-     *
-     * @param evt Evento de acción del botón.
-     */
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         controladores.mostrarInfoInstitucion();
         dispose();
     }//GEN-LAST:event_btnAgregarActionPerformed
 
-    /**
-     * Método para manejar el evento de clic en el botón "Ver". Transporta a la
-     * ventana de incidentes de la institución seleccionada.
-     *
-     * @param evt Evento de acción del botón.
-     */
     private void btnVerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerActionPerformed
         transportarAIncidentesInstitucion();
     }//GEN-LAST:event_btnVerActionPerformed

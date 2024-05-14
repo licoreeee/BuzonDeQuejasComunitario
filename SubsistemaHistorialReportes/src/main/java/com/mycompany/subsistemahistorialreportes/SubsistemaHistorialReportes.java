@@ -11,8 +11,6 @@ package com.mycompany.subsistemahistorialreportes;
 public class SubsistemaHistorialReportes {
 
     public static void main(String[] args) {
-        
-        FacadeHistorialReportes facade = new FacadeHistorialReportes();
-        
+        System.out.println("Hello World!");
     }
 }
