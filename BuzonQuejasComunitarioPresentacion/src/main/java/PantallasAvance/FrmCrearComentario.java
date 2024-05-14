@@ -3,13 +3,17 @@ package PantallasAvance;
 import Excepciones.PersistenciaException;
 import Pantallas.ControlNavegacion;
 import dto.ComentarioDTO;
+import dto.ReporteDTO;
 import java.io.File;
 import java.io.*;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import org.itson.diseño.levantarreportess.RegistrarAvance;
+import registrarAvance.IRegistrarAvance;
+import registrarAvance.RegistrarAvance;
 
 /**
  *
@@ -17,21 +21,49 @@ import org.itson.diseño.levantarreportess.RegistrarAvance;
  */
 public class FrmCrearComentario extends javax.swing.JFrame {
 
-    private ComentarioDTO comentarioDTO;
-    private final RegistrarAvance registrarAvance;
+  private ComentarioDTO comentarioDTO;
+    private final IRegistrarAvance registrarAvance;
     byte[] photo;
     String fileName;
+    ReporteDTO reporteDTO;
     ControlNavegacion control = new ControlNavegacion();
 
     /**
      * Creates new form CrearComentario
      */
-    public FrmCrearComentario() {
+    public FrmCrearComentario(ReporteDTO reporteDTO) {
         initComponents();
         registrarAvance = new RegistrarAvance();
         photo = null;
+        this.reporteDTO = reporteDTO;
         fileName = null;
+        setDatosReporte();
+    }
+
+    private void setDatosReporte() {
         lblSubirImagen.setText("");
+        lblTituloReporte.setText(reporteDTO.getTitulo());
+        lblDireccionReporte.setText(reporteDTO.getCalle() + ", " + reporteDTO.getColonia());
+        lblFolioReporte.setText("Folio: "+String.valueOf(reporteDTO.getFolio()));
+        Calendar fechaCreacion = reporteDTO.getFechaCreacion();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        String fechaFormateada = sdf.format(fechaCreacion.getTime());
+        lblFechaHora.setText(fechaFormateada);
+        String descripcion = reporteDTO.getDescripcion();
+        if (descripcion.length() > 20) {
+            StringBuilder sb = new StringBuilder();
+            int i = 0;
+            while (i < descripcion.length()) {
+                sb.append(descripcion.substring(
+                        i,
+                        Math.min(i + 20, descripcion.length())));
+                sb.append("<br>");
+                i += 20;
+            }
+            lblDescripcionReporte.setText("<html>" + sb.toString() + "</html>");
+        } else {
+            lblDescripcionReporte.setText(descripcion);
+        }
     }
 
     /**

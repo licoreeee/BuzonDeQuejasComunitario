@@ -1,4 +1,4 @@
-package org.itson.diseño.levantarreportess;
+package registrarAvance;
 
 import Excepciones.FindException;
 import Excepciones.PersistenciaException;
@@ -50,7 +50,7 @@ public class RegistrarAvance implements IRegistrarAvance {
     }
 
     @Override
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String siglas) throws FindException {
+    public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String siglas) throws FindException {
         try {
             return reporteBO.obtenerReportesAbiertosPorInstitucion(siglas);
         } catch (FindException ex) {

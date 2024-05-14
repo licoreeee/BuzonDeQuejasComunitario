@@ -1,12 +1,23 @@
 package PantallasAvance;
 
+import Excepciones.FindException;
+import Excepciones.PersistenciaException;
 import Pantallas.ControlNavegacion;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
-import org.itson.diseño.levantarreportess.IRegistrarAvance;
-//import org.itson.diseño.levantarreportess.RegistrarAvance;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import registrarAvance.IRegistrarAvance;
+import registrarAvance.RegistrarAvance;
+
 
 /**
  *
@@ -14,7 +25,7 @@ import org.itson.diseño.levantarreportess.IRegistrarAvance;
  */
 public class FrmReportesPendientes extends javax.swing.JFrame {
 
-    ControlNavegacion control;
+   ControlNavegacion control;
     IRegistrarAvance registrarAvance;
     InstitucionRegistradaDTO institucionDTO;
     List<ReporteDTO> reportesDTO;
@@ -23,11 +34,122 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         initComponents();
         control = new ControlNavegacion();
         this.institucionDTO = institucionDTO;
-//        registrarAvance = new RegistrarAvance();
+        registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
+        llenarTabla(institucionDTO);
     }
 
-  
+    public void llenarTabla(InstitucionRegistradaDTO institucionDTO) {
+        try {
+            reportesDTO = registrarAvance.obtenerReportesAbiertosPorInstitucion(institucionDTO.getSiglas());
+        } catch (FindException ex) {
+            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(
+                    this,
+                    ex.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+            return;
+
+        }
+
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Folio");
+        model.addColumn("Título");
+        model.addColumn("Descripción");
+        model.addColumn("Fecha de Creación");
+        model.addColumn("Calle");
+        model.addColumn("Colonia");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd : HH:mm");
+
+        for (ReporteDTO reporte : reportesDTO) {
+
+            String formattedDate = sdf.format(reporte.getFechaCreacion().getTime());
+
+            model.addRow(new Object[]{
+                reporte.getFolio(),
+                reporte.getTitulo(),
+                reporte.getDescripcion(),
+                formattedDate,
+                reporte.getCalle(),
+                reporte.getColonia()
+            });
+        }
+
+        TablaReportesPendientes.setModel(model);
+        TablaReportesPendientes.setDefaultEditor(Object.class, null);
+    }
+
+    private void btnComentario() {
+        int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Debe seleccionar un reporte.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
+            Integer folio = Integer.valueOf(folioString);
+            String titulo = TablaReportesPendientes.getValueAt(filaSeleccionada, 1).toString();
+            String descripcion = TablaReportesPendientes.getValueAt(filaSeleccionada, 2).toString();
+            String fechaString = TablaReportesPendientes.getValueAt(filaSeleccionada, 3).toString();
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            Calendar fechaCreacion = Calendar.getInstance();
+            try {
+                Date fechaDate = sdf.parse(fechaString);
+                fechaCreacion.setTime(fechaDate);
+
+            } catch (ParseException ex) {
+                Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            String calle = TablaReportesPendientes.getValueAt(filaSeleccionada, 4).toString();
+            String colonia = TablaReportesPendientes.getValueAt(filaSeleccionada, 5).toString();
+            ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
+                    folio, titulo, descripcion, fechaCreacion, calle, colonia);
+            control.mostrarCrearComentario(reporteDTOSeleccionado);
+            dispose();
+        }
+    }
+  private void btnCerrar(){
+        int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
+        if (filaSeleccionada == -1) {
+            JOptionPane.showMessageDialog(
+                    this,
+                    "Debe seleccionar un reporte.",
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
+            Integer folio = Integer.valueOf(folioString);
+           
+            ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
+                    folio, true);
+
+            try {
+                registrarAvance.actualizarEstado(reporteDTOSeleccionado);
+            } catch (PersistenciaException ex) {
+                Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(
+                        this,
+                        ex.getMessage(),
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        actualizarTabla();
+    }
+  private void actualizarTabla() {
+        try {
+            DefaultTableModel modeloTabla = (DefaultTableModel) TablaReportesPendientes.getModel();
+            modeloTabla.fireTableDataChanged();
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, "Error al actualizar la tabla de incidentes.", "Error", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -45,6 +167,8 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         jlbContexto = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaReportesPendientes = new javax.swing.JTable();
+        btnCerrar = new javax.swing.JButton();
+        btnComentar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Reportes pendientes");
@@ -84,7 +208,31 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(TablaReportesPendientes);
 
-        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 560, 220));
+        pnlFondo.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 560, 160));
+
+        btnCerrar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnCerrar.setForeground(new java.awt.Color(181, 18, 57));
+        btnCerrar.setText("Cerrar reporte");
+        btnCerrar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnCerrar.setContentAreaFilled(false);
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(334, 350, 120, 43));
+
+        btnComentar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnComentar.setForeground(new java.awt.Color(181, 18, 57));
+        btnComentar.setText("Comentar");
+        btnComentar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnComentar.setContentAreaFilled(false);
+        btnComentar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnComentarActionPerformed(evt);
+            }
+        });
+        pnlFondo.add(btnComentar, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 350, 104, 43));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -101,9 +249,19 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+       btnCerrar();
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
+        btnComentario();
+    }//GEN-LAST:event_btnComentarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable TablaReportesPendientes;
+    private javax.swing.JButton btnCerrar;
+    private javax.swing.JButton btnComentar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlbContexto;
     private javax.swing.JLabel lblDireccionReporte;

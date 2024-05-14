@@ -1,4 +1,6 @@
-package org.itson.diseño.levantarreportess;
+package registrarAvance;
+
+
 
 import Excepciones.FindException;
 import Excepciones.PersistenciaException;
@@ -19,6 +21,6 @@ import java.util.List;
 public interface IRegistrarAvance {
     public void registarComentario(ComentarioDTO comentarioDTO) throws PersistenciaException;
     public InstitucionRegistradaDTO consultarInstitucion(String codigoGestion, String nip)throws FindException;
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion (String idInstitucion)throws FindException;
+    public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion (String siglas)throws FindException;
     public void actualizarEstado (ReporteDTO reporte) throws PersistenciaException;
 }
