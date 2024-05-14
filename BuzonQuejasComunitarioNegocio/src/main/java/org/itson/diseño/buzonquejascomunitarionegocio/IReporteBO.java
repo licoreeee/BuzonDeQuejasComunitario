@@ -53,4 +53,6 @@ public interface IReporteBO {
     Calendar dateToCalendar(Date date);
     
     Date calendarToDate(Calendar calendar);
+    
+    List<ReporteDTO> obtenerTodosLosReportes() throws FindException;
 }

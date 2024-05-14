@@ -30,4 +30,5 @@ public interface IFacadeHistorialReportes {
     
     public List<ReporteDTO> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente, Calendar dia);
     
+    public List<ReporteDTO> obtenerTodosLosReportes();
 }

@@ -222,4 +222,14 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    @Override
+    public List<ReporteDTO> obtenerTodosLosReportes() throws FindException {
+        try {
+            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerTodosLosReportes());
+        } catch (Exception e) {
+            new NegociosException().getMessage();
+        }
+        return null;
+    }
+
 }

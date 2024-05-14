@@ -163,4 +163,13 @@ public class ReportesDAO implements IReportesDAO {
     }
     }
 
+    @Override
+    public List<Reporte> obtenerTodosLosReportes() throws FindException {
+        try {
+        return collection.find().into(new ArrayList<>());
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
+    }
+
 }
