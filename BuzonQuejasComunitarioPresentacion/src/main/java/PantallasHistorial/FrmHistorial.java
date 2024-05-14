@@ -526,26 +526,24 @@ public class FrmHistorial extends javax.swing.JFrame {
                 
                 Calendar fechaMasVieja = obtenerFechaMasVieja(reportesEncontrados);
                 Calendar fechaMasReciente = obtenerFechaMasReciente(reportesEncontrados);
-                
+
                 long diferenciaEnMilisegundos = fechaMasReciente.getTimeInMillis() - fechaMasVieja.getTimeInMillis();
                 int diferenciaEnDias = (int) TimeUnit.DAYS.convert(diferenciaEnMilisegundos, TimeUnit.MILLISECONDS);
-                
-                Map<Calendar, List<ReporteDTO>> reportesPorFecha = new HashMap<>();
-                
-                for (ReporteDTO reporte : reportesEncontrados) {
-            Calendar fechaCreacion = reporte.getFechaCreacion();
-            List<ReporteDTO> reportesEnFecha = reportesPorFecha.get(fechaCreacion);
-            if (reportesEnFecha == null) {
-                // Si no existe, crear una nueva lista de reportes para esta fecha de creación
-                reportesEnFecha = new ArrayList<>();
-                reportesPorFecha.put(fechaCreacion, reportesEnFecha);
-            }
-            
-            // Agregar el reporte a la lista correspondiente
-            reportesEnFecha.add(reporte);
-        }
 
-                
+                Map<Calendar, List<ReporteDTO>> reportesPorFecha = new HashMap<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+                    List<ReporteDTO> reportesEnFecha = reportesPorFecha.get(fechaCreacion);
+                    if (reportesEnFecha == null) {
+                        reportesEnFecha = new ArrayList<>();
+                        reportesPorFecha.put(fechaCreacion, reportesEnFecha);
+                    }
+
+                    reportesEnFecha.add(reporte);
+                }
+
+
             }
         }
         
