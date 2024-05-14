@@ -32,13 +32,7 @@ public interface IInstitucionDAO {
     public List<Institucion> obtenerInstituciones() throws FindException;
 
 
-    /* *
-     * Método para obtener todas las instituciones por su ID.
-     * @param id El ObjectId de la institución.
-     * @return Una lista de instituciones correspondientes al ID especificado.
-     * @throws FindException Si ocurre un error al obtener las instituciones por su ID.
-     */
-    public List<Institucion> obtenerInstitucionesPorId(ObjectId id) throws FindException;
+
 
     /* *
      * Método para obtener una institución por su código de gestión.
