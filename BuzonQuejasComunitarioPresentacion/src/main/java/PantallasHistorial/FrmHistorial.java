@@ -505,110 +505,276 @@ public class FrmHistorial extends javax.swing.JFrame {
     }
     
     public void refrescarTabla() {
-//        List<ReporteDTO> todosLosReportes = facadeHistorial.obtenerTodosLosReportes();
-//        Calendar fechaMasVieja = obtenerFechaMasVieja(todosLosReportes);
-//        Calendar fechaMasReciente = obtenerFechaMasReciente(todosLosReportes);
-//        String titulo = cmpTitulo.getText();
-//        String desde = datePickerDesde.getText();
-//        String hasta = datePickerHasta.getText();
-//        Calendar fechaDesde;
-//        Calendar fechaHasta;
-//        int indexInstitucion = cmbxInstituciones.getSelectedIndex();
-//        int indexIncidente = cmbxIncidentes.getSelectedIndex();
-//        DefaultTableModel modeloTabla = new DefaultTableModel() ;
-//        Object[] datosTabla = new Object[3];
-//        modeloTabla.addColumn("Fecha");
-//        modeloTabla.addColumn("Núm. Reportes"); 
-//        modeloTabla.addColumn("");
-//        
-//        if(chkbxFecha.isSelected() && chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
-//                chkbxTitulo.isSelected()){
-//            if(!titulo.isBlank() || !titulo.isEmpty() || !desde.isBlank() || !desde.isEmpty()|| 
-//                    !hasta.isEmpty() || !hasta.isBlank()){
-//                fechaDesde = localDateACalendar(datePickerDesde.getDate());
-//                fechaHasta = localDateACalendar(datePickerHasta.getDate());
-//                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
-//                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
-//                String siglasInstitucion = institucion.getSiglas();
-//                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
-//                IncidentesDTO incidente = incidentes.get(indexInstitucion);
-//                String informacionIncidente = incidente.getInformacion();
-//                
-//                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaDesde);
-//
-//                List<Object[]> resultados = new ArrayList<>();
-//
-//                for (ReporteDTO reporte : reportesEncontrados) {
-//                    Calendar fechaCreacion = reporte.getFechaCreacion();
-//
-//                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
-//                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
-//                    fechaDia.set(Calendar.MINUTE, 0);
-//                    fechaDia.set(Calendar.SECOND, 0);
-//                    fechaDia.set(Calendar.MILLISECOND, 0);
-//
-//                    boolean encontrado = false;
-//                    for (Object[] resultado : resultados) {
-//                        Calendar fechaResultado = (Calendar) resultado[0];
-//                        if (fechaResultado.equals(fechaDia)) {
-//                            resultado[1] = (int) resultado[1] + 1;
-//                            encontrado = true;
-//                            break;
-//                        }
-//                    }
-//                    if (!encontrado) {
-//                        resultados.add(new Object[]{fechaDia, 1});
-//                    }
-//                }
-//                for (Object[] resultado : resultados) {
-//                        Calendar fecha = (Calendar) resultado[0];
-//                        int cantidadReportes = (int) resultado[1];
-//                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
-//                    }
-//            }
-//            else{
-//                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
-//            }
-//        } else if(chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
-//                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
-//                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
-//                String siglasInstitucion = institucion.getSiglas();
-//                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
-//                IncidentesDTO incidente = incidentes.get(indexInstitucion);
-//                String informacionIncidente = incidente.getInformacion();
-//                
-//                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaDesde);
-//
-//                List<Object[]> resultados = new ArrayList<>();
-//
-//                for (ReporteDTO reporte : reportesEncontrados) {
-//                    Calendar fechaCreacion = reporte.getFechaCreacion();
-//
-//                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
-//                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
-//                    fechaDia.set(Calendar.MINUTE, 0);
-//                    fechaDia.set(Calendar.SECOND, 0);
-//                    fechaDia.set(Calendar.MILLISECOND, 0);
-//
-//                    boolean encontrado = false;
-//                    for (Object[] resultado : resultados) {
-//                        Calendar fechaResultado = (Calendar) resultado[0];
-//                        if (fechaResultado.equals(fechaDia)) {
-//                            resultado[1] = (int) resultado[1] + 1;
-//                            encontrado = true;
-//                            break;
-//                        }
-//                    }
-//                    if (!encontrado) {
-//                        resultados.add(new Object[]{fechaDia, 1});
-//                    }
-//                }
-//                for (Object[] resultado : resultados) {
-//                        Calendar fecha = (Calendar) resultado[0];
-//                        int cantidadReportes = (int) resultado[1];
-//                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
-//                    }
-//        }
+        List<ReporteDTO> todosLosReportes = facadeHistorial.obtenerTodosLosReportes();
+        Calendar fechaMasVieja = obtenerFechaMasVieja(todosLosReportes);
+        Calendar fechaMasReciente = obtenerFechaMasReciente(todosLosReportes);
+        String titulo = cmpTitulo.getText();
+        String desde = datePickerDesde.getText();
+        String hasta = datePickerHasta.getText();
+        Calendar fechaDesde;
+        Calendar fechaHasta;
+        int indexInstitucion = cmbxInstituciones.getSelectedIndex();
+        int indexIncidente = cmbxIncidentes.getSelectedIndex();
+        DefaultTableModel modeloTabla = new DefaultTableModel() ;
+        modeloTabla.addColumn("Fecha");
+        modeloTabla.addColumn("Núm. Reportes"); 
+        modeloTabla.addColumn("");
+        
+        if(chkbxFecha.isSelected() && chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
+                chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty() || !desde.isBlank() || !desde.isEmpty()|| 
+                    !hasta.isEmpty() || !hasta.isBlank()){
+                fechaDesde = localDateACalendar(datePickerDesde.getDate());
+                fechaHasta = localDateACalendar(datePickerHasta.getDate());
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+                IncidentesDTO incidente = incidentes.get(indexIncidente);
+                String informacionIncidente = incidente.getInformacion();
+
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+        } else if(chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+                IncidentesDTO incidente = incidentes.get(indexIncidente);
+                String informacionIncidente = incidente.getInformacion();
+                
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+        }else if(chkbxInstitucion.isSelected() && chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorTituloYInstitucion(titulo, siglasInstitucion, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } else if(chkbxInstitucion.isSelected()){
+            List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorInstitucion(siglasInstitucion, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+        }else if(chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+                List<ReporteDTO> reportesEncontrados = new ArrayList();
+
+                Calendar fechaActual = (Calendar) fechaMasVieja.clone();
+
+                while (!fechaActual.after(fechaMasReciente)) {
+                    List<ReporteDTO> reportesDelDia = facadeHistorial.obtenerReportePorTitulo(titulo, fechaActual);
+                    if (reportesDelDia != null) {
+                        reportesEncontrados.addAll(reportesDelDia);
+                    }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
+                }
+
+                List<Object[]> resultados = new ArrayList<>();
+
+                for (ReporteDTO reporte : reportesEncontrados) {
+                    Calendar fechaCreacion = reporte.getFechaCreacion();
+
+                    Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.set(Calendar.HOUR_OF_DAY, 0);
+                    fechaDia.set(Calendar.MINUTE, 0);
+                    fechaDia.set(Calendar.SECOND, 0);
+                    fechaDia.set(Calendar.MILLISECOND, 0);
+
+                    boolean encontrado = false;
+                    for (Object[] resultado : resultados) {
+                        Calendar fechaResultado = (Calendar) resultado[0];
+                        if (fechaResultado.equals(fechaDia)) {
+                            resultado[1] = (int) resultado[1] + 1;
+                            encontrado = true;
+                            break;
+                        }
+                    }
+                    if (!encontrado) {
+                        resultados.add(new Object[]{fechaDia, 1});
+                    }
+                }
+                for (Object[] resultado : resultados) {
+                        Calendar fecha = (Calendar) resultado[0];
+                        int cantidadReportes = (int) resultado[1];
+                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                    }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(!chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+            JOptionPane.showConfirmDialog(this, "Seleccione la casilla de instituciones para buscar por incidentes.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+        }
     }
         
 //        for (int i = 0; i < reportes.size(); i++) {
