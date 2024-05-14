@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
-import org.itson.diseño.levantarreportess.RegistrarAvance;
+//import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
@@ -33,7 +33,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         initComponents();
         control = new ControlNavegacion();
         this.institucionDTO = institucionDTO;
-        registrarAvance = new RegistrarAvance();
+//        registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
         llenarTabla(institucionDTO);
     }

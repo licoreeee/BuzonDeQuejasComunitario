@@ -4,10 +4,30 @@
  */
 package com.mycompany.subsistemahistorialreportes;
 
+import dto.ReporteDTO;
+import java.util.Calendar;
+import java.util.List;
+
 /**
  *
  * @author Dell
  */
 public interface IFacadeHistorialReportes {
+    
+    public List<ReporteDTO> obtenerReportePorTitulo(String titulo, Calendar dia);
+
+    public List<ReporteDTO> obtenerReportePorInstitucion(String institucion, Calendar dia);
+
+    public List<ReporteDTO> obtenerReportePorIncidente(String incidente, Calendar dia);
+
+    public List<ReporteDTO> obtenerReportePorDia(Calendar dia);
+    
+    public List<ReporteDTO> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Calendar dia);
+    
+    public List<ReporteDTO> obtenerReportePorTituloYIncidente(String titulo, String incidente, Calendar dia);
+    
+    public List<ReporteDTO> obtenerReportePorInstitucionYIncidente(String institucion, String incidente, Calendar dia);
+    
+    public List<ReporteDTO> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente, Calendar dia);
     
 }

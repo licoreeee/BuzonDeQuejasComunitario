@@ -18,6 +18,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Clase de pruebas en la capa de negocio
  *
  * @author castr
  */
@@ -67,7 +68,6 @@ public class PruebasNegocio {
 //        } catch (FindException ex) {
 //            Logger.getLogger(PruebasNegocio.class.getName()).log(Level.SEVERE, null, ex);
 //        }
-
     }
 
 }

@@ -1,7 +1,6 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
-import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
 import dao.InstitucionesDAO;
@@ -12,9 +11,10 @@ import excepciones.NegociosException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import org.bson.types.ObjectId;
 
 /**
+ * Clase que representa la lógica de negocio relacionada con las instituciones.
+ *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class InstitucionBO implements IInstitucionBO {
@@ -23,6 +23,9 @@ public class InstitucionBO implements IInstitucionBO {
     private InstitucionesDAO institucionDAO;
     private Institucion institucion;
 
+    /**
+     * Constructor de la clase InstitucionBO.
+     */
     public InstitucionBO() {
         conexion = new Conexion();
         institucion = new Institucion();
@@ -30,6 +33,15 @@ public class InstitucionBO implements IInstitucionBO {
 
     }
 
+    /**
+     * Método para agregar una nueva institución.
+     *
+     * @param institucionNuevaDTO Los datos de la nueva institución a agregar.
+     * @return Los datos de la nueva institución con códigos de gestión y NIP
+     * generados.
+     * @throws FindException Si ocurre un error al intentar agregar la
+     * institución.
+     */
     @Override
     public InstitucionNuevaDTO agregarInstitucion(InstitucionNuevaDTO institucionNuevaDTO) throws FindException {
         Institucion institucion = new Institucion();
@@ -53,6 +65,13 @@ public class InstitucionBO implements IInstitucionBO {
         return institucionNuevaDTO;
     }
 
+    /**
+     * Método para consultar todas las instituciones registradas.
+     *
+     * @return Una lista de DTOs que representan las instituciones registradas.
+     * @throws FindException Si ocurre un error durante la consulta de las
+     * instituciones.
+     */
     @Override
     public List<InstitucionRegistradaDTO> consultarInstituciones() throws FindException {
         List<InstitucionRegistradaDTO> institucionesConsultadas = new ArrayList<>();
@@ -76,6 +95,13 @@ public class InstitucionBO implements IInstitucionBO {
         return institucionesConsultadas;
     }
 
+    /**
+     * Método para generar una cadena de números aleatorios de longitud
+     * específica.
+     *
+     * @param length La longitud de la cadena de números aleatorios a generar.
+     * @return Una cadena de números aleatorios.
+     */
     private String generarNumerosAleatorios(int length) {
         StringBuilder sb = new StringBuilder();
         Random random = new Random();
@@ -85,6 +111,15 @@ public class InstitucionBO implements IInstitucionBO {
         return sb.toString();
     }
 
+    /**
+     * Método para transportar datos utilizando un código de gestión y NIP.
+     *
+     * @param codigoGestion El código de gestión de la institución.
+     * @param nip El NIP de la institución.
+     * @return Un DTO que representa la institución correspondiente.
+     * @throws FindException Si el ID o el NIP proporcionado es incorrecto o si
+     * ocurre un error durante la obtención de la institución.
+     */
     @Override
     public InstitucionRegistradaDTO transporteDatos(String codigoGestion, String nip) throws FindException {
         try {
@@ -100,14 +135,20 @@ public class InstitucionBO implements IInstitucionBO {
                         institucion.getCodigoGestion(),
                         institucion.getNip());
             }
-
         } catch (FindException e) {
             throw e;
-             
-        }
 
+        }
     }
-    
+
+    /**
+     * Método para convertir una entidad InstitucionRegistradaDTO a la entidad
+     * Institucion.
+     *
+     * @param institucionDTO El DTO de la institución a convertir.
+     * @return La entidad Institucion correspondiente.
+     * @throws NegociosException Si ocurre un error durante la conversión.
+     */
     @Override
     public Institucion convertirInstitucionEntidad(InstitucionRegistradaDTO institucionDTO) throws NegociosException {
         Institucion institucion = new Institucion();
@@ -116,11 +157,18 @@ public class InstitucionBO implements IInstitucionBO {
         return institucion;
     }
 
+    /**
+     * Método para convertir una entidad Institucion a InstitucionRegistradaDTO.
+     *
+     * @param institucion La entidad Institucion a convertir.
+     * @return El DTO de la institución correspondiente.
+     * @throws NegociosException Si ocurre un error durante la conversión.
+     */
     @Override
     public InstitucionRegistradaDTO convertirInstitucionDTO(Institucion institucion) throws NegociosException {
         InstitucionRegistradaDTO institucionDTO = new InstitucionRegistradaDTO(
-        institucion.getNombre(),
-        institucion.getSiglas());
+                institucion.getNombre(),
+                institucion.getSiglas());
         return institucionDTO;
     }
 

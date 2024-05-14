@@ -4,12 +4,14 @@
  */
 package Pantallas;
 
-import dto.ReporteDTO;
-import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
-
-
+import java.util.Arrays;
+import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
+ * Clase que representa la interfaz gráfica para ingresar un código de
+ * administrador.
+ *
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public class FrmCodigoAdmin extends javax.swing.JFrame {
@@ -17,7 +19,7 @@ public class FrmCodigoAdmin extends javax.swing.JFrame {
     private ControlNavegacion controladores;
 
     /**
-     * Creates new form FrmLevantarReporte
+     * Constructor de la clase FrmCodigoAdmin.
      */
     public FrmCodigoAdmin() {
         initComponents();
@@ -42,7 +44,7 @@ public class FrmCodigoAdmin extends javax.swing.JFrame {
         jlbContexto = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
-        cmpTitulo = new javax.swing.JTextField();
+        cmpClave = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
         btnSiguiente = new javax.swing.JButton();
 
@@ -91,18 +93,7 @@ public class FrmCodigoAdmin extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        cmpTitulo.setBackground(new java.awt.Color(204, 204, 204));
-        cmpTitulo.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
-        cmpTitulo.setForeground(new java.awt.Color(0, 0, 0));
-        cmpTitulo.setHorizontalAlignment(javax.swing.JTextField.LEFT);
-        cmpTitulo.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 153, 153), 1, true));
-        cmpTitulo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmpTituloActionPerformed(evt);
-            }
-        });
-        jPanel3.add(cmpTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 230, 30));
+        jPanel3.add(cmpClave, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 240, 30));
 
         jLabel1.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(33, 33, 33));
@@ -129,60 +120,42 @@ public class FrmCodigoAdmin extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-
-    private void cmpTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmpTituloActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmpTituloActionPerformed
-
+    /**
+     * Método que se ejecuta al hacer clic en el botón "Volver". Muestra el menú
+     * principal y cierra la ventana actual.
+     *
+     * @param evt Evento de acción que desencadena la acción.
+     */
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
         controladores.mostrarMenuPrincipal();
         dispose();
     }//GEN-LAST:event_btnVolverActionPerformed
 
+    /**
+     * Método que se ejecuta al hacer clic en el botón "Siguiente". Verifica la
+     * validez de la clave ingresada. Si es válida, muestra las instituciones
+     * registradas y cierra la ventana actual. Si no es válida, muestra un
+     * mensaje de error.
+     *
+     * @param evt Evento de acción que desencadena la acción.
+     */
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
-        controladores.mostrarInstitucionesRegistradas();
-        dispose();
-    }//GEN-LAST:event_btnSiguienteActionPerformed
+        String claveIngresada = cmpClave.getText();
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FrmLevantarReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FrmLevantarReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FrmLevantarReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FrmLevantarReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FrmLevantarReporte().setVisible(true);
-//            }
-//        });
-//    }
+        //Hardcoded valido? No se involucra en su totalidad con mi caso de uso
+        List<String> clavesValidas = Arrays.asList("230DLE", "9032SD", "ASF212", "123456");
+        if (clavesValidas.contains(claveIngresada)) {
+            controladores.mostrarInstitucionesRegistradas();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Clave inválida", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_btnSiguienteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSiguiente;
     private javax.swing.JButton btnVolver;
-    private javax.swing.JTextField cmpTitulo;
+    private javax.swing.JPasswordField cmpClave;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
