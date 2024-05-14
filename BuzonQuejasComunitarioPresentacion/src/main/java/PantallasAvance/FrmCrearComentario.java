@@ -21,7 +21,7 @@ import registrarAvance.RegistrarAvance;
  */
 public class FrmCrearComentario extends javax.swing.JFrame {
 
-  private ComentarioDTO comentarioDTO;
+    private ComentarioDTO comentarioDTO;
     private final IRegistrarAvance registrarAvance;
     byte[] photo;
     String fileName;
@@ -44,7 +44,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         lblSubirImagen.setText("");
         lblTituloReporte.setText(reporteDTO.getTitulo());
         lblDireccionReporte.setText(reporteDTO.getCalle() + ", " + reporteDTO.getColonia());
-        lblFolioReporte.setText("Folio: "+String.valueOf(reporteDTO.getFolio()));
+        lblFolioReporte.setText("Folio: " + String.valueOf(reporteDTO.getFolio()));
         Calendar fechaCreacion = reporteDTO.getFechaCreacion();
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
         String fechaFormateada = sdf.format(fechaCreacion.getTime());
@@ -255,7 +255,8 @@ public class FrmCrearComentario extends javax.swing.JFrame {
                 try {
                     comentarioDTO = new ComentarioDTO(
                             txtTitulo.getText(),
-                            txtComentario.getText());
+                            txtComentario.getText(),
+                            reporteDTO.getFolio());
                     registrarAvance.registarComentario(comentarioDTO);
                 } catch (PersistenciaException ex) {
                     Logger.getLogger(FrmCrearComentario.class.getName()).log(Level.SEVERE, null, ex);
@@ -270,7 +271,8 @@ public class FrmCrearComentario extends javax.swing.JFrame {
                     comentarioDTO = new ComentarioDTO(
                             txtTitulo.getText(),
                             txtComentario.getText(),
-                            photo);
+                            photo,
+                            reporteDTO.getFolio());
                     registrarAvance.registarComentario(comentarioDTO);
                 } catch (PersistenciaException e) {
                     Logger.getLogger(

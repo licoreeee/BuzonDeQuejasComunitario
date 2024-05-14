@@ -21,6 +21,7 @@ public class ReporteDTO {
     private CiudadanoDTO ciudadano;
     private InstitucionRegistradaDTO institucion;
     private IncidentesDTO incidente;
+  
 
     public ReporteDTO() {
     }

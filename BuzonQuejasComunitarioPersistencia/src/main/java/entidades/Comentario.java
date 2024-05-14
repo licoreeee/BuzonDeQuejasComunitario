@@ -18,6 +18,7 @@ public class Comentario {
     private String titulo;
     private String comentario;
     private Binary photo;
+    private Integer folio;
 
     public Comentario() {
     }
@@ -29,16 +30,22 @@ public class Comentario {
         this.photo = photo;
     }
 
-    public Comentario(String titulo, String comentario, Binary photo) {
+    public Comentario(String titulo, String comentario, Binary photo, Integer folio) {
         this.titulo = titulo;
         this.comentario = comentario;
         this.photo = photo;
+        this.folio = folio;
     }
 
-    public Comentario(String titulo, String comentario) {
+    
+
+    public Comentario(String titulo, String comentario, Integer folio) {
         this.titulo = titulo;
         this.comentario = comentario;
+        this.folio = folio;
     }
+
+    
 
     public ObjectId getId() {
         return _id;
@@ -70,6 +77,14 @@ public class Comentario {
 
     public void setPhoto(Binary  photo) {
         this.photo = photo;
+    }
+
+    public Integer getFolio() {
+        return folio;
+    }
+
+    public void setFolio(Integer folio) {
+        this.folio = folio;
     }
     
     
