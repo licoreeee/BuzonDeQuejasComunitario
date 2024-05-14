@@ -35,7 +35,8 @@ public class ComentarioBO implements IComentarioBO {
         if (comentarioDTO.getPhoto() == null) {
             comentario = new Comentario(
                     comentarioDTO.getTitulo(),
-                    comentarioDTO.getComentario());
+                    comentarioDTO.getComentario(),
+                    comentarioDTO.getFolio());
         } else {
             byte[] photo = comentarioDTO.getPhoto();
             Binary binaryPhoto = new Binary(photo);
@@ -43,7 +44,8 @@ public class ComentarioBO implements IComentarioBO {
             comentario = new Comentario(
                     comentarioDTO.getTitulo(),
                     comentarioDTO.getComentario(),
-                    binaryPhoto
+                    binaryPhoto,
+                    comentarioDTO.getFolio()
             );
 
         }
@@ -67,7 +69,8 @@ public class ComentarioBO implements IComentarioBO {
             ComentarioDTO comentarioDTO = new ComentarioDTO(
                     comment.getTitulo(),
                     comment.getComentario(),
-                    photoBytes);
+                    photoBytes,
+                    comment.getFolio());
 
             comentariosDTO.add(comentarioDTO);
         }

@@ -18,14 +18,13 @@ import javax.swing.table.DefaultTableModel;
 import registrarAvance.IRegistrarAvance;
 import registrarAvance.RegistrarAvance;
 
-
 /**
  *
  * @author hisam
  */
 public class FrmReportesPendientes extends javax.swing.JFrame {
 
-   ControlNavegacion control;
+    ControlNavegacion control;
     IRegistrarAvance registrarAvance;
     InstitucionRegistradaDTO institucionDTO;
     List<ReporteDTO> reportesDTO;
@@ -113,7 +112,8 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
             dispose();
         }
     }
-  private void btnCerrar(){
+
+    private void btnCerrar() {
         int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
         if (filaSeleccionada == -1) {
             JOptionPane.showMessageDialog(
@@ -124,7 +124,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         } else {
             String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
             Integer folio = Integer.valueOf(folioString);
-           
+
             ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
                     folio, true);
 
@@ -141,13 +141,23 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         }
         actualizarTabla();
     }
-  private void actualizarTabla() {
+
+    private void actualizarTabla() {
         try {
+            List<ReporteDTO> reportesActivos = new ArrayList<>();
+            for (ReporteDTO reporte : reportesDTO) {
+                if (reporte.getEstado()) {
+                    reportesActivos.add(reporte);
+                }
+            }
             DefaultTableModel modeloTabla = (DefaultTableModel) TablaReportesPendientes.getModel();
             modeloTabla.fireTableDataChanged();
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, "Error al actualizar la tabla de incidentes.", "Error", JOptionPane.ERROR_MESSAGE);
-            ex.printStackTrace();
+            JOptionPane.showMessageDialog(
+                    this, 
+                    "Error al actualizar la tabla de incidentes.", 
+                    "Error", 
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -250,7 +260,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
-       btnCerrar();
+        btnCerrar();
     }//GEN-LAST:event_btnCerrarActionPerformed
 
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
