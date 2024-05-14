@@ -8,6 +8,7 @@ import PantallasAvance.FrmComentariosReporte;
 import PantallasAvance.FrmCrearComentario;
 import PantallasAvance.FrmPortalInstituciones;
 import PantallasAvance.FrmReportesPendientes;
+import PantallasHistorial.FrmHistorial;
 import dto.InstitucionNuevaDTO;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
@@ -100,6 +101,11 @@ public class ControlNavegacion {
     public void mostrarConfirmado() {
         FrmConfirmado confirmado = new FrmConfirmado();
         confirmado.setVisible(true);
+    }
+    
+    public void mostrarHistorial() {
+        FrmHistorial historial = new FrmHistorial();
+        historial.setVisible(true);
     }
 
 }
