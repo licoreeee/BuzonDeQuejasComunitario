@@ -1,11 +1,11 @@
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
 import Excepciones.FindException;
+import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
 import dao.IReportesDAO;
 import dao.ReportesDAO;
-import dto.ComentarioDTO;
 import dto.ReporteDTO;
 import entidades.Reporte;
 import excepciones.NegociosException;

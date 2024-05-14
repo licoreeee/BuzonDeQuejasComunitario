@@ -58,4 +58,10 @@ public class RegistrarAvance implements IRegistrarAvance {
         }
     }
 
+    @Override
+    public void actualizarEstado(ReporteDTO reporte) throws PersistenciaException {
+         reporteBO.actualizarEstado(reporte);
+         }
+      
+
 }

@@ -42,33 +42,22 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
     }
-    public ActionListener botonValidar() {
-        ActionListener validarListener = new ActionListener() {
+
+    public ActionListener botonActualizar() {
+        ActionListener actualizarListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ReporteDTO reporteSelec = gestionIncidencias.recuperarReportes().get(tablaReportes.getSelectedRow()) ;
-                if (!reporteSelec.isValidado()) {
-                    dispose() ;
-                    System.out.println((reporteSelec.getAlumno().getNombre())) ;
-                    FrmValidarReporte frmValidar = new FrmValidarReporte(gestionIncidencias, reporteSelec) ;
-                    frmValidar.setVisible(true);
-                } else {
-                    JOptionPane.showConfirmDialog(new JFrame(), "Este reporte ya ha sido validado previamente", "Reporte Validado", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE) ;
-                }
-                
+                ReporteDTO reporteDTO = registrarAvance.actualizarEstado(reporte);
+
             }
-        } ;
-        
-        return validarListener ;
+        };
+
+        return actualizarListener;
     }
-    
-    
-    
-    
-    
+
     public void refrescarTabla() {
-        DefaultTableModel modeloTabla = new DefaultTableModel() ;
-        List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes() ;
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        List<ReporteDTO> reportes = gestionIncidencias.recuperarReportes();
         Object[] datosTabla = new Object[9];
         modeloTabla.addColumn("CURP");
         modeloTabla.addColumn("Nombre");
@@ -79,109 +68,109 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         modeloTabla.addColumn("Descripción");
         modeloTabla.addColumn("Notificado");
         modeloTabla.addColumn("Validar");
-        
-        
-        
+
         for (int i = 0; i < reportes.size(); i++) {
-            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
-            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
-            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
-            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
-            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
-            datosTabla[5] = reportes.get(i).getMotivo() ;
-            datosTabla[6] = reportes.get(i).getDescripcion() ;
+            datosTabla[0] = reportes.get(i).getAlumno().getCurp();
+            datosTabla[1] = reportes.get(i).getAlumno().getNombre();
+            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo();
+            datosTabla[3] = reportes.get(i).getFechaHora().getTime();
+            datosTabla[4] = reportes.get(i).getNivelIncidencia();
+            datosTabla[5] = reportes.get(i).getMotivo();
+            datosTabla[6] = reportes.get(i).getDescripcion();
             if (reportes.get(i).isNotificado()) {
-                datosTabla[7] = "NOTIFICADO" ;
+                datosTabla[7] = "NOTIFICADO";
             } else {
-                datosTabla[7] = "PENDIENTE" ;
+                datosTabla[7] = "PENDIENTE";
             }
             if (reportes.get(i).isValidado()) {
-                datosTabla[8] = "VALIDADO" ;
-            } 
-            
+                datosTabla[8] = "VALIDADO";
+            }
+
             modeloTabla.addRow(datosTabla);
         }
-        
+
         tablaReportes.setModel(modeloTabla);
         tablaReportes.setRowHeight(30);
         tablaReportes.getColumnModel().getColumn(8).setCellRenderer(new JButtonRenderer("Validar"));
-        tablaReportes.getColumnModel().getColumn(8).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
+        tablaReportes.getColumnModel().getColumn(8).setCellEditor(new JButtonCellEditor("Validar", botonValidar()));
 
     }
 
-public class JButtonCellEditor implements TableCellEditor {
+    public class JButtonCellEditor implements TableCellEditor {
 
-    private final JButton button;
-    private int row;
-    private ActionListener actionListener;
+        private final JButton button;
+        private int row;
+        private ActionListener actionListener;
 
-    public JButtonCellEditor(String text, ActionListener actionListener) {
-        this.button = new JButton(text);
+        public JButtonCellEditor(String text, ActionListener actionListener) {
+            this.button = new JButton(text);
 //        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
 //        this.button.setBackground(new Color(188, 149, 92));
 //        this.button.setForeground(new Color(242, 242, 242));
-        this.actionListener = actionListener;
-        this.button.addActionListener((ActionEvent evt)->{
-            this.actionListener.actionPerformed(
-                new ActionEvent(this.button, ActionEvent.ACTION_PERFORMED, this.row+"")
-            );
-        });
+            this.actionListener = actionListener;
+            this.button.addActionListener((ActionEvent evt) -> {
+                this.actionListener.actionPerformed(
+                        new ActionEvent(this.button, ActionEvent.ACTION_PERFORMED, this.row + "")
+                );
+            });
+        }
+
+        @Override
+        public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
+            this.row = row;
+            return this.button;
+        }
+
+        @Override
+        public Object getCellEditorValue() {
+            return true;
+        }
+
+        @Override
+        public boolean isCellEditable(EventObject anEvent) {
+            return true;
+        }
+
+        @Override
+        public boolean shouldSelectCell(EventObject anEvent) {
+            return true;
+        }
+
+        @Override
+        public boolean stopCellEditing() {
+            return true;
+        }
+
+        @Override
+        public void cancelCellEditing() {
+        }
+
+        @Override
+        public void addCellEditorListener(CellEditorListener l) {
+        }
+
+        @Override
+        public void removeCellEditorListener(CellEditorListener l) {
+        }
     }
 
-    @Override
-    public Component getTableCellEditorComponent(JTable table, Object value, boolean isSelected, int row, int column) {
-        this.row = row;
-        return this.button;
-    }
-
-    @Override
-    public Object getCellEditorValue() {
-        return true;
-    }
-
-    @Override
-    public boolean isCellEditable(EventObject anEvent) {
-        return true;
-    }
-
-    @Override
-    public boolean shouldSelectCell(EventObject anEvent) {
-        return true;
-    }
-
-    @Override
-    public boolean stopCellEditing() {
-        return true;
-    }
-
-    @Override
-    public void cancelCellEditing() {}
-
-    @Override
-    public void addCellEditorListener(CellEditorListener l) {}
-
-    @Override
-    public void removeCellEditorListener(CellEditorListener l) {}
-}
-    
     public class JButtonRenderer implements TableCellRenderer {
 
-    private final JButton button;
+        private final JButton button;
 
-    public JButtonRenderer(String text) {
-        this.button = new JButton(text);
+        public JButtonRenderer(String text) {
+            this.button = new JButton(text);
 //        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
 //        this.button.setBackground(new Color(188, 149, 92));
 //        this.button.setForeground(new Color(242, 242, 242));
-    }
+        }
 
-    @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        return this.button;
-    }
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            return this.button;
+        }
 
-}
-    
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
