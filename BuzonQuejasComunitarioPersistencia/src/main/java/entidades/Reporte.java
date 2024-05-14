@@ -33,6 +33,11 @@ public class Reporte {
     public Reporte() {
     }
 
+    public Reporte(ObjectId id, Boolean estado) {
+        this.id = id;
+        this.estado = estado;
+    }
+    
     public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
         this.folio = folio;
         this.titulo = titulo;

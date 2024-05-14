@@ -12,6 +12,11 @@
             <version>${project.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.itson.diseno</groupId>
+            <artifactId>BuzonQuejasComunitarioPersistencia</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
             <groupId>org.itson.bdavanzadas</groupId>
             <artifactId>BuzonQuejasComunitarioNegocio</artifactId>
             <version>1.0-SNAPSHOT</version>
