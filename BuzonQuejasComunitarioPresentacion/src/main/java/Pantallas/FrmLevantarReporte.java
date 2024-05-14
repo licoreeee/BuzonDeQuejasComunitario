@@ -5,9 +5,8 @@
 package Pantallas;
 
 import dto.ReporteDTO;
+import javax.swing.JOptionPane;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
-
-
 
 /**
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
@@ -16,15 +15,18 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
 
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
+    private ReporteDTO reporteDTO;
 
     /**
      * Creates new form FrmLevantarReporte
+     *
+     * @param reporteDTO
      */
-    public FrmLevantarReporte() {
-        initComponents();
+    public FrmLevantarReporte(ReporteDTO reporteDTO) {
+        this.reporteDTO = reporteDTO;
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
-
+        initComponents();
     }
 
     /**
@@ -160,13 +162,16 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         String titulo = cmpTitulo.getText();
         String descripcion = cmpDescripcion.getText();
-        
-//        ReporteDTO reporte = new ReporteDTO();
-//        reporte.setTitulo(titulo);
-//        reporte.setDescripcion(descripcion);
-//        
-//        controladores.mostrarDireccion(reporte);
-        dispose();
+        if (!titulo.isBlank() || !titulo.isEmpty() || !descripcion.isBlank() || !descripcion.isEmpty()) {
+
+            reporteDTO.setTitulo(titulo);
+            reporteDTO.setDescripcion(descripcion);
+
+            controladores.mostrarDireccion(reporteDTO);
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Es necesario ingresar datos correctos", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
 //    /**

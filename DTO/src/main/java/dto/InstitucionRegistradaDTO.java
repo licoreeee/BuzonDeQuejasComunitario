@@ -45,6 +45,19 @@ public class InstitucionRegistradaDTO {
     }
 
     /**
+     * Constructor de la clase InstitucionRegistradaDTO con ID, nombre y siglas.
+     *
+     * @param id El ID de la institución registrada.
+     * @param nombre El nombre de la institución registrada.
+     * @param siglas Las siglas de la institución registrada.
+     */
+    public InstitucionRegistradaDTO(String id, String nombre, String siglas) {
+        this.id = id;
+        this.nombre = nombre;
+        this.siglas = siglas;
+    }
+
+    /**
      * Constructor de la clase InstitucionRegistradaDTO con todos los atributos.
      *
      * @param id El ID de la institución registrada.

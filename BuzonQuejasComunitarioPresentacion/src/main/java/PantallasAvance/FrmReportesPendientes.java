@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import org.itson.diseño.levantarreportess.IRegistrarAvance;
-//import org.itson.diseño.levantarreportess.RegistrarAvance;
+import org.itson.diseño.levantarreportess.RegistrarAvance;
 
 /**
  *
@@ -33,85 +33,85 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         initComponents();
         control = new ControlNavegacion();
         this.institucionDTO = institucionDTO;
-//        registrarAvance = new RegistrarAvance();
+        registrarAvance = new RegistrarAvance();
         reportesDTO = new ArrayList<>();
-        llenarTabla(institucionDTO);
+//        llenarTabla(institucionDTO);
     }
 
-    public void llenarTabla(InstitucionRegistradaDTO institucionDTO) {
-        try {
-            reportesDTO = registrarAvance.obtenerReportesAbiertosPorInstitucion(institucionDTO.getSiglas());
-        } catch (FindException ex) {
-            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(
-                    this,
-                    ex.getMessage(),
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-            return;
-
-        }
-
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Folio");
-        model.addColumn("Título");
-        model.addColumn("Descripción");
-        model.addColumn("Fecha de Creación");
-        model.addColumn("Calle");
-        model.addColumn("Colonia");
-
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd : HH:mm");
-
-        for (ReporteDTO reporte : reportesDTO) {
-
-            String formattedDate = sdf.format(reporte.getFechaCreacion().getTime());
-
-            model.addRow(new Object[]{
-                reporte.getFolio(),
-                reporte.getTitulo(),
-                reporte.getDescripcion(),
-                formattedDate,
-                reporte.getCalle(),
-                reporte.getColonia()
-            });
-        }
-
-        TablaReportesPendientes.setModel(model);
-        TablaReportesPendientes.setDefaultEditor(Object.class, null);
-    }
-
-    private void btnComentario() {
-        int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Debe seleccionar un reporte.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
-            Integer folio = Integer.valueOf(folioString);
-            String titulo = TablaReportesPendientes.getValueAt(filaSeleccionada, 1).toString();
-            String descripcion = TablaReportesPendientes.getValueAt(filaSeleccionada, 2).toString();
-            String fechaString = TablaReportesPendientes.getValueAt(filaSeleccionada, 3).toString();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-            Calendar fechaCreacion = Calendar.getInstance();
-            try {
-                Date fechaDate = sdf.parse(fechaString);
-                fechaCreacion.setTime(fechaDate);
-
-            } catch (ParseException ex) {
-                Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            String calle = TablaReportesPendientes.getValueAt(filaSeleccionada, 4).toString();
-            String colonia = TablaReportesPendientes.getValueAt(filaSeleccionada, 5).toString();
-            ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
-                    folio, titulo, descripcion, fechaCreacion, calle, colonia);
-            control.mostrarCrearComentario(reporteDTOSeleccionado);
-            dispose();
-        }
-    }
+//    public void llenarTabla(InstitucionRegistradaDTO institucionDTO) {
+//        try {
+//            reportesDTO = registrarAvance.obtenerReportesAbiertosPorInstitucion(institucionDTO.getSiglas());
+//        } catch (FindException ex) {
+//            Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+//            JOptionPane.showMessageDialog(
+//                    this,
+//                    ex.getMessage(),
+//                    "Error",
+//                    JOptionPane.ERROR_MESSAGE);
+//            return;
+//
+//        }
+//
+//        DefaultTableModel model = new DefaultTableModel();
+//        model.addColumn("Folio");
+//        model.addColumn("Título");
+//        model.addColumn("Descripción");
+//        model.addColumn("Fecha de Creación");
+//        model.addColumn("Calle");
+//        model.addColumn("Colonia");
+//
+//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd : HH:mm");
+//
+//        for (ReporteDTO reporte : reportesDTO) {
+//
+//            String formattedDate = sdf.format(reporte.getFechaCreacion().getTime());
+//
+//            model.addRow(new Object[]{
+//                reporte.getFolio(),
+//                reporte.getTitulo(),
+//                reporte.getDescripcion(),
+//                formattedDate,
+//                reporte.getCalle(),
+//                reporte.getColonia()
+//            });
+//        }
+//
+//        TablaReportesPendientes.setModel(model);
+//        TablaReportesPendientes.setDefaultEditor(Object.class, null);
+//    }
+//
+//    private void btnComentario() {
+//        int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
+//        if (filaSeleccionada == -1) {
+//            JOptionPane.showMessageDialog(
+//                    this,
+//                    "Debe seleccionar un reporte.",
+//                    "Error",
+//                    JOptionPane.ERROR_MESSAGE);
+//        } else {
+//            String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
+//            Integer folio = Integer.valueOf(folioString);
+//            String titulo = TablaReportesPendientes.getValueAt(filaSeleccionada, 1).toString();
+//            String descripcion = TablaReportesPendientes.getValueAt(filaSeleccionada, 2).toString();
+//            String fechaString = TablaReportesPendientes.getValueAt(filaSeleccionada, 3).toString();
+//            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+//            Calendar fechaCreacion = Calendar.getInstance();
+//            try {
+//                Date fechaDate = sdf.parse(fechaString);
+//                fechaCreacion.setTime(fechaDate);
+//
+//            } catch (ParseException ex) {
+//                Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//
+//            String calle = TablaReportesPendientes.getValueAt(filaSeleccionada, 4).toString();
+//            String colonia = TablaReportesPendientes.getValueAt(filaSeleccionada, 5).toString();
+//            ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
+//                    folio, titulo, descripcion, fechaCreacion, calle, colonia);
+//            control.mostrarCrearComentario(reporteDTOSeleccionado);
+//            dispose();
+//        }
+//    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -211,36 +211,36 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCerrar(){
-        int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
-        if (filaSeleccionada == -1) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Debe seleccionar un reporte.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        } else {
-            String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
-            Integer folio = Integer.valueOf(folioString);
-           
-            ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
-                    folio, true);
-
-            try {
-                registrarAvance.actualizarEstado(reporteDTOSeleccionado);
-            } catch (PersistenciaException ex) {
-                Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(
-                        this,
-                        ex.getMessage(),
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        actualizarTabla();
-    }
+//    private void btnCerrar(){
+//        int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
+//        if (filaSeleccionada == -1) {
+//            JOptionPane.showMessageDialog(
+//                    this,
+//                    "Debe seleccionar un reporte.",
+//                    "Error",
+//                    JOptionPane.ERROR_MESSAGE);
+//        } else {
+//            String folioString = TablaReportesPendientes.getValueAt(filaSeleccionada, 0).toString();
+//            Integer folio = Integer.valueOf(folioString);
+//           
+////            ReporteDTO reporteDTOSeleccionado = new ReporteDTO(
+////                    folio, true);
+//
+//            try {
+//                registrarAvance.actualizarEstado(reporteDTOSeleccionado);
+//            } catch (PersistenciaException ex) {
+//                Logger.getLogger(FrmReportesPendientes.class.getName()).log(Level.SEVERE, null, ex);
+//                JOptionPane.showMessageDialog(
+//                        this,
+//                        ex.getMessage(),
+//                        "Error",
+//                        JOptionPane.ERROR_MESSAGE);
+//            }
+//        }
+//        actualizarTabla();
+//    }
     private void btnCerrarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarReporteActionPerformed
-        btnCerrar();
+//        btnCerrar();
     }//GEN-LAST:event_btnCerrarReporteActionPerformed
  private void actualizarTabla() {
         try {
@@ -252,7 +252,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         }
     }
     private void btnComentarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarActionPerformed
-        btnComentario();
+//        btnComentario();
 
 
     }//GEN-LAST:event_btnComentarActionPerformed

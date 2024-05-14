@@ -82,18 +82,20 @@ public class ControlNavegacion {
      * Muestra la vista para seleccionar incidentes asociados a una institución
      * nueva.
      *
-     * @param institucion La información de la institución nueva.
+     * 
+     * @param reporteDTO
      */
-    public void mostrarSeleccionIncidentes(InstitucionNuevaDTO institucion) {
-        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(institucion);
+    public void mostrarSeleccionIncidentes(ReporteDTO reporteDTO) {
+        FrmSeleccionIncidentes seleccionIncidentes = new FrmSeleccionIncidentes(reporteDTO);
         seleccionIncidentes.setVisible(true);
     }
 
     /**
      * Muestra el formulario para levantar un reporte.
+     * @param reporteDTO
      */
-    public void mostrarLevantarReporte() {
-        FrmLevantarReporte levantarReporte = new FrmLevantarReporte();
+    public void mostrarLevantarReporte(ReporteDTO reporteDTO) {
+        FrmLevantarReporte levantarReporte = new FrmLevantarReporte(reporteDTO);
         levantarReporte.setVisible(true);
     }
 
@@ -110,8 +112,8 @@ public class ControlNavegacion {
     /**
      * Muestra el formulario para ingresar un folio.
      */
-    public void mostrarFolio() {
-        FrmFolio folio = new FrmFolio();
+    public void mostrarFolio(ReporteDTO reporteDTO) {
+        FrmFolio folio = new FrmFolio(reporteDTO);
         folio.setVisible(true);
     }
 

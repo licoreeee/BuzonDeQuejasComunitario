@@ -18,7 +18,7 @@ import java.util.List;
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface ILevantarReporteBO {
-    
+
     public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException;
 
     public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException;
@@ -30,6 +30,8 @@ public interface ILevantarReporteBO {
      * Reporte.
      * @return El objeto Reporte resultante de la conversión.
      */
-   public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException;
+    public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException;
+
+    public ReporteDTO levantarReporte(ReporteDTO reporteDTO) throws NegociosException;
 
 }

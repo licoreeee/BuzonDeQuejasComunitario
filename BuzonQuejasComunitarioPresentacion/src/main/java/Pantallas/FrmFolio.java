@@ -4,6 +4,7 @@
  */
 package Pantallas;
 
+import dto.ReporteDTO;
 import java.util.Random;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
@@ -15,12 +16,16 @@ public class FrmFolio extends javax.swing.JFrame {
 
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
+    private ReporteDTO reporteDTO;
 
     /**
      * Creates new form FrmFolio
+     *
+     * @param reporteDTO
      */
-    public FrmFolio() {
+    public FrmFolio(ReporteDTO reporteDTO) {
         initComponents();
+        this.reporteDTO = reporteDTO;
         this.fachadaLevantarReporte = fachadaLevantarReporte;
         this.controladores = new ControlNavegacion();
         generarFolio();
@@ -28,9 +33,7 @@ public class FrmFolio extends javax.swing.JFrame {
     }
 
     private void generarFolio() {
-        Random rand = new Random();
-        int folio = rand.nextInt(900000) + 100000; // Generar un número aleatorio de 6 dígitos
-        etqDinamicaFolio.setText(String.valueOf(folio)); // Mostrar el folio en el JLabel
+        etqDinamicaFolio.setText(String.valueOf(reporteDTO.getFolio()));
     }
 
     /**
@@ -175,7 +178,7 @@ public class FrmFolio extends javax.swing.JFrame {
                 btnVolverMenuPrincipalActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolverMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 340, 216, 40));
+        jPanel1.add(btnVolverMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 216, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

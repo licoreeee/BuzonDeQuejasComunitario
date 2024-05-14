@@ -4,13 +4,21 @@
  */
 package Pantallas;
 
+import Excepciones.PersistenciaException;
+import dto.IncidentesDTO;
 import dto.InstitucionNuevaDTO;
+import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import org.itson.diseno.subsistemaagregarincidentes.FacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarincidentes.IFacadeAgregarIncidentes;
+import org.itson.diseno.subsistemaagregarinstitucion.FacadeAgregarInstitucion;
+import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 /**
@@ -19,47 +27,55 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
+    private IFacadeAgregarIncidentes facadeAgregarIncidentes;
+    private IFacadeAgregarInstitucion facadeAgregarInstitucion;
     private IFacadeLevantarReporte fachadaLevantarReporte;
+    private InstitucionRegistradaDTO institucionRegistradaDTO;
     private ControlNavegacion controladores;
     private ReporteDTO reporteDTO;
-//    private List<IncidenteDTO> incidentes;
+    private List<IncidentesDTO> incidentesDeInstitucion = new ArrayList<>();
     private InstitucionNuevaDTO institucion;
+    private List<IncidentesDTO> incidentesDTOs;
 
     /**
      * Creates new form FrmSeleccionIncidentes
+     *
+     * @param reporteDTO
+     *
      */
-    public FrmSeleccionIncidentes(InstitucionNuevaDTO institucion) {
-        initComponents();
-        this.controladores = new ControlNavegacion();
-        this.institucion = institucion;
-//        mostrarTabla(institucion.getIncidentes());
-    }
-
     public FrmSeleccionIncidentes(ReporteDTO reporteDTO) {
         this.reporteDTO = reporteDTO;
+        this.institucionRegistradaDTO = reporteDTO.getInstitucion();
+        initComponents();
+        this.controladores = new ControlNavegacion();
+        this.facadeAgregarIncidentes = new FacadeAgregarIncidentes();
+        this.facadeAgregarInstitucion = new FacadeAgregarInstitucion();
+        this.institucionRegistradaDTO = institucionRegistradaDTO;
+        this.incidentesDeInstitucion = incidentesDeInstitucion;
+        actualizarTabla(incidentesDTOs);
     }
 
-    DefaultTableModel modeloTabla = new DefaultTableModel() {
-        @Override
-        public boolean isCellEditable(int row, int column) {
-            return false; // Hacer que todas las celdas sean no editables
+    private void actualizarTabla(List<IncidentesDTO> incidentesDTOs) {
+        try {
+            DefaultTableModel incidentesRegistrados = new DefaultTableModel() {
+                @Override
+                public boolean isCellEditable(int row, int column) {
+                    return false; // Hacer que todas las celdas sean no editables
+                }
+            };
+            incidentesRegistrados.addColumn("Incidentes");
+            String id = institucionRegistradaDTO.getId();
+            incidentesDTOs = facadeAgregarIncidentes.consultarIncidentes(id);
+            for (IncidentesDTO incidente : incidentesDTOs) {
+                Object[] fila = new Object[]{incidente.getInformacion()};
+                incidentesRegistrados.addRow(fila);
+            }
+            tblIncidentes.setModel(incidentesRegistrados);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
-    };
 
-//    private void mostrarTabla(List<IncidenteDTO> incidentes) {
-//        modeloTabla.addColumn("Incidente");
-//        Object[] datosTabla = new Object[1];
-//
-//        // Verificar si la lista de incidentes no es null antes de iterar sobre ella
-//        if (incidentes != null) {
-//            incidentes.forEach(institucionObtenida -> {
-//                datosTabla[0] = institucionObtenida.getNombreIncidente();
-//                modeloTabla.addRow(datosTabla);
-//            });
-//        }
-//
-//        tblIncidentes.setModel(modeloTabla);
-//    }
+    }
 
     private void obtenerDatosSeleccionados() {
         int filaSeleccionada = tblIncidentes.getSelectedRow();
@@ -70,11 +86,14 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
             for (int i = 0; i < tblIncidentes.getColumnCount(); i++) {
                 datosFila[i] = tblIncidentes.getValueAt(filaSeleccionada, i);
             }
-//            IncidenteDTO incidenteDTO = new IncidenteDTO();
-//            incidenteDTO.setNombreIncidente(datosFila[0].toString());
+            IncidentesDTO incidenteDTO = new IncidentesDTO();
+            incidenteDTO.setInformacion(datosFila[0].toString());
+
+            reporteDTO.setIncidente(incidenteDTO);
+            controladores.mostrarLevantarReporte(reporteDTO);
+            dispose();
         } else {
             Logger.getLogger(FrmSeleccionIncidentes.class.getName()).log(Level.SEVERE, "No se selecciono ningun elemento de la tabla");
-
         }
     }
 
@@ -209,8 +228,6 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private void btnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSiguienteActionPerformed
         if (tblIncidentes.getSelectedRow() != -1) {
             obtenerDatosSeleccionados();
-            controladores.mostrarLevantarReporte();
-            dispose();
         } else {
             JOptionPane.showMessageDialog(rootPane, "No hay un incidente seleccionado de la tabla");
         }

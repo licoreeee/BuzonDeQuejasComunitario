@@ -6,6 +6,8 @@ package Pantallas;
 
 //import dto.DomicilioDTO;
 import dto.ReporteDTO;
+import javax.swing.JOptionPane;
+import org.itson.diseño.levantarreportess.FacadeLevantarReporte;
 import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
 
 /**
@@ -14,21 +16,28 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  */
 public class FrmDireccion extends javax.swing.JFrame {
 
-//    private DomicilioDTO domicilio;
-    private ReporteDTO reporte;
+    private ReporteDTO reporteDTO;
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private ControlNavegacion controladores;
 
     /**
      * Creates new form FrmDireccion
      */
-    public FrmDireccion(ReporteDTO reporte) {
+    public FrmDireccion(ReporteDTO reporteDTO) {
         initComponents();
-        this.reporte = reporte;
-//        this.domicilio = new DomicilioDTO();
-        this.fachadaLevantarReporte = fachadaLevantarReporte;
+        this.reporteDTO = reporteDTO;
+        this.fachadaLevantarReporte = new FacadeLevantarReporte();
         this.controladores = new ControlNavegacion();
 
+    }
+
+    private void levantarReporte() {
+        if (reporteDTO == null) {
+            JOptionPane.showMessageDialog(this, "No fue posible levantar su reporte", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        reporteDTO = fachadaLevantarReporte.levantarReporte(reporteDTO);
+        controladores.mostrarFolio(reporteDTO);
+        dispose();
     }
 
     /**
@@ -185,51 +194,49 @@ public class FrmDireccion extends javax.swing.JFrame {
         pnlFondoLayout.setHorizontalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addContainerGap()
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlFondoLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(pnlFondoLayout.createSequentialGroup()
                         .addComponent(jlbColonia)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jlbCP)
-                        .addGap(220, 220, 220))
+                        .addGap(199, 199, 199))
                     .addGroup(pnlFondoLayout.createSequentialGroup()
-                        .addComponent(jlbDescripcionExtra)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(pnlFondoLayout.createSequentialGroup()
-                        .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cmpDescripcionExtra)
-                            .addComponent(jlbContexto, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblDireccionReporte, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
-                                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(pnlFondoLayout.createSequentialGroup()
-                                        .addComponent(jlbCalle)
-                                        .addGap(354, 354, 354))
-                                    .addGroup(pnlFondoLayout.createSequentialGroup()
-                                        .addComponent(cmpCalle)
-                                        .addGap(26, 26, 26)))
-                                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jlbNumeroExterior)
-                                    .addComponent(cmpNumeroExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
-                                .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addComponent(cmpCP)))
-                        .addContainerGap(17, Short.MAX_VALUE))))
+                        .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlFondoLayout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlbDescripcionExtra)
+                            .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(cmpDescripcionExtra)
+                                .addComponent(jlbContexto, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblDireccionReporte, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
+                                    .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(pnlFondoLayout.createSequentialGroup()
+                                            .addComponent(jlbCalle)
+                                            .addGap(354, 354, 354))
+                                        .addGroup(pnlFondoLayout.createSequentialGroup()
+                                            .addComponent(cmpCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(26, 26, 26)))
+                                    .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jlbNumeroExterior)
+                                        .addComponent(cmpNumeroExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
+                                    .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(29, 29, 29)
+                                    .addComponent(cmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 22, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFondoLayout.createSequentialGroup()
-                .addGap(15, 15, 15)
                 .addComponent(lblDireccionReporte)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbContexto)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlbNumeroExterior)
                     .addComponent(jlbCalle))
@@ -245,15 +252,15 @@ public class FrmDireccion extends javax.swing.JFrame {
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlbDescripcionExtra)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cmpDescripcionExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
+                    .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         getContentPane().add(pnlFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, 600, 320));
@@ -285,19 +292,29 @@ public class FrmDireccion extends javax.swing.JFrame {
     private void btnTerminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTerminarActionPerformed
         String calle = cmpCalle.getText();
         String colonia = cmpColonia.getText();
-        String numExterior = cmpNumeroExterior.getText();
-        String cp = cmpCP.getText();
         String descripcionExtra = cmpDescripcionExtra.getText();
+        String numeroExterior = cmpNumeroExterior.getText();
+        String codigoPostal = cmpCP.getText();
 
-//        domicilio.setCalle(calle);
-//        domicilio.setCodigoPostal(cp);
-//        domicilio.setColonia(colonia);
-//        domicilio.setEspecificaciones(descripcionExtra);
-//
-//        reporte.setDomicilio(domicilio);
+        if (calle.isBlank()
+                || colonia.isBlank()
+                || descripcionExtra.isBlank()
+                || numeroExterior.isBlank()
+                || codigoPostal.isBlank()
+                || calle.isEmpty()
+                || colonia.isEmpty()
+                || descripcionExtra.isEmpty()
+                || numeroExterior.isEmpty()
+                || codigoPostal.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Verifique la insercion de datos correctamente", "Aviso", JOptionPane.ERROR_MESSAGE);
+        } else {
 
-        controladores.mostrarFolio();
-        dispose();
+            reporteDTO.setCalle(calle);
+            reporteDTO.setColonia(colonia);
+            reporteDTO.setDescripcionExtra(descripcionExtra);
+
+            levantarReporte();
+        }
     }//GEN-LAST:event_btnTerminarActionPerformed
 
 //    /**

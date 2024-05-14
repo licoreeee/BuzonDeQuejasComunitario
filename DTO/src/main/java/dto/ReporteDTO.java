@@ -36,7 +36,6 @@ public class ReporteDTO {
         this.folio = folio;
         this.estado = estado;
     }
-    
 
     public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, String calle, String colonia) {
         this.folio = folio;
@@ -47,7 +46,19 @@ public class ReporteDTO {
         this.colonia = colonia;
     }
 
-    
+    public ReporteDTO(int folio, String titulo, String descripcion, Calendar fechaCreacion, Boolean estado, String calle, String colonia, String descripcionExtra, InstitucionRegistradaDTO institucion, IncidentesDTO incidente) {
+        this.folio = folio;
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
+        this.calle = calle;
+        this.colonia = colonia;
+        this.descripcionExtra = descripcionExtra;
+        this.institucion = institucion;
+        this.incidente = incidente;
+    }
+
     public ReporteDTO(String id, Boolean estado) {
         this.id = id;
         this.estado = estado;
