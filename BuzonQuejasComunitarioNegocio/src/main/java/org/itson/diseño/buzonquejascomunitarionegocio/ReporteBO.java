@@ -63,12 +63,13 @@ public class ReporteBO implements IReporteBO {
     @Override
     public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String siglasInstitucion) throws FindException {
         try {
-            Calendar calendar = null;
+            
             List<ReporteDTO> reportesDTO = new ArrayList<>();
             List<Reporte> reportes = reportesDAO.obtenerReportePorInstitucion(siglasInstitucion);
             if (!reportes.isEmpty()) {
                 for (Reporte reporte : reportes) {
                     if (reporte.getEstado()) {
+                       Calendar calendar = Calendar.getInstance();
                         calendar.setTime(reporte.getFechaCreacion());
                         ReporteDTO reporteDTO = new ReporteDTO(
                                 reporte.getFolio(),
