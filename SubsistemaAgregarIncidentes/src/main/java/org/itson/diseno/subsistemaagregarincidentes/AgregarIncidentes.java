@@ -7,8 +7,8 @@ package org.itson.diseno.subsistemaagregarincidentes;
 import Excepciones.FindException;
 import dto.IncidentesDTO;
 import java.util.List;
-import org.itson.diseño.buzonquejascomunitarionegocio.IIncidenteBO;
-import org.itson.diseño.buzonquejascomunitarionegocio.IncidenteBO;
+import negocio.IIncidenteBO;
+import negocio.IncidenteBO;
 
 /**
  * Clase que representa el subsistema encargado de agregar incidentes.
