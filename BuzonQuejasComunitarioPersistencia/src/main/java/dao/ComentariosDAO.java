@@ -27,12 +27,24 @@ public class ComentariosDAO implements IComentariosDAO {
     private final IConexion conexion;
     private final MongoCollection<Comentario> collection;
 
+    /**
+     * Constructor que inicializa la conexión y la colección de MongoDB.
+     * 
+     * @param conexion La conexión a la base de datos.
+     */
     public ComentariosDAO(IConexion conexion) {
         this.conexion = conexion;
         MongoDatabase database = conexion.crearConexion();
         this.collection = database.getCollection("Comentario", Comentario.class);
     }
 
+    /**
+     * Agrega un nuevo comentario a la base de datos.
+     *
+     * @param comentario El objeto Comentario a agregar.
+     * @return El objeto Comentario agregado.
+     * @throws PersistenciaException Si ocurre un error durante la operación de persistencia.
+     */
     @Override
     public Comentario agregarComentario(Comentario comentario) throws PersistenciaException {
         try {
@@ -43,6 +55,13 @@ public class ComentariosDAO implements IComentariosDAO {
         return comentario;
     }
 
+     /**
+     * Consulta los comentarios asociados a un reporte por su número de folio.
+     *
+     * @param folio El número de folio del reporte.
+     * @return Una lista de comentarios asociados al reporte.
+     * @throws FindException Si ocurre un error durante la operación de búsqueda.
+     */
     @Override
     public List<Comentario> consultarComentariosReporte(Integer folio) throws FindException {
     try {

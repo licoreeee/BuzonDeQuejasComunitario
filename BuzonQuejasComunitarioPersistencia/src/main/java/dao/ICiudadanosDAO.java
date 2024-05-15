@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Interface.java to edit this template
- */
 package dao;
 
 
@@ -13,8 +9,21 @@ import Excepciones.PersistenciaException;
  * @author Dell
  */
 public interface ICiudadanosDAO {
-    
+    /**
+     * Agrega un nuevo ciudadano a la base de datos.
+     *
+     * @param ciudadano El objeto Ciudadano a agregar.
+     * @return El objeto Ciudadano agregado.
+     * @throws PersistenciaException Si ocurre un error durante la operación de persistencia.
+     */
     Ciudadano agregarCiudadano(Ciudadano ciudadano) throws PersistenciaException;
     
+     /**
+     * Obtiene un ciudadano de la base de datos por su CURP.
+     *
+     * @param curp El CURP del ciudadano a buscar.
+     * @return El objeto Ciudadano correspondiente al CURP especificado.
+     * @throws PersistenciaException Si ocurre un error durante la operación de persistencia.
+     */
     Ciudadano obtenerCiudadanoPorCURP(String curp) throws PersistenciaException;
 }

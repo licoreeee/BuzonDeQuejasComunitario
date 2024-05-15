@@ -19,7 +19,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
+ * @author Hisamy Cota, Gael Castro, Victoria Vega
  */
 public class InstitucionDAO implements IInstitucionDAO {
 
@@ -34,8 +34,13 @@ public class InstitucionDAO implements IInstitucionDAO {
         this.collection = database.getCollection("Instituciones", Institucion.class);
     }
 
-    /*
-    *
+    /**
+     * Agrega una nueva institución a la base de datos.
+     *
+     * @param institucion La institución a agregar.
+     * @return La institución agregada.
+     * @throws FindException Si ocurre un error durante la operación de
+     * inserción.
      */
     @Override
     public Institucion agregarInstitucion(Institucion institucion) throws FindException {
@@ -47,6 +52,13 @@ public class InstitucionDAO implements IInstitucionDAO {
         return institucion;
     }
 
+    /**
+     * Obtiene todas las instituciones almacenadas en la base de datos.
+     *
+     * @return Una lista de todas las instituciones almacenadas.
+     * @throws FindException Si ocurre un error durante la operación de
+     * búsqueda.
+     */
     @Override
     public List<Institucion> obtenerInstituciones() throws FindException {
         try {
@@ -65,7 +77,14 @@ public class InstitucionDAO implements IInstitucionDAO {
         }
     }
 
-
+    /**
+     * Obtiene una institución por su código de gestión.
+     *
+     * @param codigoGestion El código de gestión de la institución.
+     * @return La institución correspondiente al código de gestión especificado.
+     * @throws FindException Si ocurre un error durante la operación de
+     * búsqueda.
+     */
     @Override
     public Institucion obtenerInstitucionPorCodigo(String codigoGestion) throws FindException {
         institucion = null;
