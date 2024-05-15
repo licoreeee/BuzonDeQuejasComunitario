@@ -2,8 +2,8 @@
 package presentacion.pantallasHistorial;
 
 import presentacion.pantallas.ControlNavegacion;
-import com.mycompany.subsistemahistorialreportes.FacadeHistorialReportes;
-import com.mycompany.subsistemahistorialreportes.IFacadeHistorialReportes;
+import historialReportes.FacadeHistorialReportes;
+import historialReportes.IFacadeHistorialReportes;
 import dto.IncidentesDTO;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
@@ -15,10 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.EventObject;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -554,8 +551,6 @@ public class FrmHistorial extends javax.swing.JFrame {
         String titulo = cmpTitulo.getText();
         String desde = datePickerDesde.getText();
         String hasta = datePickerHasta.getText();
-        Calendar fechaDesde;
-        Calendar fechaHasta;
         int indexInstitucion = cmbxInstituciones.getSelectedIndex();
         int indexIncidente = cmbxIncidentes.getSelectedIndex();
         DefaultTableModel modeloTabla = new DefaultTableModel() ;
@@ -567,8 +562,6 @@ public class FrmHistorial extends javax.swing.JFrame {
                 chkbxTitulo.isSelected()){
             if(!titulo.isBlank() || !titulo.isEmpty() || !desde.isBlank() || !desde.isEmpty()|| 
                     !hasta.isEmpty() || !hasta.isBlank()){
-                fechaDesde = localDateACalendar(datePickerDesde.getDate());
-                fechaHasta = localDateACalendar(datePickerHasta.getDate());
                 List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();
@@ -576,7 +569,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 IncidentesDTO incidente = incidentes.get(indexIncidente);
                 String informacionIncidente = incidente.getInformacion();
 
-                List<ReporteDTO> reportesEncontrados = new ArrayList();
+                reportesEncontrados = new ArrayList();
 
                 Calendar fechaActual = (Calendar) fechaMasVieja.clone();
 
@@ -588,10 +581,13 @@ public class FrmHistorial extends javax.swing.JFrame {
                     fechaActual.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
+                resultados = new ArrayList<>();
+
                 for (ReporteDTO reporte : reportesEncontrados) {
                     Calendar fechaCreacion = reporte.getFechaCreacion();
 
                     Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.add(Calendar.DAY_OF_MONTH, -1);
                     fechaDia.set(Calendar.HOUR_OF_DAY, 0);
                     fechaDia.set(Calendar.MINUTE, 0);
                     fechaDia.set(Calendar.SECOND, 0);
@@ -629,7 +625,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 IncidentesDTO incidente = incidentes.get(indexIncidente);
                 String informacionIncidente = incidente.getInformacion();
                 
-                List<ReporteDTO> reportesEncontrados = new ArrayList();
+                reportesEncontrados = new ArrayList();
 
                 Calendar fechaActual = (Calendar) fechaMasVieja.clone();
 
@@ -641,12 +637,13 @@ public class FrmHistorial extends javax.swing.JFrame {
                     fechaActual.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
-                List<Object[]> resultados = new ArrayList<>();
+                resultados = new ArrayList<>();
 
                 for (ReporteDTO reporte : reportesEncontrados) {
                     Calendar fechaCreacion = reporte.getFechaCreacion();
 
                     Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.add(Calendar.DAY_OF_MONTH, -1);
                     fechaDia.set(Calendar.HOUR_OF_DAY, 0);
                     fechaDia.set(Calendar.MINUTE, 0);
                     fechaDia.set(Calendar.SECOND, 0);
@@ -678,7 +675,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();
 
-                List<ReporteDTO> reportesEncontrados = new ArrayList();
+                reportesEncontrados = new ArrayList();
 
                 Calendar fechaActual = (Calendar) fechaMasVieja.clone();
 
@@ -690,17 +687,17 @@ public class FrmHistorial extends javax.swing.JFrame {
                     fechaActual.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
-                List<Object[]> resultados = new ArrayList<>();
+                resultados = new ArrayList<>();
 
                 for (ReporteDTO reporte : reportesEncontrados) {
                     Calendar fechaCreacion = reporte.getFechaCreacion();
 
                     Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.add(Calendar.DAY_OF_MONTH, -1);
                     fechaDia.set(Calendar.HOUR_OF_DAY, 0);
                     fechaDia.set(Calendar.MINUTE, 0);
                     fechaDia.set(Calendar.SECOND, 0);
                     fechaDia.set(Calendar.MILLISECOND, 0);
-                    fechaDia.add(Calendar.DAY_OF_MONTH, -1);
 
                     boolean encontrado = false;
                     for (Object[] resultado : resultados) {
@@ -728,7 +725,7 @@ public class FrmHistorial extends javax.swing.JFrame {
             }
             
         } else if(chkbxInstitucion.isSelected()){
-            List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+            List<InstitucionRegistradaDTO> instituciones = facadeInstituciones.consultarInstituciones();
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();
 
@@ -778,7 +775,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                     }
         }else if(chkbxTitulo.isSelected()){
             if(!titulo.isBlank() || !titulo.isEmpty()){
-                List<ReporteDTO> reportesEncontrados = new ArrayList();
+                reportesEncontrados = new ArrayList();
 
                 Calendar fechaActual = (Calendar) fechaMasVieja.clone();
 
@@ -787,14 +784,16 @@ public class FrmHistorial extends javax.swing.JFrame {
                     if (reportesDelDia != null) {
                         reportesEncontrados.addAll(reportesDelDia);
                     }
+                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
-                List<Object[]> resultados = new ArrayList<>();
+                resultados = new ArrayList<>();
 
                 for (ReporteDTO reporte : reportesEncontrados) {
                     Calendar fechaCreacion = reporte.getFechaCreacion();
 
                     Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.add(Calendar.DAY_OF_MONTH, -1);
                     fechaDia.set(Calendar.HOUR_OF_DAY, 0);
                     fechaDia.set(Calendar.MINUTE, 0);
                     fechaDia.set(Calendar.SECOND, 0);

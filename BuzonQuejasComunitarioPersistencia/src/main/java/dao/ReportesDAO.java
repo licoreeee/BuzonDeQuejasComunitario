@@ -47,9 +47,8 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTitulo(String titulo, Date dia) throws FindException {
         try {
-        
-        List <Reporte> reportes = collection.find(Filters.eq("tituli", titulo)).into(new ArrayList<>());
-        
+        String tituloRegex = ".*" + titulo + ".*";
+        List <Reporte> reportes = collection.find(Filters.regex("titulo", tituloRegex)).into(new ArrayList<>());
         List<Reporte> reportesCoincididos = new ArrayList() ;
         
         reportes.forEach(reporte -> {
@@ -93,8 +92,8 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Date dia) throws FindException {
         try {
-        
-        List <Reporte> reportes = collection.find(Filters.and(Filters.eq("titulo", titulo),Filters.eq("institucion.siglas", institucion))).into(new ArrayList<>());
+        String tituloRegex = ".*" + titulo + ".*";
+        List <Reporte> reportes = collection.find(Filters.and(Filters.regex("titulo", tituloRegex),Filters.eq("institucion.siglas", institucion))).into(new ArrayList<>());
         
         List<Reporte> reportesCoincididos = new ArrayList() ;
         
@@ -133,8 +132,8 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente, Date dia) throws FindException {
         try {
-        
-        List <Reporte> reportes = collection.find(Filters.and(Filters.eq("titulo", titulo),Filters.eq("institucion.siglas", institucion),Filters.eq("incidente.informacion", incidente))).into(new ArrayList<>());
+        String tituloRegex = ".*" + titulo + ".*";
+        List <Reporte> reportes = collection.find(Filters.and(Filters.regex("titulo", tituloRegex),Filters.eq("institucion.siglas", institucion),Filters.eq("incidente.informacion", incidente))).into(new ArrayList<>());
         
         List<Reporte> reportesCoincididos = new ArrayList() ;
         

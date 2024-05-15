@@ -14,15 +14,7 @@ import excepciones.NegociosException;
  */
 public interface ILogDeBusquedaBO {
 
-    /**
-     * Valida el formato de un objeto LogDeBusquedaDTO.
-     *
-     * @param logDeBusquedaDTO El objeto LogDeBusquedaDTO a validar.
-     * @return true si el formato del LogDeBusquedaDTO es válido, de lo
-     * contrario, false.
-     * @throws NegociosException Si ocurre un error durante la validación.
-     */
-    public boolean validarFormato(LogDeBusquedaDTO logDeBusquedaDTO) throws NegociosException;
+    public LogDeBusquedaDTO agregarLogDeBusqueda(LogDeBusqueda logDeBusqueda) throws NegociosException;
 
     /**
      * Convierte un objeto LogDeBusquedaDTO en un objeto de entidad
