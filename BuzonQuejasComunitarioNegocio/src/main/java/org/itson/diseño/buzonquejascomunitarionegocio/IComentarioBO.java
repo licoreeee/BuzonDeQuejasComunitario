@@ -15,6 +15,25 @@ import java.util.List;
  * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
  */
 public interface IComentarioBO {
-    void transporteDatos(ComentarioDTO comentarioDTO)throws PersistenciaException;
-    List<ComentarioDTO> consultarLista(ReporteDTO reporteDTO) throws FindException;
+
+    /**
+     * Transporta los datos del objeto ComentarioDTO a la capa de persistencia.
+     *
+     * @param comentarioDTO El objeto ComentarioDTO que contiene los datos del
+     * comentario a transportar.
+     * @throws PersistenciaException Si ocurre un error durante la persistencia.
+     */
+    public void transporteDatos(ComentarioDTO comentarioDTO) throws PersistenciaException;
+
+    /**
+     * Consulta una lista de comentarios asociados a un reporte y los devuelve
+     * como una lista de objetos ComentarioDTO.
+     *
+     * @param reporteDTO El objeto ReporteDTO que contiene los datos del reporte
+     * para el cual se consultan los comentarios.
+     * @return Una lista de objetos ComentarioDTO que representan los
+     * comentarios consultados.
+     * @throws FindException Si ocurre un error durante la consulta.
+     */
+    public List<ComentarioDTO> consultarLista(ReporteDTO reporteDTO) throws FindException;
 }

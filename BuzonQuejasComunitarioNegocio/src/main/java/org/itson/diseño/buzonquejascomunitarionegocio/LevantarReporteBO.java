@@ -28,7 +28,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author castr
+ * @author  Hisamy Cota, Gael Castro, Victoria Vega
  */
 public class LevantarReporteBO implements ILevantarReporteBO {
 
@@ -45,12 +45,26 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         institucionesDAO = new InstitucionesDAO(conexion);
     }
 
+    /**
+     * Constructor que permite inyectar instancias de ICiudadanoBO, IInstitucionBO y IIncidenteBO.
+     * 
+     * @param ciudadanoBO Instancia de ICiudadanoBO.
+     * @param institucionBO Instancia de IInstitucionBO.
+     * @param incidenteBO Instancia de IIncidenteBO.
+     */
     public LevantarReporteBO(ICiudadanoBO ciudadanoBO, IInstitucionBO institucionBO, IIncidenteBO incidenteBO) {
         this.ciudadanoBO = ciudadanoBO;
         this.institucionBO = institucionBO;
         this.incidenteBO = incidenteBO;
     }
 
+     /**
+     * Convierte un objeto ReporteDTO en un objeto de entidad Reporte.
+     *
+     * @param reporteDTO El objeto ReporteDTO a convertir.
+     * @return El objeto de entidad Reporte resultante de la conversión.
+     * @throws NegociosException Si ocurre un error durante la conversión.
+     */
     @Override
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException {
         try {
@@ -89,6 +103,13 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         }
     }
 
+     /**
+     * Convierte un objeto de entidad Reporte en un objeto ReporteDTO.
+     *
+     * @param reporte El objeto de entidad Reporte a convertir.
+     * @return El objeto ReporteDTO correspondiente.
+     * @throws NegociosException Si ocurre un error durante la conversión.
+     */
     @Override
     public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException {
         try {
@@ -127,11 +148,13 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         }
     }
 
-    @Override
-    public List<ReporteDTO> obtenerIncidentesAbiertosPorInstitucion(String idInstitucion) throws FindException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    /**
+     * Levanta un nuevo reporte utilizando los datos proporcionados en el objeto ReporteDTO.
+     *
+     * @param reporteDTO El objeto ReporteDTO que contiene los datos del reporte a levantar.
+     * @return El objeto ReporteDTO que representa el reporte levantado.
+     * @throws NegociosException Si ocurre un error durante el proceso de levantar el reporte.
+     */
     @Override
     public ReporteDTO levantarReporte(ReporteDTO reporteDTO) throws NegociosException {
         try {
@@ -171,6 +194,12 @@ public class LevantarReporteBO implements ILevantarReporteBO {
 
     }
 
+     /**
+     * Convierte un objeto DTO de InstitucionRegistradaDTO a una entidad de Institucion.
+     *
+     * @param institucionDTO El objeto DTO de InstitucionRegistradaDTO a convertir.
+     * @return La entidad de Institucion resultante de la conversión.
+     */
     private Institucion convertirDTOAInstitucion(InstitucionRegistradaDTO institucionDTO) {
         Institucion institucion = new Institucion();
         String idString = institucionDTO.getId();
@@ -182,6 +211,12 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         return institucion;
     }
 
+     /**
+     * Convierte una entidad de Institucion a un objeto DTO de InstitucionRegistradaDTO.
+     *
+     * @param institucion La entidad de Institucion a convertir.
+     * @return El objeto DTO de InstitucionRegistradaDTO resultante de la conversión.
+     */
     private InstitucionRegistradaDTO convertirAInstitucionRegistradaDTO(Institucion institucion) {
         InstitucionRegistradaDTO institucionRegistradaDTO = new InstitucionRegistradaDTO();
         ObjectId id = institucion.getId();
@@ -193,6 +228,12 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         return institucionRegistradaDTO;
     }
 
+    /**
+     * Convierte un objeto DTO de IncidentesDTO a una entidad de Incidentes.
+     *
+     * @param incidentesDTO El objeto DTO de IncidentesDTO a convertir.
+     * @return La entidad de Incidentes resultante de la conversión.
+     */
     private Incidentes convertirDTOAIncidentes(IncidentesDTO incidentesDTO) {
         try {
             Incidentes incidentes = new Incidentes();
@@ -211,6 +252,12 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         return null;
     }
 
+    /**
+     * Convierte una entidad de Incidentes a un objeto DTO de IncidentesDTO.
+     *
+     * @param incidentes La entidad de Incidentes a convertir.
+     * @return El objeto DTO de IncidentesDTO resultante de la conversión.
+     */
     private IncidentesDTO convertirAIncidentesDTO(Incidentes incidentes) {
         try {
             IncidentesDTO incidentesDTO = new IncidentesDTO();
@@ -235,7 +282,12 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         }
         return null;
     }
-
+    
+    /**
+     * Genera un número de folio aleatorio de 6 dígitos.
+     * 
+     * @return El número de folio generado.
+     */
     private int generarFolioAleatorio() {
         Random random = new Random();
         return random.nextInt(900000) + 100000; // Asegura un número de 6 dígitos

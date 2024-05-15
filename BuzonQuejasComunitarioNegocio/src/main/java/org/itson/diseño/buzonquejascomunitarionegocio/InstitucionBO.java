@@ -16,7 +16,7 @@ import java.util.Random;
 /**
  * Clase que representa la lógica de negocio relacionada con las instituciones.
  *
- * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
+ * @author Hisamy Cota, Gael Castro, Victoria Vega
  */
 public class InstitucionBO implements IInstitucionBO {
 

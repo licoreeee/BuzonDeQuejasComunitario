@@ -19,7 +19,7 @@ import registrarAvance.RegistrarAvance;
 
 /**
  *
- * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
+ * @author Hisamy Cota, Gael Castro, Victoria Vega
  */
 public class FrmCrearComentario extends javax.swing.JFrame {
 
@@ -46,6 +46,9 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         setDatosReporte();
     }
 
+    /**
+     * Método para configurar los datos del reporte en la interfaz gráfica.
+     */
     private void setDatosReporte() {
         lblSubirImagen.setText("");
         lblTituloReporte.setText(reporteDTO.getTitulo());
@@ -256,6 +259,10 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Método para manejar el evento de hacer clic en el botón "Comentarios reporte".
+     * @param evt El evento de acción.
+     */
     private void btnComentariosReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentariosReporteActionPerformed
         control.mostrarComentariosReporte(reporteDTO, institucionDTO);
     }//GEN-LAST:event_btnComentariosReporteActionPerformed
@@ -264,12 +271,20 @@ public class FrmCrearComentario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTituloActionPerformed
 
+    /**
+     * Método para manejar el evento de hacer clic en el botón "Comentarios reporte".
+     * @param evt El evento de acción.
+     */
     private void btnAtrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrásActionPerformed
         control.mostrarReportesPendientes(institucionDTO);
         
         dispose();
     }//GEN-LAST:event_btnAtrásActionPerformed
 
+    /**
+     * Método para manejar el evento de hacer clic en el botón "Comentarios reporte".
+     * @param evt El evento de acción.
+     */
     private void btnImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenActionPerformed
         boolean isValid = cargarImagen();
         if (!isValid) {
@@ -285,6 +300,10 @@ public class FrmCrearComentario extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnImagenActionPerformed
 
+    /**
+     * Método para manejar el evento de hacer clic en el botón "Continuar".
+     * @param evt El evento de acción.
+     */
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         if (txtTitulo.getText().isBlank() || txtComentario.getText().isBlank()) {
             JOptionPane.showMessageDialog(
@@ -344,10 +363,18 @@ public class FrmCrearComentario extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_btnContinuarActionPerformed
+   /**
+     * Método para manejar el evento de hacer clic en el botón "Continuar".
+     * @param evt El evento de acción.
+     */
     private boolean isValidImage(String fileName) {
         return fileName.toLowerCase().endsWith(".jpg");
     }
 
+    /**
+     * Método para manejar el evento de hacer clic en el botón "Continuar".
+     * @param evt El evento de acción.
+     */
     private boolean cargarImagen() {
         JFileChooser chooser = new JFileChooser();
         int result = chooser.showOpenDialog(null);

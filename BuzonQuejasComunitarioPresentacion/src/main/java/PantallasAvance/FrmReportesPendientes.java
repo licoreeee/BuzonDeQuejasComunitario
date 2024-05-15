@@ -20,7 +20,7 @@ import registrarAvance.RegistrarAvance;
 
 /**
  *
- * @author hisam
+ * @author Hisamy Cinco, Victoria Vega y Gael Molina
  */
 public class FrmReportesPendientes extends javax.swing.JFrame {
 
@@ -38,6 +38,10 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         buscarReporte(institucionDTO);
     }
 
+    /**
+     * Método para buscar los reportes pendientes de la institución y mostrarlos en la tabla.
+     * @param institucionDTO El DTO de la institución asociada a los reportes.
+     */
     private void buscarReporte(InstitucionRegistradaDTO institucionDTO) {
         try {
             reportesDTO = registrarAvance.obtenerReportesAbiertosPorInstitucion(institucionDTO.getSiglas());
@@ -65,7 +69,9 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
 
         }
     }
-
+    /**
+     * Método para llenar la tabla con los reportes pendientes.
+     */
     private void llenarTabla() {
 
         DefaultTableModel model = new DefaultTableModel();
@@ -96,6 +102,9 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         TablaReportesPendientes.setDefaultEditor(Object.class, null);
     }
 
+    /**
+     * Método para manejar el evento de hacer clic en el botón de "Comentario".
+     */
     private void btnComentario() {
         int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -129,6 +138,9 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para actualizar la tabla de reportes pendientes.
+     */
     private void btnCerrar() {
         int filaSeleccionada = TablaReportesPendientes.getSelectedRow();
         if (filaSeleccionada == -1) {
@@ -165,38 +177,7 @@ public class FrmReportesPendientes extends javax.swing.JFrame {
 
     }
 
-    private void actualizarTabla() {
-        try {
-
-            List<ReporteDTO> reportesActivos = new ArrayList<>();
-            for (ReporteDTO reporte : reportesDTO) {
-                if (reporte.getEstado()) {
-                    reportesActivos.add(reporte);
-                }
-            }
-            DefaultTableModel modeloTabla = (DefaultTableModel) TablaReportesPendientes.getModel();
-            modeloTabla.fireTableDataChanged();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd : HH:mm");
-            for (ReporteDTO reporte : reportesActivos) {
-                String formattedDate = sdf.format(reporte.getFechaCreacion().getTime());
-                modeloTabla.addRow(new Object[]{
-                    reporte.getFolio(),
-                    reporte.getTitulo(),
-                    reporte.getDescripcion(),
-                    formattedDate,
-                    reporte.getCalle(),
-                    reporte.getColonia()
-                });
-
-            }
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(
-                    this,
-                    "Error al actualizar la tabla de incidentes.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
-        }
-    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

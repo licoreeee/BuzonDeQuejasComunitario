@@ -14,7 +14,7 @@ import registrarAvance.RegistrarAvance;
 
 /**
  *
- * @author
+ * @author Hisamy Cinco, Victoria Vega y Gael Castro
  */
 public class FrmPortalInstituciones extends javax.swing.JFrame {
 
@@ -137,6 +137,10 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtIDActionPerformed
 
+    /**
+     * Método para manejar el evento de hacer clic en el botón "Continuar".
+     * @param evt El evento de acción.
+     */
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
         if (!txtID.getText().isEmpty() && JPasswordNip.getPassword().length > 0 && JPasswordNip.getPassword().length == 4) {
             try {

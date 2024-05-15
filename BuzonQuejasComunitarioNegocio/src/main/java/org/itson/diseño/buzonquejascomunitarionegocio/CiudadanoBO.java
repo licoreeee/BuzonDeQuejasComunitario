@@ -7,10 +7,17 @@ import org.bson.types.ObjectId;
 
 
 /**
- * @author Hisamy Cota, Gael Castro, Victoria Vega, Michelle Medina
+ * @author Hisamy Cota, Gael Castro, Victoria Vega
  */
 public class CiudadanoBO implements ICiudadanoBO {
 
+     /**
+     * Convierte un objeto de entidad Ciudadano en un objeto CiudadanoDTO.
+     * 
+     * @param ciudadano El objeto de entidad Ciudadano a convertir.
+     * @return El objeto CiudadanoDTO correspondiente.
+     * @throws NegociosException Si el objeto Ciudadano de entrada es nulo.
+     */
     @Override
     public CiudadanoDTO convertirDatosEntity(Ciudadano ciudadano) throws NegociosException {
         if (ciudadano == null) {
@@ -32,6 +39,13 @@ public class CiudadanoBO implements ICiudadanoBO {
         return ciudadanoDTO;
     }
 
+     /**
+     * Convierte un objeto CiudadanoDTO en un objeto de entidad Ciudadano.
+     * 
+     * @param ciudadanoDTO El objeto CiudadanoDTO a convertir.
+     * @return El objeto de entidad Ciudadano correspondiente.
+     * @throws NegociosException Si el objeto CiudadanoDTO de entrada es nulo.
+     */
     @Override
     public Ciudadano convertirDatosDTO(CiudadanoDTO ciudadanoDTO) throws NegociosException {
         if (ciudadanoDTO == null) {
@@ -49,6 +63,13 @@ public class CiudadanoBO implements ICiudadanoBO {
         return ciudadano;
     }
 
+    /**
+     * Convierte un objeto CiudadanoDTO en un objeto de entidad Ciudadano sin incluir la contraseña.
+     * 
+     * @param ciudadanoDTO El objeto CiudadanoDTO a convertir.
+     * @return El objeto de entidad Ciudadano correspondiente sin la contraseña.
+     * @throws NegociosException Si el objeto CiudadanoDTO de entrada es nulo.
+     */
     @Override
     public Ciudadano convertirCiudadanoEntidad(CiudadanoDTO ciudadanoDTO) throws NegociosException {
             Ciudadano ciudadano = new Ciudadano(
@@ -58,6 +79,13 @@ public class CiudadanoBO implements ICiudadanoBO {
             return ciudadano;
     }
 
+    /**
+     * Convierte un objeto de entidad Ciudadano en un objeto CiudadanoDTO sin incluir la contraseña.
+     * 
+     * @param ciudadano El objeto de entidad Ciudadano a convertir.
+     * @return El objeto CiudadanoDTO correspondiente sin la contraseña.
+     * @throws NegociosException Si el objeto Ciudadano de entrada es nulo.
+     */
     @Override
     public CiudadanoDTO convertirCiudadanoDTO(Ciudadano ciudadano) throws NegociosException {
         CiudadanoDTO ciudadanoDTO = new CiudadanoDTO(
@@ -67,6 +95,13 @@ public class CiudadanoBO implements ICiudadanoBO {
         return ciudadanoDTO;
     }
     
+     /**
+     * Valida el formato de un objeto CiudadanoDTO.
+     * 
+     * @param ciudadano El objeto CiudadanoDTO a validar.
+     * @return Verdadero si el formato de CiudadanoDTO es válido, de lo contrario, falso.
+     * @throws NegociosException Si el objeto CiudadanoDTO de entrada es nulo.
+     */
     @Override
     public boolean validarFormatoDTO(CiudadanoDTO ciudadano) throws NegociosException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody

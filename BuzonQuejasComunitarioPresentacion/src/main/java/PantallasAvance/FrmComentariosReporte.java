@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package PantallasAvance;
 
 import Excepciones.FindException;
@@ -20,7 +16,7 @@ import registrarAvance.RegistrarAvance;
 
 /**
  *
- * @author hisam
+ * @author Hisamy Cinco, Victoria Vega y Gael Castro
  */
 public class FrmComentariosReporte extends javax.swing.JFrame {
 
@@ -30,6 +26,12 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
     IRegistrarAvance registrarAvance;
     List<ComentarioDTO> comentariosDTO;
 
+    /**
+     * Constructor de la clase.
+     * 
+     * @param reporteDTO El DTO del reporte asociado a los comentarios.
+     * @param institucionDTO El DTO de la institución asociada a los comentarios.
+     */
     public FrmComentariosReporte(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
         initComponents();
         registrarAvance = new RegistrarAvance();
@@ -40,6 +42,12 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
 
     }
 
+    /**
+     * Constructor de la clase.
+     * 
+     * @param reporteDTO El DTO del reporte asociado a los comentarios.
+     * @param institucionDTO El DTO de la institución asociada a los comentarios.
+     */
     private void comentariosReporte(ReporteDTO reporteDTO) {
         try {
             comentariosDTO = registrarAvance.consultarComentarios(reporteDTO);
@@ -54,6 +62,9 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Método para llenar la tabla con los comentarios.
+     */
     private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Título");

@@ -8,17 +8,23 @@ import Pantallas.ControlNavegacion;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
 
-/**
- *
- * @author hisam
+/*
+ * 
+ * @author Hisamy Cinco, Victoria Vega y Gael Castro.
  */
 public class DlgComentarioExitoso extends javax.swing.JDialog {
 
     private ControlNavegacion control;
     private ReporteDTO reporteDTO;
     private InstitucionRegistradaDTO institucionDTO;
+
     /**
-     * Creates new form DlgComentarioExitoso
+     * Constructor de la clase.
+     *
+     * @param parent El frame padre del diálogo.
+     * @param modal Booleano que indica si el diálogo es modal o no.
+     * @param reporteDTO El DTO del reporte asociado al comentario.
+     * @param institucionDTO El DTO de la institución asociada al comentario.
      */
     public DlgComentarioExitoso(java.awt.Frame parent, boolean modal, ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
         super(parent, modal);
@@ -139,18 +145,32 @@ public class DlgComentarioExitoso extends javax.swing.JDialog {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Constructor de la clase.
+     * 
+     * @param parent El frame padre del diálogo.
+     * @param modal Booleano que indica si el diálogo es modal o no.
+     * @param reporteDTO El DTO del reporte asociado al comentario.
+     * @param institucionDTO El DTO de la institución asociada al comentario.
+     */
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         control.mostrarMenuPrincipal();
         dispose();
-        
+
     }//GEN-LAST:event_btnSalirActionPerformed
 
+    /**
+     * Maneja el evento de clic en el botón "Crear otro comentario".
+     * Cierra el diálogo y muestra la pantalla para crear un nuevo comentario.
+     * 
+     * @param evt El evento de acción.
+     */
     private void btnComentarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentarioActionPerformed
         control.mostrarCrearComentario(reporteDTO, institucionDTO);
         dispose();
     }//GEN-LAST:event_btnComentarioActionPerformed
 
-  
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnComentario;
     private javax.swing.JButton btnSalir;
