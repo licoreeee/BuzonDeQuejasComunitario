@@ -158,46 +158,10 @@ public class ReporteBO implements IReporteBO {
     }
 
     @Override
-    public List<ReporteDTO> obtenerReportePorIncidente(String incidente, Calendar dia) throws FindException {
-        try {
-            Date diaDate = calendarToDate(dia);
-            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorIncidente(incidente, diaDate));
-            return reportesDTO;
-        } catch (NegociosException ex) {
-            new NegociosException().getMessage();
-        }
-        return null;
-    }
-
-    @Override
-    public List<ReporteDTO> obtenerReportePorDia(Calendar dia) throws FindException {
-        try {
-            Date diaDate = calendarToDate(dia);
-            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorDia(diaDate));
-            return reportesDTO;
-        } catch (NegociosException ex) {
-            new NegociosException().getMessage();
-        }
-        return null;
-    }
-
-    @Override
     public List<ReporteDTO> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Calendar dia) throws FindException {
         try {
             Date diaDate = calendarToDate(dia);
             List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorTituloYInstitucion(titulo, institucion, diaDate));
-            return reportesDTO;
-        } catch (NegociosException ex) {
-            new NegociosException().getMessage();
-        }
-        return null;
-    }
-
-    @Override
-    public List<ReporteDTO> obtenerReportePorTituloYIncidente(String titulo, String incidente, Calendar dia) throws FindException {
-        try {
-            Date diaDate = calendarToDate(dia);
-            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorTituloYIncidente(titulo, incidente, diaDate));
             return reportesDTO;
         } catch (NegociosException ex) {
             new NegociosException().getMessage();

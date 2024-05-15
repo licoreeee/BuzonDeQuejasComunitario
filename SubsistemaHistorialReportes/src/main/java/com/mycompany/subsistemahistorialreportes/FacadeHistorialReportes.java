@@ -46,42 +46,9 @@ public class FacadeHistorialReportes implements IFacadeHistorialReportes{
     }
 
     @Override
-    public List<ReporteDTO> obtenerReportePorIncidente(String incidente, Calendar dia) {
-        try {
-            List<ReporteDTO> reportes = historial.obtenerReportePorIncidente(incidente, dia);
-            return reportes;
-        } catch (FindException ex) {
-            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    @Override
-    public List<ReporteDTO> obtenerReportePorDia(Calendar dia) {
-        try {
-            List<ReporteDTO> reportes = historial.obtenerReportePorDia(dia);
-            return reportes;
-        } catch (FindException ex) {
-            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    @Override
     public List<ReporteDTO> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Calendar dia) {
         try {
             List<ReporteDTO> reportes = historial.obtenerReportePorTituloYInstitucion(titulo,institucion, dia);
-            return reportes;
-        } catch (FindException ex) {
-            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return null;
-    }
-
-    @Override
-    public List<ReporteDTO> obtenerReportePorTituloYIncidente(String titulo, String incidente, Calendar dia) {
-        try {
-            List<ReporteDTO> reportes = historial.obtenerReportePorTituloYIncidente(titulo,incidente, dia);
             return reportes;
         } catch (FindException ex) {
             Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,8 +87,6 @@ public class FacadeHistorialReportes implements IFacadeHistorialReportes{
             Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-    }
-    
-    
+    }   
     
 }

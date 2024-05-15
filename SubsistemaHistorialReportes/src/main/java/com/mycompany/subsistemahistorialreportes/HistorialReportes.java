@@ -34,28 +34,10 @@ public class HistorialReportes {
             reportes = reporteBO.obtenerReportePorInstitucion(institucion, dia);
             return reportes;
     }
-
-    public List<ReporteDTO> obtenerReportePorIncidente(String incidente, Calendar dia) throws FindException{
-        List<ReporteDTO> reportes;
-            reportes = reporteBO.obtenerReportePorIncidente(incidente, dia);
-            return reportes;
-    }
-
-    public List<ReporteDTO> obtenerReportePorDia(Calendar dia) throws FindException{
-        List<ReporteDTO> reportes;
-            reportes = reporteBO.obtenerReportePorDia(dia);
-            return reportes;
-    }
     
     public List<ReporteDTO> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Calendar dia) throws FindException{
         List<ReporteDTO> reportes;
             reportes = reporteBO.obtenerReportePorTituloYInstitucion(titulo,institucion, dia);
-            return reportes;
-    }
-    
-    public List<ReporteDTO> obtenerReportePorTituloYIncidente(String titulo, String incidente, Calendar dia) throws FindException{
-        List<ReporteDTO> reportes;
-            reportes = reporteBO.obtenerReportePorTituloYIncidente(titulo,incidente, dia);
             return reportes;
     }
     

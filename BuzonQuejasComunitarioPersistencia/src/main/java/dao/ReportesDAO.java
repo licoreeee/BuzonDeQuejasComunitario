@@ -47,13 +47,21 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTitulo(String titulo, Date dia) throws FindException {
         try {
-            String regexPattern = ".*" + titulo + ".*";
-            return collection.find(Filters.and(
-                    Filters.regex("titulo", regexPattern),
-                    Filters.eq("fechaCreacion", dia))).into(new ArrayList<>());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
+        
+        List <Reporte> reportes = collection.find(Filters.eq("tituli", titulo)).into(new ArrayList<>());
+        
+        List<Reporte> reportesCoincididos = new ArrayList() ;
+        
+        reportes.forEach(reporte -> {
+            reporte.setFechaCreacion(dateACalendarSinHora(reporte.getFechaCreacion()).getTime());
+            if(reporte.getFechaCreacion().equals(dia)) {
+                reportesCoincididos.add(reporte) ;
+            }
+        });
+        return reportesCoincididos;
+    } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
     }
 
     @Override
@@ -77,27 +85,6 @@ public class ReportesDAO implements IReportesDAO {
     }
 
     @Override
-    public List<Reporte> obtenerReportePorIncidente(String incidente, Date dia) throws FindException {
-        try {
-        String regexPattern = ".*" + incidente + ".*";
-        return collection.find(Filters.and(
-                Filters.eq("fechaCreacion", dia),
-                Filters.regex("incidente.nombre", regexPattern))).into(new ArrayList<>());
-    } catch (MongoException ex) {
-        throw new FindException("Error al obtener los reportes.");
-    }
-    }
-
-    @Override
-    public List<Reporte> obtenerReportePorDia(Date dia) throws FindException {
-        try {
-            return collection.find(Filters.eq("fechaCreacion", dia)).into(new ArrayList());
-        } catch (MongoException ex) {
-            throw new FindException("Error al obtener los reportes.");
-        }
-    }
-
-    @Override
     public void actualizarEstado(Reporte reporte) throws PersistenciaException {
         Document updateDoc = new Document("$set", new Document("estado", false));
         collection.updateOne(Filters.eq("folio", reporte.getFolio()), updateDoc);
@@ -106,26 +93,18 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Date dia) throws FindException {
         try {
-        String tituloRegex = ".*" + titulo + ".*";
-        String institucionRegex = ".*" + institucion + ".*";
-        return collection.find(Filters.and(
-                Filters.eq("fechaCreacion", dia),
-                Filters.regex("titulo", tituloRegex),
-                Filters.regex("institucion.siglas", institucionRegex))).into(new ArrayList<>());
-    } catch (MongoException ex) {
-        throw new FindException("Error al obtener los reportes.");
-    }
-    }
-
-    @Override
-    public List<Reporte> obtenerReportePorTituloYIncidente(String titulo, String incidente, Date dia) throws FindException {
-        try {
-        String tituloRegex = ".*" + titulo + ".*";
-        String incidenteRegex = ".*" + incidente + ".*";
-        return collection.find(Filters.and(
-                Filters.eq("fechaCreacion", dia),
-                Filters.regex("titulo", tituloRegex),
-                Filters.regex("incidente.nombre", incidenteRegex))).into(new ArrayList<>());
+        
+        List <Reporte> reportes = collection.find(Filters.and(Filters.eq("titulo", titulo),Filters.eq("institucion.siglas", institucion))).into(new ArrayList<>());
+        
+        List<Reporte> reportesCoincididos = new ArrayList() ;
+        
+        reportes.forEach(reporte -> {
+            reporte.setFechaCreacion(dateACalendarSinHora(reporte.getFechaCreacion()).getTime());
+            if(reporte.getFechaCreacion().equals(dia)) {
+                reportesCoincididos.add(reporte) ;
+            }
+        });
+        return reportesCoincididos;
     } catch (MongoException ex) {
         throw new FindException("Error al obtener los reportes.");
     }
@@ -134,12 +113,18 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorInstitucionYIncidente(String institucion, String incidente, Date dia) throws FindException {
         try {
-        String institucionRegex = ".*" + institucion + ".*";
-        String incidenteRegex = ".*" + incidente + ".*";
-        return collection.find(Filters.and(
-                Filters.eq("fechaCreacion", dia),
-                Filters.regex("institucion.siglas", institucionRegex),
-                Filters.regex("incidente.nombre", incidenteRegex))).into(new ArrayList<>());
+        
+        List <Reporte> reportes = collection.find(Filters.and(Filters.eq("institucion.siglas", institucion),Filters.eq("incidentes.informacion", incidente))).into(new ArrayList<>());
+        
+        List<Reporte> reportesCoincididos = new ArrayList() ;
+        
+        reportes.forEach(reporte -> {
+            reporte.setFechaCreacion(dateACalendarSinHora(reporte.getFechaCreacion()).getTime());
+            if(reporte.getFechaCreacion().equals(dia)) {
+                reportesCoincididos.add(reporte) ;
+            }
+        });
+        return reportesCoincididos;
     } catch (MongoException ex) {
         throw new FindException("Error al obtener los reportes.");
     }
@@ -148,24 +133,18 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente, Date dia) throws FindException {
         try {
-        String tituloRegex = ".*" + titulo + ".*";
-        String institucionRegex = ".*" + institucion + ".*";
-        String incidenteRegex = ".*" + incidente + ".*";
-        return collection.find(Filters.and(
-                Filters.eq("fechaCreacion", dia),
-                Filters.regex("titulo", tituloRegex),
-                Filters.regex("institucion.siglas", institucionRegex),
-                Filters.regex("incidente.nombre", incidenteRegex))).into(new ArrayList<>());
-    } catch (MongoException ex) {
-        throw new FindException("Error al obtener los reportes.");
-    }
-    }
-    
-    @Override
-    public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException {
-        try {
-        String institucionRegex = ".*" + institucion + ".*";
-        return collection.find(Filters.regex("institucion.siglas", institucionRegex)).into(new ArrayList<>());
+        
+        List <Reporte> reportes = collection.find(Filters.and(Filters.eq("titulo", titulo),Filters.eq("institucion.siglas", institucion),Filters.eq("incidente.informacion", incidente))).into(new ArrayList<>());
+        
+        List<Reporte> reportesCoincididos = new ArrayList() ;
+        
+        reportes.forEach(reporte -> {
+            reporte.setFechaCreacion(dateACalendarSinHora(reporte.getFechaCreacion()).getTime());
+            if(reporte.getFechaCreacion().equals(dia)) {
+                reportesCoincididos.add(reporte) ;
+            }
+        });
+        return reportesCoincididos;
     } catch (MongoException ex) {
         throw new FindException("Error al obtener los reportes.");
     }
@@ -176,6 +155,16 @@ public class ReportesDAO implements IReportesDAO {
         try {
         return collection.find().into(new ArrayList<>());
     } catch (MongoException ex) {
+        throw new FindException("Error al obtener los reportes.");
+    }
+    }
+    
+    @Override
+    public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException {
+        try {
+        String institucionRegex = ".*" + institucion + ".*";
+        return collection.find(Filters.regex("institucion.siglas", institucionRegex)).into(new ArrayList<>());
+        } catch (MongoException ex) {
         throw new FindException("Error al obtener los reportes.");
     }
     }

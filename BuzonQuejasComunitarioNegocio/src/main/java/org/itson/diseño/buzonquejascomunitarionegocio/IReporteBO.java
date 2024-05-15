@@ -35,14 +35,8 @@ public interface IReporteBO {
     List<ReporteDTO> obtenerReportePorTitulo(String titulo, Calendar dia) throws FindException;
     
     List<ReporteDTO> obtenerReportePorInstitucion(String institucion, Calendar dia) throws FindException;
-
-    List<ReporteDTO> obtenerReportePorIncidente(String incidente, Calendar dia) throws FindException;
-
-    List<ReporteDTO> obtenerReportePorDia(Calendar dia) throws FindException;
     
     List<ReporteDTO> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Calendar dia) throws FindException;
-    
-    List<ReporteDTO> obtenerReportePorTituloYIncidente(String titulo, String incidente, Calendar dia) throws FindException;
     
     List<ReporteDTO> obtenerReportePorInstitucionYIncidente(String institucion, String incidente, Calendar dia) throws FindException;
     

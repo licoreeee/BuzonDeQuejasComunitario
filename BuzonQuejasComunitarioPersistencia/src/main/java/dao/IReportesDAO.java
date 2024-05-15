@@ -46,25 +46,6 @@ public interface IReportesDAO {
      * @throws FindException Si ocurre un error durante la operación de búsqueda.
      */
     public List<Reporte> obtenerReportePorInstitucion(String institucion, Date dia) throws FindException;
-
-    /**
-     * Obtiene una lista de reportes por el incidente reportado y fecha de creación.
-     *
-     * @param incidente El nombre del incidente reportado.
-     * @param dia La fecha de creación del reporte.
-     * @return Una lista de reportes que están asociados al incidente especificado y se crearon en la fecha indicada.
-     * @throws FindException Si ocurre un error durante la operación de búsqueda.
-     */
-    public List<Reporte> obtenerReportePorIncidente(String incidente, Date dia) throws FindException;
-
-    /**
-     * Obtiene una lista de reportes creados en una fecha específica.
-     *
-     * @param dia La fecha de creación de los reportes.
-     * @return Una lista de reportes que se crearon en la fecha indicada.
-     * @throws FindException Si ocurre un error durante la operación de búsqueda.
-     */
-    public List<Reporte> obtenerReportePorDia(Date dia) throws FindException;
     
     /**
      * Obtiene una lista de reportes por título, institución responsable y fecha de creación.
@@ -76,17 +57,6 @@ public interface IReportesDAO {
      * @throws FindException Si ocurre un error durante la operación de búsqueda.
      */
     public List<Reporte> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Date dia) throws FindException;
-    
-    /**
-     * Obtiene una lista de reportes por título, incidente reportado y fecha de creación.
-     *
-     * @param titulo El título del reporte.
-     * @param incidente El nombre del incidente reportado.
-     * @param dia La fecha de creación del reporte.
-     * @return Una lista de reportes que coinciden con el título, el incidente y la fecha especificados.
-     * @throws FindException Si ocurre un error durante la operación de búsqueda.
-     */
-    public List<Reporte> obtenerReportePorTituloYIncidente(String titulo, String incidente, Date dia) throws FindException;
     
      /**
      * Obtiene una lista de reportes por institución responsable, incidente reportado y fecha de creación.
@@ -117,7 +87,15 @@ public interface IReportesDAO {
      * @param reporte El objeto Reporte cuyo estado se actualizará.
      * @throws PersistenciaException Si ocurre un error durante la operación de persistencia.
      */
-    public void actualizarEstado(Reporte reporte) throws PersistenciaException;
+    public void actualizarEstado(Reporte reporte) throws PersistenciaException;   
+    
+    /**
+     * Obtiene todos los reportes almacenados en la base de datos.
+     *
+     * @return Una lista de todos los reportes almacenados.
+     * @throws FindException Si ocurre un error durante la operación de búsqueda.
+     */
+    public List<Reporte> obtenerTodosLosReportes() throws FindException;
     
     /**
      * Obtiene una lista de reportes asociados a una institución.
@@ -127,14 +105,5 @@ public interface IReportesDAO {
      * @throws FindException Si ocurre un error durante la operación de búsqueda.
      */
     public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException;
-    
-    
-    /**
-     * Obtiene todos los reportes almacenados en la base de datos.
-     *
-     * @return Una lista de todos los reportes almacenados.
-     * @throws FindException Si ocurre un error durante la operación de búsqueda.
-     */
-    public List<Reporte> obtenerTodosLosReportes() throws FindException;
 
 }
