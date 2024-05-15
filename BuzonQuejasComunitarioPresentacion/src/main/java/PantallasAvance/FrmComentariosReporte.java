@@ -37,6 +37,7 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
         comentariosDTO = new ArrayList<>();
         this.reporteDTO = reporteDTO;
         comentariosReporte(reporteDTO);
+        TablaReportesPendientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
     }
 
     private void comentariosReporte(ReporteDTO reporteDTO) {
