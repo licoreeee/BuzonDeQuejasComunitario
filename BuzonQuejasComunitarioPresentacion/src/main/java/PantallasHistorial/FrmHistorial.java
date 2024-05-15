@@ -41,6 +41,8 @@ public class FrmHistorial extends javax.swing.JFrame {
     IFacadeAgregarIncidentes facadeIncidentes;
     IFacadeAgregarInstitucion facadeInstituciones;
     IFacadeHistorialReportes facadeHistorial;
+    List<ReporteDTO> reportesEncontrados ;
+    List<Object[]> resultados ;
     
     /**
      * Creates new form FrmHistorial
@@ -66,6 +68,8 @@ public class FrmHistorial extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
         btnAvances = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
         btnAdminAcceso = new javax.swing.JButton();
@@ -84,13 +88,14 @@ public class FrmHistorial extends javax.swing.JFrame {
         cmbxInstituciones = new javax.swing.JComboBox<>();
         cmbxIncidentes = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
-        btnGenerarPDF = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblReportes = new javax.swing.JTable();
         jlbContexto2 = new javax.swing.JLabel();
         jlbContexto3 = new javax.swing.JLabel();
         datePickerDesde = new com.github.lgooddatepicker.components.DatePicker();
         datePickerHasta = new com.github.lgooddatepicker.components.DatePicker();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblReportesDesplegado = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -104,6 +109,19 @@ public class FrmHistorial extends javax.swing.JFrame {
             }
         ));
         jScrollPane1.setViewportView(jTable1);
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane3.setViewportView(jTable2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -210,17 +228,6 @@ public class FrmHistorial extends javax.swing.JFrame {
             }
         });
 
-        btnGenerarPDF.setText("Generar PDF...");
-        btnGenerarPDF.setBackground(new java.awt.Color(181, 18, 57));
-        btnGenerarPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
-        btnGenerarPDF.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnGenerarPDF.setForeground(new java.awt.Color(255, 255, 255));
-        btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGenerarPDFActionPerformed(evt);
-            }
-        });
-
         tblReportes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -242,6 +249,19 @@ public class FrmHistorial extends javax.swing.JFrame {
         jlbContexto3.setFont(new java.awt.Font("Inter", 0, 12)); // NOI18N
         jlbContexto3.setForeground(new java.awt.Color(110, 110, 110));
 
+        tblReportesDesplegado.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
+        tblReportesDesplegado.setForeground(new java.awt.Color(110, 110, 110));
+        tblReportesDesplegado.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
+        tblReportesDesplegado.setSelectionForeground(new java.awt.Color(110, 110, 110));
+        jScrollPane4.setViewportView(tblReportesDesplegado);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -249,66 +269,61 @@ public class FrmHistorial extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(chkbxInstitucion)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cmbxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(chkbxIncidente)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(cmbxIncidentes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(chkbxFecha)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jlbContexto2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(datePickerDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jlbContexto3)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(chkbxTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jlbContexto1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlbContexto)
-                            .addComponent(jlbHistorial))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnGenerarPDF, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnBuscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(chkbxInstitucion)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(chkbxIncidente)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmbxIncidentes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(chkbxTitulo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cmpTitulo)
-                        .addGap(222, 222, 222))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(chkbxFecha)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbContexto2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(datePickerDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbContexto3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 588, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                            .addComponent(jlbHistorial))
+                        .addGap(40, 40, 40)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(jlbContexto)
+                        .addGap(35, 35, 35)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jlbContexto)
+                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlbContexto1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jlbHistorial))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(jlbHistorial)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxTitulo)
@@ -327,7 +342,9 @@ public class FrmHistorial extends javax.swing.JFrame {
                     .addComponent(chkbxIncidente)
                     .addComponent(cmbxIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 185, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -335,24 +352,21 @@ public class FrmHistorial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(btnLevantarReporte2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(190, 190, 190)
-                        .addComponent(btnAdminAcceso))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(420, 420, 420)
-                        .addComponent(btnAvances))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(510, 510, 510)
-                        .addComponent(btnHistorial))
-                    .addComponent(logoGobiernoMexico))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(btnLevantarReporte2))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(190, 190, 190)
+                .addComponent(btnAdminAcceso))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(420, 420, 420)
+                .addComponent(btnAvances))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(510, 510, 510)
+                .addComponent(btnHistorial))
+            .addComponent(logoGobiernoMexico)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -398,10 +412,6 @@ public class FrmHistorial extends javax.swing.JFrame {
         refrescarTabla();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
-    private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnGenerarPDFActionPerformed
-
     private void cmbxInstitucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxInstitucionesActionPerformed
         agregarIncidentesAComboBox();
     }//GEN-LAST:event_cmbxInstitucionesActionPerformed
@@ -416,13 +426,14 @@ public class FrmHistorial extends javax.swing.JFrame {
     }
     
     private void agregarIncidentesAComboBox() {
+        cmbxIncidentes.removeAllItems();
         int indexInstitucion = cmbxInstituciones.getSelectedIndex();
         List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
         InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
         List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
         incidentes.forEach(incidente -> {
             String incidenteEnFormato = incidente.getInformacion();
-            cmbxInstituciones.addItem(incidenteEnFormato);
+            cmbxIncidentes.addItem(incidenteEnFormato);
         });
     }
     
@@ -433,7 +444,6 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminAcceso;
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnBuscar;
-    private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte2;
     private javax.swing.JCheckBox chkbxFecha;
@@ -449,7 +459,10 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JLabel jlbContexto;
     private javax.swing.JLabel jlbContexto1;
     private javax.swing.JLabel jlbContexto2;
@@ -457,6 +470,7 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JLabel jlbHistorial;
     private javax.swing.JLabel logoGobiernoMexico;
     private javax.swing.JTable tblReportes;
+    private javax.swing.JTable tblReportesDesplegado;
     // End of variables declaration//GEN-END:variables
 
     public ActionListener botonVer() {
@@ -655,6 +669,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                     fechaDia.set(Calendar.MINUTE, 0);
                     fechaDia.set(Calendar.SECOND, 0);
                     fechaDia.set(Calendar.MILLISECOND, 0);
+                    fechaDia.add(Calendar.DAY_OF_MONTH, -1);
 
                     boolean encontrado = false;
                     for (Object[] resultado : resultados) {
@@ -684,7 +699,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();
 
-                List<ReporteDTO> reportesEncontrados = new ArrayList();
+                reportesEncontrados = new ArrayList();
 
                 Calendar fechaActual = (Calendar) fechaMasVieja.clone();
 
@@ -696,12 +711,13 @@ public class FrmHistorial extends javax.swing.JFrame {
                     fechaActual.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
-                List<Object[]> resultados = new ArrayList<>();
+                resultados = new ArrayList<>();
 
                 for (ReporteDTO reporte : reportesEncontrados) {
                     Calendar fechaCreacion = reporte.getFechaCreacion();
 
                     Calendar fechaDia = (Calendar) fechaCreacion.clone();
+                    fechaDia.add(Calendar.DAY_OF_MONTH, -1);
                     fechaDia.set(Calendar.HOUR_OF_DAY, 0);
                     fechaDia.set(Calendar.MINUTE, 0);
                     fechaDia.set(Calendar.SECOND, 0);
@@ -736,7 +752,6 @@ public class FrmHistorial extends javax.swing.JFrame {
                     if (reportesDelDia != null) {
                         reportesEncontrados.addAll(reportesDelDia);
                     }
-                    fechaActual.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
                 List<Object[]> resultados = new ArrayList<>();
@@ -775,8 +790,24 @@ public class FrmHistorial extends javax.swing.JFrame {
         }else if(!chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
             JOptionPane.showConfirmDialog(this, "Seleccione la casilla de instituciones para buscar por incidentes.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
         }
+        
+        this.tblReportes.setModel(modeloTabla);
+        tblReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
+        tblReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonVerReportes()));
     }
         
+    public List<ReporteDTO> desplegarDatosReporte() {
+        List<ReporteDTO> reportesEnviar = new ArrayList() ;
+        
+        for (int i = 0; i < resultados.size(); i++) {
+            if(reportesEncontrados.get(i).getFechaCreacion().equals(resultados.get(i)[0])) {
+                reportesEnviar.add(reportesEncontrados.get(i)) ;
+            }
+        }
+        
+        return reportesEnviar ;
+    }
+    
 //        for (int i = 0; i < reportes.size(); i++) {
 //            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
 //            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
@@ -803,7 +834,17 @@ public class FrmHistorial extends javax.swing.JFrame {
 //        tablaReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
 //
 //    
+        public ActionListener botonVerReportes() {
+        ActionListener verReportesListener = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                desplegarDatosReporte() ;
+                
+            }
+        } ;
         
+        return verReportesListener ;
+    }
     
     private class JButtonCellEditor implements TableCellEditor {
 

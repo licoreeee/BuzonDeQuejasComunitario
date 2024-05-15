@@ -110,6 +110,7 @@ public class ReporteBO implements IReporteBO {
                     reporte.getId().toString(),
                     reporte.getTitulo(),
                     reporte.getEstado());
+            reporteDTO.setFechaCreacion(dateToCalendar(reporte.getFechaCreacion()));
             reportesDTO.add(reporteDTO);
         }
         return reportesDTO;
@@ -119,6 +120,11 @@ public class ReporteBO implements IReporteBO {
     public Calendar dateToCalendar(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
         return calendar;
     }
 
@@ -227,6 +233,7 @@ public class ReporteBO implements IReporteBO {
     public List<ReporteDTO> obtenerTodosLosReportes() throws FindException {
         try {
             List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerTodosLosReportes());
+            return reportesDTO ;
         } catch (Exception e) {
             new NegociosException().getMessage();
         }

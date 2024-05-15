@@ -59,10 +59,18 @@ public class ReportesDAO implements IReportesDAO {
     @Override
     public List<Reporte> obtenerReportePorInstitucion(String institucion, Date dia) throws FindException {
         try {
-        String regexPattern = ".*" + institucion + ".*";
-        return collection.find(Filters.and(
-                Filters.eq("fechaCreacion", dia),
-                Filters.regex("institucion.siglas", regexPattern))).into(new ArrayList<>());
+        
+        List <Reporte> reportes = collection.find(Filters.eq("institucion.siglas", institucion)).into(new ArrayList<>());
+        
+        List<Reporte> reportesCoincididos = new ArrayList() ;
+        
+        reportes.forEach(reporte -> {
+            reporte.setFechaCreacion(dateACalendarSinHora(reporte.getFechaCreacion()).getTime());
+            if(reporte.getFechaCreacion().equals(dia)) {
+                reportesCoincididos.add(reporte) ;
+            }
+        });
+        return reportesCoincididos;
     } catch (MongoException ex) {
         throw new FindException("Error al obtener los reportes.");
     }
@@ -171,5 +179,16 @@ public class ReportesDAO implements IReportesDAO {
         throw new FindException("Error al obtener los reportes.");
     }
     }
-
+    
+    private Calendar dateACalendarSinHora(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        // Resetear los campos de fecha y hora
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
+        calendar.add(Calendar.DAY_OF_MONTH, 1);
+        return calendar;
+    }
 }
