@@ -21,6 +21,10 @@ public class ComentarioDTO {
     public ComentarioDTO() {
     }
 
+    public ComentarioDTO(byte[] photo) {
+        this.photo = photo;
+    }
+
     public ComentarioDTO(String titulo, String comentario, byte[] photo, Integer folio, Date fechaCreacion) {
         this.titulo = titulo;
         this.comentario = comentario;

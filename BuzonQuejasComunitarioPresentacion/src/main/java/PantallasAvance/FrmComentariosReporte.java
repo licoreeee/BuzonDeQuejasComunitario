@@ -18,7 +18,6 @@ import javax.swing.table.DefaultTableModel;
 import registrarAvance.IRegistrarAvance;
 import registrarAvance.RegistrarAvance;
 
-
 /**
  *
  * @author hisam
@@ -29,15 +28,16 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
     ReporteDTO reporteDTO;
     InstitucionRegistradaDTO institucionDTO;
     IRegistrarAvance registrarAvance;
-    List<ComentarioDTO>comentariosDTO;
+    List<ComentarioDTO> comentariosDTO;
 
     public FrmComentariosReporte(ReporteDTO reporteDTO, InstitucionRegistradaDTO institucionDTO) {
         initComponents();
         registrarAvance = new RegistrarAvance();
         comentariosDTO = new ArrayList<>();
         this.reporteDTO = reporteDTO;
+        TablaReportesPendientes.setRowHeight(28);
         comentariosReporte(reporteDTO);
-        TablaReportesPendientes.getColumnModel().getColumn(3).setCellRenderer(new TableActionCellRender());
+
     }
 
     private void comentariosReporte(ReporteDTO reporteDTO) {
@@ -54,7 +54,7 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
         }
     }
 
-    private void llenarTabla(){
+    private void llenarTabla() {
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Título");
         model.addColumn("Descripción");
@@ -66,13 +66,13 @@ public class FrmComentariosReporte extends javax.swing.JFrame {
                 comentario.getTitulo(),
                 comentario.getComentario(),
                 comentario.getFechaCreacion(),
-                comentario.getPhoto(),
-            });
+                comentario.getPhoto(),});
         }
 
         TablaReportesPendientes.setModel(model);
         TablaReportesPendientes.setDefaultEditor(Object.class, null);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

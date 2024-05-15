@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Pantallas;
 
 import PantallasAvance.DlgComentarioExitoso;
@@ -10,6 +7,7 @@ import PantallasAvance.FrmCrearComentario;
 import PantallasAvance.FrmPortalInstituciones;
 import PantallasAvance.FrmReportesPendientes;
 import PantallasHistorial.FrmHistorial;
+import dto.ComentarioDTO;
 import dto.InstitucionNuevaDTO;
 import dto.InstitucionRegistradaDTO;
 import dto.ReporteDTO;
@@ -36,6 +34,7 @@ public class ControlNavegacion {
         FrmMenuPrincipal menuPrincipal = new FrmMenuPrincipal();
         menuPrincipal.setVisible(true);
     }
+   
 
     /**
      * Muestra el portal de instituciones.
