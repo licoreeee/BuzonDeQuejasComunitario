@@ -37,6 +37,7 @@ import org.itson.diseno.subsistemaagregarinstitucion.IFacadeAgregarInstitucion;
  */
 public class FrmHistorial extends javax.swing.JFrame {
 
+    List<Calendar> fechaCreacionResultados;
     ControlNavegacion controladores;
     IFacadeAgregarIncidentes facadeIncidentes;
     IFacadeAgregarInstitucion facadeInstituciones;
@@ -48,6 +49,7 @@ public class FrmHistorial extends javax.swing.JFrame {
      * Creates new form FrmHistorial
      */
     public FrmHistorial() {
+        this.fechaCreacionResultados = new ArrayList<>();
         this.controladores = new ControlNavegacion();
         this.facadeInstituciones = new FacadeAgregarInstitucion();
         this.facadeIncidentes = new FacadeAgregarIncidentes();
@@ -87,7 +89,7 @@ public class FrmHistorial extends javax.swing.JFrame {
         cmpTitulo = new javax.swing.JTextField();
         cmbxInstituciones = new javax.swing.JComboBox<>();
         cmbxIncidentes = new javax.swing.JComboBox<>();
-        btnBuscar = new javax.swing.JButton();
+        btnVolver = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblReportes = new javax.swing.JTable();
         jlbContexto2 = new javax.swing.JLabel();
@@ -96,6 +98,7 @@ public class FrmHistorial extends javax.swing.JFrame {
         datePickerHasta = new com.github.lgooddatepicker.components.DatePicker();
         jScrollPane4 = new javax.swing.JScrollPane();
         tblReportesDesplegado = new javax.swing.JTable();
+        btnBuscar = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -217,14 +220,14 @@ public class FrmHistorial extends javax.swing.JFrame {
         cmbxIncidentes.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         cmbxIncidentes.setForeground(new java.awt.Color(110, 110, 110));
 
-        btnBuscar.setText("Buscar");
-        btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
-        btnBuscar.setContentAreaFilled(false);
-        btnBuscar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnBuscar.setForeground(new java.awt.Color(181, 18, 57));
-        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(181, 18, 57));
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBuscarActionPerformed(evt);
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -262,24 +265,57 @@ public class FrmHistorial extends javax.swing.JFrame {
         tblReportesDesplegado.setSelectionForeground(new java.awt.Color(110, 110, 110));
         jScrollPane4.setViewportView(tblReportesDesplegado);
 
+        btnBuscar.setText("Buscar");
+        btnBuscar.setBackground(new java.awt.Color(181, 18, 57));
+        btnBuscar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnBuscar.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(chkbxTitulo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addComponent(jlbContexto1)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(chkbxInstitucion)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(chkbxIncidente)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cmbxIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                    .addComponent(chkbxInstitucion)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cmbxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(chkbxIncidente)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(cmbxIncidentes, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(8, 8, 8)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jlbContexto)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jlbHistorial)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addComponent(chkbxFecha)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -289,53 +325,39 @@ public class FrmHistorial extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(jlbContexto3)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(chkbxTitulo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cmpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 442, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jlbContexto1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jlbContexto)
-                            .addComponent(jlbHistorial))
-                        .addGap(40, 40, 40)
-                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlbContexto)
-                            .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jlbHistorial)
+                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, 0)
+                        .addComponent(jlbContexto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlbContexto1))
+                        .addComponent(jlbContexto1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chkbxTitulo)
+                            .addComponent(cmpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(chkbxFecha)
+                            .addComponent(jlbContexto2)
+                            .addComponent(jlbContexto3)
+                            .addComponent(datePickerDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jlbHistorial)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkbxTitulo)
-                    .addComponent(cmpTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(chkbxFecha)
-                    .addComponent(jlbContexto2)
-                    .addComponent(jlbContexto3)
-                    .addComponent(datePickerDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(14, 14, 14)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxInstitucion)
                     .addComponent(cmbxInstituciones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -343,7 +365,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                     .addComponent(cmbxIncidentes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -408,13 +430,18 @@ public class FrmHistorial extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_btnLevantarReporte2ActionPerformed
 
-    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        refrescarTabla();
-    }//GEN-LAST:event_btnBuscarActionPerformed
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        controladores.mostrarMenuPrincipal();
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     private void cmbxInstitucionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbxInstitucionesActionPerformed
         agregarIncidentesAComboBox();
     }//GEN-LAST:event_cmbxInstitucionesActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        refrescarTabla();
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
 
     private void agregarInstitucionesAComboBox() {
@@ -446,6 +473,7 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte2;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JCheckBox chkbxFecha;
     private javax.swing.JCheckBox chkbxIncidente;
     private javax.swing.JCheckBox chkbxInstitucion;
@@ -519,6 +547,7 @@ public class FrmHistorial extends javax.swing.JFrame {
     }
     
     public void refrescarTabla() {
+        fechaCreacionResultados = new ArrayList<>();
         List<ReporteDTO> todosLosReportes = facadeHistorial.obtenerTodosLosReportes();
         Calendar fechaMasVieja = obtenerFechaMasVieja(todosLosReportes);
         Calendar fechaMasReciente = obtenerFechaMasReciente(todosLosReportes);
@@ -559,8 +588,6 @@ public class FrmHistorial extends javax.swing.JFrame {
                     fechaActual.add(Calendar.DAY_OF_MONTH, 1);
                 }
 
-                List<Object[]> resultados = new ArrayList<>();
-
                 for (ReporteDTO reporte : reportesEncontrados) {
                     Calendar fechaCreacion = reporte.getFechaCreacion();
 
@@ -583,10 +610,12 @@ public class FrmHistorial extends javax.swing.JFrame {
                         resultados.add(new Object[]{fechaDia, 1});
                     }
                 }
+                
                 for (Object[] resultado : resultados) {
                         Calendar fecha = (Calendar) resultado[0];
                         int cantidadReportes = (int) resultado[1];
-                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                        modeloTabla.addRow(new Object[]{fechaEnFormato(fecha), cantidadReportes});
+                        fechaCreacionResultados.add(fecha);
                     }
             }
             else{
@@ -636,10 +665,12 @@ public class FrmHistorial extends javax.swing.JFrame {
                         resultados.add(new Object[]{fechaDia, 1});
                     }
                 }
+                
                 for (Object[] resultado : resultados) {
                         Calendar fecha = (Calendar) resultado[0];
                         int cantidadReportes = (int) resultado[1];
-                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                        modeloTabla.addRow(new Object[]{fechaEnFormato(fecha), cantidadReportes});
+                        fechaCreacionResultados.add(fecha);
                     }
         }else if(chkbxInstitucion.isSelected() && chkbxTitulo.isSelected()){
             if(!titulo.isBlank() || !titulo.isEmpty()){
@@ -684,10 +715,12 @@ public class FrmHistorial extends javax.swing.JFrame {
                         resultados.add(new Object[]{fechaDia, 1});
                     }
                 }
+                
                 for (Object[] resultado : resultados) {
                         Calendar fecha = (Calendar) resultado[0];
                         int cantidadReportes = (int) resultado[1];
-                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                        modeloTabla.addRow(new Object[]{fechaEnFormato(fecha), cantidadReportes});
+                        fechaCreacionResultados.add(fecha);
                     }
             }
             else{
@@ -736,10 +769,12 @@ public class FrmHistorial extends javax.swing.JFrame {
                         resultados.add(new Object[]{fechaDia, 1});
                     }
                 }
+                
                 for (Object[] resultado : resultados) {
                         Calendar fecha = (Calendar) resultado[0];
                         int cantidadReportes = (int) resultado[1];
-                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                        modeloTabla.addRow(new Object[]{fechaEnFormato(fecha), cantidadReportes});
+                        fechaCreacionResultados.add(fecha);
                     }
         }else if(chkbxTitulo.isSelected()){
             if(!titulo.isBlank() || !titulo.isEmpty()){
@@ -778,10 +813,12 @@ public class FrmHistorial extends javax.swing.JFrame {
                         resultados.add(new Object[]{fechaDia, 1});
                     }
                 }
+                
                 for (Object[] resultado : resultados) {
                         Calendar fecha = (Calendar) resultado[0];
                         int cantidadReportes = (int) resultado[1];
-                        modeloTabla.addRow(new Object[]{fecha.getTime(), cantidadReportes});
+                        modeloTabla.addRow(new Object[]{fechaEnFormato(fecha), cantidadReportes});
+                        fechaCreacionResultados.add(fecha);
                     }
             }
             else{
@@ -796,48 +833,105 @@ public class FrmHistorial extends javax.swing.JFrame {
         tblReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonVerReportes()));
     }
         
-    public List<ReporteDTO> desplegarDatosReporte() {
-        List<ReporteDTO> reportesEnviar = new ArrayList() ;
+    public void desplegarDatosReporte() {
+        int indexTabla = tblReportes.getSelectedRow();
+        Calendar fechaSeleccionada = fechaCreacionResultados.get(indexTabla);
+        String titulo = cmpTitulo.getText();
+        String desde = datePickerDesde.getText();
+        String hasta = datePickerHasta.getText();
+        Calendar fechaDesde;
+        Calendar fechaHasta;
+        int indexInstitucion = cmbxInstituciones.getSelectedIndex();
+        int indexIncidente = cmbxIncidentes.getSelectedIndex();
+        DefaultTableModel modeloTabla = new DefaultTableModel() ;
+        modeloTabla.addColumn("Título del reporte");
+        modeloTabla.addColumn("Estado"); 
         
-        for (int i = 0; i < resultados.size(); i++) {
-            if(reportesEncontrados.get(i).getFechaCreacion().equals(resultados.get(i)[0])) {
-                reportesEnviar.add(reportesEncontrados.get(i)) ;
+        if(chkbxFecha.isSelected() && chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
+                chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty() || !desde.isBlank() || !desde.isEmpty()|| 
+                    !hasta.isEmpty() || !hasta.isBlank()){
+                fechaDesde = localDateACalendar(datePickerDesde.getDate());
+                fechaHasta = localDateACalendar(datePickerHasta.getDate());
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+                IncidentesDTO incidente = incidentes.get(indexIncidente);
+                String informacionIncidente = incidente.getInformacion();
+
+
+                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaSeleccionada);
+
+                for (int i = 0; i < reportesEncontrados.size(); i++) {
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                }
             }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+        } else if(chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+                IncidentesDTO incidente = incidentes.get(indexIncidente);
+                String informacionIncidente = incidente.getInformacion();
+                
+                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaSeleccionada);
+
+                for (int i = 0; i < reportesEncontrados.size(); i++) {
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                }
+        }else if(chkbxInstitucion.isSelected() && chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucion(titulo, siglasInstitucion, fechaSeleccionada);
+
+                for (int i = 0; i < reportesEncontrados.size(); i++) {
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } else if(chkbxInstitucion.isSelected()){
+            List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorInstitucion(siglasInstitucion, fechaSeleccionada);
+
+                for (int i = 0; i < reportesEncontrados.size(); i++) {
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                }
+        }else if(chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+
+                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTitulo(titulo, fechaSeleccionada);
+
+                for (int i = 0; i < reportesEncontrados.size(); i++) {
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                }
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(!chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+            JOptionPane.showConfirmDialog(this, "Seleccione la casilla de instituciones para buscar por incidentes.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
         }
-        
-        return reportesEnviar ;
+        this.tblReportesDesplegado.setModel(modeloTabla);
     }
-    
-//        for (int i = 0; i < reportes.size(); i++) {
-//            datosTabla[0] = reportes.get(i).getAlumno().getCurp() ;
-//            datosTabla[1] = reportes.get(i).getAlumno().getNombre() ;
-//            datosTabla[2] = reportes.get(i).getAlumno().getGradoGrupo() ;
-//            datosTabla[3] = reportes.get(i).getFechaHora().getTime() ;
-//            datosTabla[4] = reportes.get(i).getNivelIncidencia() ;
-//            datosTabla[5] = reportes.get(i).getMotivo() ;
-//            datosTabla[6] = reportes.get(i).getDescripcion() ;
-//            if (reportes.get(i).isNotificado()) {
-//                datosTabla[7] = "NOTIFICADO" ;
-//            } else {
-//                datosTabla[7] = "PENDIENTE" ;
-//            }
-//            if (reportes.get(i).isValidado()) {
-//                datosTabla[8] = "VALIDADO" ;
-//            } 
-//            
-//            modeloTabla.addRow(datosTabla);
-//        }
-//        
-//        tablaReportes.setModel(modeloTabla);
-//        tablaReportes.setRowHeight(30);
-//        tablaReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
-//        tablaReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonValidar()));
-//
-//    
+
         public ActionListener botonVerReportes() {
         ActionListener verReportesListener = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+          
                 desplegarDatosReporte() ;
                 
             }
@@ -854,9 +948,6 @@ public class FrmHistorial extends javax.swing.JFrame {
 
     public JButtonCellEditor(String text, ActionListener actionListener) {
         this.button = new JButton(text);
-//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-//        this.button.setBackground(new Color(188, 149, 92));
-//        this.button.setForeground(new Color(242, 242, 242));
         this.actionListener = actionListener;
         this.button.addActionListener((ActionEvent evt)->{
             this.actionListener.actionPerformed(
@@ -907,9 +998,6 @@ public class FrmHistorial extends javax.swing.JFrame {
 
     public JButtonRenderer(String text) {
         this.button = new JButton(text);
-//        this.button.setFont(new Font("Sans Serif", Font.BOLD, 16));
-//        this.button.setBackground(new Color(188, 149, 92));
-//        this.button.setForeground(new Color(242, 242, 242));
     }
 
     @Override
