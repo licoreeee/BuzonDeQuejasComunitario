@@ -30,8 +30,13 @@ public class ReporteBO implements IReporteBO {
         reportesDAO = new ReportesDAO(conexion);
     }
 
+    /**
+     * Convierte un objeto ReporteDTO a un objeto Reporte.
+     *
+     * @param reporteDTO Objeto ReporteDTO a convertir.
+     * @return Objeto Reporte convertido.
+     */
     @Override
-
     public Reporte convertirDatosDTO(ReporteDTO reporteDTO) {
         Date date = reporteDTO.getFechaCreacion().getTime();
         Reporte reporte = new Reporte(reporteDTO.getFolio(),
@@ -43,6 +48,13 @@ public class ReporteBO implements IReporteBO {
         return reporte;
     }
 
+    /**
+     * Convierte un objeto Reporte a un objeto ReporteDTO.
+     *
+     * @param reporte Objeto Reporte a convertir.
+     * @return Objeto ReporteDTO convertido.
+     * @throws NegociosException Si ocurre un error en la conversión.
+     */
     @Override
     public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException {
         byte[] photo = null;
@@ -56,11 +68,13 @@ public class ReporteBO implements IReporteBO {
         return reporteDTO;
     }
 
-    @Override
-    public boolean validarFormatoDTO(ReporteDTO reporteDTO) throws NegociosException {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
+    /**
+     * Obtiene todos los reportes abiertos por una institución.
+     *
+     * @param siglasInstitucion Siglas de la institución.
+     * @return Lista de ReporteDTO de los reportes abiertos por la institución.
+     * @throws FindException Si no se encuentran reportes o hay un error en la búsqueda.
+     */
     @Override
     public List<ReporteDTO> obtenerReportesAbiertosPorInstitucion(String siglasInstitucion) throws FindException {
 
@@ -90,6 +104,12 @@ public class ReporteBO implements IReporteBO {
         }
     }
 
+    /**
+     * Actualiza el estado de un reporte.
+     *
+     * @param reporteDTO Objeto ReporteDTO con el estado actualizado.
+     * @throws PersistenciaException Si ocurre un error durante la actualización.
+     */
     @Override
     public void actualizarEstado(ReporteDTO reporteDTO) throws PersistenciaException {
         Reporte reporte = new Reporte(
@@ -102,6 +122,13 @@ public class ReporteBO implements IReporteBO {
         }
     }
 
+    /**
+     * Convierte una lista de objetos Reporte a una lista de objetos ReporteDTO.
+     *
+     * @param reportes Lista de objetos Reporte a convertir.
+     * @return Lista de objetos ReporteDTO convertidos.
+     * @throws NegociosException Si ocurre un error durante la conversión.
+     */
     @Override
     public List<ReporteDTO> convertirReportesAEntidad(List<Reporte> reportes) throws NegociosException {
         List<ReporteDTO> reportesDTO = new ArrayList<>();
@@ -116,6 +143,12 @@ public class ReporteBO implements IReporteBO {
         return reportesDTO;
     }
 
+    /**
+     * Convierte un objeto Date a un objeto Calendar sin incluir la hora.
+     *
+     * @param date Objeto Date a convertir.
+     * @return Objeto Calendar sin la hora.
+     */
     @Override
     public Calendar dateToCalendar(Date date) {
         Calendar calendar = Calendar.getInstance();
@@ -128,11 +161,27 @@ public class ReporteBO implements IReporteBO {
         return calendar;
     }
 
+    /**
+     * Convierte un objeto Calendar a un objeto Date.
+     *
+     * @param calendar Objeto Calendar a convertir.
+     * @return Objeto Date convertido.
+     */
     @Override
     public Date calendarToDate(Calendar calendar) {
         return calendar.getTime();
     }
 
+    /**
+     * Obtiene una lista de reportes por título y fecha.
+     *
+     * @param titulo Título del reporte a buscar.
+     * @param dia Fecha del reporte a buscar.
+     * @return Lista de ReporteDTO que coinciden con el título y la fecha
+     * especificados.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
     @Override
     public List<ReporteDTO> obtenerReportePorTitulo(String titulo, Calendar dia) throws FindException {
         try {
@@ -145,6 +194,16 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    /**
+     * Obtiene una lista de reportes por institución y fecha.
+     *
+     * @param institucion Institución asociada a los reportes a buscar.
+     * @param dia Fecha de los reportes a buscar.
+     * @return Lista de ReporteDTO que coinciden con la institución y la fecha
+     * especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
     @Override
     public List<ReporteDTO> obtenerReportePorInstitucion(String institucion, Calendar dia) throws FindException {
         try {
@@ -157,6 +216,17 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    /**
+     * Obtiene una lista de reportes por título, institución y fecha.
+     *
+     * @param titulo Título del reporte a buscar.
+     * @param institucion Institución asociada al reporte a buscar.
+     * @param dia Fecha del reporte a buscar.
+     * @return Lista de ReporteDTO que coinciden con el título, la institución y
+     * la fecha especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
     @Override
     public List<ReporteDTO> obtenerReportePorTituloYInstitucion(String titulo, String institucion, Calendar dia) throws FindException {
         try {
@@ -169,6 +239,17 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    /**
+     * Obtiene una lista de reportes por institución, incidente y fecha.
+     *
+     * @param institucion Institución asociada a los reportes a buscar.
+     * @param incidente Tipo de incidente asociado a los reportes a buscar.
+     * @param dia Fecha de los reportes a buscar.
+     * @return Lista de ReporteDTO que coinciden con la institución, el
+     * incidente y la fecha especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
     @Override
     public List<ReporteDTO> obtenerReportePorInstitucionYIncidente(String institucion, String incidente, Calendar dia) throws FindException {
         try {
@@ -181,6 +262,18 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    /**
+     * Obtiene una lista de reportes por título, institución, incidente y fecha.
+     *
+     * @param titulo Título del reporte a buscar.
+     * @param institucion Institución asociada al reporte a buscar.
+     * @param incidente Tipo de incidente asociado al reporte a buscar.
+     * @param dia Fecha del reporte a buscar.
+     * @return Lista de ReporteDTO que coinciden con el título, la institución,
+     * el incidente y la fecha especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
     @Override
     public List<ReporteDTO> obtenerReportePorTituloYInstitucionYIncidente(String titulo, String institucion, String incidente, Calendar dia) throws FindException {
         try {
@@ -193,6 +286,13 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    /**
+     * Obtiene una lista de todos los reportes.
+     *
+     * @return Lista de todos los ReporteDTO disponibles.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
     @Override
     public List<ReporteDTO> obtenerTodosLosReportes() throws FindException {
         try {
@@ -204,9 +304,150 @@ public class ReporteBO implements IReporteBO {
         return null;
     }
 
+    /**
+     * Transporta datos de un ReporteDTO.
+     *
+     * @param reporteDTO El ReporteDTO a transportar.
+     * @return El ReporteDTO transportado.
+     * @throws NegociosException Si ocurre un error durante el transporte.
+     */
     @Override
     public ReporteDTO transportarDatos(ReporteDTO reporteDTO) throws NegociosException {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    /**
+     * Obtiene una lista de reportes por período de tiempo.
+     *
+     * @param fechaInicio Fecha de inicio del período.
+     * @param fechaFin Fecha de fin del período.
+     * @param dia Fecha de los reportes a buscar dentro del período.
+     * @return Lista de ReporteDTO que coinciden con el período y la fecha
+     * especificados.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodo(Calendar fechaInicio, Calendar fechaFin, Calendar dia) throws FindException {
+        try {
+            Date diaDate = calendarToDate(dia);
+            Date inicioDate = calendarToDate(fechaInicio);
+            Date finDate = calendarToDate(fechaFin);
+            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorPeriodo(inicioDate, finDate, diaDate));
+            return reportesDTO;
+        } catch (NegociosException ex) {
+            new NegociosException().getMessage();
+        }
+        return null;
+    }
+
+    /**
+     * Obtiene una lista de reportes por período de tiempo y título.
+     *
+     * @param fechaInicio Fecha de inicio del período.
+     * @param fechaFin Fecha de fin del período.
+     * @param dia Fecha de los reportes a buscar dentro del período.
+     * @param titulo Título del reporte a buscar.
+     * @return Lista de ReporteDTO que coinciden con el período, la fecha y el
+     * título especificados.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYTitulo(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String titulo) throws FindException {
+        try {
+            Date diaDate = calendarToDate(dia);
+            Date inicioDate = calendarToDate(fechaInicio);
+            Date finDate = calendarToDate(fechaFin);
+            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorPeriodoYTitulo(inicioDate, finDate, diaDate, titulo));
+            return reportesDTO;
+        } catch (NegociosException ex) {
+            new NegociosException().getMessage();
+        }
+        return null;
+    }
+
+    /**
+     * Obtiene una lista de reportes por período de tiempo, título e
+     * institución.
+     *
+     * @param fechaInicio Fecha de inicio del período.
+     * @param fechaFin Fecha de fin del período.
+     * @param dia Fecha de los reportes a buscar dentro del período.
+     * @param titulo Título del reporte a buscar.
+     * @param institucion Institución asociada al reporte a buscar.
+     * @return Lista de ReporteDTO que coinciden con el período, la fecha, el
+     * título y la institución especificados.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYTituloYInstitucion(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String titulo, String institucion) throws FindException {
+        try {
+            Date diaDate = calendarToDate(dia);
+            Date inicioDate = calendarToDate(fechaInicio);
+            Date finDate = calendarToDate(fechaFin);
+            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorPeriodoYTituloYInstitucion(inicioDate, finDate, diaDate, titulo, institucion));
+            return reportesDTO;
+        } catch (NegociosException ex) {
+            new NegociosException().getMessage();
+        }
+        return null;
+    }
+
+    /**
+     * Obtiene una lista de reportes por período de tiempo, título, institución
+     * e incidente.
+     *
+     * @param fechaInicio Fecha de inicio del período.
+     * @param fechaFin Fecha de fin del período.
+     * @param dia Fecha de los reportes a buscar dentro del período.
+     * @param titulo Título del reporte a buscar.
+     * @param institucion Institución asociada al reporte a buscar.
+     * @param incidente Tipo de incidente asociado al reporte a buscar.
+     * @return Lista de ReporteDTO que coinciden con el período, la fecha, el
+     * título, la institución y el incidente especificados.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYTituloYInstitucionYIncidente(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String titulo, String institucion, String incidente) throws FindException {
+        try {
+            Date diaDate = calendarToDate(dia);
+            Date inicioDate = calendarToDate(fechaInicio);
+            Date finDate = calendarToDate(fechaFin);
+            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorPeriodoYTituloYInstiticionYIncidente(inicioDate, finDate, diaDate, titulo, institucion, incidente));
+            return reportesDTO;
+        } catch (NegociosException ex) {
+            new NegociosException().getMessage();
+        }
+        return null;
+    }
+
+    /**
+     * Obtiene una lista de reportes por período de tiempo e institución.
+     *
+     * @param fechaInicio Fecha de inicio del período.
+     * @param fechaFin Fecha de fin del período.
+     * @param dia Fecha de los reportes a buscar dentro del período.
+     * @param institucion Institución asociada a los reportes a buscar.
+     * @return Lista de ReporteDTO que coinciden con el período, la fecha y la
+     * institución especificados.
+     * @throws FindException Si no se encuentran reportes o hay un error en la
+     * búsqueda.
+     */
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYInstitucion(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String institucion) throws FindException {
+        try {
+            Date diaDate = calendarToDate(dia);
+            Date inicioDate = calendarToDate(fechaInicio);
+            Date finDate = calendarToDate(fechaFin);
+            List<ReporteDTO> reportesDTO = convertirReportesAEntidad(reportesDAO.obtenerReportePorPeriodoYInstitucion(inicioDate, finDate, diaDate, institucion));
+            return reportesDTO;
+        } catch (NegociosException ex) {
+            new NegociosException().getMessage();
+        }
+        return null;
     }
 
 }

@@ -11,6 +11,6 @@ package agregarLog;
 public class SubsistemaAgregarLog {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        FacadeAgregarLog facade = new FacadeAgregarLog();
     }
 }

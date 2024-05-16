@@ -4,6 +4,8 @@
  */
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import Excepciones.FindException;
+import Excepciones.PersistenciaException;
 import conexion.Conexion;
 import conexion.IConexion;
 import dao.ILogDeBusquedaDAO;
@@ -31,23 +33,23 @@ public class LogDeBusquedaBO implements ILogDeBusquedaBO{
      *
      * @param logDeBusquedaDTO El objeto LogDeBusquedaDTO a convertir.
      * @return El objeto de entidad LogDeBusqueda resultante de la conversión.
-     * @throws NegociosException Si ocurre un error durante la conversión.
      */
     @Override
-    public LogDeBusqueda convertirDTO(LogDeBusquedaDTO logDeBusquedaDTO) throws NegociosException {
+    public LogDeBusqueda convertirDTO(LogDeBusquedaDTO logDeBusquedaDTO) throws PersistenciaException {
             return new LogDeBusqueda(logDeBusquedaDTO.getTitulo(),logDeBusquedaDTO.getInstitucion(),logDeBusquedaDTO.getIncidente());
 
     }
 
     @Override
-    public LogDeBusquedaDTO agregarLogDeBusqueda(LogDeBusqueda logDeBusqueda) throws NegociosException {
-//        try {
-//            institucion = institucionDAO.agregarInstitucion(institucion);
-//        } catch (FindException ex) {
-//            throw new FindException("Error al intentar agregar la institucion" + ex.getMessage());
-//        }
-//        return institucionNuevaDTO;
-        return null;
+    public LogDeBusquedaDTO agregarLogDeBusqueda(LogDeBusquedaDTO logDeBusquedaDTO) throws PersistenciaException {
+        try {
+           LogDeBusqueda log = convertirDTO(logDeBusquedaDTO);
+           logDAO.agregarLogDeBusqueda(log);
+           return logDeBusquedaDTO;
+        } catch (PersistenciaException ex) {
+            throw new PersistenciaException("Error al intentar agregar el log de búsqueda" + ex.getMessage());
+        }
+
     }
 
 }

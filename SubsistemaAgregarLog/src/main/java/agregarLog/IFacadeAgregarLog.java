@@ -4,10 +4,15 @@
  */
 package agregarLog;
 
+import Excepciones.PersistenciaException;
+import dto.LogDeBusquedaDTO;
+
 /**
  *
  * @author Dell
  */
 public interface IFacadeAgregarLog {
+    
+    public LogDeBusquedaDTO agregarLogDeBusqueda(LogDeBusquedaDTO logDeBusquedaDTO);
     
 }

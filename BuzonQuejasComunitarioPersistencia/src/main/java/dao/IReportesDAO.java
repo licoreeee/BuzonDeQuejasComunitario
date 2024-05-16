@@ -14,7 +14,7 @@ import org.bson.types.ObjectId;
 
 /**
  *
- * @author Dell
+ * @author Gael Castro, Hisamy Cinco, Victoria Vega
  */
 public interface IReportesDAO {
 
@@ -106,15 +106,60 @@ public interface IReportesDAO {
      */
     public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException;
     
+    /**
+     * Convierte un objeto Date a un objeto Calendar sin la parte de la hora.
+     *
+     * @param date La fecha a convertir.
+     * @return Objeto Calendar sin la parte de la hora.
+     */
     public List<Reporte> obtenerReportePorPeriodo(Date fechaInicio, Date fechaFin, Date dia) throws FindException;
     
+    /**
+     * Obtiene una lista de reportes por período de tiempo.
+     *
+     * @param fechaInicio La fecha de inicio del período.
+     * @param fechaFin La fecha de fin del período.
+     * @param dia La fecha de los reportes a buscar dentro del período.
+     * @return Lista de reportes que coinciden con el período y la fecha especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la búsqueda.
+     */
     public List<Reporte> obtenerReportePorPeriodoYTitulo(Date fechaInicio, Date fechaFin, Date dia, String titulo) throws FindException;
     
+    /**
+     * Obtiene una lista de reportes por período de tiempo y título.
+     *
+     * @param fechaInicio La fecha de inicio del período.
+     * @param fechaFin La fecha de fin del período.
+     * @param dia La fecha de los reportes a buscar dentro del período.
+     * @param titulo El título del reporte a buscar.
+     * @return Lista de reportes que coinciden con el período, la fecha y el título especificados.
+     * @throws FindException Si no se encuentran reportes o hay un error en la búsqueda.
+     */
     public List<Reporte> obtenerReportePorPeriodoYTituloYInstitucion(Date fechaInicio, Date fechaFin, Date dia, String titulo, String institucion) throws FindException;
     
+    /**
+     * Obtiene una lista de reportes por período de tiempo, título e institución.
+     *
+     * @param fechaInicio La fecha de inicio del período.
+     * @param fechaFin La fecha de fin del período.
+     * @param dia La fecha de los reportes a buscar dentro del período.
+     * @param titulo El título del reporte a buscar.
+     * @param institucion La institución asociada al reporte a buscar.
+     * @return Lista de reportes que coinciden con el período, la fecha, el título y la institución especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la búsqueda.
+     */
     public List<Reporte> obtenerReportePorPeriodoYTituloYInstiticionYIncidente(Date fechaInicio, Date fechaFin, Date dia, String titulo, String institucion, String incidente) throws FindException;
     
+    /**
+     * Obtiene una lista de reportes por período de tiempo e institución.
+     *
+     * @param fechaInicio La fecha de inicio del período.
+     * @param fechaFin La fecha de fin del período.
+     * @param dia La fecha de los reportes a buscar dentro del período.
+     * @param institucion La institución asociada a los reportes a buscar.
+     * @return Lista de reportes que coinciden con el período, la fecha y la institución especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la búsqueda.
+     */
     public List<Reporte> obtenerReportePorPeriodoYInstitucion(Date fechaInicio, Date fechaFin, Date dia, String institucion) throws FindException;
-
 
 }

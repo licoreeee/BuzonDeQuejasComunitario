@@ -13,6 +13,9 @@ public class LogDeBusquedaDTO {
     private String institucion;
     private String incidente;
 
+    public LogDeBusquedaDTO() {
+    }
+
     public LogDeBusquedaDTO(String titulo, String institucion, String incidente) {
         this.titulo = titulo;
         this.institucion = institucion;
