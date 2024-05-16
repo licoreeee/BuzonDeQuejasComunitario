@@ -265,6 +265,7 @@ public class FrmCrearComentario extends javax.swing.JFrame {
      */
     private void btnComentariosReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComentariosReporteActionPerformed
         control.mostrarComentariosReporte(reporteDTO, institucionDTO);
+        dispose();
     }//GEN-LAST:event_btnComentariosReporteActionPerformed
 
     private void txtTituloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTituloActionPerformed
@@ -277,7 +278,6 @@ public class FrmCrearComentario extends javax.swing.JFrame {
      */
     private void btnAtrásActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrásActionPerformed
         control.mostrarReportesPendientes(institucionDTO);
-        
         dispose();
     }//GEN-LAST:event_btnAtrásActionPerformed
 

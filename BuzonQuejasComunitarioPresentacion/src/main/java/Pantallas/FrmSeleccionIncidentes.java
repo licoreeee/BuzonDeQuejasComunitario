@@ -26,17 +26,16 @@ import org.itson.diseño.levantarreportess.IFacadeLevantarReporte;
  * @author victo
  */
 public class FrmSeleccionIncidentes extends javax.swing.JFrame {
-    
+
     private IFacadeAgregarIncidentes facadeAgregarIncidentes;
     private IFacadeAgregarInstitucion facadeAgregarInstitucion;
     private IFacadeLevantarReporte fachadaLevantarReporte;
     private InstitucionRegistradaDTO institucionRegistradaDTO;
-    private ControlNavegacion controladores;
     private ReporteDTO reporteDTO;
     private List<IncidentesDTO> incidentesDeInstitucion = new ArrayList<>();
     private InstitucionNuevaDTO institucion;
     private List<IncidentesDTO> incidentesDTOs;
-    private ControlNavegacion control;
+    private ControlNavegacion controladores;
 
     /**
      * Creates new form FrmSeleccionIncidentes
@@ -54,9 +53,14 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         this.institucionRegistradaDTO = institucionRegistradaDTO;
         this.incidentesDeInstitucion = incidentesDeInstitucion;
         actualizarTabla(incidentesDTOs);
-        control = new ControlNavegacion();
+        controladores = new ControlNavegacion();
+        if(reporteDTO.getInstitucion().getSiglas() != null){
+            lblTitulo.setText("Incidentes encargados por " + reporteDTO.getInstitucion().getSiglas());
+        }else{
+            lblTitulo.setText("Incidentes encargados por "+ reporteDTO.getInstitucion().getNombre());
+        }
     }
-    
+
     private void actualizarTabla(List<IncidentesDTO> incidentesDTOs) {
         try {
             DefaultTableModel incidentesRegistrados = new DefaultTableModel() {
@@ -76,23 +80,22 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, ex, "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
+
     }
-    
+
     private void obtenerDatosSeleccionados() {
         int filaSeleccionada = tblIncidentes.getSelectedRow();
-        
+
         if (filaSeleccionada != -1) {
             Object[] datosFila = new Object[tblIncidentes.getColumnCount()];
-            
+
             for (int i = 0; i < tblIncidentes.getColumnCount(); i++) {
                 datosFila[i] = tblIncidentes.getValueAt(filaSeleccionada, i);
             }
             IncidentesDTO incidenteDTO = new IncidentesDTO();
             incidenteDTO.setInformacion(datosFila[0].toString());
             incidenteDTO.setInstitucionRegistradaDTO(institucionRegistradaDTO);
-            
-            
+
             reporteDTO.setIncidente(incidenteDTO);
             controladores.mostrarLevantarReporte(reporteDTO);
             dispose();
@@ -112,11 +115,12 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
 
         jRadioButtonMenuItem1 = new javax.swing.JRadioButtonMenuItem();
         jLabel6 = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -133,6 +137,19 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        btnVolver.setBackground(new java.awt.Color(241, 241, 241));
+        btnVolver.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(181, 18, 57));
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 270, 107, 40));
 
         btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnAvances.setForeground(new java.awt.Color(255, 255, 255));
@@ -166,11 +183,11 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         jLabel7.setOpaque(true);
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 80));
 
-        jLabel1.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(33, 33, 33));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel1.setText("Incidentes encargados por OOMAPAS");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 378, -1));
+        lblTitulo.setFont(new java.awt.Font("Inter", 1, 20)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(33, 33, 33));
+        lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        lblTitulo.setText("Incidentes encargados por OOMAPAS");
+        getContentPane().add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 560, -1));
 
         jLabel2.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(110, 110, 110));
@@ -204,7 +221,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
         tblIncidentes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(tblIncidentes);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 573, 170));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 460, 170));
 
         btnSiguiente.setBackground(new java.awt.Color(241, 241, 241));
         btnSiguiente.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
@@ -217,7 +234,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
                 btnSiguienteActionPerformed(evt);
             }
         });
-        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 353, 107, 40));
+        getContentPane().add(btnSiguiente, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 340, 107, 40));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Paso 2.jpg"))); // NOI18N
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, 450, 40));
@@ -240,20 +257,26 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
-    control.mostrarPortalInstituciones();
+        controladores.mostrarPortalInstituciones();
+        dispose();
     }//GEN-LAST:event_btnAvancesActionPerformed
 
     private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
-    control.mostrarHistorial();
-        // TODO add your handling code here:
+        controladores.mostrarHistorial();
+        dispose();
     }//GEN-LAST:event_btnHistorialActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        controladores.mostrarSeleccionInstitucion();
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnSiguiente;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -263,6 +286,7 @@ public class FrmSeleccionIncidentes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JTable tblIncidentes;
     // End of variables declaration//GEN-END:variables
 }

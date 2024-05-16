@@ -118,11 +118,11 @@ public class DlgComentarioExitoso extends javax.swing.JDialog {
         });
         jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 230, 80, 40));
 
-        btnComentario.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
-        btnComentario.setForeground(new java.awt.Color(204, 0, 0));
         btnComentario.setText("Crear otro comentario");
         btnComentario.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
         btnComentario.setContentAreaFilled(false);
+        btnComentario.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnComentario.setForeground(new java.awt.Color(204, 0, 0));
         btnComentario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComentarioActionPerformed(evt);
@@ -138,7 +138,7 @@ public class DlgComentarioExitoso extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
         );
 
         pack();

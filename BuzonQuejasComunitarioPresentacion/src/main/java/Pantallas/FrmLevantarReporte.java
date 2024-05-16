@@ -50,6 +50,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         cmpTitulo = new javax.swing.JTextField();
         cmpDescripcion = new javax.swing.JTextField();
         jlbObligatorio = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
 
@@ -125,6 +126,18 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         jlbObligatorio.setText("*Campo obligatorio.");
         jPanel1.add(jlbObligatorio, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, -1));
 
+        btnVolver.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(181, 18, 57));
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 330, 104, 43));
+
         btnSiguiente.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnSiguiente.setForeground(new java.awt.Color(181, 18, 57));
         btnSiguiente.setText("Siguiente");
@@ -174,6 +187,12 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        controladores.mostrarSeleccionIncidentes(reporteDTO);
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
 //    /**
 //     * @param args the command line arguments
 //     */
@@ -213,6 +232,7 @@ public class FrmLevantarReporte extends javax.swing.JFrame {
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JTextField cmpDescripcion;
     private javax.swing.JTextField cmpTitulo;
     private javax.swing.JButton jButton1;

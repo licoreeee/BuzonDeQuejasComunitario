@@ -47,7 +47,6 @@ public class FrmFolio extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        btnLevantarReporte = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -65,19 +64,6 @@ public class FrmFolio extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(10, 50, 6));
         jPanel2.setForeground(new java.awt.Color(0, 102, 51));
         jPanel2.setPreferredSize(new java.awt.Dimension(290, 80));
-
-        btnLevantarReporte.setBackground(new java.awt.Color(0, 102, 51));
-        btnLevantarReporte.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
-        btnLevantarReporte.setForeground(new java.awt.Color(255, 255, 255));
-        btnLevantarReporte.setText("Levantar reporte");
-        btnLevantarReporte.setBorder(null);
-        btnLevantarReporte.setBorderPainted(false);
-        btnLevantarReporte.setContentAreaFilled(false);
-        btnLevantarReporte.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLevantarReporteActionPerformed(evt);
-            }
-        });
 
         btnAvances.setBackground(new java.awt.Color(0, 102, 51));
         btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
@@ -99,6 +85,11 @@ public class FrmFolio extends javax.swing.JFrame {
         btnHistorial.setBorder(null);
         btnHistorial.setBorderPainted(false);
         btnHistorial.setContentAreaFilled(false);
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/logo_gobierno_mexico.png"))); // NOI18N
 
@@ -107,10 +98,8 @@ public class FrmFolio extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(btnLevantarReporte)
-                .addGap(18, 18, 18)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 297, Short.MAX_VALUE)
+                .addGap(140, 140, 140)
                 .addComponent(btnAvances)
                 .addGap(18, 18, 18)
                 .addComponent(btnHistorial)
@@ -121,13 +110,12 @@ public class FrmFolio extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap(56, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnLevantarReporte)
                     .addComponent(btnAvances)
                     .addComponent(btnHistorial))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 19, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, -1));
@@ -166,7 +154,7 @@ public class FrmFolio extends javax.swing.JFrame {
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 
-        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 166, -1, -1));
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
 
         btnVolverMenuPrincipal.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
         btnVolverMenuPrincipal.setForeground(new java.awt.Color(204, 0, 0));
@@ -178,7 +166,7 @@ public class FrmFolio extends javax.swing.JFrame {
                 btnVolverMenuPrincipalActionPerformed(evt);
             }
         });
-        jPanel1.add(btnVolverMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 310, 216, 40));
+        jPanel1.add(btnVolverMenuPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 216, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,11 +190,15 @@ public class FrmFolio extends javax.swing.JFrame {
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
         // TODO add your handling code here:
+        controladores.mostrarPortalInstituciones();
+        dispose();
     }//GEN-LAST:event_btnAvancesActionPerformed
 
-    private void btnLevantarReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLevantarReporteActionPerformed
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnLevantarReporteActionPerformed
+        controladores.mostrarHistorial();
+        dispose();
+    }//GEN-LAST:event_btnHistorialActionPerformed
 
 //    /**
 //     * @param args the command line arguments
@@ -246,7 +238,6 @@ public class FrmFolio extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
-    private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnVolverMenuPrincipal;
     private javax.swing.JLabel etqDinamicaFolio;
     private javax.swing.JLabel jLabel1;

@@ -171,6 +171,7 @@ public class FrmPortalInstituciones extends javax.swing.JFrame {
 
     private void btnAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAtrasActionPerformed
         control.mostrarMenuPrincipal();
+        dispose();
     }//GEN-LAST:event_btnAtrasActionPerformed
 
 

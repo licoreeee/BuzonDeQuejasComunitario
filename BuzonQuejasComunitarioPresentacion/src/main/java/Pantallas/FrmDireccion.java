@@ -67,6 +67,7 @@ public class FrmDireccion extends javax.swing.JFrame {
         jlbCalle = new javax.swing.JLabel();
         jlbCP = new javax.swing.JLabel();
         jlbDescripcionExtra = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
         cmpCalle = new javax.swing.JTextField();
         cmpNumeroExterior = new javax.swing.JTextField();
         cmpCP = new javax.swing.JTextField();
@@ -135,6 +136,17 @@ public class FrmDireccion extends javax.swing.JFrame {
         jlbDescripcionExtra.setFont(new java.awt.Font("Inter", 1, 14)); // NOI18N
         jlbDescripcionExtra.setForeground(new java.awt.Color(33, 33, 33));
         jlbDescripcionExtra.setText("Descripción extra:");
+
+        btnVolver.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(181, 18, 57));
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
 
         cmpCalle.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
         cmpCalle.setForeground(new java.awt.Color(33, 33, 33));
@@ -208,29 +220,31 @@ public class FrmDireccion extends javax.swing.JFrame {
                         .addGap(199, 199, 199))
                     .addGroup(pnlFondoLayout.createSequentialGroup()
                         .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jlbContexto)
+                            .addComponent(lblDireccionReporte)
                             .addGroup(pnlFondoLayout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jlbCalle)
+                                    .addComponent(cmpCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlbNumeroExterior)
+                                    .addComponent(cmpNumeroExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlFondoLayout.createSequentialGroup()
+                                .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(cmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnlFondoLayout.createSequentialGroup()
+                                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cmpDescripcionExtra, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jlbDescripcionExtra))
                                 .addGap(18, 18, 18)
-                                .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jlbDescripcionExtra)
-                            .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(cmpDescripcionExtra)
-                                .addComponent(jlbContexto, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblDireccionReporte, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
-                                    .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jlbCalle)
-                                        .addComponent(cmpCalle, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(26, 26, 26)
-                                    .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlbNumeroExterior)
-                                        .addComponent(cmpNumeroExterior, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlFondoLayout.createSequentialGroup()
-                                    .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, 305, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(29, 29, 29)
-                                    .addComponent(cmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 22, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnTerminar, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addContainerGap(22, Short.MAX_VALUE))))
         );
         pnlFondoLayout.setVerticalGroup(
             pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -251,13 +265,16 @@ public class FrmDireccion extends javax.swing.JFrame {
                     .addComponent(jlbColonia)
                     .addComponent(jlbCP))
                 .addGap(8, 8, 8)
-                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlbDescripcionExtra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmpDescripcionExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlFondoLayout.createSequentialGroup()
+                        .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cmpCP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cmpColonia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlbDescripcionExtra)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmpDescripcionExtra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pnlFondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -319,46 +336,17 @@ public class FrmDireccion extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTerminarActionPerformed
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(FrmDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(FrmDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(FrmDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(FrmDireccion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FrmDireccion().setVisible(true);
-//            }
-//        });
-//    }
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        controladores.mostrarLevantarReporte(reporteDTO);
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte;
     private javax.swing.JButton btnTerminar;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JTextField cmpCP;
     private javax.swing.JTextField cmpCalle;
     private javax.swing.JTextField cmpColonia;

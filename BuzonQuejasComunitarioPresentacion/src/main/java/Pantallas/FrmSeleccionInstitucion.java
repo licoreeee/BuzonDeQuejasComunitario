@@ -23,7 +23,6 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
     private final IFacadeAgregarInstitucion facadeAgregarInstitucion;
     private IFacadeLevantarReporte facadeLevantarReporte;
-    private final ControlNavegacion controladores;
     private String institucion;
     private String funcionInstitucion;
     private String nombreInstitucion;
@@ -31,7 +30,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     private List<InstitucionNuevaDTO> institucionesnuevas;
     private List<InstitucionRegistradaDTO> instituciones;
     private InstitucionRegistradaDTO institucionSeleccionada;
-    private ControlNavegacion control;
+    private ControlNavegacion controladores;
 
     /**
      * Creates new form FrmSeleccionInstitucion
@@ -45,7 +44,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         institucionesnuevas = facadeLevantarReporte.obtenerInstituciones();
         this.controladores = new ControlNavegacion();
         this.instituciones = facadeAgregarInstitucion.consultarInstituciones();
-        control = new ControlNavegacion();
+        controladores = new ControlNavegacion();
         llenarComboBox();
     }
 
@@ -76,34 +75,6 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         }
     }
 
-//    public void obtenerInformacionInstitucion() {
-//        Set<String> siglasUnicas = new HashSet<>(); // Usar un conjunto para evitar duplicados
-//        instituciones.forEach(institucion -> {
-//            String institucionEnFormato = "";
-//            try {
-//                institucionEnFormato = institucion.getSiglas();
-//            } catch (Exception ex) {
-//                ex.printStackTrace();
-//            }
-//            // Agregar la sigla de la institución al conjunto para evitar duplicados
-//            siglasUnicas.add(institucionEnFormato);
-//        });
-//
-//        // Agregar las siglas únicas al ComboBox
-//        siglasUnicas.forEach(sigla -> cboSeleccionInstitucion.addItem(sigla));
-//    }
-//    public void institucionReporte(String siglas, String funcion, String nombre, List<IncidenteDTO> incidentes) {
-//        institucionDTO = new InstitucionNuevaDTO(
-//                nombre,
-//                funcion,
-//                siglas,
-//                incidentes
-//        );
-//        if (reporteDTO == null) {
-//            reporteDTO = new ReporteDTO();
-//        }
-//        reporteDTO.setInstitucion(institucionDTO);
-//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -119,6 +90,7 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblDescripcion1 = new javax.swing.JLabel();
         lblDescripcion2 = new javax.swing.JLabel();
         lblInformacionInstitucion = new javax.swing.JLabel();
+        btnVolver = new javax.swing.JButton();
         btnAvances = new javax.swing.JButton();
         btnSiguiente = new javax.swing.JButton();
         btnHistorial = new javax.swing.JButton();
@@ -151,6 +123,19 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         lblInformacionInstitucion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(lblInformacionInstitucion, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 290, 500, -1));
 
+        btnVolver.setBackground(new java.awt.Color(229, 229, 229));
+        btnVolver.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(181, 18, 57));
+        btnVolver.setText("Volver");
+        btnVolver.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(181, 18, 57)));
+        btnVolver.setContentAreaFilled(false);
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 300, 110, 40));
+
         btnAvances.setFont(new java.awt.Font("Inter Light", 0, 14)); // NOI18N
         btnAvances.setForeground(new java.awt.Color(255, 255, 255));
         btnAvances.setText("Avances");
@@ -181,6 +166,11 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
         btnHistorial.setText("Historial");
         btnHistorial.setBorder(null);
         btnHistorial.setContentAreaFilled(false);
+        btnHistorial.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistorialActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnHistorial, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 50, -1, -1));
 
         cboSeleccionInstitucion.setFont(new java.awt.Font("Inter", 0, 14)); // NOI18N
@@ -222,11 +212,9 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
 
     private void cboSeleccionInstitucionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboSeleccionInstitucionActionPerformed
         String seleccion = (String) cboSeleccionInstitucion.getSelectedItem();
-        institucionSeleccionada = null; // Reiniciar la institución seleccionada antes de buscarla nuevamente
-
+        institucionSeleccionada = null;
         for (InstitucionRegistradaDTO institucion : instituciones) {
             if (seleccion.equals(institucion.getSiglas()) || seleccion.equals(institucion.getNombre())) {
-                // Asignar la institución seleccionada a la variable de clase
                 institucionSeleccionada = institucion;
                 break;
             }
@@ -238,34 +226,28 @@ public final class FrmSeleccionInstitucion extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSiguienteActionPerformed
 
     private void btnAvancesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvancesActionPerformed
-    control.mostrarPortalInstituciones();
-    dispose();
+        controladores.mostrarPortalInstituciones();
+        dispose();
     }//GEN-LAST:event_btnAvancesActionPerformed
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (btnHistoriala SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//
-//        //</editor-fold>
-//
-//        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new FrmSeleccionInstitucion().setVisible(true);
-//            }
-//        });
-//    }
+    private void btnHistorialActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistorialActionPerformed
+        // TODO add your handling code here:
+        controladores.mostrarHistorial();
+        dispose();
+    }//GEN-LAST:event_btnHistorialActionPerformed
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        // TODO add your handling code here:
+        controladores.mostrarMenuPrincipal();
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnSiguiente;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JComboBox<String> cboSeleccionInstitucion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
