@@ -107,10 +107,13 @@ public interface IReportesDAO {
     public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException;
     
     /**
-     * Convierte un objeto Date a un objeto Calendar sin la parte de la hora.
+     * Obtiene una lista de reportes por período de tiempo.
      *
-     * @param date La fecha a convertir.
-     * @return Objeto Calendar sin la parte de la hora.
+     * @param fechaInicio La fecha de inicio del período.
+     * @param fechaFin La fecha de fin del período.
+     * @param dia La fecha de los reportes a buscar dentro del período.
+     * @return Lista de reportes que coinciden con el período y la fecha especificadas.
+     * @throws FindException Si no se encuentran reportes o hay un error en la búsqueda.
      */
     public List<Reporte> obtenerReportePorPeriodo(Date fechaInicio, Date fechaFin, Date dia) throws FindException;
     
