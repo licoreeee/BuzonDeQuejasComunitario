@@ -13,16 +13,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import negocio.CiudadanoBO;
-import negocio.ICiudadanoBO;
-import negocio.IIncidenteBO;
-import negocio.IInstitucionBO;
-import negocio.ILevantarReporteBO;
-import negocio.IReporteBO;
-import negocio.IncidenteBO;
-import negocio.InstitucionBO;
-import negocio.LevantarReporteBO;
-import negocio.ReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.CiudadanoBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ICiudadanoBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IIncidenteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IInstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ILevantarReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IncidenteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.InstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.LevantarReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ReporteBO;
 
 /**
  *

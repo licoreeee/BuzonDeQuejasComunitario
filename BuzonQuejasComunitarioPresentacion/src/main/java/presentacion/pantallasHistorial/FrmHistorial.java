@@ -1,7 +1,7 @@
 
 package presentacion.pantallasHistorial;
 
-import presentacion.pantallas.ControlNavegacion;
+import Pantallas.ControlNavegacion;
 import historialReportes.FacadeHistorialReportes;
 import historialReportes.IFacadeHistorialReportes;
 import dto.IncidentesDTO;

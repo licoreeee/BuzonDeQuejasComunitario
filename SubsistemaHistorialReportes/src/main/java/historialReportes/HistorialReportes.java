@@ -8,8 +8,8 @@ import dto.ReporteDTO;
 import Excepciones.FindException;
 import java.util.Calendar;
 import java.util.List;
-import negocio.IReporteBO;
-import negocio.ReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ReporteBO;
 
 /**
  *
