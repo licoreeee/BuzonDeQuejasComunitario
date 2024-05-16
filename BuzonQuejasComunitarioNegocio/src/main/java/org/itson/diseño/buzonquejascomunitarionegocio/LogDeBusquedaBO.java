@@ -4,16 +4,13 @@
  */
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
-import Excepciones.FindException;
 import conexion.Conexion;
 import conexion.IConexion;
 import dao.ILogDeBusquedaDAO;
 import dao.LogDeBusquedaDAO;
 import dto.LogDeBusquedaDTO;
-import entidades.Ciudadano;
 import entidades.LogDeBusqueda;
 import excepciones.NegociosException;
-import java.util.List;
 
 /**
  *
@@ -24,7 +21,7 @@ public class LogDeBusquedaBO implements ILogDeBusquedaBO{
     private ILogDeBusquedaDAO logDAO;
     private IConexion conexion;
     
-    public LogDeBusquedaBO(ICiudadanoBO ciudadanoBO) {
+    public LogDeBusquedaBO() {
         conexion = new Conexion();
         this.logDAO = new LogDeBusquedaDAO(conexion);
     }

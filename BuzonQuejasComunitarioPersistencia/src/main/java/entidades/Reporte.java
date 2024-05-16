@@ -26,7 +26,6 @@ public class Reporte {
     private String calle;
     private String colonia;
     private String descripcionExtra;
-    private Ciudadano ciudadano;
     private Institucion institucion;
     private Incidentes incidente;
 
@@ -36,22 +35,6 @@ public class Reporte {
     public Reporte(int folio, Boolean estado) {
         this.folio = folio;
         this.estado = estado;
-    }
-
-    
-
-    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, Binary photo, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.photo = photo;
-        this.calle = calle;
-        this.colonia = colonia;
-        this.descripcionExtra = descripcionExtra;
-        this.ciudadano = ciudadano;
-        this.institucion = institucion;
-        this.incidente = incidente;
     }
 
     public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion) {
@@ -83,31 +66,6 @@ public class Reporte {
         this.folio = folio;
         this.titulo = titulo;
         this.fechaCreacion = fechaCreacion;
-    }
-
-    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Institucion institucion, Incidentes incidente) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.calle = calle;
-        this.colonia = colonia;
-        this.descripcionExtra = descripcionExtra;
-        this.ciudadano = ciudadano;
-        this.institucion = institucion;
-        this.incidente = incidente;
-    }
-
-    public Reporte(int folio, String titulo, String descripcion, Date fechaCreacion, String calle, String colonia, String descripcionExtra, Ciudadano ciudadano, Incidentes incidente) {
-        this.folio = folio;
-        this.titulo = titulo;
-        this.descripcion = descripcion;
-        this.fechaCreacion = fechaCreacion;
-        this.calle = calle;
-        this.colonia = colonia;
-        this.descripcionExtra = descripcionExtra;
-        this.ciudadano = ciudadano;
-        this.incidente = incidente;
     }
 
     public ObjectId getId() {
@@ -166,14 +124,6 @@ public class Reporte {
         this.photo = photo;
     }
 
-    public Ciudadano getCiudadano() {
-        return ciudadano;
-    }
-
-    public void setCiudadano(Ciudadano ciudadano) {
-        this.ciudadano = ciudadano;
-    }
-
     public Institucion getInstitucion() {
         return institucion;
     }
@@ -212,11 +162,6 @@ public class Reporte {
 
     public void setDescripcionExtra(String descripcionExtra) {
         this.descripcionExtra = descripcionExtra;
-    }
-
-    @Override
-    public String toString() {
-        return "Reporte{" + "id=" + id + ", folio=" + folio + ", titulo=" + titulo + ", descripcion=" + descripcion + ", fechaCreacion=" + fechaCreacion + ", photo=" + photo + ", estado=" + estado + ", calle=" + calle + ", colonia=" + colonia + ", descripcionExtra=" + descripcionExtra + ", ciudadano=" + ciudadano + ", institucion=" + institucion + ", incidente=" + incidente + '}';
     }
 
 }

@@ -33,7 +33,6 @@ import org.bson.types.ObjectId;
 public class LevantarReporteBO implements ILevantarReporteBO {
 
     private IConexion conexion;
-    ICiudadanoBO ciudadanoBO;
     IInstitucionBO institucionBO;
     IIncidenteBO incidenteBO;
     private ReportesDAO reportesDAO;
@@ -43,109 +42,6 @@ public class LevantarReporteBO implements ILevantarReporteBO {
         conexion = new Conexion();
         reportesDAO = new ReportesDAO(conexion);
         institucionesDAO = new InstitucionesDAO(conexion);
-    }
-
-    /**
-     * Constructor que permite inyectar instancias de ICiudadanoBO, IInstitucionBO y IIncidenteBO.
-     * 
-     * @param ciudadanoBO Instancia de ICiudadanoBO.
-     * @param institucionBO Instancia de IInstitucionBO.
-     * @param incidenteBO Instancia de IIncidenteBO.
-     */
-    public LevantarReporteBO(ICiudadanoBO ciudadanoBO, IInstitucionBO institucionBO, IIncidenteBO incidenteBO) {
-        this.ciudadanoBO = ciudadanoBO;
-        this.institucionBO = institucionBO;
-        this.incidenteBO = incidenteBO;
-    }
-
-     /**
-     * Convierte un objeto ReporteDTO en un objeto de entidad Reporte.
-     *
-     * @param reporteDTO El objeto ReporteDTO a convertir.
-     * @return El objeto de entidad Reporte resultante de la conversión.
-     * @throws NegociosException Si ocurre un error durante la conversión.
-     */
-    @Override
-    public Reporte convertirDatosDTO(ReporteDTO reporteDTO) throws NegociosException {
-        try {
-            if (reporteDTO.getPhoto() == null) {
-                Date date = reporteDTO.getFechaCreacion().getTime();
-                Reporte reporte = new Reporte(reporteDTO.getFolio(),
-                        reporteDTO.getTitulo(),
-                        reporteDTO.getDescripcion(),
-                        date,
-                        reporteDTO.getCalle(),
-                        reporteDTO.getColonia(),
-                        reporteDTO.getDescripcionExtra(),
-                        ciudadanoBO.convertirCiudadanoEntidad(reporteDTO.getCiudadano()),
-                        institucionBO.convertirInstitucionEntidad(reporteDTO.getInstitucion()),
-                        incidenteBO.convertirIncidenteEntidad(reporteDTO.getIncidente()));
-                return reporte;
-            } else {
-                Date date = reporteDTO.getFechaCreacion().getTime();
-                byte[] photo = reporteDTO.getPhoto();
-                Binary binaryPhoto = new Binary(photo);
-                Reporte reporte = new Reporte(reporteDTO.getFolio(),
-                        reporteDTO.getTitulo(),
-                        reporteDTO.getDescripcion(),
-                        date,
-                        binaryPhoto,
-                        reporteDTO.getCalle(),
-                        reporteDTO.getColonia(),
-                        reporteDTO.getDescripcionExtra(),
-                        ciudadanoBO.convertirCiudadanoEntidad(reporteDTO.getCiudadano()),
-                        institucionBO.convertirInstitucionEntidad(reporteDTO.getInstitucion()),
-                        incidenteBO.convertirIncidenteEntidad(reporteDTO.getIncidente()));
-                return reporte;
-            }
-        } catch (NegociosException ex) {
-            throw new NegociosException(ex.getMessage());
-        }
-    }
-
-     /**
-     * Convierte un objeto de entidad Reporte en un objeto ReporteDTO.
-     *
-     * @param reporte El objeto de entidad Reporte a convertir.
-     * @return El objeto ReporteDTO correspondiente.
-     * @throws NegociosException Si ocurre un error durante la conversión.
-     */
-    @Override
-    public ReporteDTO convertirDatosEntity(Reporte reporte) throws NegociosException {
-        try {
-            if (reporte.getPhoto() == null) {
-                Calendar calendar = null;
-                calendar.setTime(reporte.getFechaCreacion());
-                ReporteDTO reporteDTO = new ReporteDTO(reporte.getFolio(),
-                        reporte.getTitulo(),
-                        reporte.getDescripcion(),
-                        calendar,
-                        reporte.getCalle(),
-                        reporte.getColonia(),
-                        reporte.getDescripcionExtra(),
-                        ciudadanoBO.convertirCiudadanoDTO(reporte.getCiudadano()),
-                        institucionBO.convertirInstitucionDTO(reporte.getInstitucion()),
-                        incidenteBO.convertirIncidenteDTO(reporte.getIncidente()));
-                return reporteDTO;
-            } else {
-                Calendar calendar = null;
-                calendar.setTime(reporte.getFechaCreacion());
-                ReporteDTO reporteDTO = new ReporteDTO(reporte.getFolio(),
-                        reporte.getTitulo(),
-                        reporte.getDescripcion(),
-                        calendar,
-                        reporte.getPhoto().getData(),
-                        reporte.getCalle(),
-                        reporte.getColonia(),
-                        reporte.getDescripcionExtra(),
-                        ciudadanoBO.convertirCiudadanoDTO(reporte.getCiudadano()),
-                        institucionBO.convertirInstitucionDTO(reporte.getInstitucion()),
-                        incidenteBO.convertirIncidenteDTO(reporte.getIncidente()));
-                return reporteDTO;
-            }
-        } catch (NegociosException ex) {
-            throw new NegociosException(ex.getMessage());
-        }
     }
 
     /**

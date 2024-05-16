@@ -437,9 +437,14 @@ public class FrmHistorial extends javax.swing.JFrame {
     }//GEN-LAST:event_cmbxInstitucionesActionPerformed
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        limpiarTablaDesplegada();
         refrescarTabla();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void limpiarTablaDesplegada() {
+        DefaultTableModel modeloTablaDesplegada = (DefaultTableModel) tblReportesDesplegado.getModel();
+        modeloTablaDesplegada.setRowCount(0);
+    }
 
     private void agregarInstitucionesAComboBox() {
         List<InstitucionRegistradaDTO> instituciones = facadeInstituciones.consultarInstituciones();
@@ -558,10 +563,9 @@ public class FrmHistorial extends javax.swing.JFrame {
         modeloTabla.addColumn("Núm. Reportes"); 
         modeloTabla.addColumn("");
         
-        if(chkbxFecha.isSelected() && chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
+        if(chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
                 chkbxTitulo.isSelected()){
-            if(!titulo.isBlank() || !titulo.isEmpty() || !desde.isBlank() || !desde.isEmpty()|| 
-                    !hasta.isEmpty() || !hasta.isBlank()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
                 List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();
@@ -828,30 +832,23 @@ public class FrmHistorial extends javax.swing.JFrame {
         }
         
         this.tblReportes.setModel(modeloTabla);
-        tblReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Validar"));
-        tblReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Validar",botonVerReportes()));
+        tblReportes.getColumnModel().getColumn(2).setCellRenderer(new JButtonRenderer("Ver"));
+        tblReportes.getColumnModel().getColumn(2).setCellEditor(new JButtonCellEditor("Ver",botonVerReportes()));
     }
         
     public void desplegarDatosReporte() {
         int indexTabla = tblReportes.getSelectedRow();
         Calendar fechaSeleccionada = fechaCreacionResultados.get(indexTabla);
         String titulo = cmpTitulo.getText();
-        String desde = datePickerDesde.getText();
-        String hasta = datePickerHasta.getText();
-        Calendar fechaDesde;
-        Calendar fechaHasta;
         int indexInstitucion = cmbxInstituciones.getSelectedIndex();
         int indexIncidente = cmbxIncidentes.getSelectedIndex();
         DefaultTableModel modeloTabla = new DefaultTableModel() ;
         modeloTabla.addColumn("Título del reporte");
         modeloTabla.addColumn("Estado"); 
         
-        if(chkbxFecha.isSelected() && chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
+        if(chkbxInstitucion.isSelected() && chkbxIncidente.isSelected() &&
                 chkbxTitulo.isSelected()){
-            if(!titulo.isBlank() || !titulo.isEmpty() || !desde.isBlank() || !desde.isEmpty()|| 
-                    !hasta.isEmpty() || !hasta.isBlank()){
-                fechaDesde = localDateACalendar(datePickerDesde.getDate());
-                fechaHasta = localDateACalendar(datePickerHasta.getDate());
+            if(!titulo.isBlank() || !titulo.isEmpty()){
                 List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();

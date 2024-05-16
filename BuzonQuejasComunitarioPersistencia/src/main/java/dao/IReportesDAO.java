@@ -105,5 +105,16 @@ public interface IReportesDAO {
      * @throws FindException Si ocurre un error durante la operación de búsqueda.
      */
     public List<Reporte> obtenerReportePorInstitucion(String institucion) throws FindException;
+    
+    public List<Reporte> obtenerReportePorPeriodo(Date fechaInicio, Date fechaFin, Date dia) throws FindException;
+    
+    public List<Reporte> obtenerReportePorPeriodoYTitulo(Date fechaInicio, Date fechaFin, Date dia, String titulo) throws FindException;
+    
+    public List<Reporte> obtenerReportePorPeriodoYTituloYInstitucion(Date fechaInicio, Date fechaFin, Date dia, String titulo, String institucion) throws FindException;
+    
+    public List<Reporte> obtenerReportePorPeriodoYTituloYInstiticionYIncidente(Date fechaInicio, Date fechaFin, Date dia, String titulo, String institucion, String incidente) throws FindException;
+    
+    public List<Reporte> obtenerReportePorPeriodoYInstitucion(Date fechaInicio, Date fechaFin, Date dia, String institucion) throws FindException;
+
 
 }
