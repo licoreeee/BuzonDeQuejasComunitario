@@ -47,11 +47,13 @@ public class FrmHistorial extends javax.swing.JFrame {
     IFacadeAgregarLog facadeLog;
     List<ReporteDTO> reportesEncontrados ;
     List<Object[]> resultados ;
+    private List<List<String>> listaParaReporte;
     
     /**
      * Creates new form FrmHistorial
      */
     public FrmHistorial() {
+        listaParaReporte = new ArrayList<>();
         this.fechaCreacionResultados = new ArrayList<>();
         this.controladores = new ControlNavegacion();
         this.facadeInstituciones = new FacadeAgregarInstitucion();
@@ -103,6 +105,7 @@ public class FrmHistorial extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         tblReportesDesplegado = new javax.swing.JTable();
         btnBuscar = new javax.swing.JButton();
+        btnGenerarPDF = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -280,6 +283,17 @@ public class FrmHistorial extends javax.swing.JFrame {
             }
         });
 
+        btnGenerarPDF.setText("Generar PDF..");
+        btnGenerarPDF.setBackground(new java.awt.Color(181, 18, 57));
+        btnGenerarPDF.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 0)));
+        btnGenerarPDF.setFont(new java.awt.Font("Inter Light", 0, 16)); // NOI18N
+        btnGenerarPDF.setForeground(new java.awt.Color(255, 255, 255));
+        btnGenerarPDF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarPDFActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -315,7 +329,9 @@ public class FrmHistorial extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGap(8, 8, 8)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jlbContexto)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jlbContexto)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                         .addGroup(jPanel1Layout.createSequentialGroup()
                                             .addComponent(jlbHistorial)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -331,19 +347,18 @@ public class FrmHistorial extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGap(18, 18, 18)
-                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jlbHistorial)
-                            .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlbHistorial)
+                        .addGap(4, 4, 4)
                         .addComponent(jlbContexto)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlbContexto1)
@@ -360,7 +375,12 @@ public class FrmHistorial extends javax.swing.JFrame {
                             .addComponent(datePickerHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnGenerarPDF, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(chkbxInstitucion)
@@ -450,6 +470,10 @@ public class FrmHistorial extends javax.swing.JFrame {
         refrescarTabla();
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGenerarPDFActionPerformed
+
     private LogDeBusquedaDTO crearLog() {
         LogDeBusquedaDTO log = new LogDeBusquedaDTO();
         String titulo = cmpTitulo.getText();
@@ -524,6 +548,7 @@ public class FrmHistorial extends javax.swing.JFrame {
     private javax.swing.JButton btnAdminAcceso;
     private javax.swing.JButton btnAvances;
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnGenerarPDF;
     private javax.swing.JButton btnHistorial;
     private javax.swing.JButton btnLevantarReporte2;
     private javax.swing.JButton btnVolver;
@@ -602,6 +627,17 @@ public class FrmHistorial extends javax.swing.JFrame {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
 
         return sdf.format(calendar.getTime());
+    }
+    
+    public void generarPDF(){
+        try {
+            listaParaReporte = new ArrayList<>();
+            List<String> datos = new ArrayList<>();
+            datos.add("Título");
+            datos.add("Estado");
+            listaParaReporte.add(datos);
+        } catch (Exception e) {
+        }
     }
     
     public void refrescarTabla() {
@@ -1256,7 +1292,8 @@ public class FrmHistorial extends javax.swing.JFrame {
                 List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
-                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                    String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(), estado});
                 }
             }
             else{
@@ -1273,7 +1310,8 @@ public class FrmHistorial extends javax.swing.JFrame {
                 List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
-                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                    String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(), estado});
                 }
         }else if(chkbxInstitucion.isSelected() && chkbxTitulo.isSelected()){
             if(!titulo.isBlank() || !titulo.isEmpty()){
@@ -1284,7 +1322,8 @@ public class FrmHistorial extends javax.swing.JFrame {
                 List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucion(titulo, siglasInstitucion, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
-                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                    String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(), estado});
                 }
             }
             else{
@@ -1299,7 +1338,8 @@ public class FrmHistorial extends javax.swing.JFrame {
                 List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorInstitucion(siglasInstitucion, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
-                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                    String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(), estado});
                 }
         }else if(chkbxTitulo.isSelected()){
             if(!titulo.isBlank() || !titulo.isEmpty()){
@@ -1307,7 +1347,8 @@ public class FrmHistorial extends javax.swing.JFrame {
                 List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTitulo(titulo, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
-                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(),reportesEncontrados.get(i).getFolio()});
+                    String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
+                    modeloTabla.addRow(new Object[]{reportesEncontrados.get(i).getTitulo(), estado});
                 }
             }
             else{
