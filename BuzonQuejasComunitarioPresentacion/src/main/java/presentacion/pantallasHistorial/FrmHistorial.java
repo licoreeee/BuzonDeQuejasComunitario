@@ -4,6 +4,18 @@ package presentacion.pantallasHistorial;
 import Pantallas.ControlNavegacion;
 import agregarLog.FacadeAgregarLog;
 import agregarLog.IFacadeAgregarLog;
+import com.itextpdf.kernel.colors.ColorConstants;
+import com.itextpdf.kernel.geom.PageSize;
+import com.itextpdf.kernel.pdf.PdfDocument;
+import com.itextpdf.kernel.pdf.PdfWriter;
+import com.itextpdf.kernel.pdf.canvas.PdfCanvas;
+import com.itextpdf.layout.Document;
+import com.itextpdf.layout.element.Cell;
+import com.itextpdf.layout.element.Paragraph;
+import com.itextpdf.layout.element.Table;
+import com.itextpdf.layout.properties.TextAlignment;
+import com.itextpdf.layout.properties.UnitValue;
+import com.itextpdf.layout.renderer.DocumentRenderer;
 import historialReportes.FacadeHistorialReportes;
 import historialReportes.IFacadeHistorialReportes;
 import dto.IncidentesDTO;
@@ -11,20 +23,28 @@ import dto.InstitucionRegistradaDTO;
 import dto.LogDeBusquedaDTO;
 import dto.ReporteDTO;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.EventObject;
 import java.util.List;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.CellEditorListener;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableCellEditor;
 import javax.swing.table.TableCellRenderer;
@@ -47,13 +67,11 @@ public class FrmHistorial extends javax.swing.JFrame {
     IFacadeAgregarLog facadeLog;
     List<ReporteDTO> reportesEncontrados ;
     List<Object[]> resultados ;
-    private List<List<String>> listaParaReporte;
     
     /**
      * Creates new form FrmHistorial
      */
     public FrmHistorial() {
-        listaParaReporte = new ArrayList<>();
         this.fechaCreacionResultados = new ArrayList<>();
         this.controladores = new ControlNavegacion();
         this.facadeInstituciones = new FacadeAgregarInstitucion();
@@ -471,7 +489,7 @@ public class FrmHistorial extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBuscarActionPerformed
 
     private void btnGenerarPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarPDFActionPerformed
-        // TODO add your handling code here:
+        generarPDF();
     }//GEN-LAST:event_btnGenerarPDFActionPerformed
 
     private LogDeBusquedaDTO crearLog() {
@@ -629,16 +647,205 @@ public class FrmHistorial extends javax.swing.JFrame {
         return sdf.format(calendar.getTime());
     }
     
-    public void generarPDF(){
-        try {
-            listaParaReporte = new ArrayList<>();
-            List<String> datos = new ArrayList<>();
-            datos.add("Título");
-            datos.add("Estado");
-            listaParaReporte.add(datos);
-        } catch (Exception e) {
+    private Calendar DateToCalendar(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        return calendar;
+    }
+    
+        private void addPageNumbers(PdfDocument pdfDoc, Document document) {
+        int totalPages = pdfDoc.getNumberOfPages();
+        for (int i = 1; i <= totalPages; i++) {
+            PdfCanvas canvas = new PdfCanvas(pdfDoc.getPage(i));
+            canvas.beginText()
+                    .setFontAndSize(document.getPdfDocument().getDefaultFont(), 10)
+                    .moveText(520, 30)
+                    .showText(String.format("Página %d de %d", i, totalPages))
+                    .endText();
+            canvas.release();
         }
     }
+
+    public static Calendar StringACalendar(String fechaStr) throws ParseException {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+        Date fechaDate = dateFormat.parse(fechaStr);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(fechaDate);
+        return calendar;
+    }
+
+    public void generarPDF() {
+        String titulo = cmpTitulo.getText();
+        int indexInstitucion = cmbxInstituciones.getSelectedIndex();
+        int indexIncidente = cmbxIncidentes.getSelectedIndex();
+        if (this.tblReportes.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "No se han buscado reportes.", "No hay reportes buscados", JOptionPane.WARNING_MESSAGE);
+        } else {
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setDialogTitle("Guardar Reporte");
+            fileChooser.setAcceptAllFileFilterUsed(false);
+            FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos PDF", "pdf");
+            fileChooser.addChoosableFileFilter(filter);
+            int userSelection = fileChooser.showSaveDialog(this);
+
+            if (userSelection == JFileChooser.APPROVE_OPTION) {
+                File fileToSave = fileChooser.getSelectedFile();
+                String path = fileToSave.getAbsolutePath();
+                if (!path.toLowerCase().endsWith(".pdf")) {
+                    path += ".pdf";
+                }
+                try (PdfWriter writer = new PdfWriter(path); PdfDocument pdfDoc = new PdfDocument(writer); Document document = new Document(pdfDoc, PageSize.A4)) {
+                // Set a custom document renderer for page event handling
+                document.setRenderer(new DocumentRenderer(document) {
+                    @Override
+                    public void close() {
+                        super.close();
+                        addPageNumbers(pdfDoc, document);
+                    }
+                });
+
+                LocalDateTime fechaGeneracion = LocalDateTime.now();
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
+                String fechaGeneracionFormato = fechaGeneracion.format(formatter);
+                
+                 document.add(new Paragraph("Resumen de Reportes Encontrados").setFontSize(18).setTextAlignment(TextAlignment.CENTER));
+                 document.add(new Paragraph("Fecha: " + fechaGeneracionFormato));
+                
+                int rowCount = this.tblReportes.getModel().getRowCount();
+                for (int i = 0; i < rowCount; i++) {
+                    String fecha = this.tblReportes.getModel().getValueAt(i, 0).toString();
+                    String cantidadReportes = this.tblReportes.getModel().getValueAt(i, 1).toString();
+                    
+                    Table tabla = new Table(UnitValue.createPercentArray(new float[]{3, 3}));
+                    tabla.setWidth(UnitValue.createPercentValue(100));
+                    tabla.addHeaderCell(new Cell(3, 1).add(new Paragraph("Fecha: " + fecha)).setBackgroundColor(ColorConstants.LIGHT_GRAY));
+                    tabla.addHeaderCell(new Cell(3, 1).add(new Paragraph("Cantidad de Reportes: " + cantidadReportes)).setBackgroundColor(ColorConstants.LIGHT_GRAY));
+    
+                    tabla.addHeaderCell(new Cell().add(new Paragraph("Título")).setBackgroundColor(ColorConstants.GRAY));
+                    tabla.addHeaderCell(new Cell().add(new Paragraph("Estado")).setBackgroundColor(ColorConstants.GRAY));
+
+                    Calendar fechaSeleccionada = null;
+                    try {
+                        fechaSeleccionada = StringACalendar(fecha);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    
+                    if (chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()
+                            && chkbxTitulo.isSelected()) {
+                        List<InstitucionRegistradaDTO> instituciones = facadeInstituciones.consultarInstituciones();
+                        InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                        String siglasInstitucion = institucion.getSiglas();
+                        List<IncidentesDTO> incidentes = facadeIncidentes.consultarIncidentes(institucion.getId());
+                        IncidentesDTO incidente = incidentes.get(indexIncidente);
+                        String informacionIncidente = incidente.getInformacion();
+
+                        reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaSeleccionada);
+
+                        for (ReporteDTO reporte : reportesEncontrados) {
+                            String tituloPDF = reporte.getTitulo();
+                            String estadoPDF = reporte.getEstado() ? "Activo" : "Inactivo";
+
+                            tabla.addCell(new Cell().add(new Paragraph(tituloPDF)));
+                            tabla.addCell(new Cell().add(new Paragraph(estadoPDF)));
+                        }
+                        document.add(tabla);
+                        document.add(new Paragraph("\n"));
+
+                    }else if(chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+                List<IncidentesDTO> incidentes= facadeIncidentes.consultarIncidentes(institucion.getId());
+                IncidentesDTO incidente = incidentes.get(indexIncidente);
+                String informacionIncidente = incidente.getInformacion();
+                
+                reportesEncontrados = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaSeleccionada);
+
+                        for (ReporteDTO reporte : reportesEncontrados) {
+                            String tituloPDF = reporte.getTitulo();
+                            String estadoPDF = reporte.getEstado() ? "Activo" : "Inactivo";
+
+                            tabla.addCell(new Cell().add(new Paragraph(tituloPDF)));
+                            tabla.addCell(new Cell().add(new Paragraph(estadoPDF)));
+                        }
+                        document.add(tabla);
+                        document.add(new Paragraph("\n"));
+
+        }else if(chkbxInstitucion.isSelected() && chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+                List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucion(titulo, siglasInstitucion, fechaSeleccionada);
+
+                        for (ReporteDTO reporte : reportesEncontrados) {
+                            String tituloPDF = reporte.getTitulo();
+                            String estadoPDF = reporte.getEstado() ? "Activo" : "Inactivo";
+
+                            tabla.addCell(new Cell().add(new Paragraph(tituloPDF)));
+                            tabla.addCell(new Cell().add(new Paragraph(estadoPDF)));
+                        }
+                        document.add(tabla);
+                        document.add(new Paragraph("\n"));
+
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } else if(chkbxInstitucion.isSelected()){
+            List<InstitucionRegistradaDTO> instituciones= facadeInstituciones.consultarInstituciones();
+                InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
+                String siglasInstitucion = institucion.getSiglas();
+
+                reportesEncontrados = facadeHistorial.obtenerReportePorInstitucion(siglasInstitucion, fechaSeleccionada);
+
+                        for (ReporteDTO reporte : reportesEncontrados) {
+                            String tituloPDF = reporte.getTitulo();
+                            String estadoPDF = reporte.getEstado() ? "Activo" : "Inactivo";
+
+                            tabla.addCell(new Cell().add(new Paragraph(tituloPDF)));
+                            tabla.addCell(new Cell().add(new Paragraph(estadoPDF)));
+                        }
+                        document.add(tabla);
+                        document.add(new Paragraph("\n"));
+
+        }else if(chkbxTitulo.isSelected()){
+            if(!titulo.isBlank() || !titulo.isEmpty()){
+
+                reportesEncontrados = facadeHistorial.obtenerReportePorTitulo(titulo, fechaSeleccionada);
+
+                        for (ReporteDTO reporte : reportesEncontrados) {
+                            String tituloPDF = reporte.getTitulo();
+                            String estadoPDF = reporte.getEstado() ? "Activo" : "Inactivo";
+
+                            tabla.addCell(new Cell().add(new Paragraph(tituloPDF)));
+                            tabla.addCell(new Cell().add(new Paragraph(estadoPDF)));
+                        }
+                        document.add(tabla);
+                        document.add(new Paragraph("\n"));
+
+            }
+            else{
+                JOptionPane.showConfirmDialog(this, "No deje campos vacíos en los filtros seleccionados.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+            }
+        }else if(!chkbxInstitucion.isSelected() && chkbxIncidente.isSelected()){
+            JOptionPane.showConfirmDialog(this, "Seleccione la casilla de instituciones para buscar por incidentes.", "Selección vacía", JOptionPane.CLOSED_OPTION, JOptionPane.ERROR_MESSAGE);
+        }
+                }
+                 if (Desktop.isDesktopSupported()) {
+                    Desktop.getDesktop().open(new File(path));
+                }   
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            }
+        }
+    }      
+    
     
     public void refrescarTabla() {
         fechaCreacionResultados = new ArrayList<>();
@@ -1289,7 +1496,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 String informacionIncidente = incidente.getInformacion();
 
 
-                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaSeleccionada);
+                reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucionYIncidente(titulo, siglasInstitucion, informacionIncidente, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
                     String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
@@ -1307,7 +1514,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 IncidentesDTO incidente = incidentes.get(indexIncidente);
                 String informacionIncidente = incidente.getInformacion();
                 
-                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaSeleccionada);
+                reportesEncontrados = facadeHistorial.obtenerReportePorInstitucionYIncidente(siglasInstitucion, informacionIncidente, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
                     String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
@@ -1319,7 +1526,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();
 
-                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucion(titulo, siglasInstitucion, fechaSeleccionada);
+                reportesEncontrados = facadeHistorial.obtenerReportePorTituloYInstitucion(titulo, siglasInstitucion, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
                     String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
@@ -1335,7 +1542,7 @@ public class FrmHistorial extends javax.swing.JFrame {
                 InstitucionRegistradaDTO institucion = instituciones.get(indexInstitucion);
                 String siglasInstitucion = institucion.getSiglas();
 
-                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorInstitucion(siglasInstitucion, fechaSeleccionada);
+                reportesEncontrados = facadeHistorial.obtenerReportePorInstitucion(siglasInstitucion, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
                     String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
@@ -1344,7 +1551,7 @@ public class FrmHistorial extends javax.swing.JFrame {
         }else if(chkbxTitulo.isSelected()){
             if(!titulo.isBlank() || !titulo.isEmpty()){
 
-                List<ReporteDTO> reportesEncontrados = facadeHistorial.obtenerReportePorTitulo(titulo, fechaSeleccionada);
+                reportesEncontrados = facadeHistorial.obtenerReportePorTitulo(titulo, fechaSeleccionada);
 
                 for (int i = 0; i < reportesEncontrados.size(); i++) {
                     String estado = reportesEncontrados.get(i).getEstado() ? "Activo" : "Inactivo";
