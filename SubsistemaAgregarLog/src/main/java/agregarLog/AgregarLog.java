@@ -4,10 +4,25 @@
  */
 package agregarLog;
 
+import Excepciones.PersistenciaException;
+import dto.LogDeBusquedaDTO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ILogDeBusquedaBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.LogDeBusquedaBO;
+
 /**
  *
  * @author Dell
  */
 public class AgregarLog {
+    
+    private ILogDeBusquedaBO logDeBusquedaBO;
+
+    public AgregarLog() {
+        logDeBusquedaBO = new LogDeBusquedaBO();
+    }
+    
+    LogDeBusquedaDTO agregarLogDeBusqueda(LogDeBusquedaDTO logDeBusquedaDTO) throws PersistenciaException{
+        return logDeBusquedaBO.agregarLogDeBusqueda(logDeBusquedaDTO);
+    }
     
 }

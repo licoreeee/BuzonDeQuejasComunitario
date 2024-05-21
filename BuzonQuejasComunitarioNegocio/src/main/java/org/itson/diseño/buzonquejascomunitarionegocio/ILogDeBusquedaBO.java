@@ -4,6 +4,7 @@
  */
 package org.itson.diseño.buzonquejascomunitarionegocio;
 
+import Excepciones.PersistenciaException;
 import dto.LogDeBusquedaDTO;
 import entidades.LogDeBusqueda;
 import excepciones.NegociosException;
@@ -14,7 +15,7 @@ import excepciones.NegociosException;
  */
 public interface ILogDeBusquedaBO {
 
-    public LogDeBusquedaDTO agregarLogDeBusqueda(LogDeBusqueda logDeBusqueda) throws NegociosException;
+    public LogDeBusquedaDTO agregarLogDeBusqueda(LogDeBusquedaDTO logDeBusquedaDTO) throws PersistenciaException;
 
     /**
      * Convierte un objeto LogDeBusquedaDTO en un objeto de entidad
@@ -24,6 +25,6 @@ public interface ILogDeBusquedaBO {
      * @return El objeto de entidad LogDeBusqueda resultante de la conversión.
      * @throws NegociosException Si ocurre un error durante la conversión.
      */
-    public LogDeBusqueda convertirDTO(LogDeBusquedaDTO logDeBusquedaDTO) throws NegociosException;
+    public LogDeBusqueda convertirDTO(LogDeBusquedaDTO logDeBusquedaDTO) throws PersistenciaException;
 
 }

@@ -88,5 +88,60 @@ public class FacadeHistorialReportes implements IFacadeHistorialReportes{
         }
         return null;
     }   
+
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodo(Calendar fechaInicio, Calendar fechaFin, Calendar dia) {
+        try {
+            List<ReporteDTO> reportes = historial.obtenerReportePorPeriodo(fechaInicio, fechaFin, dia);
+            return reportes;
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYTitulo(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String titulo) {
+        try {
+            List<ReporteDTO> reportes = historial.obtenerReportePorPeriodoYTitulo(fechaInicio, fechaFin, dia, titulo);
+            return reportes;
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYTituloYInstitucion(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String titulo, String institucion) {
+        try {
+            List<ReporteDTO> reportes = historial.obtenerReportePorPeriodoYTituloYInstitucion(fechaInicio, fechaFin, dia, titulo, institucion);
+            return reportes;
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYTituloYInstitucionYIncidente(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String titulo, String institucion, String incidente) {
+        try {
+            List<ReporteDTO> reportes = historial.obtenerReportePorPeriodoYTituloYInstitucionYIncidente(fechaInicio, fechaFin, dia, titulo, institucion, incidente);
+            return reportes;
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
+    @Override
+    public List<ReporteDTO> obtenerReportePorPeriodoYInstitucion(Calendar fechaInicio, Calendar fechaFin, Calendar dia, String institucion) {
+        try {
+            List<ReporteDTO> reportes = historial.obtenerReportePorPeriodoYInstitucion(fechaInicio, fechaFin, dia, institucion);
+            return reportes;
+        } catch (FindException ex) {
+            Logger.getLogger(FacadeHistorialReportes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
     
 }
