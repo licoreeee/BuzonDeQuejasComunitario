@@ -8,8 +8,8 @@ import Excepciones.FindException;
 import dto.InstitucionNuevaDTO;
 import dto.InstitucionRegistradaDTO;
 import java.util.List;
-import negocio.IInstitucionBO;
-import negocio.InstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IInstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.InstitucionBO;
 
 /**
  * Clase que representa el subsistema encargado de agregar instituciones.

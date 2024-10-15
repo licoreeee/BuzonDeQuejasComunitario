@@ -9,11 +9,11 @@ import excepciones.NegociosException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import negocio.ComentarioBO;
-import negocio.IInstitucionBO;
-import negocio.IReporteBO;
-import negocio.InstitucionBO;
-import negocio.ReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ComentarioBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IInstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.InstitucionBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ReporteBO;
 
 /**
  *

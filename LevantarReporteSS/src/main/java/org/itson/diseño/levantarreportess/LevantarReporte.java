@@ -4,25 +4,12 @@
  */
 package org.itson.diseño.levantarreportess;
 
-import dto.CiudadanoDTO;
-import dto.IncidentesDTO;
-import dto.InstitucionNuevaDTO;
 import dto.ReporteDTO;
 import excepciones.NegociosException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import negocio.CiudadanoBO;
-import negocio.ICiudadanoBO;
-import negocio.IIncidenteBO;
-import negocio.IInstitucionBO;
-import negocio.ILevantarReporteBO;
-import negocio.IReporteBO;
-import negocio.IncidenteBO;
-import negocio.InstitucionBO;
-import negocio.LevantarReporteBO;
-import negocio.ReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.ILevantarReporteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.LevantarReporteBO;
 
 /**
  *

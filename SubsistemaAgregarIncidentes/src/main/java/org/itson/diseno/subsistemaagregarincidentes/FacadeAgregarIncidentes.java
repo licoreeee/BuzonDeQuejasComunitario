@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import negocio.IIncidenteBO;
-import negocio.IncidenteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IIncidenteBO;
+import org.itson.diseño.buzonquejascomunitarionegocio.IncidenteBO;
 
 /**
  * Clase fachada para el subsistema de agregar incidentes.
